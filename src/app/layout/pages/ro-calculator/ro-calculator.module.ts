@@ -25,6 +25,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { TooltipModule } from 'primeng/tooltip';
 import { BlockUIModule } from 'primeng/blockui';
 import { DataViewModule } from 'primeng/dataview';
 import { TreeSelectModule } from 'primeng/treeselect';
@@ -76,6 +77,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     TagModule,
     ToastModule,
     ToggleButtonModule,
+    TooltipModule,
     BlockUIModule,
     DataViewModule,
     TreeSelectModule,

@@ -263,6 +263,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   itemSummary2: any;
   modelSummary: any;
   totalSummary: any;
+  statDeltaBreakdown: Record<string, { itemName: string; value: number; isPositive: boolean }[]> = {};
+  statDeltaTooltips: Record<string, string> = {};
 
   elementTable: ElementDataModel[];
   raceTable: RaceDataModel[];
@@ -826,12 +828,146 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.calculateToSelectedMonsters();
   }
 
+  private getStatValue(summary: any, path: string): number {
+    if (!summary) return 0;
+    return path.split('.').reduce((obj, key) => obj?.[key], summary) ?? 0;
+  }
+
+  private getEquipAtk(summary: any): number {
+    return (summary?.weapon?.baseWeaponAtk || 0) +
+      (summary?.weapon?.refineBonus || 0) +
+      (summary?.calc?.totalMasteryAtk || 0) +
+      (summary?.calc?.totalEquipAtk || 0);
+  }
+
+  private getEquipMatk(summary: any): number {
+    return (summary?.weapon?.baseWeaponMatk || 0) +
+      (summary?.weapon?.refineBonus || 0) +
+      (summary?.calc?.leftWeaponRefineBonus || 0) +
+      (summary?.matk || 0);
+  }
+
+  private readonly compareStats: { key: string; path?: string; composite?: (s: any) => number; lowerIsBetter?: boolean }[] = [
+    { key: 'statusAtk', path: 'calc.totalStatusAtk' },
+    { key: 'equipAtk', composite: (s) => this.getEquipAtk(s) },
+    { key: 'pAtk', path: 'dmg.pAtk' },
+    { key: 'cRate', path: 'dmg.cRate' },
+    { key: 'aspd', path: 'calc.totalAspd' },
+    { key: 'hit', path: 'calc.totalHit' },
+    { key: 'perfectHit', path: 'calc.totalPerfectHit' },
+    { key: 'cri', path: 'calc.totalCri' },
+    { key: 'criDmg', path: 'criDmg' },
+    { key: 'melee', path: 'melee' },
+    { key: 'range', path: 'range' },
+    { key: 'softDef', path: 'calc.softDef' },
+    { key: 'def', path: 'calc.def' },
+    { key: 'res', path: 'calc.res' },
+    { key: 'softMdef', path: 'calc.softMdef' },
+    { key: 'mdef', path: 'calc.mdef' },
+    { key: 'mres', path: 'calc.mres' },
+    { key: 'flee', path: 'calc.totalFlee' },
+    { key: 'statusMatk', path: 'calc.totalStatusMatk' },
+    { key: 'equipMatk', composite: (s) => this.getEquipMatk(s) },
+    { key: 'matkPercent', path: 'matkPercent' },
+    { key: 'sMatk', path: 'dmg.sMatk' },
+    { key: 'acd', path: 'acd', lowerIsBetter: true },
+    { key: 'fct', path: 'fct', lowerIsBetter: true },
+    { key: 'vct', path: 'vct', lowerIsBetter: true },
+    { key: 'maxHp', path: 'calc.maxHp' },
+    { key: 'maxSp', path: 'calc.maxSp' },
+  ];
+
+  private buildPerSlotDeltas() {
+    if (!this.totalSummary || !this.compareItemNames?.length) {
+      this.statDeltaBreakdown = {};
+      this.statDeltaTooltips = {};
+      return;
+    }
+
+    const breakdown: Record<string, { itemName: string; value: number; isPositive: boolean }[]> = {};
+
+    for (const slotName of this.compareItemNames) {
+      const itemId = this.model2[slotName];
+      const itemName = itemId ? (this.items[itemId]?.name || `Item #${itemId}`) : `(vazio)`;
+
+      const singleSlotModel = { rawOptionTxts: [...this.model2.rawOptionTxts || []] } as ClassModel;
+      singleSlotModel[slotName] = this.model2[slotName] || null;
+
+      const hasMainItem = singleSlotModel[slotName] != null;
+      const relatedItems = MainItemWithRelations[slotName] || [];
+      for (const relatedItemType of relatedItems) {
+        singleSlotModel[relatedItemType] = hasMainItem ? (this.model2[relatedItemType] || null) : null;
+      }
+
+      if (hasMainItem) {
+        singleSlotModel[`${slotName}Refine`] = this.model2[`${slotName}Refine`] || 0;
+        singleSlotModel[`${slotName}Grade`] = this.model2[`${slotName}Grade`] || null;
+      } else {
+        singleSlotModel[`${slotName}Refine`] = null;
+        singleSlotModel[`${slotName}Grade`] = null;
+      }
+
+      const calcSlot = this.prepare(this.calculator2, singleSlotModel);
+      const slotSummary = calcSlot.getTotalSummary();
+
+      for (const stat of this.compareStats) {
+        const baseVal = stat.composite ? stat.composite(this.totalSummary) : this.getStatValue(this.totalSummary, stat.path);
+        const slotVal = stat.composite ? stat.composite(slotSummary) : this.getStatValue(slotSummary, stat.path);
+        const diff = slotVal - baseVal;
+        if (diff !== 0) {
+          if (!breakdown[stat.key]) breakdown[stat.key] = [];
+          const isPositive = stat.lowerIsBetter ? diff < 0 : diff > 0;
+          breakdown[stat.key].push({ itemName, value: diff, isPositive });
+        }
+      }
+    }
+
+    this.statDeltaBreakdown = breakdown;
+    this.generateDeltaTooltips();
+  }
+
+  private generateDeltaTooltips() {
+    const tooltips: Record<string, string> = {};
+
+    for (const [statKey, entries] of Object.entries(this.statDeltaBreakdown)) {
+      if (!entries?.length) continue;
+      const lines = entries.map(({ itemName, value, isPositive }) => {
+        const color = isPositive ? '#4ADE80' : '#F87171';
+        const sign = value > 0 ? '+' : '';
+        return `${itemName}: <span style="color:${color};font-weight:600">${sign}${value}</span>`;
+      });
+      tooltips[statKey] = lines.join('<br>');
+    }
+
+    // Combined tooltips for multi-stat rows
+    const combineKeys = (keys: string[]) => {
+      const combined = keys.map(k => tooltips[k]).filter(Boolean).join('<br>');
+      return combined || undefined;
+    };
+    tooltips['atk_row'] = combineKeys(['statusAtk', 'equipAtk']);
+    tooltips['def_row'] = combineKeys(['softDef', 'def']);
+    tooltips['mdef_row'] = combineKeys(['softMdef', 'mdef']);
+    tooltips['matk_row'] = combineKeys(['statusMatk', 'equipMatk']);
+    tooltips['cri_row'] = combineKeys(['cri', 'criDmg']);
+    tooltips['melee_range_row'] = combineKeys(['melee', 'range']);
+    tooltips['hit_row'] = combineKeys(['hit', 'perfectHit']);
+    tooltips['def_res_row'] = combineKeys(['softDef', 'def', 'res']);
+    tooltips['mdef_mres_row'] = combineKeys(['softMdef', 'mdef', 'mres']);
+    tooltips['matk_percent_smatk_row'] = combineKeys(['matkPercent', 'sMatk']);
+
+    this.statDeltaTooltips = tooltips;
+  }
+
   private calcCompare() {
     if (this.compareItemNames?.length > 0) {
       const m2 = JSON.parse(JSON.stringify(this.model2));
       const calc2 = this.prepare(this.calculator2, m2);
       this.totalSummary2 = calc2.getTotalSummary();
       this.compareItemSummaryModel = calc2.getItemSummary();
+      this.buildPerSlotDeltas();
+    } else {
+      this.statDeltaBreakdown = {};
+      this.statDeltaTooltips = {};
     }
   }
 
@@ -2486,6 +2622,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     }
 
     this.isEnableCompare = this.compareItemNames.length > 0;
+
+    // Clear tooltips immediately so removed slots don't linger during debounce
+    this.statDeltaBreakdown = {};
+    this.statDeltaTooltips = {};
 
     this.updateCompareEvent.next(1);
   }

@@ -333,7 +333,7 @@
               </div>
               <div class="col-6">
                 <div class="grid grid-nogutter">
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['atk_row']" [escape]="false" tooltipPosition="right">
                     Alt+Q Atk:
                     <span class="font-semibold px-1 summary_stat_atk">
                       {{ totalSummary?.calc?.totalStatusAtk || 0 }} +
@@ -349,48 +349,49 @@
                     Equip Atk:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.atk || 0 }} + {{ totalSummary?.atkPercent || 0 }} %</span>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6" [pTooltip]="statDeltaTooltips['pAtk']" [escape]="false" tooltipPosition="right">
                     P.Atk:
                     <span class="font-semibold px-1 summary_stat_atk2">{{ totalSummary?.dmg?.pAtk || 0 }}</span>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6" [pTooltip]="statDeltaTooltips['cRate']" [escape]="false" tooltipPosition="right">
                     C.Rate:
                     <span class="font-semibold px-1 summary_stat_atk2">{{ totalSummary?.dmg?.cRate || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['aspd']" [escape]="false" tooltipPosition="right">
                     ASPD:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalAspd || 0 }}</span>
                     <span class="font-semibold px-1 summary_highlight">( {{ totalSummary?.calc?.hitPerSecs || 0 }} Hits/s )</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['hit_row']" [escape]="false" tooltipPosition="right">
                     Hit:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalHit || 0 }}</span>
                     Perfect:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalPerfectHit || 0 }} %</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['cri_row']" [escape]="false" tooltipPosition="right">
                     CriRate:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalCri || 0 }} %</span>
                     Dmg: <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.criDmg || 0 }} %</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['melee_range_row']" [escape]="false" tooltipPosition="right">
                     Melee:
-                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.melee || 0 }} %</span> Range:
-                    <Span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.range || 0 }} %</Span>
+                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.melee || 0 }} %</span>
+                    Range:
+                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.range || 0 }} %</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['def_res_row']" [escape]="false" tooltipPosition="right">
                     Def:
                     <span class="font-semibold px-1 summary_stat_def">{{ totalSummary?.calc?.softDef || 0 }} + {{ totalSummary?.calc?.def || 0 }}</span>
                     Res:
                     <span class="font-semibold px-1 summary_stat_def2">{{ totalSummary?.calc?.res || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['mdef_mres_row']" [escape]="false" tooltipPosition="right">
                     Mdef:
                     <span class="font-semibold px-1 summary_stat_def">{{ totalSummary?.calc?.softMdef || 0 }} + {{ totalSummary?.calc?.mdef || 0 }}</span>
                     MRes:
                     <span class="font-semibold px-1 summary_stat_def2">{{ totalSummary?.calc?.mres || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['flee']" [escape]="false" tooltipPosition="right">
                     Flee:
                     <span class="font-semibold px-1 summary_stat_def">{{ totalSummary?.calc?.totalFlee || 0 }} + {{ totalSummary?.calc?.totalPerfectDodge || 0 }}</span>
                   </div>
@@ -398,7 +399,7 @@
               </div>
               <div class="col-6">
                 <div class="grid grid-nogutter mx-1">
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['matk_row']" [escape]="false" tooltipPosition="right">
                     Alt+Q Matk:
                     <span class="font-semibold px-1 summary_stat_matk"
                       >{{ totalSummary?.calc?.totalStatusMatk || 0 }} +
@@ -414,21 +415,21 @@
                     Equip Matk:
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.matk || 0 }} + {{ totalSummary?.matkPercent || 0 }} %</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['matk_percent_smatk_row']" [escape]="false" tooltipPosition="right">
                     Matk
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.matkPercent || 0 }} %</span>
                     S.Matk:
                     <span class="font-semibold px-1 summary_stat_matk2">{{ totalSummary?.dmg?.sMatk || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['acd']" [escape]="false" tooltipPosition="right">
                     After Cast Delay:
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.acd || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['fct']" [escape]="false" tooltipPosition="right">
                     Fixed Cast Time:
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.fct || 0 }}</span>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12" [pTooltip]="statDeltaTooltips['vct']" [escape]="false" tooltipPosition="right">
                     Variable Cast Time:
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.vct || 0 }}</span>
                   </div>
@@ -439,7 +440,7 @@
                   </div>
                   <div class="col-12 px-1 border_default hp-sp-section" [hidden]="hideHpSp[selectedCharacter?.className]">
                     <div class="grid grid-nogutter">
-                      <div class="col-12 flex gap-1">
+                      <div class="col-12 flex gap-1" [pTooltip]="statDeltaTooltips['maxHp']" [escape]="false" tooltipPosition="right">
                         HP:
                         <span class="font-semibold px-1 summary_stat_yellow">{{ totalSummary?.calc?.maxHp || 0 | number }}</span>
                         <!-- <p-cascadeSelect
@@ -455,7 +456,7 @@
                           (onClear)="onOptionChange()"
                         ></p-cascadeSelect> -->
                       </div>
-                      <div class="col-12 flex gap-1">
+                      <div class="col-12 flex gap-1" [pTooltip]="statDeltaTooltips['maxSp']" [escape]="false" tooltipPosition="right">
                         SP:
                         <span class="font-semibold px-1 summary_stat_yellow">{{ totalSummary?.calc?.maxSp || 0 | number }}</span>
                         <!-- <p-cascadeSelect
