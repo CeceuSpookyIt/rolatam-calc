@@ -5,38 +5,38 @@ import { ItemModel } from '../../../../models/item.model';
 import { Observable, Subject, Subscription, debounceTime, tap } from 'rxjs';
 
 const positions: DropdownModel[] = [
-  { value: 'weaponList', label: 'Weapon' },
-  { value: 'weaponCardList', label: 'Weapon Card' },
+  { value: 'weaponList', label: 'Arma' },
+  { value: 'weaponCardList', label: 'Carta de Arma' },
 
-  { value: 'shieldList', label: 'Shield' },
-  { value: 'shieldCardList', label: 'Shield Card' },
+  { value: 'shieldList', label: 'Escudo' },
+  { value: 'shieldCardList', label: 'Carta de Escudo' },
 
-  { value: 'headUpperList', label: 'Head Upper' },
-  { value: 'headMiddleList', label: 'Head Middle' },
-  { value: 'headLowerList', label: 'Head Lower' },
-  { value: 'headCardList', label: 'Head Card' },
+  { value: 'headUpperList', label: 'Cabeça Superior' },
+  { value: 'headMiddleList', label: 'Cabeça Meio' },
+  { value: 'headLowerList', label: 'Cabeça Inferior' },
+  { value: 'headCardList', label: 'Carta de Cabeça' },
 
-  { value: 'enchants', label: 'Enchant Stone' },
+  { value: 'enchants', label: 'Pedra de Encantamento' },
 
-  { value: 'armorList', label: 'Armor' },
-  { value: 'armorCardList', label: 'Armor Card' },
-  { value: 'garmentList', label: 'Garment' },
-  { value: 'garmentCardList', label: 'Garment Card' },
-  { value: 'bootList', label: 'Boot' },
-  { value: 'bootCardList', label: 'Boot Card' },
-  { value: 'accList', label: 'Acc' },
-  { value: 'accCardList', label: 'Acc Card' },
+  { value: 'armorList', label: 'Armadura' },
+  { value: 'armorCardList', label: 'Carta de Armadura' },
+  { value: 'garmentList', label: 'Capa' },
+  { value: 'garmentCardList', label: 'Carta de Capa' },
+  { value: 'bootList', label: 'Bota' },
+  { value: 'bootCardList', label: 'Carta de Bota' },
+  { value: 'accList', label: 'Acessório' },
+  { value: 'accCardList', label: 'Carta de Acessório' },
 
-  { value: 'petList', label: 'Pet' },
+  { value: 'petList', label: 'Mascote' },
 
-  { value: 'costumeList', label: 'Costume' },
+  { value: 'costumeList', label: 'Traje' },
 
-  { value: 'shadowWeaponList', label: 'Shadow Weapon' },
-  { value: 'shadowArmorList', label: 'Shadow Armor' },
-  { value: 'shadowShieldList', label: 'Shadow Shield' },
-  { value: 'shadowBootList', label: 'Shadow Boot' },
-  { value: 'shadowEarringList', label: 'Shadow Earring' },
-  { value: 'shadowPendantList', label: 'Shadow Pendant' },
+  { value: 'shadowWeaponList', label: 'Sombra Arma' },
+  { value: 'shadowArmorList', label: 'Sombra Armadura' },
+  { value: 'shadowShieldList', label: 'Sombra Escudo' },
+  { value: 'shadowBootList', label: 'Sombra Bota' },
+  { value: 'shadowEarringList', label: 'Sombra Brinco' },
+  { value: 'shadowPendantList', label: 'Sombra Pingente' },
 ];
 
 @Component({

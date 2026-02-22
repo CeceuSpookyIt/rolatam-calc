@@ -31,12 +31,12 @@
         <div class="grid grid-nogutter">
           <div class="col-12">
             <div class="p-inputgroup">
-              <input #presetName [autocomplete]="false" type="text" pInputText placeholder="Name" />
+              <input #presetName [autocomplete]="false" type="text" pInputText placeholder="Nome" />
               <button
                 type="button"
                 class="p-button-success"
                 pButton
-                label="Save"
+                label="Salvar"
                 [loading]="isInProcessingPreset"
                 [disabled]="!presetName.value || isInProcessingPreset"
                 (click)="updatePreset(presetName.value)"
@@ -51,7 +51,7 @@
                 [options]="preSets"
                 [filter]="true"
                 filterBy="label"
-                placeholder="Presets"
+                placeholder="Predefinições"
                 scrollHeight="350px"
                 [(ngModel)]="selectedPreset"
               >
@@ -71,7 +71,7 @@
               <p-splitButton
                 styleClass="p-button-help"
                 icon="pi pi-download"
-                label="Load"
+                label="Carregar"
                 (onClick)="loadPreset()"
                 [disabled]="!selectedPreset || isInProcessingPreset"
                 [model]="loadBtnItems"
@@ -81,7 +81,7 @@
 
           <div class="col-12">
             <div class="p-inputgroup dropdown-joblist">
-              <span class="p-inputgroup-addon" style="width: 80px">Class</span>
+              <span class="p-inputgroup-addon" style="width: 80px">Classe</span>
               <p-dropdown
                 inputId="character"
                 [autoDisplayFirst]="false"
@@ -90,7 +90,7 @@
                 [filter]="true"
                 filterBy="label"
                 [(ngModel)]="model.class"
-                placeholder="Class"
+                placeholder="Classe"
                 scrollHeight="350px"
                 [disabled]="isInProcessingPreset"
                 (onChange)="onClassChange()"
@@ -112,7 +112,7 @@
           </div>
           <div class="col">
             <div class="p-inputgroup">
-              <span class="p-inputgroup-addon" style="width: 80px">Level</span>
+              <span class="p-inputgroup-addon" style="width: 80px">Nível</span>
               <p-dropdown
                 inputId="level"
                 [autoDisplayFirst]="false"
@@ -566,7 +566,7 @@
               scrollHeight="350px"
               [(ngModel)]="model.ammo"
               (onChange)="onSelectItem('ammo', $event.value)"
-              placeholder="Ammo"
+              placeholder="Munição"
               [disabled]="!model.weapon"
             >
               <ng-template let-item pTemplate="selectedItem">
@@ -1139,7 +1139,7 @@
             [(ngModel)]="model.pet"
             [showClear]="true"
             (onChange)="onSelectItem('pet', $event.value)"
-            placeholder="Pet"
+            placeholder="Mascote"
           >
             <ng-template let-item pTemplate="selectedItem">
               <div class="flex gap-1 item_template" *ngIf="model.pet">
@@ -1545,7 +1545,7 @@
   <!-- Right Side -->
   <div class="p-fluid col-5">
     <p-accordion [multiple]="true" [activeIndex]="[2, 7]">
-      <p-accordionTab header="Consumables" class="consumable">
+      <p-accordionTab header="Consumíveis" class="consumable">
         <div class="grid grid-nogutter">
           <!-- Consumable -->
           <div class="col-4">
@@ -1714,7 +1714,7 @@
         </div>
       </p-accordionTab>
 
-      <p-accordionTab header="Battle Summary">
+      <p-accordionTab header="Resumo de Batalha">
         <div class="grid grid-nogutter battle_summary">
           <div class="col-12" [hidden]="!chanceList?.length">
             <p-fieldset legend="Has a chance" [toggleable]="true">
@@ -1738,7 +1738,7 @@
             <div class="grid grid-nogutter">
               <div class="col-12">
                 <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon monster_hilight_label">Monster</span>
+                  <span class="p-inputgroup-addon monster_hilight_label">Monstro</span>
                   <p-dropdown
                     inputId="monsterOpponent"
                     [autoDisplayFirst]="false"
@@ -1790,7 +1790,7 @@
             <div class="grid grid-nogutter" style="position: relative">
               <div class="col-12 skill-selection" [hidden]="isShowSelectableSkillLevel">
                 <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon skill_hilight_label">Skill</span>
+                  <span class="p-inputgroup-addon skill_hilight_label">Habilidade</span>
                   <p-dropdown
                     inputId="skill"
                     [autoDisplayFirst]="false"
@@ -1804,7 +1804,7 @@
               </div>
               <div class="col-12 skill-selection" [hidden]="!isShowSelectableSkillLevel">
                 <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon skill_hilight_label">Skill</span>
+                  <span class="p-inputgroup-addon skill_hilight_label">Habilidade</span>
                   <p-cascadeSelect
                     inputId="skill"
                     [(ngModel)]="model.selectedAtkSkill"
@@ -1858,7 +1858,7 @@
                       [showToggleAll]="false"
                       scrollHeight="400px"
                       selectedItemsLabel="{0} monsters selected"
-                      placeholder="Choose Monsters"
+                      placeholder="Escolher Monstros"
                       [maxSelectedLabels]="2"
                       (onChange)="onMonsterListChange()"
                       (onClear)="onMonsterListChange()"
@@ -1875,8 +1875,8 @@
                       [options]="cols"
                       [(ngModel)]="selectedColumns"
                       optionLabel="header"
-                      selectedItemsLabel="{0} columns selected"
-                      placeholder="Choose Columns"
+                      selectedItemsLabel="{0} colunas selecionadas"
+                      placeholder="Escolher Colunas"
                       [maxSelectedLabels]="5"
                       (onChange)="onSelectedColChange()"
                       (onClear)="onSelectedColChange()"
@@ -1905,7 +1905,7 @@
         </div>
       </p-accordionTab>
 
-      <p-accordionTab header="Skill bonus / Multiplier Summary">
+      <p-accordionTab header="Resumo de Bônus / Multiplicadores">
         <app-misc-detail
           [elementTable]="elementTable"
           [raceTable]="raceTable"
@@ -1915,11 +1915,11 @@
           [skillMultiplierTable]="skillMultiplierTable"
         ></app-misc-detail>
       </p-accordionTab>
-      <p-accordionTab header="Penetration Summary">
+      <p-accordionTab header="Resumo de Penetração">
         <app-misc-detail [elementTable]="[]" [raceTable]="peneRaceTable" [sizeTable]="[]" [classTable]="peneClassTable" [skillMultiplierTable]="[]"></app-misc-detail>
       </p-accordionTab>
 
-      <p-accordionTab header="Summary">
+      <p-accordionTab header="Resumo">
         <div class="grid grid-nogutter" style="overflow: auto">
           <div class="col-6 json_display">
             <pre [innerHTML]="modelSummary | prettyjson: [true, 3]"></pre>
@@ -1931,7 +1931,7 @@
         </div>
       </p-accordionTab>
 
-      <p-accordionTab header="Equipments Summary">
+      <p-accordionTab header="Resumo de Equipamentos">
         <div class="grid grid-nogutter">
           <div class="col-6 json_display">
             <pre [innerHTML]="itemSummary | prettyjson: [true, 3]"></pre>
@@ -1942,7 +1942,7 @@
         </div>
       </p-accordionTab>
 
-      <p-accordionTab header="Item Descriptions">
+      <p-accordionTab header="Descrições de Itens">
         <div class="grid grid-nogutter">
           <div class="col-4">
             <div class="item_label_compare" *ngIf="isEnableCompare && equipCompareItems?.length">

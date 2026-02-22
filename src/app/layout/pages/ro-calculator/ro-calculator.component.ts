@@ -99,8 +99,18 @@ interface SkillMultiplierModel {
   cd: string;
 }
 
-const elements = Object.values(ElementType).map((a) => [a, a.toLowerCase()]);
-const races = Object.values(RaceType).map((a) => [a, a.toLowerCase()]);
+const elementDisplayNames: Record<string, string> = {
+  Neutral: 'Neutro', Water: 'Água', Earth: 'Terra', Fire: 'Fogo',
+  Wind: 'Vento', Poison: 'Veneno', Holy: 'Sagrado', Dark: 'Sombrio',
+  Ghost: 'Fantasma', Undead: 'Morto-Vivo',
+};
+const elements = Object.values(ElementType).map((a) => [elementDisplayNames[a] || a, a.toLowerCase()]);
+const raceDisplayNames: Record<string, string> = {
+  Formless: 'Amorfo', Undead: 'Morto-Vivo', Brute: 'Bruto', Plant: 'Planta',
+  Insect: 'Inseto', Fish: 'Peixe', Demon: 'Demônio', DemiHuman: 'Humanoide',
+  Angel: 'Anjo', Dragon: 'Dragão',
+};
+const races = Object.values(RaceType).map((a) => [raceDisplayNames[a] || a, a.toLowerCase()]);
 const sizes = [
   ['Small', 's'],
   ['Medium', 'm'],

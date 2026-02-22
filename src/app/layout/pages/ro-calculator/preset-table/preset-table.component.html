@@ -7,7 +7,7 @@
           class="p-button-help"
           pButton
           icon="pi pi-download"
-          label="Load"
+          label="Carregar"
           [disabled]="!selectedCloudPreset"
           (click)="onLoadPresetClick()"
         ></button>
@@ -18,14 +18,14 @@
           class="p-button-danger"
           pButton
           icon="pi pi-trash"
-          label="Delete"
+          label="Excluir"
           [disabled]="!selectedCloudPreset"
           (click)="deletePreset()"
         ></button>
       </div>
       <div class="col-12">
         <div class="p-inputgroup dropdown-joblist">
-          <span class="p-inputgroup-addon" style="width: 80px">Filter</span>
+          <span class="p-inputgroup-addon" style="width: 80px">Filtrar</span>
           <p-dropdown
             inputId="character"
             [autoDisplayFirst]="false"
@@ -36,7 +36,7 @@
             filterBy="label"
             scrollHeight="350px"
             [(ngModel)]="selectedClassIdFilter"
-            placeholder="All classes"
+            placeholder="Todas as classes"
             (onChange)="onClassFilterChange()"
           >
             <ng-template let-job pTemplate="selectedItem">
@@ -62,14 +62,14 @@
             type="text"
             [value]="presetInfo?.label || ''"
             pInputText
-            placeholder="preset name"
+            placeholder="nome do preset"
           />
           <button
             type="button"
             class="p-button-info"
             pButton
             icon="pi pi-file-edit"
-            label="Rename"
+            label="Renomear"
             [disabled]="!selectedCloudPreset || !presetName.value"
             (click)="onRenamePresetClick(presetName.value)"
           ></button>
@@ -99,7 +99,7 @@
           class="p-button-help"
           pButton
           icon="pi pi-download"
-          label="Load"
+          label="Carregar"
           [disabled]="!selectedPreset"
           (click)="onLoadPresetClick()"
         ></button>
@@ -110,7 +110,7 @@
           class="p-button-danger"
           pButton
           icon="pi pi-trash"
-          label="Delete"
+          label="Excluir"
           [disabled]="!selectedPreset"
           (click)="deletePreset()"
         ></button>
@@ -121,7 +121,7 @@
           class="p-button-success"
           pButton
           icon="pi pi-save"
-          label="Save To Cloud"
+          label="Salvar na Nuvem"
           [disabled]="!selectedPreset || isProcessing"
           (click)="saveToCloud()"
         ></button>
@@ -163,14 +163,14 @@
             autocomplete="off"
             type="text"
             pInputText
-            placeholder="Shared name"
+            placeholder="Nome compartilhado"
           />
           <button
             type="button"
             class="p-button-info"
             pButton
             icon="pi pi-send"
-            label="Share"
+            label="Compartilhar"
             [disabled]="!selectedCloudPreset || !sharedName.value || isSharedPreset"
             (click)="sharePreset(sharedName.value); sharedName.value = ''"
           ></button>
@@ -178,7 +178,7 @@
       </div>
       <div class="col-12 text-lg font-semibold" *ngIf="isSharedPreset">
         Shared name: <span class="text-primary-300"> {{ presetInfo?.publishName }} </span>
-        <button type="button" class="p-button-warning" pButton label="Cancel" (click)="unsharePreset()"></button>
+        <button type="button" class="p-button-warning" pButton label="Cancelar" (click)="unsharePreset()"></button>
       </div>
       <!-- <div class="col-12">
         <div class="grid p-fluid grid-nogutter" *ngIf="isSharedPreset">
@@ -190,7 +190,7 @@
               [showHeader]="false"
               [showToggleAll]="false"
               selectedItemsLabel="{0} tags selected"
-              placeholder="Available tags"
+              placeholder="Tags disponíveis"
               [maxSelectedLabels]="10"
             >
               <ng-template let-tags pTemplate="selectedItems">

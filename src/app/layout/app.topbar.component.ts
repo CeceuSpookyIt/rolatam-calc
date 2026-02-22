@@ -16,7 +16,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
   activeItem: MenuItem | undefined;
   items: MenuItem[] = [
     {
-      label: 'Calculator',
+      label: 'Calculadora',
       icon: 'pi pi-fw pi-home',
       routerLink: ['/'],
       routerLinkActiveOptions: {
@@ -24,12 +24,12 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       },
     },
     {
-      label: 'Shared Presets',
+      label: 'Builds Compartilhadas',
       icon: 'pi pi-fw pi-list',
       routerLink: ['/shared-presets'],
     },
     {
-      label: 'Item Ranking',
+      label: 'Ranking de Itens',
       icon: 'pi pi-fw pi-sort-amount-down',
       routerLink: ['/preset-summary'],
       isNew: true,

@@ -11,7 +11,7 @@
     <i *ngIf="showUnreadVersion > 0" class="pi pi-bell text-xl" severity="danger" pBadge value="{{ showUnreadVersion }}"></i>
     <i *ngIf="showUnreadVersion === 0" class="pi pi-bell text-xl" severity="danger"></i>
   </button>
-  <button pButton class="pl-2 p-button-text p-button-info p-button-raised" (click)="showReferenceDialog()">References</button>
+  <button pButton class="pl-2 p-button-text p-button-info p-button-raised" (click)="showReferenceDialog()">Referências</button>
 
   <div class="router-link px-3" style="position: relative; top: -5px">
     <p-tabMenu [model]="items" [activeItem]="activeItem">
@@ -76,7 +76,7 @@
         icon="pi pi-exclamation-triangle"
         pButton
         pRipple
-        label="Request / Report"
+        label="Solicitar / Reportar"
         (click)="survey.click()"
       ></button>
       <button
@@ -84,10 +84,10 @@
         icon="pi pi-exclamation-triangle"
         pButton
         pRipple
-        label="Issues Tracking"
+        label="Acompanhar Problemas"
         (click)="tracking.click()"
       ></button>
-      <button class="font-bold p-button-primary p-button-rounded p-button-raised" icon="pi pi-heart" pButton pRipple label="Support" (click)="showDialog()"></button>
+      <button class="font-bold p-button-primary p-button-rounded p-button-raised" icon="pi pi-heart" pButton pRipple label="Apoiar" (click)="showDialog()"></button>
     </div>
     <div *ngIf="!!username" class="ml-3 flex align-items-center">
       <p-chip label="{{ username }}" icon="pi pi-google" class="chip-profile" styleClass="text-xl"></p-chip>
@@ -98,9 +98,9 @@
         <i class="pi pi-sign-out text-xl"></i>
       </button>
     </div>
-    <a *ngIf="!username" class="font-bold p-button-secondary" icon="pi pi-google" pButton pRipple label="Login" href="{{ env.roBackendUrl + '/auth/google' }}"></a>
+    <a *ngIf="!username" class="font-bold p-button-secondary" icon="pi pi-google" pButton pRipple label="Entrar" href="{{ env.roBackendUrl + '/auth/google' }}"></a>
   </div>
-  <p-dialog header="Support" [draggable]="false" [resizable]="false" [modal]="true" [(visible)]="visible" [style]="{ 'min-width': '300px' }">
+  <p-dialog header="Apoiar" [draggable]="false" [resizable]="false" [modal]="true" [(visible)]="visible" [style]="{ 'min-width': '300px' }">
     <div class="card flex flex-column align-items-center gap-2 flex-wrap">
       <div>
         <img src="assets/demo/images/others/qr.jpg" alt="QR" style="width: 300px" />
@@ -171,7 +171,7 @@
     </div>
   </p-dialog>
 
-  <p-dialog header="References" [draggable]="false" [resizable]="false" [modal]="true" [(visible)]="visibleReference" [style]="{ width: '50vw', height: '70vh' }">
+  <p-dialog header="Referências" [draggable]="false" [resizable]="false" [modal]="true" [(visible)]="visibleReference" [style]="{ width: '50vw', height: '70vh' }">
     <ul>
       <li *ngFor="let reference of references">
         <span class="">[ by {{ reference.writer }} ]</span>
