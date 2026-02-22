@@ -206,8 +206,8 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
-      v: 'V3.2.19',
-      date: '29-11-2568',
+      v: 'V0.1',
+      date: '22-02-2026',
       logs: [
         "Added Official updated items",
       ],
@@ -1057,7 +1057,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
   unreadVersion = this.updates.findIndex((a) => a.v === this.localVersion);
   showUnreadVersion = this.unreadVersion === -1 ? this.updates.length + 1 : this.unreadVersion;
 
-  visibleUpdate = this.lastestVersion !== this.localVersion;
+  visibleUpdate = false;
 
   username: string;
 
