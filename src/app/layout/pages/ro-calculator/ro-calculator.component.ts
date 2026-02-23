@@ -878,47 +878,103 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     { key: 'maxSp', path: 'calc.maxSp' },
   ];
 
+  private calcSummaryWithSlotEmpty(slotName: ItemTypeEnum, buildType: 'main' | 'compare'): any {
+    const savedNames = [...this.compareItemNames];
+
+    const emptySlot: any = {};
+    emptySlot[slotName] = null;
+    emptySlot[`${slotName}Refine`] = null;
+    emptySlot[`${slotName}Grade`] = null;
+    for (const rel of MainItemWithRelations[slotName] || []) emptySlot[rel] = null;
+
+    if (buildType === 'main') {
+      // Main build with slot empty — disable compare processing
+      this.compareItemNames = [];
+      const calc = this.prepare(this.calculator2, emptySlot);
+      const summary = calc.getTotalSummary();
+      this.compareItemNames = savedNames;
+      return summary;
+    } else {
+      // Compare build with slot empty
+      const m2 = JSON.parse(JSON.stringify(this.model2));
+      Object.assign(m2, emptySlot);
+
+      this.compareItemNames = savedNames.filter(s => s !== slotName);
+      const savedM2Slot = this.model2[slotName];
+      this.model2[slotName] = null;
+
+      const calc = this.prepare(this.calculator2, m2);
+      const summary = calc.getTotalSummary();
+
+      this.model2[slotName] = savedM2Slot;
+      this.compareItemNames = savedNames;
+      return summary;
+    }
+  }
+
   private buildPerSlotDeltas() {
-    if (!this.totalSummary || !this.compareItemNames?.length) {
+    if (!this.totalSummary || !this.totalSummary2 || !this.compareItemNames?.length) {
       this.statDeltaBreakdown = {};
       this.statDeltaTooltips = {};
       return;
     }
 
     const breakdown: Record<string, { itemName: string; value: number; isPositive: boolean }[]> = {};
+    const slotsCopy = [...this.compareItemNames];
 
-    for (const slotName of this.compareItemNames) {
-      const itemId = this.model2[slotName];
-      const itemName = itemId ? (this.items[itemId]?.name || `Item #${itemId}`) : `(vazio)`;
+    // Per-item summaries for direct script-level attribution
+    const mainItemSummary = this.calculator.getItemSummary();
+    const compareItemSummary = this.compareItemSummaryModel;
 
-      const singleSlotModel = { rawOptionTxts: [...this.model2.rawOptionTxts || []] } as ClassModel;
-      singleSlotModel[slotName] = this.model2[slotName] || null;
+    const addEntry = (statKey: string, itemName: string, value: number, lowerIsBetter: boolean) => {
+      if (Math.abs(value) < 0.01) return;
+      if (!breakdown[statKey]) breakdown[statKey] = [];
+      const isPositive = lowerIsBetter ? value < 0 : value > 0;
+      breakdown[statKey].push({ itemName, value, isPositive });
+    };
 
-      const hasMainItem = singleSlotModel[slotName] != null;
-      const relatedItems = MainItemWithRelations[slotName] || [];
-      for (const relatedItemType of relatedItems) {
-        singleSlotModel[relatedItemType] = hasMainItem ? (this.model2[relatedItemType] || null) : null;
+    for (const slotName of slotsCopy) {
+      const oldItemId = this.model[slotName];
+      const newItemId = this.model2[slotName];
+      const oldItemName = oldItemId ? (this.items[oldItemId]?.name || `Item #${oldItemId}`) : null;
+      const newItemName = newItemId ? (this.items[newItemId]?.name || `Item #${newItemId}`) : null;
+
+      // Split stats into direct (per-item) and calculated (marginal)
+      const directStats = this.compareStats.filter(s => s.path && !s.path.includes('.') && !s.composite);
+      const marginalStats = this.compareStats.filter(s => !s.path || s.path.includes('.') || s.composite);
+
+      // --- Direct per-item attribution (from item scripts) ---
+      for (const stat of directStats) {
+        if (oldItemName) {
+          const oldVal = mainItemSummary?.[slotName]?.[stat.path] || 0;
+          if (oldVal) addEntry(stat.key, oldItemName, -oldVal, stat.lowerIsBetter);
+        }
+        if (newItemName) {
+          const newVal = compareItemSummary?.[slotName]?.[stat.path] || 0;
+          if (newVal) addEntry(stat.key, newItemName, newVal, stat.lowerIsBetter);
+        }
       }
 
-      if (hasMainItem) {
-        singleSlotModel[`${slotName}Refine`] = this.model2[`${slotName}Refine`] || 0;
-        singleSlotModel[`${slotName}Grade`] = this.model2[`${slotName}Grade`] || null;
-      } else {
-        singleSlotModel[`${slotName}Refine`] = null;
-        singleSlotModel[`${slotName}Grade`] = null;
-      }
+      // --- Marginal approach for calculated/composite stats ---
+      if (marginalStats.length > 0) {
+        if (oldItemName) {
+          const withoutSummary = this.calcSummaryWithSlotEmpty(slotName, 'main');
+          for (const stat of marginalStats) {
+            const fullVal = stat.composite ? stat.composite(this.totalSummary) : this.getStatValue(this.totalSummary, stat.path);
+            const withoutVal = stat.composite ? stat.composite(withoutSummary) : this.getStatValue(withoutSummary, stat.path);
+            const contribution = fullVal - withoutVal;
+            addEntry(stat.key, oldItemName, -contribution, stat.lowerIsBetter);
+          }
+        }
 
-      const calcSlot = this.prepare(this.calculator2, singleSlotModel);
-      const slotSummary = calcSlot.getTotalSummary();
-
-      for (const stat of this.compareStats) {
-        const baseVal = stat.composite ? stat.composite(this.totalSummary) : this.getStatValue(this.totalSummary, stat.path);
-        const slotVal = stat.composite ? stat.composite(slotSummary) : this.getStatValue(slotSummary, stat.path);
-        const diff = slotVal - baseVal;
-        if (diff !== 0) {
-          if (!breakdown[stat.key]) breakdown[stat.key] = [];
-          const isPositive = stat.lowerIsBetter ? diff < 0 : diff > 0;
-          breakdown[stat.key].push({ itemName, value: diff, isPositive });
+        if (newItemName) {
+          const withoutSummary = this.calcSummaryWithSlotEmpty(slotName, 'compare');
+          for (const stat of marginalStats) {
+            const fullVal = stat.composite ? stat.composite(this.totalSummary2) : this.getStatValue(this.totalSummary2, stat.path);
+            const withoutVal = stat.composite ? stat.composite(withoutSummary) : this.getStatValue(withoutSummary, stat.path);
+            const contribution = fullVal - withoutVal;
+            addEntry(stat.key, newItemName, contribution, stat.lowerIsBetter);
+          }
         }
       }
     }
