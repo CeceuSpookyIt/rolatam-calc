@@ -59,3 +59,10 @@ $gutter: 1rem; //for primeflex grid system
   background-color: black !important;
   color: white !important;
 }
+
+/* CascadeSelect: prevent deep submenus from overflowing viewport to the right.
+   Level 3+ submenus open to the LEFT instead of right. */
+.p-cascadeselect-panel .p-cascadeselect-sublist .p-cascadeselect-sublist {
+  left: auto !important;
+  right: 100% !important;
+}
