@@ -7,7 +7,7 @@ export interface AutocastSkillDef {
   element: ElementType;
   hit: number;
   totalHit: number;
-  formula: (params: { skillLevel: number; baseLevel: number; str?: number; int?: number }) => number;
+  formula: (params: { skillLevel: number; baseLevel: number; str?: number; int?: number; agi?: number }) => number;
 }
 
 export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
@@ -301,5 +301,14 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     hit: 1,
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (skillLevel * 100 + 200) * (baseLevel / 100),
+  },
+  'Fatal Menace': {
+    name: 'Fatal Menace',
+    isMatk: false,
+    isMelee: true,
+    element: ElementType.Neutral,
+    hit: 1,
+    totalHit: 1,
+    formula: ({ skillLevel, baseLevel, agi }) => (skillLevel * 120 + (agi || 0) * 2) * (baseLevel / 100),
   },
 };

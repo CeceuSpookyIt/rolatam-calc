@@ -320,7 +320,7 @@ export class RuneKnight extends LordKnight {
           label: 'Yes',
           value: 2,
           isUse: true,
-          bonus: { p_size_all: 30, criDmg: 30, melee: 30, range: 30, hpPercent: 30, spPercent: 30, 'autocast__Runic Explosion': '5,30,onhit' },
+          bonus: { p_size_all: 30, criDmg: 30, melee: 30, range: 30, hpPercent: 30, spPercent: 30, 'autocast__Runic Explosion': '5,15,onhit' },
         },
         { label: 'No', value: 0, isUse: false },
       ],
