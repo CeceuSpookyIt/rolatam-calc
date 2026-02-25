@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PresetService, PublishPresetModel, PublishPresetsReponse } from 'src/app/api-services';
 import { DropdownModel } from '../../../models/dropdown.model';
 import { RoService } from 'src/app/api-services/ro.service';
@@ -89,9 +90,17 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
     private readonly roService: RoService,
     private readonly messageService: MessageService,
     private readonly confirmationService: ConfirmationService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
+    const buildId = this.route.snapshot.params['id'];
+    if (buildId) {
+      this.router.navigate(['/'], { queryParams: { sharedBuildId: buildId } });
+      return;
+    }
+
     this.subscribeSearch();
     this.subscribeLike();
     this.initData().subscribe(() => {

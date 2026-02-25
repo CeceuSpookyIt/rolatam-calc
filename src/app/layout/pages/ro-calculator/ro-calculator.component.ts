@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, Subscription, catchError, debounceTime, filter, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
@@ -350,6 +351,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
     private readonly sharedBuildService: SharedBuildService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -374,7 +377,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe(() => {
-        //
+        const sharedBuildId = this.route.snapshot.queryParams['sharedBuildId'];
+        if (sharedBuildId) {
+          this.loadSharedBuildById(sharedBuildId);
+        }
       });
 
     const laySub = this.layoutService.configUpdate$.pipe(debounceTime(300)).subscribe((c) => {
@@ -3065,6 +3071,24 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Erro', detail: err?.message || 'Falha ao atualizar.' });
+      },
+    });
+  }
+
+  private loadSharedBuildById(id: string) {
+    this.sharedBuildService.getSharedBuild(id).subscribe({
+      next: (build) => {
+        this.importedSharedBuildId = build.id;
+        this.importedSharedBuildUserId = build.userId;
+        this.loadItemSet(build.model).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Build carregada', detail: build.name });
+          // Clean URL
+          this.router.navigate([], { queryParams: {}, replaceUrl: true });
+        });
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Build não encontrada' });
+        this.router.navigate([], { queryParams: {}, replaceUrl: true });
       },
     });
   }
