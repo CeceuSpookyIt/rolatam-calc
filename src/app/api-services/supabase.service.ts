@@ -11,6 +11,11 @@ export class SupabaseService {
       auth: {
         flowType: 'pkce',
         detectSessionInUrl: true,
+        // Bypass navigator.locks API to avoid Zone.js "Unhandled Promise rejection" errors
+        // that break auth initialization in Angular
+        lock: async (_name: string, _acquireTimeout: number, fn: () => Promise<any>) => {
+          return await fn();
+        },
       },
     });
   }
