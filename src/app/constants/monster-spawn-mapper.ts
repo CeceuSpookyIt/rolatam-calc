@@ -1,3 +1,6 @@
+/** Current episode of the LATAM server. Monsters with episode > this value are hidden from the dropdown. */
+export const CURRENT_EPISODE = 17.2;
+
 const Mapper = {
   iz_ac01: 'Test damage',
   abbey01: '110 - 125 nameless',

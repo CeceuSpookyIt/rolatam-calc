@@ -29,6 +29,7 @@ import {
   RaceType,
   WeaponTypeName,
   WeaponTypeNameMapBySubTypeId,
+  CURRENT_EPISODE,
   getMonsterSpawnMap,
 } from 'src/app/constants';
 import { ActiveSkillModel, AtkSkillModel, CharacterBase, ClassID, ClassIcon, ClassName, JobPromotionMapper, PassiveSkillModel } from 'src/app/jobs';
@@ -1993,7 +1994,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   private setMonsterDropdownList() {
     const groupMap = new Map<string, MonsterSelectItemGroup>();
     const monsters: DropdownModel[] = [];
-    const rawMonsters = Object.values(this.monsterDataMap).sort((a, b) => (a.stats.level > b.stats.level ? 1 : -1));
+    const rawMonsters = Object.values(this.monsterDataMap)
+      .filter((mon) => !mon.stats.episode || mon.stats.episode <= CURRENT_EPISODE)
+      .sort((a, b) => (a.stats.level > b.stats.level ? 1 : -1));
     const classMap = {
       0: 'Normal',
       1: 'Boss',
