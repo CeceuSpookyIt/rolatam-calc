@@ -49,7 +49,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "1634": {
@@ -102,7 +103,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "1635": {
@@ -155,7 +157,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "1636": {
@@ -208,7 +211,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1637": {
@@ -261,7 +265,8 @@
       "elementName": "Holy 3",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1638": {
@@ -314,7 +319,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1639": {
@@ -367,7 +373,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1646": {
@@ -420,7 +427,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "1651": {
@@ -473,7 +481,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1652": {
@@ -526,7 +535,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1653": {
@@ -579,7 +589,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1654": {
@@ -632,7 +643,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1655": {
@@ -685,7 +697,8 @@
       "elementName": "Holy 2",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1656": {
@@ -738,7 +751,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1657": {
@@ -791,7 +805,8 @@
       "elementName": "Ghost 2",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "1681": {
@@ -844,7 +859,8 @@
       "elementName": "Water 1",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 14
     }
   },
   "1682": {
@@ -897,7 +913,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 14
     }
   },
   "1708": {
@@ -950,7 +967,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "1713": {
@@ -1003,7 +1021,8 @@
       "elementName": "Holy 2",
       "elementShortName": "Holy",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 13
     }
   },
   "1714": {
@@ -1056,7 +1075,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 13
     }
   },
   "1716": {
@@ -1109,7 +1129,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 13
     }
   },
   "1717": {
@@ -1162,7 +1183,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 13
     }
   },
   "1719": {
@@ -1215,7 +1237,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 13
     }
   },
   "1734": {
@@ -1268,7 +1291,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 14
     }
   },
   "1751": {
@@ -1321,7 +1345,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Large",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 15
     }
   },
   "1768": {
@@ -1374,7 +1399,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 15
     }
   },
   "1832": {
@@ -1427,7 +1453,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 15
     }
   },
   "1864": {
@@ -1480,7 +1507,8 @@
       "elementName": "Undead 3",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 13
     }
   },
   "1865": {
@@ -1533,7 +1561,8 @@
       "elementName": "Undead 3",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 13
     }
   },
   "1866": {
@@ -1586,7 +1615,8 @@
       "elementName": "Dark 1",
       "elementShortName": "Dark",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 13
     }
   },
   "1867": {
@@ -1639,7 +1669,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 13
     }
   },
   "1869": {
@@ -1692,7 +1723,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 13
     }
   },
   "1870": {
@@ -1745,7 +1777,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 13
     }
   },
   "1871": {
@@ -1798,7 +1831,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 13
     }
   },
   "2221": {
@@ -1851,7 +1885,8 @@
       "elementName": "Holy 3",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2222": {
@@ -1904,7 +1939,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2223": {
@@ -1957,7 +1993,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2224": {
@@ -2010,7 +2047,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "2225": {
@@ -2063,7 +2101,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "2226": {
@@ -2116,7 +2155,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2227": {
@@ -2169,7 +2209,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2228": {
@@ -2222,7 +2263,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2229": {
@@ -2275,7 +2317,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2230": {
@@ -2328,7 +2371,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2231": {
@@ -2381,7 +2425,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2232": {
@@ -2434,7 +2479,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 14
     }
   },
   "2233": {
@@ -2487,7 +2533,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2234": {
@@ -2540,7 +2587,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2251": {
@@ -2593,7 +2641,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "2362": {
@@ -2646,7 +2695,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 15
     }
   },
   "2408": {
@@ -2699,7 +2749,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "2410": {
@@ -2752,7 +2803,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "2411": {
@@ -2805,7 +2857,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "2413": {
@@ -2858,7 +2911,8 @@
       "elementName": "Fire 1",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "2476": {
@@ -2911,7 +2965,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 15
     }
   },
   "2529": {
@@ -2964,7 +3019,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Large",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 15
     }
   },
   "2564": {
@@ -3017,7 +3073,8 @@
       "elementName": "Ghost 2",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 15
     }
   },
   "2667": {
@@ -3070,7 +3127,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2692": {
@@ -3123,7 +3181,8 @@
       "elementName": "Ghost 2",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "2875": {
@@ -3176,7 +3235,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 14
     }
   },
   "3097": {
@@ -3229,7 +3289,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "3150": {
@@ -3282,7 +3343,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 16
     }
   },
   "3208": {
@@ -3335,7 +3397,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "3209": {
@@ -3388,7 +3451,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3210": {
@@ -3441,7 +3505,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3211": {
@@ -3494,7 +3559,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3212": {
@@ -3547,7 +3613,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3213": {
@@ -3600,7 +3667,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "3220": {
@@ -3653,7 +3721,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "3223": {
@@ -3706,7 +3775,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "3226": {
@@ -3759,7 +3829,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3227": {
@@ -3812,7 +3883,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3228": {
@@ -3865,7 +3937,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3229": {
@@ -3918,7 +3991,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "3230": {
@@ -3971,7 +4045,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "3231": {
@@ -4024,7 +4099,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3232": {
@@ -4077,7 +4153,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "3240": {
@@ -4130,7 +4207,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "3429": {
@@ -4183,7 +4261,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 15
     }
   },
   "3430": {
@@ -4236,7 +4315,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "3450": {
@@ -4289,7 +4369,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 15
     }
   },
   "3484": {
@@ -4342,7 +4423,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 16
     }
   },
   "3503": {
@@ -4395,7 +4477,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 15
     }
   },
   "3504": {
@@ -4448,7 +4531,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 15
     }
   },
   "3506": {
@@ -4501,7 +4585,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 15
     }
   },
   "3507": {
@@ -4554,7 +4639,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 15
     }
   },
   "3796": {
@@ -4607,7 +4693,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 15
     }
   },
   "3799": {
@@ -4660,7 +4747,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "3800": {
@@ -4713,7 +4801,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "3801": {
@@ -4766,7 +4855,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "3802": {
@@ -4819,7 +4909,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "3803": {
@@ -4872,7 +4963,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "3804": {
@@ -4925,7 +5017,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 15
     }
   },
   "20118": {
@@ -4978,7 +5071,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20175": {
@@ -5031,7 +5125,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20176": {
@@ -5084,7 +5179,8 @@
       "elementName": "Dark 1",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20177": {
@@ -5137,7 +5233,8 @@
       "elementName": "Dark 1",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 17.2
     }
   },
   "20178": {
@@ -5190,7 +5287,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20179": {
@@ -5243,7 +5341,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 17.2
     }
   },
   "20260": {
@@ -5296,7 +5395,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20270": {
@@ -5349,7 +5449,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "20271": {
@@ -5402,7 +5503,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20272": {
@@ -5455,7 +5557,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20273": {
@@ -5508,7 +5611,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20274": {
@@ -5561,7 +5665,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20275": {
@@ -5614,7 +5719,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20276": {
@@ -5667,7 +5773,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20340": {
@@ -5720,7 +5827,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20346": {
@@ -5773,7 +5881,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20356": {
@@ -5826,7 +5935,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20358": {
@@ -5879,7 +5989,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 16
     }
   },
   "20359": {
@@ -5932,7 +6043,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 16
     }
   },
   "20360": {
@@ -5985,7 +6097,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 16
     }
   },
   "20362": {
@@ -6038,7 +6151,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "20364": {
@@ -6091,7 +6205,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20366": {
@@ -6144,7 +6259,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20367": {
@@ -6197,7 +6313,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20368": {
@@ -6250,7 +6367,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20369": {
@@ -6303,7 +6421,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20370": {
@@ -6356,7 +6475,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20371": {
@@ -6409,7 +6529,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20372": {
@@ -6462,7 +6583,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "20373": {
@@ -6515,7 +6637,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "20374": {
@@ -6568,7 +6691,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20375": {
@@ -6621,7 +6745,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20376": {
@@ -6674,7 +6799,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "20377": {
@@ -6727,7 +6853,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20378": {
@@ -6780,7 +6907,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20379": {
@@ -6833,7 +6961,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20380": {
@@ -6886,7 +7015,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20386": {
@@ -6939,7 +7069,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20387": {
@@ -6992,7 +7123,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20420": {
@@ -7045,7 +7177,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20421": {
@@ -7098,7 +7231,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20422": {
@@ -7151,7 +7285,8 @@
       "elementName": "Undead 3",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 16
     }
   },
   "20525": {
@@ -7204,7 +7339,8 @@
       "elementName": "Dark 1",
       "elementShortName": "Dark",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20526": {
@@ -7257,7 +7393,8 @@
       "elementName": "Poison 1",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "20527": {
@@ -7310,7 +7447,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20528": {
@@ -7363,7 +7501,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "20529": {
@@ -7416,7 +7555,8 @@
       "elementName": "Ghost 2",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20530": {
@@ -7469,7 +7609,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "20531": {
@@ -7522,7 +7663,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20532": {
@@ -7575,7 +7717,8 @@
       "elementName": "Wind 1",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20536": {
@@ -7628,7 +7771,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20572": {
@@ -7681,7 +7825,8 @@
       "elementName": "Holy 3",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 16
     }
   },
   "20573": {
@@ -7734,7 +7879,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "20592": {
@@ -7787,7 +7933,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20593": {
@@ -7840,7 +7987,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20594": {
@@ -7893,7 +8041,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20595": {
@@ -7946,7 +8095,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20596": {
@@ -7999,7 +8149,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20597": {
@@ -8052,7 +8203,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20598": {
@@ -8105,7 +8257,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 17.1
     }
   },
   "20601": {
@@ -8158,7 +8311,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 17.1
     }
   },
   "20602": {
@@ -8211,7 +8365,8 @@
       "elementName": "Earth 4",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 17.1
     }
   },
   "20603": {
@@ -8264,7 +8419,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "20604": {
@@ -8317,7 +8473,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Small",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20605": {
@@ -8370,7 +8527,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Small",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20606": {
@@ -8423,7 +8581,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20607": {
@@ -8476,7 +8635,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20608": {
@@ -8529,7 +8689,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20609": {
@@ -8582,7 +8743,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20610": {
@@ -8635,7 +8797,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20611": {
@@ -8688,7 +8851,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.1
     }
   },
   "20612": {
@@ -8741,7 +8905,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20613": {
@@ -8794,7 +8959,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20614": {
@@ -8847,7 +9013,8 @@
       "elementName": "Dark 4",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20615": {
@@ -8900,7 +9067,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20616": {
@@ -8953,7 +9121,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.1
     }
   },
   "20617": {
@@ -9006,7 +9175,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.1
     }
   },
   "20618": {
@@ -9059,7 +9229,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.1
     }
   },
   "20621": {
@@ -9112,7 +9283,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20649": {
@@ -9165,7 +9337,8 @@
       "elementName": "Fire 1",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20650": {
@@ -9218,7 +9391,8 @@
       "elementName": "Wind 1",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20651": {
@@ -9271,7 +9445,8 @@
       "elementName": "Water 1",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20652": {
@@ -9324,7 +9499,8 @@
       "elementName": "Poison 1",
       "elementShortName": "Poison",
       "scaleName": "Small",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20653": {
@@ -9377,7 +9553,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 16
     }
   },
   "20668": {
@@ -9430,7 +9607,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 17.1
     }
   },
   "20691": {
@@ -9483,7 +9661,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "20692": {
@@ -9536,7 +9715,8 @@
       "elementName": "Holy 2",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20693": {
@@ -9589,7 +9769,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20694": {
@@ -9642,7 +9823,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "20773": {
@@ -9695,7 +9877,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 15
     }
   },
   "20774": {
@@ -9748,7 +9931,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 15
     }
   },
   "20775": {
@@ -9801,7 +9985,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "20776": {
@@ -9854,7 +10039,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "20777": {
@@ -9907,7 +10093,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 15
     }
   },
   "20778": {
@@ -9960,7 +10147,8 @@
       "elementName": "Ghost 4",
       "elementShortName": "Ghost",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "20779": {
@@ -10013,7 +10201,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 15
     }
   },
   "20780": {
@@ -10066,7 +10255,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 15
     }
   },
   "20781": {
@@ -10119,7 +10309,8 @@
       "elementName": "Dark 4",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 15
     }
   },
   "20782": {
@@ -10172,7 +10363,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "20783": {
@@ -10225,7 +10417,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 15
     }
   },
   "20785": {
@@ -10278,7 +10471,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.1
     }
   },
   "20801": {
@@ -10331,7 +10525,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20802": {
@@ -10384,7 +10579,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20803": {
@@ -10437,7 +10633,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20804": {
@@ -10490,7 +10687,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20805": {
@@ -10543,7 +10741,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 16
     }
   },
   "20806": {
@@ -10596,7 +10795,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20807": {
@@ -10649,7 +10849,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20808": {
@@ -10702,7 +10903,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20809": {
@@ -10755,7 +10957,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20810": {
@@ -10808,7 +11011,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 16
     }
   },
   "20844": {
@@ -10861,7 +11065,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 15
     }
   },
   "20845": {
@@ -10914,7 +11119,8 @@
       "elementName": "Holy 3",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 15
     }
   },
   "20892": {
@@ -10967,7 +11173,8 @@
       "elementName": "Neutral 4",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20893": {
@@ -11020,7 +11227,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.2
     }
   },
   "20920": {
@@ -11073,7 +11281,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.2
     }
   },
   "20921": {
@@ -11126,7 +11335,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.2
     }
   },
   "20922": {
@@ -11179,7 +11389,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 17.2
     }
   },
   "20923": {
@@ -11232,7 +11443,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20924": {
@@ -11285,7 +11497,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.2
     }
   },
   "20925": {
@@ -11338,7 +11551,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20926": {
@@ -11391,7 +11605,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.2
     }
   },
   "20927": {
@@ -11444,7 +11659,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.2
     }
   },
   "20928": {
@@ -11497,7 +11713,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.2
     }
   },
   "20929": {
@@ -11550,7 +11767,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "20930": {
@@ -11603,7 +11821,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "20931": {
@@ -11656,7 +11875,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.1
     }
   },
   "20932": {
@@ -11709,7 +11929,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.1
     }
   },
   "20933": {
@@ -11762,7 +11983,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "20934": {
@@ -11815,7 +12037,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "20935": {
@@ -11868,7 +12091,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.2
     }
   },
   "20936": {
@@ -11921,7 +12145,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20937": {
@@ -11974,7 +12199,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20938": {
@@ -12027,7 +12253,8 @@
       "elementName": "Undead 1",
       "elementShortName": "Undead",
       "scaleName": "Small",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.2
     }
   },
   "20939": {
@@ -12080,7 +12307,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Small",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 17.2
     }
   },
   "20940": {
@@ -12133,7 +12361,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20941": {
@@ -12186,7 +12415,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20942": {
@@ -12239,7 +12469,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 17.2
     }
   },
   "20943": {
@@ -12292,7 +12523,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 17.2
     }
   },
   "20994": {
@@ -12345,7 +12577,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 17.2
     }
   },
   "21064": {
@@ -12398,7 +12631,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21065": {
@@ -12451,7 +12685,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21066": {
@@ -12504,7 +12739,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21067": {
@@ -12557,7 +12793,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21068": {
@@ -12610,7 +12847,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 0
     }
   },
   "21069": {
@@ -12663,7 +12901,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 0
     }
   },
   "21070": {
@@ -12716,7 +12955,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 0
     }
   },
   "21071": {
@@ -12769,7 +13009,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 0
     }
   },
   "21072": {
@@ -12822,7 +13063,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 0
     }
   },
   "21073": {
@@ -12875,7 +13117,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 0
     }
   },
   "21074": {
@@ -12928,7 +13171,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 0
     }
   },
   "21075": {
@@ -12981,7 +13225,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 0
     }
   },
   "21076": {
@@ -13034,7 +13279,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 0
     }
   },
   "21077": {
@@ -13087,7 +13333,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21078": {
@@ -13140,7 +13387,8 @@
       "elementName": "Water 1",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21079": {
@@ -13193,7 +13441,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21080": {
@@ -13246,7 +13495,8 @@
       "elementName": "Fire 1",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21081": {
@@ -13299,7 +13549,8 @@
       "elementName": "Wind 1",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21082": {
@@ -13352,7 +13603,8 @@
       "elementName": "Poison 1",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21083": {
@@ -13405,7 +13657,8 @@
       "elementName": "Holy 1",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21084": {
@@ -13458,7 +13711,8 @@
       "elementName": "Dark 1",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21085": {
@@ -13511,7 +13765,8 @@
       "elementName": "Ghost 1",
       "elementShortName": "Ghost",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21086": {
@@ -13564,7 +13819,8 @@
       "elementName": "Undead 1",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 0
     }
   },
   "21295": {
@@ -13617,7 +13873,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "21296": {
@@ -13670,7 +13927,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 17.1
     }
   },
   "21297": {
@@ -13723,7 +13981,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "21298": {
@@ -13776,7 +14035,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "21299": {
@@ -13829,7 +14089,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 17.1
     }
   },
   "21300": {
@@ -13882,7 +14143,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "21301": {
@@ -13935,7 +14197,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 17.1
     }
   },
   "21361": {
@@ -13988,7 +14251,8 @@
       "elementName": "Holy 2",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 17.2
     }
   },
   "21386": {
@@ -14041,7 +14305,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21387": {
@@ -14094,7 +14359,8 @@
       "elementName": "Earth 4",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21388": {
@@ -14147,7 +14413,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21389": {
@@ -14200,7 +14467,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21390": {
@@ -14253,7 +14521,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21391": {
@@ -14306,7 +14575,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 16
     }
   },
   "21392": {
@@ -14359,7 +14629,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 16
     }
   },
   "21393": {
@@ -14412,7 +14683,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 16
     }
   },
   "21394": {
@@ -14465,7 +14737,8 @@
       "elementName": "Poison 4",
       "elementShortName": "Poison",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 16
     }
   },
   "21520": {
@@ -14518,7 +14791,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21521": {
@@ -14571,7 +14845,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21522": {
@@ -14624,7 +14899,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 19
     }
   },
   "21523": {
@@ -14677,7 +14953,8 @@
       "elementName": "Water 1",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21524": {
@@ -14730,7 +15007,8 @@
       "elementName": "Neutral 2",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 19
     }
   },
   "21525": {
@@ -14783,7 +15061,8 @@
       "elementName": "Water 1",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 19
     }
   },
   "21526": {
@@ -14836,7 +15115,8 @@
       "elementName": "Poison 1",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21527": {
@@ -14889,7 +15169,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21528": {
@@ -14942,7 +15223,8 @@
       "elementName": "Neutral 3",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21529": {
@@ -14995,7 +15277,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21537": {
@@ -15048,7 +15331,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21538": {
@@ -15101,7 +15385,8 @@
       "elementName": "Poison 3",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21539": {
@@ -15154,7 +15439,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21540": {
@@ -15207,7 +15493,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 19
     }
   },
   "21541": {
@@ -15260,7 +15547,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21542": {
@@ -15313,7 +15601,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 19
     }
   },
   "21543": {
@@ -15366,7 +15655,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 19
     }
   },
   "21544": {
@@ -15419,7 +15709,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21545": {
@@ -15472,7 +15763,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Fish"
+      "raceName": "Fish",
+      "episode": 19
     }
   },
   "21548": {
@@ -15525,7 +15817,8 @@
       "elementName": "Holy 3",
       "elementShortName": "Holy",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21549": {
@@ -15578,7 +15871,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 18
     }
   },
   "21550": {
@@ -15631,7 +15925,8 @@
       "elementName": "Wind 2",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 18
     }
   },
   "21551": {
@@ -15684,7 +15979,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 18
     }
   },
   "21552": {
@@ -15737,7 +16033,8 @@
       "elementName": "Earth 2",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21553": {
@@ -15790,7 +16087,8 @@
       "elementName": "Earth 1",
       "elementShortName": "Earth",
       "scaleName": "Large",
-      "raceName": "Plant"
+      "raceName": "Plant",
+      "episode": 18
     }
   },
   "21554": {
@@ -15843,7 +16141,8 @@
       "elementName": "Wind 3",
       "elementShortName": "Wind",
       "scaleName": "Medium",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21555": {
@@ -15896,7 +16195,8 @@
       "elementName": "Wind 4",
       "elementShortName": "Wind",
       "scaleName": "Small",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 18
     }
   },
   "21556": {
@@ -15949,7 +16249,8 @@
       "elementName": "Fire 3",
       "elementShortName": "Fire",
       "scaleName": "Small",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21557": {
@@ -16002,7 +16303,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 18
     }
   },
   "21558": {
@@ -16055,7 +16357,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21559": {
@@ -16108,7 +16411,8 @@
       "elementName": "Fire 4",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21560": {
@@ -16161,7 +16465,8 @@
       "elementName": "Fire 2",
       "elementShortName": "Fire",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21561": {
@@ -16214,7 +16519,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 18
     }
   },
   "21562": {
@@ -16267,7 +16573,8 @@
       "elementName": "Dark 4",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 18
     }
   },
   "21563": {
@@ -16320,7 +16627,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Dragon"
+      "raceName": "Dragon",
+      "episode": 18
     }
   },
   "21564": {
@@ -16373,7 +16681,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21565": {
@@ -16426,7 +16735,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Small",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21566": {
@@ -16479,7 +16789,8 @@
       "elementName": "Water 2",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21567": {
@@ -16532,7 +16843,8 @@
       "elementName": "Poison 2",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Insect"
+      "raceName": "Insect",
+      "episode": 18
     }
   },
   "21568": {
@@ -16585,7 +16897,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21569": {
@@ -16638,7 +16951,8 @@
       "elementName": "Holy 4",
       "elementShortName": "Holy",
       "scaleName": "Small",
-      "raceName": "Angel"
+      "raceName": "Angel",
+      "episode": 18
     }
   },
   "21570": {
@@ -16691,7 +17005,8 @@
       "elementName": "Water 3",
       "elementShortName": "Water",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 18
     }
   },
   "21571": {
@@ -16744,7 +17059,8 @@
       "elementName": "Water 4",
       "elementShortName": "Water",
       "scaleName": "Large",
-      "raceName": "Brute"
+      "raceName": "Brute",
+      "episode": 18
     }
   },
   "21572": {
@@ -16797,7 +17113,8 @@
       "elementName": "Undead 2",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 18
     }
   },
   "21573": {
@@ -16850,7 +17167,8 @@
       "elementName": "Undead 1",
       "elementShortName": "Undead",
       "scaleName": "Small",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 18
     }
   },
   "21574": {
@@ -16903,7 +17221,8 @@
       "elementName": "Undead 3",
       "elementShortName": "Undead",
       "scaleName": "Medium",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 18
     }
   },
   "21575": {
@@ -16956,7 +17275,8 @@
       "elementName": "Undead 4",
       "elementShortName": "Undead",
       "scaleName": "Large",
-      "raceName": "Undead"
+      "raceName": "Undead",
+      "episode": 18
     }
   },
   "21576": {
@@ -17009,7 +17329,8 @@
       "elementName": "Ghost 3",
       "elementShortName": "Ghost",
       "scaleName": "Small",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 18
     }
   },
   "21577": {
@@ -17062,7 +17383,8 @@
       "elementName": "Dark 2",
       "elementShortName": "Dark",
       "scaleName": "Medium",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 18
     }
   },
   "21578": {
@@ -17115,7 +17437,8 @@
       "elementName": "Dark 4",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 18
     }
   },
   "21579": {
@@ -17168,7 +17491,8 @@
       "elementName": "Dark 3",
       "elementShortName": "Dark",
       "scaleName": "Large",
-      "raceName": "Demon"
+      "raceName": "Demon",
+      "episode": 18
     }
   },
   "21599": {
@@ -17221,7 +17545,8 @@
       "elementName": "Neutral 1",
       "elementShortName": "Neutral",
       "scaleName": "Medium",
-      "raceName": "DemiHuman"
+      "raceName": "DemiHuman",
+      "episode": 19
     }
   },
   "21600": {
@@ -17274,7 +17599,8 @@
       "elementName": "Earth 3",
       "elementShortName": "Earth",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   },
   "21601": {
@@ -17327,7 +17653,8 @@
       "elementName": "Poison 2",
       "elementShortName": "Poison",
       "scaleName": "Medium",
-      "raceName": "Formless"
+      "raceName": "Formless",
+      "episode": 19
     }
   }
 }
