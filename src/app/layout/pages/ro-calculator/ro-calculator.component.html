@@ -987,7 +987,8 @@
         </div>
 
         <!-- Shield -->
-        <div class="grid grid-nogutter item_label_shield_main">
+        <div class="grid grid-nogutter item_label_shield_main equip-slot-compare">
+          <button type="button" class="compare-slot-btn" [class.active]="isSlotComparing('shield')" (click)="toggleCompareSlot('shield')" pTooltip="Comparar Escudo" tooltipPosition="left"><i class="pi pi-clone"></i></button>
           <div class="col-12" [hidden]="!model.weapon || hiddenMap.shield || !!model.leftWeapon">
             <app-equipment
               [itemType]="'shield'"
@@ -1011,6 +1012,32 @@
               (clearItemEvent)="onClearItem($event)"
               (gradeChange)="onSelectGrade($event.itemType, $event.itemId, $event.grade)"
               (optionChange)="onOptionChange()"
+            ></app-equipment>
+          </div>
+        </div>
+        <div class="grid grid-nogutter item_label_compare equip-slot-compare" *ngIf="showCompareItemMap.shield">
+          <div class="col-12" [hidden]="!model.weapon || hiddenMap.shield || !!model.leftWeapon">
+            <app-equipment
+              [itemType]="'shield'"
+              [placeholder]="'Shield'"
+              [items]="items"
+              [mapEnchant]="mapEnchant"
+              [itemList]="shieldList"
+              [refineList]="refineList"
+              [cardList]="shieldCardList"
+              [optionList]="optionList"
+              [(itemId)]="model2.shield"
+              [(itemRefine)]="model2.shieldRefine"
+              [(itemGrade)]="model2.shieldGrade"
+              [(card1Id)]="model2.shieldCard"
+              [(enchant2Id)]="model2.shieldEnchant1"
+              [(enchant3Id)]="model2.shieldEnchant2"
+              [(enchant4Id)]="model2.shieldEnchant3"
+              [(option1Value)]="model2.rawOptionTxts[itemOptionNumber.Shield_1]"
+              [(option2Value)]="model2.rawOptionTxts[itemOptionNumber.Shield_2]"
+              (selectItemChange)="onCompareItemChange()"
+              (optionChange)="onCompareItemChange()"
+              (gradeChange)="onCompareItemChange()"
             ></app-equipment>
           </div>
         </div>
