@@ -1,0 +1,392 @@
+{
+  "1000105": {
+    "aegisName": "Auto_Module_A",
+    "name": "Automatic Modification Module (DEF)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (DEF) effect.\n^000088[Enchant Effect]^000000\nDEF +150\nWhen refined to +7 or higher, DEF +75 (Additional)\nWhen refined to +11 or higher, DEF +75 (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\nAutomatic Leg Type A\nAutomatic Leg Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000106": {
+    "aegisName": "Auto_Module_A2",
+    "name": "Automatic Modification Module (MDEF)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (MDEF) effect.\n^000088[Enchant Effect]^000000\nMDEF +15\nWhen refined to +7 or higher, MDEF +7 (Additional)\nWhen refined to +11 or higher, MDEF +7 (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\nAutomatic Leg Type A\nAutomatic Leg Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000107": {
+    "aegisName": "Auto_Module_A3",
+    "name": "Automatic Modification Module (VIT)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (VIT) effect.\n^000088[Enchant Effect]^000000\nVIT +3, MaxHP +1%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000108": {
+    "aegisName": "Auto_Module_A4",
+    "name": "Automatic Modification Module (LUK)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (LUK) effect.\n^000088[Enchant Effect]^000000\nLUK +3, Critical damage +1%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000109": {
+    "aegisName": "Auto_Module_A5",
+    "name": "Automatic Modification Module (STR)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (STR) effect.\n^000088[Enchant Effect]^000000\nSTR +3, ATK +2%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Battle Chip R\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000110": {
+    "aegisName": "Auto_Module_A6",
+    "name": "Automatic Modification Module (AGI)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (AGI) effect.\n^000088[Enchant Effect]^000000\nAGI +3, increased ASPD (ASPD +2%)\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Battle Chip R\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000111": {
+    "aegisName": "Auto_Module_A7",
+    "name": "Automatic Modification Module (INT)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (INT) effect.\n^000088[Enchant Effect]^000000\nINT +3, MATK +2%\n^000088[Applicable Equipment]^000000\nAutomatic Booster L\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000112": {
+    "aegisName": "Auto_Module_A8",
+    "name": "Automatic Modification Module (DEX)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (DEX) effect.\n^000088[Enchant Effect]^000000\nDEX +3, Long-ranged Physical damage +2%\n^000088[Applicable Equipment]^000000\nAutomatic Booster L\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000115": {
+    "aegisName": "Auto_Module_B3",
+    "name": "Automatic Modification Module (Spell)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Spell) effect.\n^000088[Enchant Effect]^000000\nMATK +20, Variable Cast Time -10%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000116": {
+    "aegisName": "Auto_Module_B4",
+    "name": "Automatic Modification Module (ASPD)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (ASPD) effect.\n^000088[Enchant Effect]^000000\nATK +20, increased ASPD (Post-attack delay -10%)\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000117": {
+    "aegisName": "Auto_Module_B5",
+    "name": "Automatic Modification Module (Fatal)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Fatal) effect.\n^000088[Enchant Effect]^000000\nCRIT +10, Critical damage +10%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000118": {
+    "aegisName": "Auto_Module_B6",
+    "name": "Automatic Modification Module (Expert Archer)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Expert Archer) effect.\n^000088[Enchant Effect]^000000\nHIT +10, Long-ranged Physical damage +10%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000122": {
+    "aegisName": "Auto_Module_B10",
+    "name": "Automatic Modification Module (ATK)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (ATK) effect.\n^000088[Enchant Effect]^000000\nATK +5%, ATK +75\nWhen refined to +7 or higher, Melee Physical damage +2%\nWhen refined to +11 or higher, Melee Physical damage +3% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000123": {
+    "aegisName": "Auto_Module_B11",
+    "name": "Automatic Modification Module (MATK)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (MATK) effect.\n^000088[Enchant Effect]^000000\nMATK +5%, MATK +75\nWhen refined to +7 or higher, MATK +2% (Additional)\nWhen refined to +11 or higher, MATK +3% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000124": {
+    "aegisName": "Auto_Module_B12",
+    "name": "Automatic Modification Module (Sharpshooter)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Sharpshooter) effect.\n^000088[Enchant Effect]^000000\nLong-ranged Physical damage +3%\nWhen refined to +7 or higher, Long-ranged Physical damage +3% (Additional)\nWhen refined to +11 or higher, Long-ranged Physical damage +3% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000125": {
+    "aegisName": "Auto_Module_B13",
+    "name": "Automatic Modification Module (Speed)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Speed) effect.\n^000088[Enchant Effect]^000000\nASPD +1\nWhen refined to +7 or higher, ASPD +5%\nWhen refined to +11 or higher, ASPD +5% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000126": {
+    "aegisName": "Auto_Module_B14",
+    "name": "Automatic Modification Module (Caster)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Caster) effect.\n^000088[Enchant Effect]^000000\nVariable Cast Time -5%\nWhen refined to +7 or higher, Variable Cast Time -5% (Additional)\nWhen refined to +11 or higher, Variable Cast Time -5% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000127": {
+    "aegisName": "Auto_Module_B15",
+    "name": "Automatic Modification Module (Critical)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Critical) effect.\n^000088[Enchant Effect]^000000\nCRIT +10\nWhen refined to +7 or higher, Critical damage +5%\nWhen refined to +11 or higher, Critical damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000128": {
+    "aegisName": "Auto_Module_C2",
+    "name": "Automatic Modification Module (Magical Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Magical Force) effect.\n^000088[Enchant Effect]^000000\nMATK +20, Variable Cast Time -10%, all elemental Magic damage +2%\nWhen refined to +7 or higher, All elemental Magic damage +1% (Additional)\nWhen refined to +11 or higher, All elemental Magic damage +2% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000129": {
+    "aegisName": "Auto_Module_C3",
+    "name": "Automatic Modification Module (Attacker Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Attacker Force) effect.\n^000088[Enchant Effect]^000000\nATK +20, Melee Physical damage +10%, Physical damage +3% on enemies of all sizes\nWhen refined to +7 or higher, Physical damage +1% on enemies of all sizes (Additional)\nWhen refined to +11 or higher, Physical damage +1% on enemies of all sizes (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000130": {
+    "aegisName": "Auto_Module_C",
+    "name": "Automatic Modification Module (Ranged Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Ranged Force) effect.\n^000088[Enchant Effect]^000000\nATK +20, Long-ranged Physical damage +10%, Physical damage +3% on enemies of all sizes\nWhen refined to +7 or higher, Physical damage +1% on enemies of all sizes (Additional)\nWhen refined to +11 or higher, Physical damage +1% on enemies of all sizes (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000131": {
+    "aegisName": "Auto_Module_C4",
+    "name": "Automatic Modification Module (Critical Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Critical Force) effect.\n^000088[Enchant Effect]^000000\nCRIT +5, Critical damage +10%, Physical damage +3% on enemies of all sizes\nWhen refined to +7 or higher, Physical damage +1% on enemies of all sizes (Additional)\nWhen refined to +11 or higher, Physical damage +1% on enemies of all sizes (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000133": {
+    "aegisName": "Auto_Module_C6",
+    "name": "Automatic Modification Module (Post-skill Delay)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Post-skill delay) effect.\n^000088[Enchant Effect]^000000\nPost-skill delay -4%\nWhen refined to +7 or higher, Post-skill delay -6% (Additional)\nWhen refined to +11 or higher, Post-skill delay -6% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000134": {
+    "aegisName": "Auto_Module_C7",
+    "name": "Automatic Modification Module (Fixed Cast Time)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Fixed Cast Time) effect.\n^000088[Enchant Effect]^000000\nFixed Cast Time -0.1 sec.\nWhen refined to +7 or higher, Fixed Cast Time -0.2 sec. (Additional)\nWhen refined to +11 or higher, Fixed Cast Time -0.5 sec. (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Leg Type A\nAutomatic Leg Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000140": {
+    "aegisName": "Auto_Module_C8",
+    "name": "Automatic Modification Module (Power Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Power Force) effect.\n^000088[Enchant Effect]^000000\nATK +3%, MATK +3%.\nWhen refined to +7 or higher, ATK +3%, MATK +3% (Additional)\nWhen refined to +11 or higher, ATK +4%, MATK +4% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000142": {
+    "aegisName": "Auto_Module_C9",
+    "name": "Automatic Modification Module (Powerful)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (Powerful) effect.\n^000088[Enchant Effect]^000000\nMelee/Long-ranged Physical damage +5%, all elemental Magic damage +5%\nWhen refined to +7 or higher, Melee/Long-ranged Physical damage +2%, all elemental Magic damage +2% (Additional)\nWhen refined to +11 or higher, Melee/Long-ranged Physical damage +3%, all elemental Magic damage +3% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Engine Wing Type A\nAutomatic Engine Wing Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000143": {
+    "aegisName": "Auto_Module_C10",
+    "name": "Automatic Modification Module (All-Force)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Modification Orb (All-Force) effect.\n^000088[Enchant Effect]^000000\nMelee Physical damage +5%, Long-ranged Physical damage +5%, all elemental Magic damage +5%\n^000088[Applicable Equipment]^000000\nAutomatic Booster R\nAutomatic Booster L\nAutomatic Battle Chip R\nAutomatic Battle Chip L\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000152": {
+    "aegisName": "Auto_Module_Db",
+    "name": "Automatic Module (Draconic Breath)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Draconic Breath) effect.\n^000088[Enchant Effect]^000000\nDragon Breath and Dragon Water Breath damage +15%\nWhen refined to +7 or higher, Dragon Breath and Dragon Water Breath damage +3% (Additional)\nWhen refined to +11 or higher, Dragon Breath and Dragon Water Breath damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000153": {
+    "aegisName": "Auto_Module_Wb",
+    "name": "Automatic Module (Wave Break)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Wave Break) effect.\n^000088[Enchant Effect]^000000\nSonic Wave and Ignition Break damage +15%\nWhen refined to +7 or higher, Sonic Wave and Ignition Break damage +3% (Additional)\nWhen refined to +11 or higher, Sonic Wave damage +7%, Ignition Break cooldown -0.25 sec.\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000154": {
+    "aegisName": "Auto_Module_Hs",
+    "name": "Automatic Module (Hundred Spiral)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Hundred Spiral) effect.\n^000088[Enchant Effect]^000000\nClashing Spiral and Hundred Spears damage +15%\nWhen refined to +7 or higher, Clashing Spiral and Hundred Spears damage +3% (Additional)\nWhen refined to +11 or higher, Clashing Spiral damage +7% (Additional), Hundred Spears cooldown -0.25 sec.\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000155": {
+    "aegisName": "Auto_Module_Dp",
+    "name": "Automatic Module (Drive Press)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Drive Press) effect.\n^000088[Enchant Effect]^000000\nEarth Drive and Shield Press damage +15%\nWhen refined to +7 or higher, Earth Drive and Shield Press damage +3% (Additional)\nWhen refined to +11 or higher, Earth Drive and Shield Press damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000156": {
+    "aegisName": "Auto_Module_Vc",
+    "name": "Automatic Module (Vanishing Cannon)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Vanishing Cannon) effect.\n^000088[Enchant Effect]^000000\nVanishing Point and Cannon Spear damage +15%\nWhen refined to +7 or higher, Vanishing Point and Cannon Spear damage +3% (Additional)\nWhen refined to +11 or higher, Vanishing Point and Cannon Spear damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000157": {
+    "aegisName": "Auto_Module_Gg",
+    "name": "Automatic Module (Genesis Gloria)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Genesis Gloria) effect.\n^000088[Enchant Effect]^000000\nGloria Domini and Genesis Ray damage +15%\nWhen refined to +7 or higher, Gloria Domini and Genesis Ray damage +3% (Additional)\nWhen refined to +11 or higher, Gloria Domini and Genesis Ray damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000158": {
+    "aegisName": "Auto_Module_Bc",
+    "name": "Automatic Module (Boost Cannon)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Boost Cannon) effect.\n^000088[Enchant Effect]^000000\nKnuckle Boost and Arm Cannon damage +15%\nWhen refined to +7 or higher, Knuckle Boost and Arm Cannon damage +3% (Additional)\nWhen refined to +11 or higher, Knuckle Boost and Arm Cannon damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000159": {
+    "aegisName": "Auto_Module_If",
+    "name": "Automatic Module (Ice Flame)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Ice Flame) effect.\n^000088[Enchant Effect]^000000\nIce Launcher and Flame Launcher damage +15%\nWhen refined to +7 or higher, Ice Launcher and Flame Launcher damage +3% (Additional)\nWhen refined to +11 or higher, Ice Launcher and Flame Launcher damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000160": {
+    "aegisName": "Auto_Module_Ts",
+    "name": "Automatic Module (Tornado Swing)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Tornado Swing) effect.\n^000088[Enchant Effect]^000000\nAxe Tornado and Power Swing damage +15%\nWhen refined to +7 or higher, Axe Tornado and Power Swing damage +3% (Additional)\nWhen refined to +11 or higher, Axe Tornado and Power Swing damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000161": {
+    "aegisName": "Auto_Module_Ct",
+    "name": "Automatic Module (Cannon Tornado)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Cannon Tornado) effect.\n^000088[Enchant Effect]^000000\nCart Tornado and Cart Cannon damage +15%\nWhen refined to +7 or higher, Cart Tornado and Cart Cannon damage +3% (Additional)\nWhen refined to +11 or higher, Cart Tornado and Cart Cannon damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000162": {
+    "aegisName": "Auto_Module_Cm",
+    "name": "Automatic Module (Crazy Mandragora)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Crazy Mandragora) effect.\n^000088[Enchant Effect]^000000\nCrazy Vines damage +15%, Mandragora Howling cooldown -0.3 sec.\nWhen refined to +7 or higher, Crazy Vines damage +3% (Additional), Mandragora Howling cooldown -0.3 sec. (Additional)\nWhen refined to +11 or higher, Crazy Vines damage +7% (Additional), Mandragora Howling cooldown -0.4 sec. (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000163": {
+    "aegisName": "Auto_Module_Ae",
+    "name": "Automatic Module (Acid Explosion)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Acid Explosion) effect.\n^000088[Enchant Effect]^000000\nAcid Bomb and Spore Explosion damage +15%\nWhen refined to +7 or higher, Acid Bomb and Spore Explosion damage +3% (Additional)\nWhen refined to +11 or higher, Acid Bomb and Spore Explosion damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000164": {
+    "aegisName": "Auto_Module_Si",
+    "name": "Automatic Module (Sonic Impact)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Sonic Impact) effect.\n^000088[Enchant Effect]^000000\nSonic Blow and Cross Impact damage +15%\nWhen refined to +7 or higher, Sonic Blow and Cross Impact damage +3% (Additional)\nWhen refined to +11 or higher, Sonic Blow and Cross Impact damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000165": {
+    "aegisName": "Auto_Module_Cs",
+    "name": "Automatic Module (Cutter Slasher)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Cutter Slasher) effect.\n^000088[Enchant Effect]^000000\nCross Ripper Slasher and Rolling Cutter damage +15%\nWhen refined to +7 or higher, Cross Ripper Slasher and Rolling Cutter damage +3% (Additional)\nWhen refined to +11 or higher, Cross Ripper Slasher and Rolling Cutter damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000166": {
+    "aegisName": "Auto_Module_Bs",
+    "name": "Automatic Module (Berserk Slash)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Berserk Slash) effect.\n^000088[Enchant Effect]^000000\nSoul Destroyer and Counter Slash damage +15%\nWhen refined to +7 or higher, Soul Destroyer and Counter Slash damage +3% (Additional)\nWhen refined to +11 or higher, Soul Destroyer and Counter Slash damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000167": {
+    "aegisName": "Auto_Module_Fr",
+    "name": "Automatic Module (Fatal Raid)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Fatal Raid) effect.\n^000088[Enchant Effect]^000000\nFatal Menace and Sightless Mind damage +15%\nWhen refined to +7 or higher, Fatal Menace and Sightless Mind damage +3% (Additional)\nWhen refined to +11 or higher, Fatal Menace and Sightless Mind damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000168": {
+    "aegisName": "Auto_Module_Ss",
+    "name": "Automatic Module (Shadow Spell)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Shadow Spell) effect.\n^000088[Enchant Effect]^000000\nAll elemental Magic damage +15%\nWhen refined to +7 or higher, All elemental Magic damage +3% (Additional)\nWhen refined to +11 or higher, All elemental Magic damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000169": {
+    "aegisName": "Auto_Module_As",
+    "name": "Automatic Module (Angle Shot)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Angle Shot) effect.\n^000088[Enchant Effect]^000000\nTriangle Shot damage +15%, Long-ranged Physical damage +10%\nWhen refined to +7 or higher, Triangle Shot damage +3% (Additional)\nWhen refined to +11 or higher, Triangle Shot damage +7% (Additional), Long-ranged Physical damage +5% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000170": {
+    "aegisName": "Auto_Module_Ce",
+    "name": "Automatic Module (Crimson Strain)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Crimson Strain) effect.\n^000088[Enchant Effect]^000000\nCrimson Rock and Earth Strain damage +15%\nWhen refined to +7 or higher, Crimson Rock and Earth Strain damage +3% (Additional)\nWhen refined to +11 or higher, Crimson Rock and Earth Strain damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000171": {
+    "aegisName": "Auto_Module_Jl",
+    "name": "Automatic Module (Jack Lightning)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Jack Lightning) effect.\n^000088[Enchant Effect]^000000\nJack Frost and Chain Lightning damage +15%\nWhen refined to +7 or higher, Jack Frost and Chain Lightning damage +3% (Additional)\nWhen refined to +11 or higher, Jack Frost and Chain Lightning damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000172": {
+    "aegisName": "Auto_Module_Cv",
+    "name": "Automatic Module (Comet Vortex)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Comet Vortex) effect.\n^000088[Enchant Effect]^000000\nComet and Tetra Vortex damage +15%\nWhen refined to +7 or higher, Comet and Tetra Vortex damage +3% (Additional)\nWhen refined to +11 or higher, Comet and Tetra Vortex damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000173": {
+    "aegisName": "Auto_Module_Dbl",
+    "name": "Automatic Module (Double Bolt)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Double Bolt) effect.\n^000088[Enchant Effect]^000000\nFire/Cold/Lightning Bolt damage +15%\nWhen refined to +7 or higher, Fire/Cold/Lightning Bolt damage +3% (Additional)\nWhen refined to +11 or higher, Fire/Cold/Lightning Bolt damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000174": {
+    "aegisName": "Auto_Module_Ww",
+    "name": "Automatic Module (Warmer Wave)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Warmer Wave) effect.\n^000088[Enchant Effect]^000000\nPsychic Wave damage +15%, Warmer cooldown -1 sec.\nWhen refined to +7 or higher, Psychic Wave damage +3% (Additional), Warmer cooldown -2 sec. (Additional)\nWhen refined to +11 or higher, Psychic Wave damage +7% (Additional), Warmer cooldown -4 sec. (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000175": {
+    "aegisName": "Auto_Module_Dg",
+    "name": "Automatic Module (Diamond Grave)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Diamond Grave) effect.\n^000088[Enchant Effect]^000000\nDiamond Dust and Earth Grave damage +15%\nWhen refined to +7 or higher, Diamond Dust and Earth Grave damage +3% (Additional)\nWhen refined to +11 or higher, Diamond Dust and Earth Grave damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000176": {
+    "aegisName": "Auto_Module_Mg",
+    "name": "Automatic Module (Magnusmus)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Magnusmus) effect.\n^000088[Enchant Effect]^000000\nMagnus Exorcismus and Adoramus damage +15%\nWhen refined to +7 or higher, Magnus Exorcismus and Adoramus damage +3% (Additional)\nWhen refined to +11 or higher, Magnus Exorcismus and Adoramus damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000177": {
+    "aegisName": "Auto_Module_Hj",
+    "name": "Automatic Module (Holy Judex)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Holy Judex) effect.\n^000088[Enchant Effect]^000000\nHoly Light and Judex damage +15%\nWhen refined to +7 or higher, Holy Light and Judex damage +3% (Additional)\nWhen refined to +11 or higher, Holy Light and Judex damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000178": {
+    "aegisName": "Auto_Module_Du",
+    "name": "Automatic Module (Duplelica)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Duplelica) effect.\n^000088[Enchant Effect]^000000\nDuple Light damage +15%, Basilica cooldown -2 sec.\nWhen refined to +7 or higher, Duple Light damage +3% (Additional), Basilica cooldown -3 sec. (Additional)\nWhen refined to +11 or higher, Duple Light damage +7% (Additional), Basilica cooldown -5 sec. (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000179": {
+    "aegisName": "Auto_Module_Ft",
+    "name": "Automatic Module (Fallen Tiger)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Fallen Tiger) effect.\n^000088[Enchant Effect]^000000\nTiger Cannon and Fallen Empire damage +15%\nWhen refined to +7 or higher, Tiger Cannon and Fallen Empire damage +3% (Additional)\nWhen refined to +11 or higher, Tiger Cannon and Fallen Empire damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000180": {
+    "aegisName": "Auto_Module_Ra",
+    "name": "Automatic Module (Rampage Arrow)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Rampage Arrow) effect.\n^000088[Enchant Effect]^000000\nRampage Blast and Knuckle Arrow damage +15%\nWhen refined to +7 or higher, Rampage Blast and Knuckle Arrow damage +3% (Additional)\nWhen refined to +11 or higher, Rampage Blast and Knuckle Arrow damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000181": {
+    "aegisName": "Auto_Module_Rc",
+    "name": "Automatic Module (Raging Crush)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Raging Crush) effect.\n^000088[Enchant Effect]^000000\nRaging Thrust and Chain Crush Combo damage +15%\nWhen refined to +7 or higher, Raging Thrust and Chain Crush Combo damage +3% (Additional)\nWhen refined to +11 or higher, Raging Thrust and Chain Crush Combo damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000182": {
+    "aegisName": "Auto_Module_Cl",
+    "name": "Automatic Module (Cluster)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Cluster) effect.\n^000088[Enchant Effect]^000000\nBomb Cluster damage +15%\nWhen refined to +7 or higher, Bomb Cluster damage +3% (Additional)\nWhen refined to +11 or higher, Bomb Cluster damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000183": {
+    "aegisName": "Auto_Module_Bs2",
+    "name": "Automatic Module (Breeze Shooting)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Breeze Shooting) effect.\n^000088[Enchant Effect]^000000\nFocused Arrow Strike damage +15%, Critical damage +10%\nWhen refined to +7 or higher, Focused Arrow Strike damage +3% (Additional)\nWhen refined to +11 or higher, Focused Arrow Strike damage +7%, Critical damage +5% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000184": {
+    "aegisName": "Auto_Module_Ab",
+    "name": "Automatic Module (Aimed Storm)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Aimed Storm) effect.\n^000088[Enchant Effect]^000000\nAimed Bolt and Arrow Storm damage +15%\nWhen refined to +7 or higher, Aimed Bolt and Arrow Storm damage +3% (Additional)\nWhen refined to +11 or higher, Aimed Bolt and Arrow Storm damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000185": {
+    "aegisName": "Auto_Module_Me",
+    "name": "Automatic Module (Metallic Echo)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Metallic Echo) effect.\n^000088[Enchant Effect]^000000\nMetallic Sound and Great Echo damage +15%\nWhen refined to +7 or higher, Metallic Sound and Great Echo damage +3% (Additional)\nWhen refined to +11 or higher, Metallic Sound and Great Echo damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000186": {
+    "aegisName": "Auto_Module_Rev",
+    "name": "Automatic Module (Reverberation)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Reverberation) effect.\n^000088[Enchant Effect]^000000\nReverberation damage +15%\nWhen refined to +7 or higher, Reverberation damage +3% (Additional)\nWhen refined to +11 or higher, Reverberation damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000187": {
+    "aegisName": "Auto_Module_Vs",
+    "name": "Automatic Module (Vulcan Severe)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Vulcan Severe) effect.\n^000088[Enchant Effect]^000000\nArrow Vulcan and Severe Rainstorm damage +15%\nWhen refined to +7 or higher, Arrow Vulcan and Severe Rainstorm damage +3% (Additional)\nWhen refined to +11 or higher, Arrow Vulcan and Severe Rainstorm damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000188": {
+    "aegisName": "Auto_Module_Be",
+    "name": "Automatic Module (Blaze Explosion)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Blaze Explosion) effect.\n^000088[Enchant Effect]^000000\nBlaze Kick and Solar Explosion damage +15%\nWhen refined to +7 or higher, Blaze Kick and Solar Explosion damage +3% (Additional)\nWhen refined to +11 or higher, Blaze Kick and Solar Explosion damage When refined to +7 or higher,% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000189": {
+    "aegisName": "Auto_Module_Mk",
+    "name": "Automatic Module (Moon Kick)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Moon Kick) effect.\n^000088[Enchant Effect]^000000\nNew Moon Kick and Full Moon Kick damage +15%\nWhen refined to +7 or higher, New Moon Kick and Full Moon Kick damage +3% (Additional)\nWhen refined to +11 or higher, New Moon Kick and Full Moon Kick damage +7% (Additional), Critical damage +5%\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000190": {
+    "aegisName": "Auto_Module_Ff",
+    "name": "Automatic Module (Falling Flash)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Falling Flash) effect.\n^000088[Enchant Effect]^000000\nFlash Kick and Falling Stars damage +15%\nWhen refined to +7 or higher, Flash Kick and Falling Stars damage +3% (Additional)\nWhen refined to +11 or higher, Flash Kick and Falling Stars damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000191": {
+    "aegisName": "Auto_Module_Ew",
+    "name": "Automatic Module (Eswoo)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Eswoo) effect.\n^000088[Enchant Effect]^000000\nEsma and Eswoo damage +15%\nWhen refined to +7 or higher, Esma and Eswoo damage +3% (Additional)\nWhen refined to +11 or higher, Esma and Eswoo damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000192": {
+    "aegisName": "Auto_Module_Esp",
+    "name": "Automatic Module (Espa)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Espa) effect.\n^000088[Enchant Effect]^000000\nEspa damage +15%\nWhen refined to +7 or higher, Espa damage +3% (Additional)\nWhen refined to +11 or higher, Espa damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000193": {
+    "aegisName": "Auto_Module_Cx",
+    "name": "Automatic Module (Curse Explosion)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Curse Explosion) effect.\n^000088[Enchant Effect]^000000\nCurse Explosion damage +15%\nWhen refined to +7 or higher, Curse Explosion damage +3% (Additional)\nWhen refined to +11 or higher, Curse Explosion damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000194": {
+    "aegisName": "Auto_Module_Dh",
+    "name": "Automatic Module (Death Hammer Dance)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Death Hammer Dance) effect.\n^000088[Enchant Effect]^000000\nDesperado, Fire Dance, God's Hammer damage +15%\nWhen refined to +7 or higher, Desperado, Fire Dance, God's Hammer damage +3% (Additional)\nWhen refined to +11 or higher, Desperado, Fire Dance, God's Hammer damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000195": {
+    "aegisName": "Auto_Module_Fh",
+    "name": "Automatic Module (Fire Howling Tail)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Fire Howling Tail) effect.\n^000088[Enchant Effect]^000000\nFire Rain, Howling Mine, Dragon Tail damage +15%\nWhen refined to +7 or higher, Fire Rain, Howling Mine, Dragon Tail damage +3% (Additional)\nWhen refined to +11 or higher, Fire Rain, Howling Mine, Dragon Tail damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000196": {
+    "aegisName": "Auto_Module_Sb",
+    "name": "Automatic Module (Storm Buster Trip)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Storm Buster Trip) effect.\n^000088[Enchant Effect]^000000\nShattering Storm, Vanishing Buster, Round Trip damage +15%\nWhen refined to +7 or higher, Shattering Storm, Vanishing Buster, Round Trip damage +3% (Additional)\nWhen refined to +11 or higher, Shattering Storm, Vanishing Buster, Round Trip damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000197": {
+    "aegisName": "Auto_Module_Ps",
+    "name": "Automatic Module (Petal Spear Blade)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Petal Spear Blade) effect.\n^000088[Enchant Effect]^000000\nFlaming Petals, Freezing Spear, Wind Blade damage +15%\nWhen refined to +7 or higher, Flaming Petals, Freezing Spear, Wind Blade damage +3% (Additional)\nWhen refined to +11 or higher, Flaming Petals, Freezing Spear, Wind Blade damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000198": {
+    "aegisName": "Auto_Module_Csl",
+    "name": "Automatic Module (Cross Slash)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Cross Slash) effect.\n^000088[Enchant Effect]^000000\nCross Slash damage +15%\nWhen refined to +7 or higher, Cross Slash damage +3% (Additional)\nWhen refined to +11 or higher, Cross Slash damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000199": {
+    "aegisName": "Auto_Module_Dd",
+    "name": "Automatic Module (Dragon Draft Wind)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Dragon Draft Wind) effect.\n^000088[Enchant Effect]^000000\nExploding Dragon, Snow Flake Draft, First Wind damage +15%\nWhen refined to +7 or higher, Exploding Dragon, Snow Flake Draft, First Wind damage +3% (Additional)\nWhen refined to +11 or higher, Exploding Dragon, Snow Flake Draft, First Wind damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000200": {
+    "aegisName": "Auto_Module_Sea",
+    "name": "Automatic Module (Power of Sea)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Power of Sea) effect.\n^000088[Enchant Effect]^000000\nTuna Party, Tasty Shrimp Party cooldown -0.5 sec.\nWhen refined to +7 or higher, Tuna Party, Tasty Shrimp Party cooldown -1 sec. (Additional)\nWhen refined to +11 or higher, Tuna Party, Tasty Shrimp Party cooldown -1.5 sec. (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000201": {
+    "aegisName": "Auto_Module_Land",
+    "name": "Automatic Module (Power of Land)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Power of Land) effect.\n^000088[Enchant Effect]^000000\nSilvervine Stem Spear and Catnip Meteor damage +15%\nWhen refined to +7 or higher, Silvervine Stem Spear and Catnip Meteor damage +3% (Additional)\nWhen refined to +11 or higher, Silvervine Stem Spear and Catnip Meteor damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  },
+  "1000202": {
+    "aegisName": "Auto_Module_Life",
+    "name": "Automatic Module (Power of Life)",
+    "description": "A modification module that can be used on Automatic armor.\nAdds the Automatic Orb (Power of Life) effect.\n^000088[Enchant Effect]^000000\nPicky Peck and Lunatic Carrot Beat damage +15%\nWhen refined to +7 or higher, Picky Peck and Lunatic Carrot Beat damage +3% (Additional)\nWhen refined to +11 or higher, Picky Peck and Lunatic Carrot Beat damage +7% (Additional)\n^000088[Applicable Equipment]^000000\nAutomatic Armor Type A\nAutomatic Armor Type B\n^ffffff_^000000\nWeight: ^7777771^000000"
+  }
+}
