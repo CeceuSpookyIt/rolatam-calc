@@ -142,7 +142,7 @@ import { corruptedPoisonArmor2, corruptedPoisonArmor3, corruptedPoisonArmor4, fi
 import { vivatusHead3, vivatusHead4 } from './vivatus';
 import { whiteKnight2, whiteKnight34 } from './white_knigh_man';
 import { yorscalpAcc2, yorscalpAcc3, yorscalpAcc4, yorscalpArmor2, yorscalpArmor3, yorscalpArmor4, yorscalpBoot2, yorscalpBoot3, yorscalpBoot4, yorscalpGarment2, yorscalpGarment3, yorscalpGarment4, yorscalpHeadUpper2, yorscalpHeadUpper3, yorscalpHeadUpper4 } from './yorscalp';
-import { autoArmorSlot1, autoArmorSlot2, autoArmorSlot3, autoGarmentSlot1, autoGarmentSlot2, autoGarmentSlot3, autoShoesSlot1, autoShoesSlot2, autoShoesSlot3, autoAccRSlot1, autoAccRSlot2, autoAccRSlot3, autoAccLSlot1, autoAccLSlot2, autoAccLSlot3 } from './automatic';
+import { autoArmorModules, autoEngineModules, autoLegModules, autoAccRModules, autoAccLModules } from './automatic';
 
 enum TimeJewel {
   Str2 = 'aegis_313347',
@@ -771,16 +771,6 @@ export const EnchantTable: EntTable[] = [
   { name: '[Upgrade] Illusion Ring [1]', enchants: [null, illusionAcc, illusionAcc, illusionAcc] },
   { name: 'Secret Illusion Ring [1]', enchants: [null, ['Improve_Orb_L_Varmundt', ...illusionAcc], illusionAcc, illusionAcc] },
 
-  { name: 'Auto_Armor_A', enchants: [null, automaticArmor, automaticArmor, automaticArmor] },
-  { name: 'Auto_Armor_B', enchants: [null, automaticArmor, automaticArmor, automaticArmor] },
-  { name: 'Auto_Engine_A', enchants: [null, automaticGarment, automaticGarment, automaticGarment] },
-  { name: 'Auto_Engine_B', enchants: [null, automaticGarment, automaticGarment, automaticGarment] },
-  { name: 'Auto_Leg_A', enchants: [null, automaticBoot, automaticBoot, automaticBoot] },
-  { name: 'Auto_Leg_B', enchants: [null, automaticBoot, automaticBoot, automaticBoot] },
-  { name: 'Auto_B_R', enchants: [null, automaticAccR, automaticAccR, automaticAccR] },
-  { name: 'Auto_B_L', enchants: [null, automaticAccL, automaticAccL, automaticAccL] },
-  { name: 'Auto_BC_R', enchants: [null, automaticAccR, automaticAccR, automaticAccR] },
-  { name: 'Auto_BC_L', enchants: [null, automaticAccL, automaticAccL, automaticAccL] },
   { name: 'aegisName_490565', enchants: [null, auto4ThAnniGlove, auto4ThAnniGlove, auto4ThAnniGlove] },
 
   { name: 'Temporal_Cape_TW_LT', enchants: [null, whiteKnight2, whiteKnight34, whiteKnight34] },
@@ -1793,16 +1783,16 @@ export const EnchantTable: EntTable[] = [
   { name: "Nebula_Nec_LT_TH", enchants: [null, null, nebularPendant3, nebularPendant4] },
 
   // Automatic Equipment (Ep. 17.2)
-  { name: 'Auto_Armor_A', enchants: [null, autoArmorSlot1, autoArmorSlot2, autoArmorSlot3] },
-  { name: 'Auto_Armor_B', enchants: [null, autoArmorSlot1, autoArmorSlot2, autoArmorSlot3] },
-  { name: 'Auto_Engine_A', enchants: [null, autoGarmentSlot1, autoGarmentSlot2, autoGarmentSlot3] },
-  { name: 'Auto_Engine_B', enchants: [null, autoGarmentSlot1, autoGarmentSlot2, autoGarmentSlot3] },
-  { name: 'Auto_Leg_A', enchants: [null, autoShoesSlot1, autoShoesSlot2, autoShoesSlot3] },
-  { name: 'Auto_Leg_B', enchants: [null, autoShoesSlot1, autoShoesSlot2, autoShoesSlot3] },
-  { name: 'Auto_B_R', enchants: [null, autoAccRSlot1, autoAccRSlot2, autoAccRSlot3] },
-  { name: 'Auto_B_L', enchants: [null, autoAccLSlot1, autoAccLSlot2, autoAccLSlot3] },
-  { name: 'Auto_BC_R', enchants: [null, autoAccRSlot1, autoAccRSlot2, autoAccRSlot3] },
-  { name: 'Auto_BC_L', enchants: [null, autoAccLSlot1, autoAccLSlot2, autoAccLSlot3] },
+  { name: 'Auto_Armor_A', enchants: [null, autoArmorModules, autoArmorModules, autoArmorModules] },
+  { name: 'Auto_Armor_B', enchants: [null, autoArmorModules, autoArmorModules, autoArmorModules] },
+  { name: 'Auto_Engine_A', enchants: [null, autoEngineModules, autoEngineModules, autoEngineModules] },
+  { name: 'Auto_Engine_B', enchants: [null, autoEngineModules, autoEngineModules, autoEngineModules] },
+  { name: 'Auto_Leg_A', enchants: [null, autoLegModules, autoLegModules, autoLegModules] },
+  { name: 'Auto_Leg_B', enchants: [null, autoLegModules, autoLegModules, autoLegModules] },
+  { name: 'Auto_B_R', enchants: [null, autoAccRModules, autoAccRModules, autoAccRModules] },
+  { name: 'Auto_B_L', enchants: [null, autoAccLModules, autoAccLModules, autoAccLModules] },
+  { name: 'Auto_BC_R', enchants: [null, autoAccRModules, autoAccRModules, autoAccRModules] },
+  { name: 'Auto_BC_L', enchants: [null, autoAccLModules, autoAccLModules, autoAccLModules] },
 ];
 
 Object.freeze(EnchantTable);
