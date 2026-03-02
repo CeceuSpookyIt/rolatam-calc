@@ -94,18 +94,17 @@ export const autoEngineModules = [
 export const autoLegModules = [
   'Auto_Module_A',    // Defense (Normal, max 3)
   'Auto_Module_A2',   // Magic Defense (Normal, max 3)
-  // 'Auto_Module_B8', // Vital (Rare, max 2) — TBD: add to item.json
-  // 'Auto_Module_B9', // Mental (Rare, max 2) — TBD: add to item.json
-  // 'Auto_Module_B16',// Heal (Rare, max 2) — TBD: add to item.json
+  'Auto_Module_B8',   // Vital (Rare, max 2)
+  'Auto_Module_B9',   // Mental (Rare, max 2)
+  'Auto_Module_B16',  // Heal (Rare, max 2)
   'Auto_Module_C7',   // Fixed Casting (Unique, max 1)
-  // 'Auto_Module_C14',// Robust (Unique, max 1) — TBD: add to item.json
-  // Legendary — TBD: add to item.json
-  // 'Auto_Module_L1', // Unlimited Vital
-  // 'Auto_Module_L2', // Spell Buster
-  // 'Auto_Module_L3', // Firing Shot
-  // 'Auto_Module_L4', // Overpower
-  // 'Auto_Module_L5', // Fatal Flash
-  // 'Auto_Module_L6', // Lucky Strike
+  'Auto_Module_C14',  // Robust (Unique, max 1)
+  'Auto_Module_L1',   // Unlimited Vital (Legendary, max 1)
+  'Auto_Module_L2',   // Spell Buster (Legendary, max 1)
+  'Auto_Module_L3',   // Firing Shot (Legendary, max 1)
+  'Auto_Module_L4',   // Overpower (Legendary, max 1)
+  'Auto_Module_L5',   // Fatal Flash (Legendary, max 1)
+  'Auto_Module_L6',   // Lucky Strike (Legendary, max 1)
 ];
 
 // Accessory Right (Booster R, Battle Chip R):
@@ -160,6 +159,10 @@ export const moduleMaxEnchant: Record<string, number> = {
   'Auto_Module_B10': 2,  // Attack Power
   'Auto_Module_B11': 2,  // Magic Power
   'Auto_Module_B12': 2,  // Sharpshooter
+  // Rare — Leg: max 2
+  'Auto_Module_B8': 2,   // Vital
+  'Auto_Module_B9': 2,   // Mental
+  'Auto_Module_B16': 2,  // Heal
   // Rare — Engine: max 2
   'Auto_Module_B14': 2,  // Caster
   'Auto_Module_B15': 2,  // Critical
