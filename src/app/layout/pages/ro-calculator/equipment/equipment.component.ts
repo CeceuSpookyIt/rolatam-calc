@@ -153,6 +153,10 @@ export class EquipmentComponent implements OnChanges, OnInit {
 
       this.isInternalItemIdChange = false;
     }
+
+    if (changes['activeClassName'] && this.requireSet.size === 6) {
+      this.refreshGroupedLists();
+    }
   }
 
   get isHeadCardable() {
@@ -227,6 +231,8 @@ export class EquipmentComponent implements OnChanges, OnInit {
         this.onSelectItem(property);
       }
     }
+
+    this.refreshGroupedLists();
   }
 
   /**
