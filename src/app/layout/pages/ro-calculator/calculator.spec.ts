@@ -484,4 +484,538 @@ describe('Calculator', () => {
       expect(yesOption!.bonus.m_element_holy).toBe(20);
     });
   });
+
+  // =====================================================
+  // Shadow Equipment Tests (03/03 patch)
+  // =====================================================
+
+  describe('Rolling Shadow Set (GX) - 24536/24537/24538', () => {
+    beforeEach(() => {
+      // Malha Sombria de Loki (Shadow Armor)
+      mockItems[24536] = {
+        id: 24536, name: 'Malha Sombria de Loki', itemTypeId: 10, itemSubTypeId: 526,
+        script: {
+          hp: ['10'],
+          'Rolling Cutter': ['5', '2---2', 'EQUIP[Escudo Sombrio de Loki&&Greva Sombria de Loki]REFINE[shadowArmor,shadowShield,shadowBoot==1]---1'],
+        },
+      } as any;
+      // Escudo Sombrio de Loki (Shadow Shield)
+      mockItems[24537] = {
+        id: 24537, name: 'Escudo Sombrio de Loki', itemTypeId: 10, itemSubTypeId: 527,
+        script: {
+          hp: ['10'],
+          p_size_all: ['3', '7===3', '9===4'],
+          p_pene_race_all: ['EQUIP[Manopla Sombria de Sicário]40', 'EQUIP[Manopla Sombria de Sicário]REFINE[shadowShield,shadowWeapon==1]---1'],
+        },
+      } as any;
+      // Greva Sombria de Loki (Shadow Boot)
+      mockItems[24538] = {
+        id: 24538, name: 'Greva Sombria de Loki', itemTypeId: 10, itemSubTypeId: 528,
+        script: { hp: ['10'] },
+      } as any;
+      // Manopla Sombria de Sicário (referenced in set bonus)
+      mockItems[24294] = {
+        id: 24294, name: 'Manopla Sombria de Sicário', itemTypeId: 10, itemSubTypeId: 280,
+        script: {},
+      } as any;
+      calculator.setMasterItems(mockItems);
+    });
+
+    it('should apply base HP +10 from shadow armor', () => {
+      mockModel.shadowArmor = 24536;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['hp']).toBe(10);
+    });
+
+    it('should apply Rolling Cutter +5 base from armor alone', () => {
+      mockModel.shadowArmor = 24536;
+      mockModel.shadowArmorRefine = 0;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['Rolling Cutter']).toBe(5);
+    });
+
+    it('should scale Rolling Cutter per 2 refine', () => {
+      mockModel.shadowArmor = 24536;
+      mockModel.shadowArmorRefine = 10;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // +5 base + floor(10/2)*2 = 5 + 10 = 15
+      expect(totalBonus['Rolling Cutter']).toBe(15);
+    });
+
+    it('should apply Rolling Cutter set bonus with 3-piece at +7 each', () => {
+      mockModel.shadowArmor = 24536;
+      mockModel.shadowArmorRefine = 7;
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 7;
+      mockModel.shadowBoot = 24538;
+      mockModel.shadowBootRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // base 5 + floor(7/2)*2=6 + set: floor((7+7+7)/1)*1=21
+      expect(totalBonus['Rolling Cutter']).toBe(5 + 6 + 21);
+    });
+
+    it('should NOT apply Rolling Cutter set bonus without full 3-piece', () => {
+      mockModel.shadowArmor = 24536;
+      mockModel.shadowArmorRefine = 7;
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 7;
+      // no boot
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // base 5 + floor(7/2)*2=6, no set bonus
+      expect(totalBonus['Rolling Cutter']).toBe(11);
+    });
+
+    it('should apply p_size_all from shield: +3 base, +3 at +7, +4 at +9', () => {
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 3 + 3 + 4 = 10
+      expect(totalBonus['p_size_all']).toBe(10);
+    });
+
+    it('should apply p_size_all from shield at +7 but not +9', () => {
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 3 + 3 = 6
+      expect(totalBonus['p_size_all']).toBe(6);
+    });
+
+    it('should apply p_pene_race_all set bonus with Manopla Sombria de Sicário', () => {
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 7;
+      mockModel.shadowWeapon = 24294; // Manopla Sombria de Sicário
+      mockModel.shadowWeaponRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 40 + floor((7+7)/1)*1 = 40 + 14 = 54
+      expect(totalBonus['p_pene_race_all']).toBe(54);
+    });
+
+    it('should NOT apply p_pene_race_all without Manopla de Sicário', () => {
+      mockModel.shadowShield = 24537;
+      mockModel.shadowShieldRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['p_pene_race_all'] || 0).toBe(0);
+    });
+  });
+
+  describe('Grave Shadow Set (Sorcerer) - 24551/24552/24553', () => {
+    beforeEach(() => {
+      // Manopla Sombria de Nerthus (Shadow Weapon)
+      mockItems[24551] = {
+        id: 24551, name: 'Manopla Sombria de Nerthus', itemTypeId: 10, itemSubTypeId: 280,
+        script: {
+          atk: ['1---1'], matk: ['1---1'],
+          m_element_earth: ['3', '7===3', '9===4'],
+          m_pene_race_all: ['EQUIP[Escudo Sombrio de Feiticeiro]40', 'EQUIP[Escudo Sombrio de Feiticeiro]REFINE[shadowWeapon,shadowShield==1]---1'],
+        },
+      } as any;
+      // Colar Sombrio de Nerthus (Shadow Pendant)
+      mockItems[24552] = {
+        id: 24552, name: 'Colar Sombrio de Nerthus', itemTypeId: 10, itemSubTypeId: 530,
+        script: {
+          hp: ['10'],
+          'Earth Grave': ['5', '2---2', 'EQUIP[Manopla Sombria de Nerthus&&Brinco Sombrio de Nerthus]REFINE[shadowPendant,shadowWeapon,shadowEarring==1]---1'],
+        },
+      } as any;
+      // Brinco Sombrio de Nerthus (Shadow Earring)
+      mockItems[24553] = {
+        id: 24553, name: 'Brinco Sombrio de Nerthus', itemTypeId: 10, itemSubTypeId: 529,
+        script: {
+          hp: ['10'],
+          'cd__Earth Grave': ['0.2', '3---0.1'],
+        },
+      } as any;
+      // Escudo Sombrio de Feiticeiro (referenced in set bonus)
+      mockItems[24310] = {
+        id: 24310, name: 'Escudo Sombrio de Feiticeiro', itemTypeId: 10, itemSubTypeId: 527,
+        script: {},
+      } as any;
+      calculator.setMasterItems(mockItems);
+    });
+
+    it('should scale ATK and MATK per refine on weapon', () => {
+      mockModel.shadowWeapon = 24551;
+      mockModel.shadowWeaponRefine = 10;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // floor(10/1)*1 = 10 each
+      expect(totalBonus['atk']).toBe(10);
+      expect(totalBonus['matk']).toBe(10);
+    });
+
+    it('should apply m_element_earth: +3 base, +3 at +7, +4 at +9', () => {
+      mockModel.shadowWeapon = 24551;
+      mockModel.shadowWeaponRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 3 + 3 + 4 = 10
+      expect(totalBonus['m_element_earth']).toBe(10);
+    });
+
+    it('should apply m_pene_race_all with Escudo Sombrio de Feiticeiro', () => {
+      mockModel.shadowWeapon = 24551;
+      mockModel.shadowWeaponRefine = 7;
+      mockModel.shadowShield = 24310; // Escudo Sombrio de Feiticeiro
+      mockModel.shadowShieldRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 40 + floor((7+7)/1)*1 = 54
+      expect(totalBonus['m_pene_race_all']).toBe(54);
+    });
+
+    it('should apply Earth Grave base +5 and refine scaling from pendant', () => {
+      mockModel.shadowPendant = 24552;
+      mockModel.shadowPendantRefine = 8;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 5 + floor(8/2)*2 = 5 + 8 = 13
+      expect(totalBonus['Earth Grave']).toBe(13);
+    });
+
+    it('should apply Earth Grave set bonus with 3-piece', () => {
+      mockModel.shadowPendant = 24552;
+      mockModel.shadowPendantRefine = 7;
+      mockModel.shadowWeapon = 24551;
+      mockModel.shadowWeaponRefine = 7;
+      mockModel.shadowEarring = 24553;
+      mockModel.shadowEarringRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // from pendant: base 5 + floor(7/2)*2=6 + set floor((7+7+7)/1)*1=21 = 32
+      expect(totalBonus['Earth Grave']).toBe(32);
+    });
+
+    it('should apply cd__Earth Grave from earring: 0.2 base + scaling', () => {
+      mockModel.shadowEarring = 24553;
+      mockModel.shadowEarringRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 0.2 + floor(9/3)*0.1 = 0.2 + 0.3 = 0.5
+      expect(totalBonus['cd__Earth Grave']).toBeCloseTo(0.5, 5);
+    });
+  });
+
+  describe('Vanishing Cannon Shadow Set (RG) - 24578/24579/24580', () => {
+    beforeEach(() => {
+      // Malha Sombria Hoplita (Shadow Armor)
+      mockItems[24578] = {
+        id: 24578, name: 'Malha Sombria Hoplita', itemTypeId: 10, itemSubTypeId: 526,
+        script: {
+          hp: ['10'],
+          'Sightless Mind': ['5'],
+          'Vanishing Buster': ['2---2'],
+        },
+      } as any;
+      // Escudo Sombrio Hoplita (Shadow Shield)
+      mockItems[24579] = {
+        id: 24579, name: 'Escudo Sombrio Hoplita', itemTypeId: 10, itemSubTypeId: 527,
+        script: {
+          hp: ['10'],
+          p_size_all: ['3', '7===3', '9===4'],
+          'Sightless Mind': ['EQUIP[Malha Sombria Hoplita&&Greva Sombria Hoplita]REFINE[shadowArmor,shadowShield,shadowBoot==2]---1'],
+          'Vanishing Buster': ['EQUIP[Malha Sombria Hoplita&&Greva Sombria Hoplita]REFINE[shadowArmor,shadowShield,shadowBoot==2]---1'],
+          p_pene_race_all: ['EQUIP[Manopla Sombria de Guardião Real]40', 'EQUIP[Manopla Sombria de Guardião Real]REFINE[shadowShield,shadowWeapon==1]---1'],
+        },
+      } as any;
+      // Greva Sombria Hoplita (Shadow Boot)
+      mockItems[24580] = {
+        id: 24580, name: 'Greva Sombria Hoplita', itemTypeId: 10, itemSubTypeId: 528,
+        script: {
+          hp: ['10'],
+          'cd__Cannon Spear': ['0.2', '3---0.1'],
+        },
+      } as any;
+      // Manopla Sombria de Guardião Real (referenced in set bonus)
+      mockItems[24289] = {
+        id: 24289, name: 'Manopla Sombria de Guardião Real', itemTypeId: 10, itemSubTypeId: 280,
+        script: {},
+      } as any;
+      calculator.setMasterItems(mockItems);
+    });
+
+    it('should apply Sightless Mind +5 base from armor alone', () => {
+      mockModel.shadowArmor = 24578;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['Sightless Mind']).toBe(5);
+    });
+
+    it('should apply Vanishing Buster per 2 refine from armor', () => {
+      mockModel.shadowArmor = 24578;
+      mockModel.shadowArmorRefine = 10;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // floor(10/2)*2 = 10
+      expect(totalBonus['Vanishing Buster']).toBe(10);
+    });
+
+    it('should apply Sightless Mind and Vanishing Buster set bonus with 3-piece', () => {
+      mockModel.shadowArmor = 24578;
+      mockModel.shadowArmorRefine = 7;
+      mockModel.shadowShield = 24579;
+      mockModel.shadowShieldRefine = 7;
+      mockModel.shadowBoot = 24580;
+      mockModel.shadowBootRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // Sightless Mind: 5 (armor) + floor((7+7+7)/2)*1=10 (shield set) = 15
+      expect(totalBonus['Sightless Mind']).toBe(15);
+      // Vanishing Buster: floor(7/2)*2=6 (armor) + floor(21/2)*1=10 (shield set) = 16
+      expect(totalBonus['Vanishing Buster']).toBe(16);
+    });
+
+    it('should apply cd__Cannon Spear from boot', () => {
+      mockModel.shadowBoot = 24580;
+      mockModel.shadowBootRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 0.2 + floor(9/3)*0.1 = 0.2 + 0.3 = 0.5
+      expect(totalBonus['cd__Cannon Spear']).toBeCloseTo(0.5, 5);
+    });
+  });
+
+  describe('Booster Shadow Set - 24584-24589 (Rune Knight)', () => {
+    beforeEach(() => {
+      mockItems[24584] = { id: 24584, name: 'Malha Sombria de Apoio', itemTypeId: 10, itemSubTypeId: 526, script: { hp: ['100'], aspd: ['1'] } } as any;
+      mockItems[24585] = { id: 24585, name: 'Escudo Sombrio de Apoio', itemTypeId: 10, itemSubTypeId: 527, script: { hp: ['100'], vct: ['10'] } } as any;
+      mockItems[24586] = { id: 24586, name: 'Greva Sombria de Apoio', itemTypeId: 10, itemSubTypeId: 528, script: { hp: ['100'], aspdPercent: ['7'] } } as any;
+      mockItems[24587] = { id: 24587, name: 'Brinco Sombrio de Apoio', itemTypeId: 10, itemSubTypeId: 529, script: { hp: ['100'], matk: ['15'] } } as any;
+      mockItems[24588] = { id: 24588, name: 'Colar Sombrio de Apoio', itemTypeId: 10, itemSubTypeId: 530, script: { hp: ['100'], atk: ['15'] } } as any;
+      mockItems[24589] = {
+        id: 24589, name: 'Manopla Sombria de Apoio Rúnico', itemTypeId: 10, itemSubTypeId: 280,
+        script: {
+          atk: ['10'], matk: ['10'],
+          acd: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
+          range: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
+          'cd__Ignition Break': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]0.5'],
+          'Ignition Break': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
+          p_pene_race_all: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]70'],
+          m_pene_race_all: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]70'],
+        },
+      } as any;
+      calculator.setMasterItems(mockItems);
+    });
+
+    it('should apply base bonuses from individual pieces', () => {
+      mockModel.shadowArmor = 24584;
+      mockModel.shadowShield = 24585;
+      mockModel.shadowBoot = 24586;
+      mockModel.shadowEarring = 24587;
+      mockModel.shadowPendant = 24588;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['hp']).toBe(500); // 100 * 5
+      expect(totalBonus['aspd']).toBe(1);
+      expect(totalBonus['vct']).toBe(10);
+      expect(totalBonus['aspdPercent']).toBe(7);
+      expect(totalBonus['matk']).toBe(15);
+      expect(totalBonus['atk']).toBe(15);
+    });
+
+    it('should NOT apply 6-piece set bonuses without weapon', () => {
+      mockModel.shadowArmor = 24584;
+      mockModel.shadowShield = 24585;
+      mockModel.shadowBoot = 24586;
+      mockModel.shadowEarring = 24587;
+      mockModel.shadowPendant = 24588;
+      mockModel.shadowWeapon = 24589; // weapon alone adds atk/matk
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // Set bonus requires all 5 support pieces AND the weapon equipped
+      // With weapon: atk = 15 (pendant) + 10 (weapon base) = 25
+      expect(totalBonus['atk']).toBe(25);
+      // acd should activate since all 5 EQUIP conditions match
+      expect(totalBonus['acd']).toBe(15);
+    });
+
+    it('should apply full 6-piece set bonuses', () => {
+      mockModel.shadowArmor = 24584;
+      mockModel.shadowShield = 24585;
+      mockModel.shadowBoot = 24586;
+      mockModel.shadowEarring = 24587;
+      mockModel.shadowPendant = 24588;
+      mockModel.shadowWeapon = 24589;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['acd']).toBe(15);
+      expect(totalBonus['range']).toBe(15);
+      expect(totalBonus['cd__Ignition Break']).toBeCloseTo(0.5, 5);
+      expect(totalBonus['Ignition Break']).toBe(15);
+      expect(totalBonus['p_pene_race_all']).toBe(70);
+      expect(totalBonus['m_pene_race_all']).toBe(70);
+    });
+
+    it('should NOT apply set bonuses without full 5 support pieces', () => {
+      // Only 4 of 5 support pieces
+      mockModel.shadowArmor = 24584;
+      mockModel.shadowShield = 24585;
+      mockModel.shadowBoot = 24586;
+      mockModel.shadowEarring = 24587;
+      // missing pendant
+      mockModel.shadowWeapon = 24589;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // atk = 10 (weapon base only, no pendant)
+      expect(totalBonus['atk']).toBe(10);
+      expect(totalBonus['acd'] || 0).toBe(0);
+      expect(totalBonus['p_pene_race_all'] || 0).toBe(0);
+    });
+  });
+
+  describe('Fire Dance Shadow Set (Rebellion) - 24604/24605/24606', () => {
+    beforeEach(() => {
+      // Brinco Sombrio do Tambor (Shadow Earring)
+      mockItems[24604] = {
+        id: 24604, name: 'Brinco Sombrio do Tambor', itemTypeId: 10, itemSubTypeId: 529,
+        script: {
+          hp: ['10', '9===2000'],
+          hpPercent: ['5', '7===5'],
+          sp: ['9===200'],
+          range: ['9===7'],
+          'Fire Dance': ['EQUIP[Colar Sombrio do Tambor&&Greva Sombria do Tambor]REFINE[shadowEarring,shadowPendant,shadowBoot==2]---1'],
+          p_pene_race_all: ['EQUIP[Malha Sombria de Insurgente]40', 'EQUIP[Malha Sombria de Insurgente]REFINE[shadowEarring,shadowArmor==1]---1'],
+        },
+      } as any;
+      // Colar Sombrio do Tambor (Shadow Pendant)
+      mockItems[24605] = {
+        id: 24605, name: 'Colar Sombrio do Tambor', itemTypeId: 10, itemSubTypeId: 530,
+        script: {
+          hp: ['10'],
+          'Fire Dance': ['5', '2---2'],
+        },
+      } as any;
+      // Greva Sombria do Tambor (Shadow Boot)
+      mockItems[24606] = {
+        id: 24606, name: 'Greva Sombria do Tambor', itemTypeId: 10, itemSubTypeId: 528,
+        script: {
+          hp: ['10'],
+          p_size_all: ['5', '2---1'],
+        },
+      } as any;
+      // Malha Sombria de Insurgente (referenced in set bonus)
+      mockItems[24402] = {
+        id: 24402, name: 'Malha Sombria de Insurgente', itemTypeId: 10, itemSubTypeId: 526,
+        script: {},
+      } as any;
+      calculator.setMasterItems(mockItems);
+    });
+
+    it('should apply HP +10 base and +2000 at +9 from earring', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['hp']).toBe(2010);
+    });
+
+    it('should apply hpPercent +5 base and +5 at +7 from earring', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['hpPercent']).toBe(10);
+    });
+
+    it('should apply SP +200 and range +7 at +9 from earring', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 9;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['sp']).toBe(200);
+      expect(totalBonus['range']).toBe(7);
+    });
+
+    it('should NOT apply SP/range below +9 from earring', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 8;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      expect(totalBonus['sp'] || 0).toBe(0);
+      expect(totalBonus['range'] || 0).toBe(0);
+    });
+
+    it('should apply Fire Dance +5 base and refine scaling from pendant', () => {
+      mockModel.shadowPendant = 24605;
+      mockModel.shadowPendantRefine = 10;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 5 + floor(10/2)*2 = 5 + 10 = 15
+      expect(totalBonus['Fire Dance']).toBe(15);
+    });
+
+    it('should apply Fire Dance set bonus from earring with 3-piece', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 7;
+      mockModel.shadowPendant = 24605;
+      mockModel.shadowPendantRefine = 7;
+      mockModel.shadowBoot = 24606;
+      mockModel.shadowBootRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // Fire Dance from pendant: 5 + floor(7/2)*2=6 = 11
+      // Fire Dance from earring set: floor((7+7+7)/2)*1 = floor(21/2)=10
+      expect(totalBonus['Fire Dance']).toBe(21);
+    });
+
+    it('should apply p_pene_race_all with Malha Sombria de Insurgente', () => {
+      mockModel.shadowEarring = 24604;
+      mockModel.shadowEarringRefine = 7;
+      mockModel.shadowArmor = 24402; // Malha Sombria de Insurgente
+      mockModel.shadowArmorRefine = 7;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 40 + floor((7+7)/1)*1 = 40 + 14 = 54
+      expect(totalBonus['p_pene_race_all']).toBe(54);
+    });
+
+    it('should apply p_size_all from boot: +5 base + per 2 refine', () => {
+      mockModel.shadowBoot = 24606;
+      mockModel.shadowBootRefine = 10;
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+      const totalBonus = (calculator as any).totalEquipStatus;
+      // 5 + floor(10/2)*1 = 5 + 5 = 10
+      expect(totalBonus['p_size_all']).toBe(10);
+    });
+  });
 });
