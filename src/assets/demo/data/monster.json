@@ -5183,6 +5183,60 @@
       "episode": 14
     }
   },
+  "2996": {
+    "id": 2996,
+    "dbname": "CELINE_KIMI",
+    "name": "Celine Kimi",
+    "spawn": "1@xm_d",
+    "stats": {
+      "attackRange": 2,
+      "level": 160,
+      "health": 66666666,
+      "sp": 1,
+      "str": 144,
+      "int": 444,
+      "vit": 44,
+      "dex": 166,
+      "agi": 166,
+      "luk": 166,
+      "rechargeTime": 100,
+      "atk1": 5636,
+      "atk2": 2667,
+      "attack": {
+        "minimum": 5636,
+        "maximum": 8303
+      },
+      "magicAttack": {
+        "minimum": 5270,
+        "maximum": 9269
+      },
+      "defense": 479,
+      "magicDefense": 444,
+      "baseExperience": 6222221,
+      "jobExperience": 5646664,
+      "aggroRange": 10,
+      "escapeRange": 12,
+      "movementSpeed": 150,
+      "attackSpeed": 576,
+      "attackedSpeed": 480,
+      "element": 28,
+      "elementName": "Ghost 1",
+      "elementShortName": "Ghost",
+      "scale": 2,
+      "scaleName": "Large",
+      "race": 1,
+      "raceName": "Undead",
+      "hit": 526,
+      "flee": 496,
+      "ai": "MONSTER_TYPE_21",
+      "mvp": 1,
+      "class": 1,
+      "attr": 0,
+      "res": 0,
+      "mres": 0,
+      "episode": 16
+    }
+  },
   "3097": {
     "id": 3097,
     "dbname": "MM_MOROCC_ADT",
@@ -6536,7 +6590,7 @@
   "3451": {
     "id": 3451,
     "dbname": "CELINE_KIMI",
-    "name": "Celine Kimi",
+    "name": "Celine Kimi (Nightmare)",
     "spawn": "1@xm_d",
     "stats": {
       "attackRange": 3,
