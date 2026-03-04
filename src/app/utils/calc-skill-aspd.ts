@@ -71,7 +71,7 @@ export const calcSkillAspd = (params: {
     acd: skillAcd,
     reducedAcd,
     castPeriod: castPeriod,
-    hitPeriod,
+    hitPeriod, // raw value for UI display; use totalHitPerSec for DPS calculations
     totalHitPerSec: Math.min(floor(1 / hitPeriod, 1), MAX_SKILL_CASTS_PER_SEC),
   };
 };
