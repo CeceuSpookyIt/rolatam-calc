@@ -302,7 +302,7 @@ export class Calculator {
     costumeEnchantGarment: 'Costume Enc. Manto',
     costumeEnchantGarment2: 'Costume Enc. Manto 2',
     costumeEnchantGarment4: 'Costume Enc. Manto 4',
-    extra: 'Random Options',
+    extra: 'Enc. Sombrio',
   };
 
   private extraOptions: Record<string, number>[] = [];
@@ -1807,10 +1807,11 @@ export class Calculator {
       const criVal = (stats as any)?.cri;
       if (criVal && criVal !== 0) {
         const itemData = this.equipItem.get(slot as any);
-        const source = itemData?.name || slot;
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        const source = itemData?.name || slotLabel;
         equipEntries.push({
           source,
-          slot: Calculator.SLOT_LABELS[slot] || slot,
+          slot: slotLabel,
           value: criVal,
         });
       }
@@ -1843,10 +1844,11 @@ export class Calculator {
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
       if (slot === 'consumableBonuses') continue;
       const s = stats as any;
+      const slotLabelForLuk = Calculator.SLOT_LABELS[slot] || slot;
       if (s?.allStatus && s.allStatus !== 0) {
         const itemData = this.equipItem.get(slot as any);
         lukEntries.push({
-          source: itemData?.name || slot,
+          source: itemData?.name || slotLabelForLuk,
           value: s.allStatus,
           detail: 'allStatus',
         });
@@ -1854,7 +1856,7 @@ export class Calculator {
       if (s?.luk && s.luk !== 0) {
         const itemData = this.equipItem.get(slot as any);
         lukEntries.push({
-          source: itemData?.name || slot,
+          source: itemData?.name || slotLabelForLuk,
           value: s.luk,
         });
       }
