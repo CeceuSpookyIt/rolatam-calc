@@ -30,7 +30,7 @@ export class LayoutService {
     inputStyle: localStorage.getItem('inputStyle') || 'outlined',
     menuMode: localStorage.getItem('menuMode') || 'overlay',
     colorScheme: 'dark',
-    theme: 'vela-green',
+    theme: 'claudinhos-dark',
     scale: +localStorage.getItem('scale') || 14,
     hideBasicAtk: localStorage.getItem('hideBasicAtk') === 'true',
   };
