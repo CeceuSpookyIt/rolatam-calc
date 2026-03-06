@@ -8,22 +8,28 @@
 
   <ng-container *ngIf="!isLoading">
     <div class="grid mb-4">
-      <div class="col-4">
+      <div class="col-3">
         <div class="surface-card p-3 border-round shadow-1 text-center">
           <div class="text-2xl font-bold" style="color: var(--primary-color)">{{ totalSpins }}</div>
           <div class="text-color-secondary text-sm mt-1">Total Spins</div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="surface-card p-3 border-round shadow-1 text-center">
           <div class="text-2xl font-bold" style="color: var(--primary-color)">{{ ranking.length }}</div>
           <div class="text-color-secondary text-sm mt-1">Unique Items</div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="surface-card p-3 border-round shadow-1 text-center">
-          <div class="text-2xl font-bold" style="color: var(--primary-color)">{{ totalSubmissions }}</div>
-          <div class="text-color-secondary text-sm mt-1">Submissions</div>
+          <div class="text-2xl font-bold" style="color: var(--primary-color)">{{ totalAccounts }}</div>
+          <div class="text-color-secondary text-sm mt-1">Accounts</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="surface-card p-3 border-round shadow-1 text-center">
+          <div class="text-2xl font-bold" style="color: var(--primary-color)">{{ totalDays }}</div>
+          <div class="text-color-secondary text-sm mt-1">Days</div>
         </div>
       </div>
     </div>

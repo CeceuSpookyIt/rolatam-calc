@@ -2,24 +2,26 @@ import { Injectable } from '@angular/core';
 import { Observable, from, map } from 'rxjs';
 import { SupabaseService } from './supabase.service';
 
-export interface RoulettePrizeRow {
+export interface RouletteHistoryRow {
   id: string;
   created_at: string;
   event_slug: string;
-  date: string;
-  spins: number;
-  prizes: string[];
+  account_hash: string;
+  prize_date: string;
+  prize_time: string;
+  item: string;
+  qty: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class RouletteService {
   constructor(private supabaseService: SupabaseService) {}
 
-  getPrizes(eventSlug?: string): Observable<RoulettePrizeRow[]> {
+  getHistory(eventSlug?: string): Observable<RouletteHistoryRow[]> {
     let query = this.supabaseService.client
-      .from('roulette_prizes')
+      .from('roulette_history')
       .select('*')
-      .order('date', { ascending: true });
+      .order('prize_date', { ascending: true });
 
     if (eventSlug) {
       query = query.eq('event_slug', eventSlug);
@@ -28,7 +30,7 @@ export class RouletteService {
     return from(query).pipe(
       map((res) => {
         if (res.error) throw res.error;
-        return (res.data ?? []) as RoulettePrizeRow[];
+        return (res.data ?? []) as RouletteHistoryRow[];
       })
     );
   }

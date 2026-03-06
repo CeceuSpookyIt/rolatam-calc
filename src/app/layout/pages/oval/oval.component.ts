@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouletteService, RoulettePrizeRow } from '../../../api-services/roulette.service';
+import { RouletteService, RouletteHistoryRow } from '../../../api-services/roulette.service';
 
 interface PrizeRanking {
   item: string;
@@ -15,7 +15,8 @@ interface PrizeRanking {
 export class OvalComponent implements OnInit {
   ranking: PrizeRanking[] = [];
   totalSpins = 0;
-  totalSubmissions = 0;
+  totalAccounts = 0;
+  totalDays = 0;
   isLoading = true;
   pieData: any;
   pieOptions: any;
@@ -23,9 +24,8 @@ export class OvalComponent implements OnInit {
   constructor(private rouletteService: RouletteService) {}
 
   ngOnInit(): void {
-    this.rouletteService.getPrizes().subscribe({
+    this.rouletteService.getHistory().subscribe({
       next: (rows) => {
-        this.totalSubmissions = rows.length;
         this.processData(rows);
         this.isLoading = false;
       },
@@ -35,18 +35,22 @@ export class OvalComponent implements OnInit {
     });
   }
 
-  private processData(rows: RoulettePrizeRow[]): void {
+  private processData(rows: RouletteHistoryRow[]): void {
     const totals: Record<string, number> = {};
     let totalQty = 0;
 
+    this.totalSpins = rows.length;
+    this.totalAccounts = new Set(rows.map(r => r.account_hash)).size;
+    this.totalDays = new Set(rows.map(r => r.prize_date)).size;
+
     for (const row of rows) {
-      this.totalSpins += row.spins;
-      for (const prize of row.prizes) {
-        const item = prize.trim().replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
-        if (!item) continue;
-        totals[item] = (totals[item] || 0) + 1;
-        totalQty += 1;
-      }
+      // Item vem com prefixo "Nx " (ex: "5x Dark Refining Hammer")
+      const match = row.item.match(/^(\d+)\s*x\s+(.+)$/i);
+      const itemName = match ? match[2].trim() : row.item.trim();
+      const itemQty = match ? parseInt(match[1]) * (row.qty || 1) : (row.qty || 1);
+      if (!itemName) continue;
+      totals[itemName] = (totals[itemName] || 0) + itemQty;
+      totalQty += itemQty;
     }
 
     this.ranking = Object.entries(totals)
