@@ -5237,6 +5237,60 @@
       "episode": 16
     }
   },
+  "3074": {
+    "id": 3074,
+    "dbname": "TIME_HOLDER",
+    "name": "Time Holder",
+    "spawn": "c_tower3_",
+    "stats": {
+      "attackRange": 1,
+      "level": 170,
+      "health": 25000000,
+      "sp": 1,
+      "str": 224,
+      "int": 257,
+      "vit": 251,
+      "dex": 402,
+      "agi": 152,
+      "luk": 77,
+      "rechargeTime": 100,
+      "atk1": 4594,
+      "atk2": 2100,
+      "attack": {
+        "minimum": 4594,
+        "maximum": 6694
+      },
+      "magicAttack": {
+        "minimum": 1897,
+        "maximum": 3157
+      },
+      "defense": 288,
+      "magicDefense": 265,
+      "baseExperience": 4582500,
+      "jobExperience": 3877500,
+      "aggroRange": 10,
+      "escapeRange": 12,
+      "movementSpeed": 150,
+      "attackSpeed": 576,
+      "attackedSpeed": 480,
+      "element": 80,
+      "elementName": "Neutral 4",
+      "elementShortName": "Neutral",
+      "scale": 2,
+      "scaleName": "Large",
+      "race": 6,
+      "raceName": "Demon",
+      "hit": 522,
+      "flee": 742,
+      "ai": "MONSTER_TYPE_21",
+      "mvp": 1,
+      "class": 1,
+      "attr": 0,
+      "res": 0,
+      "mres": 0,
+      "episode": 0
+    }
+  },
   "3097": {
     "id": 3097,
     "dbname": "MM_MOROCC_ADT",
