@@ -38,6 +38,7 @@ export class DamageCalculator {
   private equipAtkSkillBonus: Record<string, any> = {};
   private buffMasteryAtkBonus: Record<string, any> = {};
   private masteryAtkSkillBonus: Record<string, any> = {};
+  precastRepeats: Record<string, number> = {};
 
   private finalMultipliers = [] as number[];
   private finalPhyMultipliers = [] as number[];
@@ -140,6 +141,11 @@ export class DamageCalculator {
     this.leftWeaponData = leftWeaponData;
     this.aspdPotion = aspdPotion;
 
+    return this;
+  }
+
+  setPrecastRepeats(repeats: Record<string, number>) {
+    this.precastRepeats = repeats;
     return this;
   }
 
@@ -1353,7 +1359,14 @@ export class DamageCalculator {
       }
     }
 
-    const skillAspd = calcSkillAspd({ skillData, status: this.status, totalEquipStatus: this.totalBonus, skillLevel });
+    const skillAspd = calcSkillAspd({
+      skillData,
+      status: this.status,
+      totalEquipStatus: this.totalBonus,
+      skillLevel,
+      basicHitsPerSec: basicAspd.hitsPerSec,
+      precastRepeats: this.precastRepeats,
+    });
 
     const isKatar = this.weaponData.data?.typeName === 'katar';
     let actualCri = calculated.canCri
