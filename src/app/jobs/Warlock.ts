@@ -294,6 +294,272 @@ export class Warlock extends HighWizard {
     //     return 800 + skillLevel * 400;
     //   },
     // },
+    // --- Released variants ---
+    {
+      name: 'Comet',
+      label: 'Comet Lv5 (Released)',
+      value: 'Comet Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      hit: 10,
+      element: ElementType.Neutral,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (2500 + skillLevel * 700) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Crimson Rock',
+      label: 'Crimson Rock Lv5 (Released)',
+      value: 'Crimson Rock Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      hit: 7,
+      element: ElementType.Fire,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (700 + skillLevel * 600) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Jack Frost',
+      label: 'Jack Frost Lv5 (Released)',
+      value: 'Jack Frost Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      totalHit: 4,
+      element: ElementType.Water,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (1000 + skillLevel * 300) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Soul Expansion',
+      label: 'Soul Expansion Lv5 (Released)',
+      value: 'Soul Expansion Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      element: ElementType.Ghost,
+      hit: 2,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+
+        return (1000 + skillLevel * 200 + status.totalInt) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Chain Lightning',
+      label: 'Chain Lightning Lv5 (Released)',
+      value: 'Chain Lightning Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      element: ElementType.Wind,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+        const chainBonus = 900;
+
+        return (500 + skillLevel * 100) * (baseLevel / 100) + chainBonus;
+      },
+    },
+    {
+      name: 'Earth Strain',
+      label: 'Earth Strain Lv5 (Released)',
+      value: 'Earth Strain Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      hit: 10,
+      element: ElementType.Earth,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (1000 + skillLevel * 600) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Hell Inferno',
+      label: 'Hell Inferno Lv5 (Released)',
+      value: 'Hell Inferno Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      element: ElementType.Fire,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return skillLevel * 400 * (baseLevel / 100);
+      },
+      part2: {
+        label: 'Shadow Dmg',
+        isIncludeMain: true,
+        element: ElementType.Dark,
+        isMatk: true,
+        isMelee: false,
+        hit: 3,
+        formula: (input: AtkSkillFormulaInput): number => {
+          const { model, skillLevel } = input;
+          const baseLevel = model.level;
+
+          return skillLevel * 600 * (baseLevel / 100);
+        },
+      },
+    },
+    {
+      name: 'Drain Life',
+      label: 'Drain Life Lv5 (Released)',
+      value: 'Drain Life Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      element: ElementType.Neutral,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+
+        return (skillLevel * 200 + status.totalInt) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Frost Misty',
+      label: 'Frost Misty Lv5 (Released)',
+      value: 'Frost Misty Released==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      hit: 5,
+      element: ElementType.Water,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          userRepeat: { defaultRepeat: 1, maxRepeat: 7, label: 'Repetições' },
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (200 + skillLevel * 100) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Tetra Vortex',
+      label: 'Tetra Vortex Lv10 (Released)',
+      value: 'Tetra Vortex Released==10',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: 0,
+      isMatk: true,
+      totalHit: 4,
+      element: ElementType.Neutral,
+      precastSequence: [
+        {
+          name: 'Memorizar', label: 'Memorizar',
+          fct: 1, vct: 5, acd: 0, cd: 0,
+          repeat: 1,
+        },
+        {
+          name: 'Summon Element Ball', label: 'Invocar Esfera',
+          fct: 0, vct: 2, acd: 1, cd: 0,
+          repeat: 1,
+        },
+      ],
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { skillLevel } = input;
+        return 800 + skillLevel * 400;
+      },
+    },
   ];
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
