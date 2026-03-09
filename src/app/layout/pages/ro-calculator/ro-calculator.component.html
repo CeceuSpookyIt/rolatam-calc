@@ -558,6 +558,19 @@
                   ></p-cascadeSelect>
                 </div>
               </div>
+              <ng-container *ngFor="let step of precastUserRepeatSteps">
+                <div class="field col-6 md:col-3">
+                  <label>{{ step.label }}</label>
+                  <p-dropdown
+                    [options]="getRepeatOptions(step.maxRepeat)"
+                    [ngModel]="model.precastRepeats?.[step.name] || 1"
+                    (ngModelChange)="onPrecastRepeatChange(step.name, $event)"
+                    optionLabel="label"
+                    optionValue="value"
+                    appendTo="body"
+                  ></p-dropdown>
+                </div>
+              </ng-container>
               <div class="col-12">
                 <app-battle-dmg-summary
                   [model]="model"

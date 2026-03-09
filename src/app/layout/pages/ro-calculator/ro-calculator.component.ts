@@ -231,6 +231,24 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   isShowSelectableSkillLevel = true;
   atkSkills: AtkSkillModel[] = [];
   atkSkillCascades: any[] = [];
+
+  get precastUserRepeatSteps(): { name: string; label: string; maxRepeat: number }[] {
+    const skill = this.atkSkills?.find(s => s.value === this.model.selectedAtkSkill);
+    if (!skill?.precastSequence) return [];
+    return skill.precastSequence
+      .filter(s => s.userRepeat)
+      .map(s => ({ name: s.name, label: s.userRepeat.label, maxRepeat: s.userRepeat.maxRepeat }));
+  }
+
+  getRepeatOptions(maxRepeat: number): { label: string; value: number }[] {
+    return Array.from({ length: maxRepeat }, (_, i) => ({ label: `${i + 1}×`, value: i + 1 }));
+  }
+
+  onPrecastRepeatChange(stepName: string, repeat: number) {
+    if (!this.model.precastRepeats) this.model.precastRepeats = {};
+    this.model.precastRepeats[stepName] = repeat;
+    this.updateItemEvent.next(1);
+  }
   passiveSkills: PassiveSkillModel[] = [];
   activeSkills: ActiveSkillModel[] = [];
   consumableList: DropdownModel[] = [];
@@ -2765,6 +2783,15 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   onAtkSkillChange() {
+    const skill = this.atkSkills?.find(s => s.value === this.model.selectedAtkSkill);
+    if (skill?.precastSequence) {
+      if (!this.model.precastRepeats) this.model.precastRepeats = {};
+      for (const step of skill.precastSequence) {
+        if (step.userRepeat && !this.model.precastRepeats[step.name]) {
+          this.model.precastRepeats[step.name] = step.userRepeat.defaultRepeat;
+        }
+      }
+    }
     this.updateItemEvent.next(1);
   }
 

@@ -207,6 +207,38 @@
           [max2]="totalSummary2?.calcSkill?.totalHitPerSec"
         ></app-calc-value>
       </div>
+      <!-- Precast Cycle Summary -->
+      <ng-container *ngIf="totalSummary?.calcSkill?.precastSteps?.length > 0">
+        <div class="col-12 mt-2" style="border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 0.5rem;">
+          <small style="color: #94a3b8; font-weight: 600;">Ciclo de Rotação</small>
+        </div>
+        <ng-container *ngFor="let step of totalSummary?.calcSkill?.precastSteps">
+          <div class="col-6">
+            <app-calc-value
+              [label]="step.label + ' ×' + step.repeat + ':'"
+              styleClass="summary_value"
+              [isGreaterIsBetter]="false"
+              [max]="step.stepTime"
+            ></app-calc-value>
+          </div>
+        </ng-container>
+        <div class="col-6">
+          <app-calc-value
+            label="Release:"
+            styleClass="summary_value"
+            [isGreaterIsBetter]="false"
+            [max]="totalSummary?.calcSkill?.releaseTime"
+          ></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value
+            label="Ciclo Total:"
+            styleClass="summary_highlight"
+            [isGreaterIsBetter]="false"
+            [max]="totalSummary?.calcSkill?.cycleTotalTime"
+          ></app-calc-value>
+        </div>
+      </ng-container>
     </div>
   </div>
 
