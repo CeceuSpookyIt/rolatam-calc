@@ -1735,6 +1735,15 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'range':
         breakdown = this.calculator.getRangeBreakdown();
         break;
+      case 'maxHp':
+        breakdown = this.calculator.getMaxHpBreakdown();
+        break;
+      case 'maxSp':
+        breakdown = this.calculator.getMaxSpBreakdown();
+        break;
+      case 'matkPercent':
+        breakdown = this.calculator.getMatkPercentBreakdown();
+        break;
     }
 
     if (!breakdown) return;

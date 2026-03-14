@@ -2984,4 +2984,158 @@ export class Calculator {
       totalValue: `${totalFlee} + ${totalPerfectDodge}`,
     };
   }
+
+  getMaxHpBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MaxHP
+    sections.push({
+      label: 'Base Max HP',
+      entries: [{ source: 'Max HP (calculado)', value: this.maxHp, color: 'white' }],
+      subtotal: this.maxHp,
+    });
+
+    // 2. Equipment HP
+    const hpEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.hp;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hpEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    hpEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hpTotal = hpEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos HP',
+      entries: hpEntries,
+      subtotal: hpTotal,
+      emptyMessage: 'Nenhum equipamento com HP',
+    });
+
+    // 3. HP %
+    const hpPctEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.hpPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hpPctEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val, detail: '%' });
+      }
+    }
+    hpPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hpPctTotal = hpPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'HP %',
+      entries: hpPctEntries,
+      subtotal: hpPctTotal,
+      emptyMessage: 'Nenhum equipamento com HP %',
+    });
+
+    return {
+      title: 'Max HP Breakdown',
+      sections,
+      totalLabel: 'Max HP',
+      totalValue: `${this.maxHp}`,
+    };
+  }
+
+  getMaxSpBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MaxSP
+    sections.push({
+      label: 'Base Max SP',
+      entries: [{ source: 'Max SP (calculado)', value: this.maxSp, color: 'white' }],
+      subtotal: this.maxSp,
+    });
+
+    // 2. Equipment SP
+    const spEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.sp;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        spEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    spEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const spTotal = spEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos SP',
+      entries: spEntries,
+      subtotal: spTotal,
+      emptyMessage: 'Nenhum equipamento com SP',
+    });
+
+    // 3. SP %
+    const spPctEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.spPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        spPctEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val, detail: '%' });
+      }
+    }
+    spPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const spPctTotal = spPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'SP %',
+      entries: spPctEntries,
+      subtotal: spPctTotal,
+      emptyMessage: 'Nenhum equipamento com SP %',
+    });
+
+    return {
+      title: 'Max SP Breakdown',
+      sections,
+      totalLabel: 'Max SP',
+      totalValue: `${this.maxSp}`,
+    };
+  }
+
+  getMatkPercentBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.matkPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos Matk %',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com Matk %',
+    });
+
+    return {
+      title: 'Matk % Breakdown',
+      sections,
+      totalLabel: 'Matk %',
+      totalValue: `${this.totalEquipStatus.matkPercent || 0}%`,
+    };
+  }
 }
