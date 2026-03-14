@@ -62,8 +62,10 @@ import { BaseStateCalculator } from './base-state-calculator';
 import { Calculator } from './calculator';
 import { MonsterDataViewComponent } from './monster-data-view/monster-data-view.component';
 import { PresetTableComponent } from './preset-table/preset-table.component';
-import { CriBreakdownDialogComponent } from './cri-breakdown-dialog/cri-breakdown-dialog.component';
-import { CriBreakdownContext } from './cri-breakdown.model';
+import { DamageBreakdownDialogComponent } from './damage-breakdown-dialog/damage-breakdown-dialog.component';
+import { DamageBreakdown } from './damage-breakdown.model';
+import { StatBreakdownDialogComponent } from './stat-breakdown-dialog/stat-breakdown-dialog.component';
+import { BreakdownContext, StatBreakdown } from './stat-breakdown.model';
 
 interface MonsterSelectItemGroup extends SelectItemGroup {
   items: any[];
@@ -232,16 +234,25 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   atkSkills: AtkSkillModel[] = [];
   atkSkillCascades: any[] = [];
 
-  get precastUserRepeatSteps(): { name: string; label: string; maxRepeat: number }[] {
+  precastUserRepeatSteps: { name: string; label: string; maxRepeat: number }[] = [];
+  private _repeatOptionsCache = new Map<number, { label: string; value: number }[]>();
+
+  private updatePrecastUserRepeatSteps() {
     const skill = this.atkSkills?.find(s => s.value === this.model.selectedAtkSkill);
-    if (!skill?.precastSequence) return [];
-    return skill.precastSequence
+    if (!skill?.precastSequence) {
+      this.precastUserRepeatSteps = [];
+      return;
+    }
+    this.precastUserRepeatSteps = skill.precastSequence
       .filter(s => s.userRepeat)
       .map(s => ({ name: s.name, label: s.userRepeat.label, maxRepeat: s.userRepeat.maxRepeat }));
   }
 
   getRepeatOptions(maxRepeat: number): { label: string; value: number }[] {
-    return Array.from({ length: maxRepeat }, (_, i) => ({ label: `${i + 1}×`, value: i + 1 }));
+    if (!this._repeatOptionsCache.has(maxRepeat)) {
+      this._repeatOptionsCache.set(maxRepeat, Array.from({ length: maxRepeat }, (_, i) => ({ label: `${i + 1}×`, value: i + 1 })));
+    }
+    return this._repeatOptionsCache.get(maxRepeat);
   }
 
   onPrecastRepeatChange(stepName: string, repeat: number) {
@@ -627,11 +638,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             .filter(Boolean)
             .flat();
           const allEnchantSet = new Set(enchants);
-          console.log({ allEnchantSet });
-          for (const enchtName of allEnchantSet.values()) {
-            if (!this.mapEnchant.has(enchtName)) {
-              console.log('not found in data.json', { enchtName });
-            }
+          const missing = [...allEnchantSet].filter((name) => !this.mapEnchant.has(name));
+          if (missing.length > 0) {
+            console.log(`enchants not found in data.json (${missing.length}):`, missing);
           }
         }
 
@@ -1676,16 +1685,128 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.preSets = this.preSets.filter((a) => a.value !== presetId);
   }
 
-  openCriBreakdown(context: CriBreakdownContext) {
-    const breakdown = this.calculator.getCriBreakdown(context, this.totalSummary?.dmg);
-    this.dialogService.open(CriBreakdownDialogComponent, {
-      header: 'CriRate Breakdown',
+  openBreakdown(stat: string, context: BreakdownContext = 'status') {
+    const dmgBreakdowns: Record<string, () => DamageBreakdown | null> = {
+      basicDmg: () => this.calculator.getBasicDamageBreakdown(),
+      criDamage: () => this.calculator.getCritDamageBreakdown(),
+      skillDmg: () => this.calculator.getSkillDamageBreakdown(),
+    };
+
+    if (dmgBreakdowns[stat]) {
+      const dmgBreakdown = dmgBreakdowns[stat]();
+      if (!dmgBreakdown) return;
+      this.dialogService.open(DamageBreakdownDialogComponent, {
+        header: dmgBreakdown.title,
+        width: '480px',
+        contentStyle: { overflow: 'auto', 'max-height': '80vh' },
+        baseZIndex: 10000,
+        dismissableMask: true,
+        data: dmgBreakdown,
+      });
+      return;
+    }
+
+    let breakdown: StatBreakdown | null = null;
+
+    switch (stat) {
+      case 'cri':
+        breakdown = this.calculator.getCriBreakdown(context, this.totalSummary?.dmg);
+        break;
+      case 'atk':
+        breakdown = this.calculator.getAtkBreakdown();
+        break;
+      case 'matk':
+        breakdown = this.calculator.getMatkBreakdown();
+        break;
+      case 'def':
+        breakdown = this.calculator.getDefBreakdown();
+        break;
+      case 'mdef':
+        breakdown = this.calculator.getMdefBreakdown();
+        break;
+      case 'hit':
+        breakdown = this.calculator.getHitBreakdown();
+        break;
+      case 'aspd':
+        breakdown = this.calculator.getAspdBreakdown();
+        break;
+      case 'flee':
+        breakdown = this.calculator.getFleeBreakdown();
+        break;
+      case 'criDmg':
+        breakdown = this.calculator.getCritDmgBreakdown();
+        break;
+      case 'res':
+        breakdown = this.calculator.getResBreakdown();
+        break;
+      case 'mres':
+        breakdown = this.calculator.getMresBreakdown();
+        break;
+      case 'pAtk':
+        breakdown = this.calculator.getPatkBreakdown();
+        break;
+      case 'sMatk':
+        breakdown = this.calculator.getSmatkBreakdown();
+        break;
+      case 'cRate':
+        breakdown = this.calculator.getCrateBreakdown();
+        break;
+      case 'melee':
+        breakdown = this.calculator.getMeleeBreakdown();
+        break;
+      case 'range':
+        breakdown = this.calculator.getRangeBreakdown();
+        break;
+      case 'maxHp':
+        breakdown = this.calculator.getMaxHpBreakdown();
+        break;
+      case 'maxSp':
+        breakdown = this.calculator.getMaxSpBreakdown();
+        break;
+      case 'matkPercent':
+        breakdown = this.calculator.getMatkPercentBreakdown();
+        break;
+      case 'vct':
+        breakdown = this.calculator.getVctBreakdown();
+        break;
+      case 'fct':
+        breakdown = this.calculator.getFctBreakdown();
+        break;
+      case 'acd':
+        breakdown = this.calculator.getAcdBreakdown();
+        break;
+      case 'cd':
+        breakdown = this.calculator.getCdBreakdown();
+        break;
+      case 'penetration':
+        breakdown = this.calculator.getPenetrationBreakdown(context, this.totalSummary?.dmg);
+        break;
+      case 'accuracy':
+        breakdown = this.calculator.getAccuracyBreakdown(context, this.totalSummary?.dmg);
+        break;
+      case 'element':
+        breakdown = this.calculator.getElementBreakdown(context, this.totalSummary?.dmg);
+        break;
+      case 'sizePenalty':
+        breakdown = this.calculator.getSizePenaltyBreakdown(context, this.totalSummary?.dmg);
+        break;
+    }
+
+    if (!breakdown) return;
+
+    this.dialogService.open(StatBreakdownDialogComponent, {
+      header: breakdown.title,
       width: '420px',
       contentStyle: { overflow: 'auto', 'max-height': '80vh' },
       baseZIndex: 10000,
       dismissableMask: true,
       data: breakdown,
     });
+  }
+
+  onStatBreakdownClick(statContext: string) {
+    const [stat, context] = statContext.split(':') as [string, BreakdownContext];
+    this.openBreakdown(stat, context || 'status');
   }
 
   openPresetManagement() {
@@ -1894,6 +2015,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     });
     this.atkSkillCascades = this.selectedCharacter.atkSkills;
     this.isShowSelectableSkillLevel = this.selectedCharacter.atkSkills.some((a) => a.levelList?.length > 0);
+    this.updatePrecastUserRepeatSteps();
   }
 
   private setClassMinMaxLvl() {
@@ -2390,10 +2512,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.consumableList = toDropdownList(consumableList.sort(sortObj('id')), 'name', 'id');
 
     if (!this.env.production) {
-      for (const wea of weaponList) {
-        if (!wea.itemLevel) {
-          console.log('invalid weapon, ID' + wea.id);
-        }
+      const invalidWeapons = weaponList.filter((wea) => !wea.itemLevel).map((wea) => wea.id);
+      if (invalidWeapons.length > 0) {
+        console.log(`invalid weapons (${invalidWeapons.length}):`, invalidWeapons);
       }
     }
   }
@@ -2785,13 +2906,17 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   onAtkSkillChange() {
     const skill = this.atkSkills?.find(s => s.value === this.model.selectedAtkSkill);
     if (skill?.precastSequence) {
-      if (!this.model.precastRepeats) this.model.precastRepeats = {};
+      const newRepeats: Record<string, number> = {};
       for (const step of skill.precastSequence) {
-        if (step.userRepeat && !this.model.precastRepeats[step.name]) {
-          this.model.precastRepeats[step.name] = step.userRepeat.defaultRepeat;
+        if (step.userRepeat) {
+          newRepeats[step.name] = this.model.precastRepeats?.[step.name] ?? step.userRepeat.defaultRepeat;
         }
       }
+      this.model.precastRepeats = newRepeats;
+    } else {
+      this.model.precastRepeats = {};
     }
+    this.updatePrecastUserRepeatSteps();
     this.updateItemEvent.next(1);
   }
 

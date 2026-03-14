@@ -49,7 +49,8 @@ import { BattleDmgSummaryComponent } from './battle-dmg-summary/battle-dmg-summa
 import { BattleMonsterSummaryComponent } from './battle-monster-summary/battle-monster-summary.component';
 import { EquipmentCosEnchantComponent } from './equipment-cos-enchant/equipment-cos-enchant.component';
 import { StatusInputComponent } from './status-input/status-input.component';
-import { CriBreakdownDialogComponent } from './cri-breakdown-dialog/cri-breakdown-dialog.component';
+import { StatBreakdownDialogComponent } from './stat-breakdown-dialog/stat-breakdown-dialog.component';
+import { DamageBreakdownDialogComponent } from './damage-breakdown-dialog/damage-breakdown-dialog.component';
 
 @NgModule({
   imports: [
@@ -104,7 +105,8 @@ import { CriBreakdownDialogComponent } from './cri-breakdown-dialog/cri-breakdow
     BattleMonsterSummaryComponent,
     EquipmentCosEnchantComponent,
     StatusInputComponent,
-    CriBreakdownDialogComponent,
+    StatBreakdownDialogComponent,
+    DamageBreakdownDialogComponent,
   ],
   exports: [CalcValueComponent],
 })
