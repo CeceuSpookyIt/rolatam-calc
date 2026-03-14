@@ -2486,6 +2486,69 @@ export class Calculator {
     };
   }
 
+  getAspdBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const totalAspd = this.basicAspd.totalAspd;
+    const hitsPerSec = this.basicAspd.hitsPerSec;
+
+    // 1. Base ASPD
+    sections.push({
+      label: 'Base ASPD',
+      entries: [{ source: 'ASPD (calculado)', value: totalAspd, color: 'white' }],
+      subtotal: totalAspd,
+    });
+
+    // 2. Equipment ASPD (flat)
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const aspdVal = (stats as any)?.aspd;
+      if (aspdVal && aspdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: aspdVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos ASPD',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com ASPD',
+    });
+
+    // 3. ASPD %
+    const percentEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const aspdPctVal = (stats as any)?.aspdPercent;
+      if (aspdPctVal && aspdPctVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        percentEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: aspdPctVal, detail: '%' });
+      }
+    }
+    percentEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const percentTotal = percentEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'ASPD %',
+      entries: percentEntries,
+      subtotal: percentTotal,
+      emptyMessage: 'Nenhum equipamento com ASPD %',
+    });
+
+    return {
+      title: 'ASPD Breakdown',
+      sections,
+      totalLabel: 'ASPD',
+      totalValue: `${totalAspd} (${hitsPerSec} Hits/s)`,
+    };
+  }
+
   getFleeBreakdown(): StatBreakdown {
     const sections: BreakdownSection[] = [];
     const { totalAgi, totalLuk, totalCon } = this.dmgCalculator.status;

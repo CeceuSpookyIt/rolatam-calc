@@ -362,8 +362,8 @@
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['aspd']" [escape]="false" tooltipPosition="right">
                     ASPD:
-                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalAspd || 0 }}</span>
-                    <span class="font-semibold px-1 summary_highlight">( {{ totalSummary?.calc?.hitPerSecs || 0 }} Hits/s )</span>
+                    <span class="font-semibold px-1 summary_stat_atk" style="cursor:pointer;" (click)="openBreakdown('aspd'); $event.stopPropagation()">{{ totalSummary?.calc?.totalAspd || 0 }}</span>
+                    <span class="font-semibold px-1 summary_highlight" style="cursor:pointer;" (click)="openBreakdown('aspd'); $event.stopPropagation()">( {{ totalSummary?.calc?.hitPerSecs || 0 }} Hits/s )</span>
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['hit_row']" [escape]="false" tooltipPosition="right">
                     Hit:
