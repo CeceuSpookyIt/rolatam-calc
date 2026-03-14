@@ -22,7 +22,8 @@ import { AdditionalBonusInput } from '../../../models/info-for-class.model';
 import { ItemModel } from '../../../models/item.model';
 import { MainModel } from '../../../models/main.model';
 import { MonsterModel } from '../../../models/monster.model';
-import { CriBreakdown, CriBreakdownEntry, CriBreakdownContext, LukBreakdownEntry } from './cri-breakdown.model';
+import { BreakdownContext, BreakdownEntry, BreakdownSection, StatBreakdown } from './stat-breakdown.model';
+import { DamageBreakdown, DamageStep } from './damage-breakdown.model';
 import { DamageCalculator } from './damage-calculator';
 import { HpSpCalculator } from './hp-sp-calculator';
 
@@ -1799,10 +1800,459 @@ export class Calculator {
     return this.possiblyDamages;
   }
 
-  getCriBreakdown(context: CriBreakdownContext, damageSummary: any): CriBreakdown {
-    // 1. Collect equip cri entries from equipStatus
-    const equipEntries: CriBreakdownEntry[] = [];
+  getAtkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const atkSummary = this.dmgCalculator.atkSummaryForUI;
+    const { totalStr, totalDex, totalLuk, totalPow } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const isRange = this.weaponData?.data?.rangeType === 'range';
+    const [primaryStat, primaryLabel, secondaryStat, secondaryLabel] = isRange
+      ? [totalDex, 'DEX', totalStr, 'STR']
+      : [totalStr, 'STR', totalDex, 'DEX'];
+
+    // 1. Status ATK
+    const statusEntries: BreakdownEntry[] = [
+      { source: `Level / 4`, value: floor(baseLvl / 4), color: 'white' },
+      { source: primaryLabel, value: primaryStat, color: 'white' },
+      { source: `${secondaryLabel} / 5`, value: floor(secondaryStat / 5), color: 'white' },
+      { source: 'LUK / 3', value: floor(totalLuk / 3), color: 'white' },
+    ];
+    if (totalPow > 0) {
+      statusEntries.push({ source: 'POW × 5', value: totalPow * 5, color: 'white' });
+    }
+    const formulaStr = totalPow > 0
+      ? `floor(${baseLvl}/4 + ${secondaryStat}/5 + ${primaryStat} + ${totalLuk}/3) + ${totalPow}×5`
+      : `floor(${baseLvl}/4 + ${secondaryStat}/5 + ${primaryStat} + ${totalLuk}/3)`;
+
+    sections.push({
+      label: 'Status ATK',
+      entries: statusEntries,
+      formula: formulaStr,
+      subtotal: atkSummary.totalStatusAtk,
+    });
+
+    // 2. Weapon ATK
+    const weaponData = this.weaponData?.data;
+    const baseWeaponAtk = weaponData?.baseWeaponAtk || 0;
+    const refineBonus = weaponData?.refineBonus || 0;
+    const highUpgradeBonus = weaponData?.highUpgradeBonus || 0;
+    const weaponEntries: BreakdownEntry[] = [];
+
+    if (baseWeaponAtk > 0) {
+      const weaponName = this.equipItem.get('weapon' as any)?.name || 'Arma';
+      weaponEntries.push({ source: weaponName, value: baseWeaponAtk, color: 'white' });
+    }
+    if (refineBonus > 0) {
+      weaponEntries.push({ source: `Refine +${this.model.weaponRefine || 0}`, value: refineBonus, color: 'white' });
+    }
+    if (highUpgradeBonus > 0) {
+      weaponEntries.push({ source: 'High Upgrade Bonus', value: highUpgradeBonus, color: 'white' });
+    }
+    const weaponTotal = baseWeaponAtk + refineBonus + highUpgradeBonus;
+
+    sections.push({
+      label: 'Weapon ATK',
+      entries: weaponEntries,
+      subtotal: weaponTotal,
+      emptyMessage: 'Nenhuma arma equipada',
+    });
+
+    // 3. Mastery ATK
+    const masteryEntries: BreakdownEntry[] = [];
+    if (atkSummary.skillAtkMastery > 0) {
+      masteryEntries.push({ source: 'Skill Mastery', value: atkSummary.skillAtkMastery });
+    }
+    if (atkSummary.buffAtk > 0) {
+      masteryEntries.push({ source: 'Buff ATK', value: atkSummary.buffAtk });
+    }
+    if (atkSummary.uiMastery > 0) {
+      masteryEntries.push({ source: 'UI Mastery', value: atkSummary.uiMastery });
+    }
+    if (atkSummary.hiddenMastery > 0) {
+      masteryEntries.push({ source: 'Hidden Mastery', value: atkSummary.hiddenMastery });
+    }
+    const masteryTotal = atkSummary.totalMasteryAtk + atkSummary.totalHideMasteryAtk;
+
+    sections.push({
+      label: 'Mastery ATK',
+      entries: masteryEntries,
+      subtotal: masteryTotal,
+      emptyMessage: 'Nenhum mastery ativo',
+    });
+
+    // 4. Equipment ATK
     const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const atkVal = (stats as any)?.atk;
+      if (atkVal && atkVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        const source = itemData?.name || slotLabel;
+        equipEntries.push({
+          source,
+          slot: slotLabel,
+          value: atkVal,
+        });
+      }
+    }
+
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos ATK',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com ATK',
+    });
+
+    // Total
+    const statusAtk = atkSummary.totalStatusAtk;
+    const otherAtk = weaponTotal + masteryTotal + equipTotal;
+
+    return {
+      title: 'ATK Breakdown',
+      sections,
+      totalLabel: 'ATK',
+      totalValue: `${statusAtk} + ${otherAtk}`,
+    };
+  }
+
+  getMatkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const atkSummary = this.dmgCalculator.atkSummaryForUI;
+    const { totalInt, totalDex, totalLuk, totalSpl } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+
+    // 1. Status MATK
+    const statusEntries: BreakdownEntry[] = [
+      { source: 'Level / 4', value: floor(baseLvl / 4), color: 'white' },
+      { source: 'INT', value: totalInt, color: 'white' },
+      { source: 'INT / 2', value: floor(totalInt / 2), color: 'white' },
+      { source: 'DEX / 5', value: floor(totalDex / 5), color: 'white' },
+      { source: 'LUK / 3', value: floor(totalLuk / 3), color: 'white' },
+    ];
+    if (totalSpl > 0) {
+      statusEntries.push({ source: 'SPL × 5', value: totalSpl * 5, color: 'white' });
+    }
+    const formulaStr = totalSpl > 0
+      ? `floor(${baseLvl}/4 + ${totalInt} + ${totalInt}/2 + ${totalDex}/5 + ${totalLuk}/3) + ${totalSpl}×5`
+      : `floor(${baseLvl}/4 + ${totalInt} + ${totalInt}/2 + ${totalDex}/5 + ${totalLuk}/3)`;
+
+    sections.push({
+      label: 'Status MATK',
+      entries: statusEntries,
+      formula: formulaStr,
+      subtotal: atkSummary.totalStatusMatk,
+    });
+
+    // 2. Weapon MATK
+    const weaponData = this.weaponData?.data;
+    const baseWeaponMatk = weaponData?.baseWeaponMatk || 0;
+    const refineBonus = weaponData?.refineBonus || 0;
+    const highUpgradeBonus = weaponData?.highUpgradeBonus || 0;
+    const weaponEntries: BreakdownEntry[] = [];
+
+    if (baseWeaponMatk > 0) {
+      const weaponName = this.equipItem.get('weapon' as any)?.name || 'Arma';
+      weaponEntries.push({ source: weaponName, value: baseWeaponMatk, color: 'white' });
+    }
+    if (refineBonus > 0) {
+      weaponEntries.push({ source: `Refine +${this.model.weaponRefine || 0}`, value: refineBonus, color: 'white' });
+    }
+    if (highUpgradeBonus > 0) {
+      weaponEntries.push({ source: 'High Upgrade Bonus', value: highUpgradeBonus, color: 'white' });
+    }
+
+    // Left weapon refine bonus
+    const leftRefineBonus = this.leftWeaponData?.data?.refineBonus || 0;
+    if (leftRefineBonus > 0) {
+      const leftWeaponName = this.equipItem.get('leftWeapon' as any)?.name || 'Arma Esquerda';
+      weaponEntries.push({ source: `${leftWeaponName} Refine`, value: leftRefineBonus, color: 'white' });
+    }
+
+    const weaponTotal = baseWeaponMatk + refineBonus + highUpgradeBonus + leftRefineBonus;
+
+    sections.push({
+      label: 'Weapon MATK',
+      entries: weaponEntries,
+      subtotal: weaponTotal,
+      emptyMessage: 'Nenhuma arma equipada',
+    });
+
+    // 3. Equipment MATK
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const matkVal = (stats as any)?.matk;
+      if (matkVal && matkVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        const source = itemData?.name || slotLabel;
+        equipEntries.push({
+          source,
+          slot: slotLabel,
+          value: matkVal,
+        });
+      }
+    }
+
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos MATK',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com MATK',
+    });
+
+    // Total
+    const statusMatk = atkSummary.totalStatusMatk;
+    const otherMatk = weaponTotal + equipTotal;
+
+    return {
+      title: 'MATK Breakdown',
+      sections,
+      totalLabel: 'MATK',
+      totalValue: `${statusMatk} + ${otherMatk}`,
+    };
+  }
+
+  getDefBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { level } = this.model;
+    const { totalVit, totalAgi } = this.dmgCalculator.status;
+    const { softDef: equipSoftDef = 0, softDefPercent = 0, def: equipDef = 0, defPercent = 0 } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Soft DEF
+    const softDefEntries: BreakdownEntry[] = [
+      { source: 'VIT / 2', value: floor(totalVit / 2), color: 'white' },
+      { source: 'AGI / 5', value: floor(totalAgi / 5), color: 'white' },
+      { source: 'Level / 2', value: floor(level / 2), color: 'white' },
+    ];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const sdVal = (stats as any)?.softDef;
+      if (sdVal && sdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        softDefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: sdVal });
+      }
+    }
+
+    if (softDefPercent !== 0) {
+      softDefEntries.push({ source: 'Soft DEF %', value: softDefPercent, detail: '%' });
+    }
+
+    const rawSoftDef = floor(totalVit / 2 + totalAgi / 5 + level / 2);
+    const formulaSoftDef = softDefPercent !== 0
+      ? `floor((${rawSoftDef} + ${equipSoftDef}) × ${100 + softDefPercent}/100)`
+      : `floor(${totalVit}/2 + ${totalAgi}/5 + ${level}/2) + equipSoftDef`;
+
+    sections.push({
+      label: 'Soft DEF',
+      entries: softDefEntries,
+      formula: formulaSoftDef,
+      subtotal: this.softDef,
+    });
+
+    // 2. Hard DEF (Equipment)
+    const hardDefEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const defVal = (stats as any)?.def;
+      if (defVal && defVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hardDefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: defVal });
+      }
+    }
+    hardDefEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hardDefEquipTotal = hardDefEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Hard DEF (Equip)',
+      entries: hardDefEntries,
+      subtotal: hardDefEquipTotal,
+      emptyMessage: 'Nenhum equipamento com DEF',
+    });
+
+    // 3. Refine DEF Bonus
+    const bonus = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5];
+    const calcDefByRefine = (refine: number) => bonus.filter((_, i) => i + 1 <= refine).reduce((sum, val) => sum + val, 0);
+
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const refineSlots: [string, number, string][] = [
+      ['headUpper', headUpperRefine, 'Topo'],
+      ['armor', armorRefine, 'Armadura'],
+      ['shield', shieldRefine, 'Escudo'],
+      ['garment', garmentRefine, 'Manto'],
+      ['boot', bootRefine, 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusDefByRefine = 0;
+    for (const [slotKey, refine, slotLabel] of refineSlots) {
+      if (Number(refine) > 0) {
+        const defByRefine = calcDefByRefine(Number(refine));
+        bonusDefByRefine += defByRefine;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: defByRefine,
+          detail: `+${refine}`,
+        });
+      }
+    }
+
+    sections.push({
+      label: 'Refine DEF Bonus',
+      entries: refineEntries,
+      subtotal: bonusDefByRefine,
+      emptyMessage: 'Nenhum refine',
+    });
+
+    // 4. Item Level 2 Bonus
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const lv2Entries: BreakdownEntry[] = [];
+    let additionalDef = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2) {
+        const bonus = round(calcDefByRefine(Number(refine)) * 0.2, 0);
+        additionalDef += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        lv2Entries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: 'Lv2',
+        });
+      }
+    }
+
+    if (additionalDef > 0) {
+      sections.push({
+        label: 'Item Level 2 Bonus',
+        entries: lv2Entries,
+        subtotal: additionalDef,
+      });
+    }
+
+    // 5. DEF %
+    if (defPercent !== 0) {
+      sections.push({
+        label: 'DEF %',
+        entries: [{ source: 'DEF %', value: defPercent, detail: '%' }],
+        formula: `floor((${hardDefEquipTotal} + ${bonusDefByRefine}) × ${100 + defPercent}/100) + ${additionalDef}`,
+        subtotal: this.def,
+      });
+    }
+
+    return {
+      title: 'DEF Breakdown',
+      sections,
+      totalLabel: 'DEF',
+      totalValue: `${this.softDef} + ${this.def}`,
+    };
+  }
+
+  getMdefBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { level } = this.model;
+    const { totalInt, totalVit, totalDex } = this.dmgCalculator.status;
+    const { softMdef: equipSoftMdef = 0, softMdefPercent = 0, mdef: equipMdef = 0, mdefPercent = 0 } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Soft MDEF
+    const softMdefEntries: BreakdownEntry[] = [
+      { source: 'INT', value: totalInt, color: 'white' },
+      { source: 'VIT / 5', value: floor(totalVit / 5), color: 'white' },
+      { source: 'DEX / 5', value: floor(totalDex / 5), color: 'white' },
+      { source: 'Level / 4', value: floor(level / 4), color: 'white' },
+    ];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const smVal = (stats as any)?.softMdef;
+      if (smVal && smVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        softMdefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: smVal });
+      }
+    }
+
+    if (softMdefPercent !== 0) {
+      softMdefEntries.push({ source: 'Soft MDEF %', value: softMdefPercent, detail: '%' });
+    }
+
+    const rawSoftMdef = floor(totalInt + totalVit / 5 + totalDex / 5 + level / 4);
+    const formulaSoftMdef = softMdefPercent !== 0
+      ? `floor((${rawSoftMdef} + ${equipSoftMdef}) × ${100 + softMdefPercent}/100)`
+      : `floor(${totalInt} + ${totalVit}/5 + ${totalDex}/5 + ${level}/4) + equipSoftMdef`;
+
+    sections.push({
+      label: 'Soft MDEF',
+      entries: softMdefEntries,
+      formula: formulaSoftMdef,
+      subtotal: this.softMdef,
+    });
+
+    // 2. Hard MDEF (Equipment)
+    const hardMdefEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const mdefVal = (stats as any)?.mdef;
+      if (mdefVal && mdefVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hardMdefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: mdefVal });
+      }
+    }
+    hardMdefEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hardMdefTotal = hardMdefEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    if (mdefPercent !== 0) {
+      hardMdefEntries.push({ source: 'MDEF %', value: mdefPercent, detail: '%' });
+    }
+
+    sections.push({
+      label: 'Hard MDEF (Equip)',
+      entries: hardMdefEntries,
+      subtotal: this.mdef,
+      emptyMessage: 'Nenhum equipamento com MDEF',
+    });
+
+    return {
+      title: 'MDEF Breakdown',
+      sections,
+      totalLabel: 'MDEF',
+      totalValue: `${this.softMdef} + ${this.mdef}`,
+    };
+  }
+
+  getCriBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Collect equip cri entries from equipStatus
+    const equipEntries: BreakdownEntry[] = [];
 
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
       if (slot === 'consumableBonuses') continue;
@@ -1820,7 +2270,7 @@ export class Calculator {
     }
 
     // Add class additional bonus cri (e.g., Two Hand Quicken)
-    const additionalCri = (this.totalEquipStatus.cri || 0) - equipEntries.reduce((sum, e) => sum + e.value, 0);
+    const additionalCri = (this.totalEquipStatus.cri || 0) - equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
     if (additionalCri > 0) {
       equipEntries.push({
         source: 'Skill/Class Bonus',
@@ -1830,9 +2280,16 @@ export class Calculator {
     }
 
     // Sort by value descending
-    equipEntries.sort((a, b) => b.value - a.value);
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
 
-    const equipTotal = equipEntries.reduce((sum, e) => sum + e.value, 0);
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com CRI',
+    });
 
     // 2. LUK breakdown
     const { luk, jobLuk } = this.model;
@@ -1840,7 +2297,9 @@ export class Calculator {
     const allStatusVal = this.totalEquipStatus.allStatus ?? 0;
     const totalLuk = luk + (jobLuk ?? 0) + equipLukDirect;
 
-    const lukEntries: LukBreakdownEntry[] = [];
+    const lukEntries: BreakdownEntry[] = [];
+
+    lukEntries.push({ source: 'Base LUK', value: luk, color: 'white' });
 
     // Per-item luk and allStatus entries
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
@@ -1864,20 +2323,66 @@ export class Calculator {
       }
     }
 
+    if (jobLuk && jobLuk !== 0) {
+      lukEntries.push({ source: 'Job Bonus', value: jobLuk });
+    }
+
     const isActual = context !== 'status';
     const criFromLuk = isActual ? floor(totalLuk * 0.3) : floor(totalLuk / 3);
     const formulaStr = isActual ? `floor(${totalLuk} × 0.3) = ${criFromLuk}` : `floor(${totalLuk} / 3) = ${criFromLuk}`;
 
-    // 3. Skill-specific data
+    lukEntries.push({ source: 'Cri from LUK', value: criFromLuk, color: 'green' });
+
+    sections.push({
+      label: 'LUK → Cri',
+      entries: lukEntries,
+      subtotal: totalLuk,
+      formula: formulaStr,
+    });
+
+    // 3. Katar section
+    const isKatar = this.weaponData.data?.typeName === 'katar';
+    if (isKatar) {
+      sections.push({
+        label: 'Katar',
+        entries: [{ source: 'Katar ×2', value: '×2', color: 'yellow' }],
+      });
+    }
+
+    // 4. Skill-specific data
     const skillBaseCri = damageSummary?.baseSkillCri ?? 0;
     const skillBaseCriPercentage = damageSummary?.baseCriPercentage ?? 1;
 
-    // 4. Extra cri vs monster and criShield
+    if (context === 'skill' && skillBaseCri > 0) {
+      const skillEntries: BreakdownEntry[] = [{ source: 'Skill Base Cri', value: skillBaseCri }];
+      if (skillBaseCriPercentage !== 1) {
+        skillEntries.push({ source: 'Skill Cri %', value: `×${skillBaseCriPercentage}`, color: 'yellow' });
+      }
+      sections.push({
+        label: 'Skill Cri',
+        entries: skillEntries,
+      });
+    }
+
+    // 5. Extra cri vs monster and criShield
     const extraCriToMonster = damageSummary?.extraCriToMonster ?? 0;
     const criShield = damageSummary?.criShield ?? 0;
 
-    // 5. Compute total
-    const isKatar = this.weaponData.data?.typeName === 'katar';
+    if ((context !== 'status' && extraCriToMonster !== 0) || criShield !== 0) {
+      const vsEntries: BreakdownEntry[] = [];
+      if (extraCriToMonster !== 0) {
+        vsEntries.push({ source: 'Extra Cri vs Monster', value: extraCriToMonster });
+      }
+      if (criShield !== 0) {
+        vsEntries.push({ source: 'Cri Shield', value: -criShield, color: 'red' });
+      }
+      sections.push({
+        label: 'vs Monstro',
+        entries: vsEntries,
+      });
+    }
+
+    // 6. Compute total (same logic as before)
     let total: number;
     if (context === 'status') {
       const base = 1 + equipTotal + criFromLuk;
@@ -1894,25 +2399,1477 @@ export class Calculator {
       total = floor(adjusted);
     }
 
+    const contextLabels: Record<BreakdownContext, string> = { status: 'Status', basic: 'Basic ATQ', skill: 'Skill' };
+
     return {
-      base: 1,
-      equipEntries,
-      equipTotal,
-      lukBreakdown: {
-        baseLuk: luk,
-        jobLuk: jobLuk ?? 0,
-        entries: lukEntries,
-        totalLuk,
-        criFromLuk,
-        formula: formulaStr,
-      },
-      extraCriToMonster,
-      skillBaseCri: context === 'skill' ? skillBaseCri : 0,
-      skillBaseCriPercentage: context === 'skill' ? skillBaseCriPercentage : 1,
-      criShield,
-      total,
-      isKatar,
-      context,
+      title: 'CriRate Breakdown',
+      sections,
+      totalLabel: `CriRate (${contextLabels[context]})`,
+      totalValue: String(total),
+    };
+  }
+
+  getResBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalSta } = this.dmgCalculator.status;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base RES (STA)
+    const staContrib = totalSta + floor(totalSta / 3) * 5;
+    const baseEntries: BreakdownEntry[] = [
+      { source: 'STA', value: totalSta, color: 'white' },
+      { source: 'floor(STA / 3) × 5', value: floor(totalSta / 3) * 5, color: 'white' },
+    ];
+
+    sections.push({
+      label: 'Base RES (STA)',
+      entries: baseEntries,
+      formula: `${totalSta} + floor(${totalSta}/3)×5 = ${staContrib}`,
+      subtotal: staContrib,
+    });
+
+    // 2. Equipment RES
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.res;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos RES',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com RES',
+    });
+
+    // 3. Refine Bonus RES (itemLevel 2 equipment)
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusRes = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2 && Number(refine) > 0) {
+        const bonus = Number(refine) * 2;
+        bonusRes += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: `+${refine} Lv2`,
+        });
+      }
+    }
+
+    if (bonusRes > 0) {
+      sections.push({
+        label: 'Refine Bonus RES (Lv2)',
+        entries: refineEntries,
+        subtotal: bonusRes,
+      });
+    }
+
+    return {
+      title: 'RES Breakdown',
+      sections,
+      totalLabel: 'RES',
+      totalValue: `${this.res}`,
+    };
+  }
+
+  getMresBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalWis } = this.dmgCalculator.status;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MRES (WIS)
+    const wisContrib = totalWis + floor(totalWis / 3) * 5;
+    const baseEntries: BreakdownEntry[] = [
+      { source: 'WIS', value: totalWis, color: 'white' },
+      { source: 'floor(WIS / 3) × 5', value: floor(totalWis / 3) * 5, color: 'white' },
+    ];
+
+    sections.push({
+      label: 'Base MRES (WIS)',
+      entries: baseEntries,
+      formula: `${totalWis} + floor(${totalWis}/3)×5 = ${wisContrib}`,
+      subtotal: wisContrib,
+    });
+
+    // 2. Equipment MRES
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.mres;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos MRES',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com MRES',
+    });
+
+    // 3. Refine Bonus MRES (itemLevel 2 equipment) - same bonusRes as RES
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusRes = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2 && Number(refine) > 0) {
+        const bonus = Number(refine) * 2;
+        bonusRes += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: `+${refine} Lv2`,
+        });
+      }
+    }
+
+    if (bonusRes > 0) {
+      sections.push({
+        label: 'Refine Bonus MRES (Lv2)',
+        entries: refineEntries,
+        subtotal: bonusRes,
+      });
+    }
+
+    return {
+      title: 'MRES Breakdown',
+      sections,
+      totalLabel: 'MRES',
+      totalValue: `${this.mres}`,
+    };
+  }
+
+  getPatkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.pAtk;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.pAtk || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos P.Atk',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com P.Atk',
+    });
+
+    return {
+      title: 'P.Atk Breakdown',
+      sections,
+      totalLabel: 'P.Atk',
+      totalValue: `${totalFromEquipStatus}`,
+    };
+  }
+
+  getSmatkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.sMatk;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.sMatk || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos S.Matk',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com S.Matk',
+    });
+
+    return {
+      title: 'S.Matk Breakdown',
+      sections,
+      totalLabel: 'S.Matk',
+      totalValue: `${totalFromEquipStatus}`,
+    };
+  }
+
+  getCrateBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.cRate;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.cRate || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos C.Rate',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com C.Rate',
+    });
+
+    return {
+      title: 'C.Rate Breakdown',
+      sections,
+      totalLabel: 'C.Rate',
+      totalValue: `${totalFromEquipStatus}`,
+    };
+  }
+
+  getCritDmgBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.criDmg;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.criDmg || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos Crit Dmg',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com Crit Dmg',
+    });
+
+    return {
+      title: 'Crit Dmg Breakdown',
+      sections,
+      totalLabel: 'Crit Dmg',
+      totalValue: `${totalFromEquipStatus}%`,
+    };
+  }
+
+  getMeleeBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.melee;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.melee || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos Melee',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com Melee',
+    });
+
+    return {
+      title: 'Melee Breakdown',
+      sections,
+      totalLabel: 'Melee',
+      totalValue: `${totalFromEquipStatus}%`,
+    };
+  }
+
+  getRangeBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.range;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.range || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos Range',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com Range',
+    });
+
+    return {
+      title: 'Range Breakdown',
+      sections,
+      totalLabel: 'Range',
+      totalValue: `${totalFromEquipStatus}%`,
+    };
+  }
+
+  getHitBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalDex, totalLuk, totalCon } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const { hit, perfectHit } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base HIT (Stats)
+    const baseEntries: BreakdownEntry[] = [
+      { source: '175', value: 175, color: 'white' },
+      { source: 'Level', value: baseLvl, color: 'white' },
+      { source: 'DEX', value: totalDex, color: 'white' },
+      { source: 'floor(LUK / 3)', value: floor(totalLuk / 3), color: 'white' },
+      { source: 'CON × 2', value: totalCon * 2, color: 'white' },
+    ];
+    const baseHit = 175 + baseLvl + totalDex + floor(totalLuk / 3) + totalCon * 2;
+
+    sections.push({
+      label: 'Base HIT (Stats)',
+      entries: baseEntries,
+      formula: `175 + ${baseLvl} + ${totalDex} + floor(${totalLuk}/3) + ${totalCon}×2 = ${baseHit}`,
+      subtotal: baseHit,
+    });
+
+    // 2. Equipment HIT
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const hitVal = (stats as any)?.hit;
+      if (hitVal && hitVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: hitVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hitFromEquipStatus = this.totalEquipStatus.hit || 0;
+    const hitAdditional = hitFromEquipStatus - equipTotal;
+    if (hitAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hitAdditional });
+    }
+
+    sections.push({
+      label: 'Equipamentos HIT',
+      entries: equipEntries,
+      subtotal: hitFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com HIT',
+    });
+
+    // 3. Perfect HIT
+    const perfectBase = floor(totalLuk / 10);
+    const perfectEntries: BreakdownEntry[] = [
+      { source: 'floor(LUK / 10)', value: perfectBase, color: 'white' },
+    ];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const phVal = (stats as any)?.perfectHit;
+      if (phVal && phVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        perfectEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: phVal });
+      }
+    }
+    const totalPerfectHit = floor(totalLuk / 10) + (perfectHit || 0);
+
+    sections.push({
+      label: 'Perfect HIT',
+      entries: perfectEntries,
+      formula: `floor(${totalLuk}/10) + ${perfectHit || 0} = ${totalPerfectHit}`,
+      subtotal: totalPerfectHit,
+    });
+
+    const totalHit = this.miscSummary.totalHit || 0;
+
+    return {
+      title: 'HIT Breakdown',
+      sections,
+      totalLabel: 'HIT',
+      totalValue: `${totalHit} (Perfect: ${totalPerfectHit}%)`,
+    };
+  }
+
+  getAspdBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const totalAspd = this.basicAspd.totalAspd;
+    const hitsPerSec = this.basicAspd.hitsPerSec;
+
+    // 1. Base ASPD
+    sections.push({
+      label: 'Base ASPD',
+      entries: [{ source: 'ASPD (calculado)', value: totalAspd, color: 'white' }],
+      subtotal: totalAspd,
+    });
+
+    // 2. Equipment ASPD (flat)
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const aspdVal = (stats as any)?.aspd;
+      if (aspdVal && aspdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: aspdVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const aspdFromEquipStatus = this.totalEquipStatus.aspd || 0;
+    const aspdAdditional = aspdFromEquipStatus - equipTotal;
+    if (aspdAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: aspdAdditional });
+    }
+
+    sections.push({
+      label: 'Equipamentos ASPD',
+      entries: equipEntries,
+      subtotal: aspdFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com ASPD',
+    });
+
+    // 3. ASPD %
+    const percentEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const aspdPctVal = (stats as any)?.aspdPercent;
+      if (aspdPctVal && aspdPctVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        percentEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: aspdPctVal, detail: '%' });
+      }
+    }
+    percentEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const percentTotal = percentEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const aspdPctFromEquipStatus = this.totalEquipStatus.aspdPercent || 0;
+    const aspdPctAdditional = aspdPctFromEquipStatus - percentTotal;
+    if (aspdPctAdditional !== 0) {
+      percentEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: aspdPctAdditional, detail: '%' });
+    }
+
+    sections.push({
+      label: 'ASPD %',
+      entries: percentEntries,
+      subtotal: aspdPctFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com ASPD %',
+    });
+
+    return {
+      title: 'ASPD Breakdown',
+      sections,
+      totalLabel: 'ASPD',
+      totalValue: `${totalAspd} (${hitsPerSec} Hits/s)`,
+    };
+  }
+
+  getFleeBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalAgi, totalLuk, totalCon } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const { flee, perfectDodge } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base FLEE (Stats)
+    const baseEntries: BreakdownEntry[] = [
+      { source: '100', value: 100, color: 'white' },
+      { source: 'Level', value: baseLvl, color: 'white' },
+      { source: 'AGI', value: totalAgi, color: 'white' },
+      { source: 'floor(LUK / 5)', value: floor(totalLuk / 5), color: 'white' },
+      { source: 'CON × 2', value: totalCon * 2, color: 'white' },
+    ];
+    const baseFlee = 100 + floor(baseLvl + totalAgi + totalLuk / 5) + totalCon * 2;
+
+    sections.push({
+      label: 'Base FLEE (Stats)',
+      entries: baseEntries,
+      formula: `100 + floor(${baseLvl} + ${totalAgi} + ${totalLuk}/5) + ${totalCon}×2 = ${baseFlee}`,
+      subtotal: baseFlee,
+    });
+
+    // 2. Equipment FLEE
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const fleeVal = (stats as any)?.flee;
+      if (fleeVal && fleeVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: fleeVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const fleeFromEquipStatus = this.totalEquipStatus.flee || 0;
+    const fleeAdditional = fleeFromEquipStatus - equipTotal;
+    if (fleeAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: fleeAdditional });
+    }
+
+    sections.push({
+      label: 'Equipamentos FLEE',
+      entries: equipEntries,
+      subtotal: fleeFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com FLEE',
+    });
+
+    // 3. Perfect Dodge
+    const perfectBase = floor(1 + totalLuk * 0.1);
+    const perfectEntries: BreakdownEntry[] = [
+      { source: '1 + floor(LUK × 0.1)', value: perfectBase, color: 'white' },
+    ];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const pdVal = (stats as any)?.perfectDodge;
+      if (pdVal && pdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        perfectEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: pdVal });
+      }
+    }
+    const totalPerfectDodge = this.miscSummary.totalPerfectDodge || 0;
+
+    sections.push({
+      label: 'Perfect Dodge',
+      entries: perfectEntries,
+      formula: `floor(1 + ${totalLuk}×0.1) + ${perfectDodge || 0} = ${totalPerfectDodge}`,
+      subtotal: totalPerfectDodge,
+    });
+
+    const totalFlee = this.miscSummary.totalFlee || 0;
+
+    return {
+      title: 'FLEE Breakdown',
+      sections,
+      totalLabel: 'FLEE',
+      totalValue: `${totalFlee} + ${totalPerfectDodge}`,
+    };
+  }
+
+  getMaxHpBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MaxHP
+    sections.push({
+      label: 'Base Max HP',
+      entries: [{ source: 'Max HP (calculado)', value: this.maxHp, color: 'white' }],
+      subtotal: this.maxHp,
+    });
+
+    // 2. Equipment HP
+    const hpEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.hp;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hpEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    hpEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hpTotal = hpEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hpFromEquipStatus = this.totalEquipStatus.hp || 0;
+    const hpAdditional = hpFromEquipStatus - hpTotal;
+    if (hpAdditional !== 0) {
+      hpEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hpAdditional });
+    }
+
+    sections.push({
+      label: 'Equipamentos HP',
+      entries: hpEntries,
+      subtotal: hpFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com HP',
+    });
+
+    // 3. HP %
+    const hpPctEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.hpPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hpPctEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val, detail: '%' });
+      }
+    }
+    hpPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hpPctTotal = hpPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hpPctFromEquipStatus = this.totalEquipStatus.hpPercent || 0;
+    const hpPctAdditional = hpPctFromEquipStatus - hpPctTotal;
+    if (hpPctAdditional !== 0) {
+      hpPctEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hpPctAdditional, detail: '%' });
+    }
+
+    sections.push({
+      label: 'HP %',
+      entries: hpPctEntries,
+      subtotal: hpPctFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com HP %',
+    });
+
+    return {
+      title: 'Max HP Breakdown',
+      sections,
+      totalLabel: 'Max HP',
+      totalValue: `${this.maxHp}`,
+    };
+  }
+
+  getMaxSpBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MaxSP
+    sections.push({
+      label: 'Base Max SP',
+      entries: [{ source: 'Max SP (calculado)', value: this.maxSp, color: 'white' }],
+      subtotal: this.maxSp,
+    });
+
+    // 2. Equipment SP
+    const spEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.sp;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        spEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    spEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const spTotal = spEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const spFromEquipStatus = this.totalEquipStatus.sp || 0;
+    const spAdditional = spFromEquipStatus - spTotal;
+    if (spAdditional !== 0) {
+      spEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: spAdditional });
+    }
+
+    sections.push({
+      label: 'Equipamentos SP',
+      entries: spEntries,
+      subtotal: spFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com SP',
+    });
+
+    // 3. SP %
+    const spPctEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.spPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        spPctEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val, detail: '%' });
+      }
+    }
+    spPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const spPctTotal = spPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const spPctFromEquipStatus = this.totalEquipStatus.spPercent || 0;
+    const spPctAdditional = spPctFromEquipStatus - spPctTotal;
+    if (spPctAdditional !== 0) {
+      spPctEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: spPctAdditional, detail: '%' });
+    }
+
+    sections.push({
+      label: 'SP %',
+      entries: spPctEntries,
+      subtotal: spPctFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com SP %',
+    });
+
+    return {
+      title: 'Max SP Breakdown',
+      sections,
+      totalLabel: 'Max SP',
+      totalValue: `${this.maxSp}`,
+    };
+  }
+
+  getMatkPercentBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.matkPercent;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.matkPercent || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos Matk %',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com Matk %',
+    });
+
+    return {
+      title: 'Matk % Breakdown',
+      sections,
+      totalLabel: 'Matk %',
+      totalValue: `${totalFromEquipStatus}%`,
+    };
+  }
+
+  getVctBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const vctVal = (stats as any)?.vct;
+      if (vctVal && vctVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: vctVal });
+      }
+      const vctIncVal = (stats as any)?.vct_inc;
+      if (vctIncVal && vctIncVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: `${itemData?.name || slotLabel} (inc)`, slot: slotLabel, value: vctIncVal, color: 'red' });
+      }
+    }
+    equipEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.vct || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos VCT',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com VCT',
+    });
+
+    return {
+      title: 'VCT Breakdown',
+      sections,
+      totalLabel: 'VCT',
+      totalValue: `${totalFromEquipStatus}%`,
+    };
+  }
+
+  getFctBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const fctVal = (stats as any)?.fct;
+      if (fctVal && fctVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: fctVal });
+      }
+      const fctPctVal = (stats as any)?.fctPercent;
+      if (fctPctVal && fctPctVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: `${itemData?.name || slotLabel} (%)`, slot: slotLabel, value: fctPctVal, detail: '%' });
+      }
+    }
+    equipEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.fct || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos FCT',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com FCT',
+    });
+
+    return {
+      title: 'FCT Breakdown',
+      sections,
+      totalLabel: 'FCT',
+      totalValue: `${totalFromEquipStatus}`,
+    };
+  }
+
+  getAcdBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.acd;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.acd || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
+
+    sections.push({
+      label: 'Equipamentos ACD',
+      entries: equipEntries,
+      subtotal: totalFromEquipStatus,
+      emptyMessage: 'Nenhum equipamento com ACD',
+    });
+
+    return {
+      title: 'ACD Breakdown',
+      sections,
+      totalLabel: 'ACD',
+      totalValue: `${totalFromEquipStatus}`,
+    };
+  }
+
+  getCdBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+
+    sections.push({
+      label: 'Cooldown',
+      entries: [],
+      emptyMessage: 'CD é calculado por skill (cd__SkillName)',
+    });
+
+    return {
+      title: 'CD Breakdown',
+      sections,
+      totalLabel: 'CD',
+      totalValue: 'Per skill',
+    };
+  }
+
+  getPenetrationBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Physical Penetration
+    const physEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('p_pene_') || key === 'p_infiltration') && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('p_pene_', '').replace('_', ' ');
+          physEntries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    physEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const physTotal = physEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Penetração Física',
+      entries: physEntries,
+      subtotal: physTotal,
+      emptyMessage: 'Nenhum equipamento com penetração física',
+    });
+
+    // 2. Magical Penetration
+    const magEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if (key.startsWith('m_pene_') && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('m_pene_', '').replace('_', ' ');
+          magEntries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    magEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const magTotal = magEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Penetração Mágica',
+      entries: magEntries,
+      subtotal: magTotal,
+      emptyMessage: 'Nenhum equipamento com penetração mágica',
+    });
+
+    // 3. RES/MRES Penetration
+    const resEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('pene_res') || key.startsWith('pene_mres')) && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('pene_', '').replace('_', ' ');
+          resEntries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    resEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const resTotal = resEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Penetração RES/MRES',
+      entries: resEntries,
+      subtotal: resTotal,
+      emptyMessage: 'Nenhum equipamento com penetração RES/MRES',
+    });
+
+    const peneValue = context === 'basic'
+      ? (damageSummary?.totalPene ?? 0)
+      : (damageSummary?.skillTotalPene ?? 0);
+
+    return {
+      title: 'Penetração Breakdown',
+      sections,
+      totalLabel: 'Penetração',
+      totalValue: `${peneValue}%`,
+    };
+  }
+
+  getAccuracyBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const totalHit = this.miscSummary.totalHit || 0;
+    const hitRequireFor100 = this.monster?.data?.hitRequireFor100 || 0;
+
+    const accuracyValue = context === 'basic'
+      ? (damageSummary?.accuracy ?? this.miscSummary.accuracy ?? 0)
+      : (damageSummary?.skillAccuracy ?? this.miscSummary.accuracy ?? 0);
+
+    // 1. HIT Total
+    sections.push({
+      label: 'HIT Total',
+      entries: [{ source: 'HIT Total', value: totalHit, color: 'white' }],
+      subtotal: totalHit,
+    });
+
+    // 2. Monster Hit Required
+    sections.push({
+      label: 'Monster Hit Required',
+      entries: [{ source: `Hit p/ 100% (${this.monster?.data?.name || 'Monster'})`, value: hitRequireFor100, color: 'red' }],
+      subtotal: hitRequireFor100,
+    });
+
+    // 3. Formula
+    sections.push({
+      label: 'Fórmula',
+      entries: [{ source: `max(5, min(100, 100 + ${totalHit} - ${hitRequireFor100}))`, value: accuracyValue, color: 'white' }],
+      subtotal: accuracyValue,
+    });
+
+    return {
+      title: 'Precisão Breakdown',
+      sections,
+      totalLabel: 'Precisão',
+      totalValue: `${accuracyValue}%`,
+    };
+  }
+
+  getElementBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const entries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('p_element_') || key.startsWith('m_element_') || key.startsWith('m_my_element_')) && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('p_element_', 'Phys ').replace('m_element_', 'Mag ').replace('m_my_element_', 'Mag Own ');
+          entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Element Damage',
+      entries,
+      subtotal: total,
+      emptyMessage: 'Nenhum equipamento com bônus elemental',
+    });
+
+    const multiplier = context === 'basic'
+      ? (damageSummary?.propertyMultiplier ?? 0)
+      : (damageSummary?.skillPropertyMultiplier ?? 0);
+
+    return {
+      title: 'Element Breakdown',
+      sections,
+      totalLabel: 'Element',
+      totalValue: `x ${multiplier}`,
+    };
+  }
+
+  getSizePenaltyBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const entries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('p_size_') || key.startsWith('m_size_') || key === 'ignore_size_penalty') && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('p_size_', 'Phys ').replace('m_size_', 'Mag ').replace('ignore_size_penalty', 'Ignore Size');
+          entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Size Damage',
+      entries,
+      subtotal: total,
+      emptyMessage: 'Nenhum equipamento com bônus de tamanho',
+    });
+
+    const penalty = context === 'basic'
+      ? (damageSummary?.sizePenalty ?? 0)
+      : (damageSummary?.skillSizePenalty ?? 0);
+
+    return {
+      title: 'Size Penalty Breakdown',
+      sections,
+      totalLabel: 'Size Penalty',
+      totalValue: `${penalty}%`,
+    };
+  }
+
+  getBasicDamageBreakdown(): DamageBreakdown | null {
+    const p = this.dmgCalculator.damagePipelineForUI.basic;
+    if (!p || p.totalMax == null) return null;
+
+    const steps: DamageStep[] = [];
+    let running = p.totalMax;
+
+    steps.push({ label: 'Total ATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.rangedMultiplier !== 1) {
+      running = floor(running * p.rangedMultiplier);
+      steps.push({ label: 'Melee/Range %', operation: `× ${round(p.rangedMultiplier, 4)}`, result: running });
+    }
+
+    if (p.dmgMultiplier !== 1) {
+      running = floor(running * p.dmgMultiplier);
+      steps.push({ label: 'Dmg %', operation: `× ${round(p.dmgMultiplier, 4)}`, result: running });
+    }
+
+    if (p.resReduction !== 1) {
+      running = floor(running * p.resReduction);
+      steps.push({ label: 'RES Reduction', operation: `× ${round(p.resReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * p.hardDef);
+      steps.push({ label: 'Hard DEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.softDef !== 0) {
+      running = running - p.softDef;
+      steps.push({ label: 'Soft DEF', operation: `− ${p.softDef}`, result: running, color: 'red' });
+    }
+
+    if (p.advKatarMultiplier !== 1) {
+      running = floor(running * p.advKatarMultiplier);
+      steps.push({ label: 'Adv Katar', operation: `× ${round(p.advKatarMultiplier, 4)}`, result: running });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    const dmg = this.damageSummary;
+    return {
+      title: 'Basic Damage Breakdown',
+      steps,
+      minDamage: dmg.basicMinDamage,
+      maxDamage: dmg.basicMaxDamage,
+      dps: dmg.basicDps,
+      dpsLabel: 'Basic DPS',
+    };
+  }
+
+  getCritDamageBreakdown(): DamageBreakdown | null {
+    const p = this.dmgCalculator.damagePipelineForUI.crit;
+    if (!p || p.totalMaxAtkOver == null) return null;
+
+    const steps: DamageStep[] = [];
+    let running = p.totalMaxAtkOver;
+
+    steps.push({ label: 'Max ATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.bonusCriDmgMultiplier !== 1) {
+      running = floor(running * p.bonusCriDmgMultiplier);
+      steps.push({ label: 'Crit Dmg %', operation: `× ${round(p.bonusCriDmgMultiplier, 4)}`, result: running });
+    }
+
+    if (p.rangedMultiplier !== 1) {
+      running = floor(running * p.rangedMultiplier);
+      steps.push({ label: 'Melee/Range %', operation: `× ${round(p.rangedMultiplier, 4)}`, result: running });
+    }
+
+    if (p.dmgMultiplier !== 1) {
+      // NO Math.floor on this step — matching actual code line 1188
+      running = running * p.dmgMultiplier;
+      steps.push({ label: 'Dmg %', operation: `× ${round(p.dmgMultiplier, 4)}`, result: floor(running) });
+    }
+
+    if (p.resReduction !== 1) {
+      running = floor(running * p.resReduction);
+      steps.push({ label: 'RES Reduction', operation: `× ${round(p.resReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * p.hardDef);
+      steps.push({ label: 'Hard DEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.advKatarMultiplier !== 1) {
+      running = floor(running * p.advKatarMultiplier);
+      steps.push({ label: 'Adv Katar', operation: `× ${round(p.advKatarMultiplier, 4)}`, result: running });
+    }
+
+    if (p.softDef !== 0) {
+      running = running - p.softDef;
+      steps.push({ label: 'Soft DEF', operation: `− ${p.softDef}`, result: running, color: 'red' });
+    }
+
+    if (p.criMultiplier !== 1) {
+      running = floor(running * p.criMultiplier);
+      steps.push({ label: 'Crit Multiplier', operation: `× ${round(p.criMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    if (p.extraDmgTotal && p.extraDmgTotal !== 0) {
+      running = running + floor(p.extraDmgTotal);
+      steps.push({ label: 'Extra Damage', operation: `+ ${floor(p.extraDmgTotal)}`, result: running, color: 'green' });
+    }
+
+    const dmg = this.damageSummary;
+    return {
+      title: 'Crit Damage Breakdown',
+      steps,
+      minDamage: dmg.criMinDamage,
+      maxDamage: dmg.criMaxDamage,
+    };
+  }
+
+  getSkillDamageBreakdown(): DamageBreakdown | null {
+    const p = this.dmgCalculator.damagePipelineForUI.skill;
+    if (!p || !p.dmgType) return null;
+    const dmg = this.damageSummary;
+    if (p.dmgType === 'Magical') {
+      return this._buildMagicalSkillBreakdown(p, dmg);
+    }
+    return this._buildPhysicalSkillBreakdown(p, dmg);
+  }
+
+  private _buildPhysicalSkillBreakdown(p: any, dmg: any): DamageBreakdown {
+    const steps: DamageStep[] = [];
+    let running = p.totalMaxOver as number;
+
+    steps.push({ label: 'Total ATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.modifyFinalAtkFactor !== 1) {
+      running = floor(running * p.modifyFinalAtkFactor);
+      steps.push({ label: 'Job Modifier', operation: `× ${round(p.modifyFinalAtkFactor, 4)}`, result: running });
+    }
+
+    if (p.canCri && p.criMultiplierBonus !== 1) {
+      running = floor(running * p.criMultiplierBonus);
+      steps.push({ label: 'Crit Dmg %', operation: `× ${round(p.criMultiplierBonus, 4)}`, result: running });
+    }
+
+    if (p.rangedMultiplier !== 1) {
+      running = floor(running * p.rangedMultiplier);
+      steps.push({ label: 'Melee/Range %', operation: `× ${round(p.rangedMultiplier, 4)}`, result: running });
+    }
+
+    running = floor(running * p.baseSkillMultiplier);
+    steps.push({ label: 'Base Skill %', operation: `× ${round(p.baseSkillMultiplier, 4)}`, result: running, color: 'yellow' });
+
+    if (p.equipSkillMultiplier !== 1) {
+      running = floor(running * p.equipSkillMultiplier);
+      steps.push({ label: 'Skill Bonus %', operation: `× ${round(p.equipSkillMultiplier, 4)}`, result: running });
+    }
+
+    if (p.resReduction !== 1) {
+      running = floor(running * p.resReduction);
+      steps.push({ label: 'RES Reduction', operation: `× ${round(p.resReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * p.hardDef);
+      steps.push({ label: 'Hard DEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.softDef !== 0) {
+      running = running - p.softDef;
+      steps.push({ label: 'Soft DEF', operation: `− ${p.softDef}`, result: running, color: 'red' });
+    }
+
+    if (p.canCri) {
+      running = floor(running * p.criMultiplierBase);
+      steps.push({ label: 'Crit Multiplier', operation: `× ${round(p.criMultiplierBase, 4)}`, result: running, color: 'yellow' });
+    }
+
+    if (p.advKatarMultiplier !== 1) {
+      running = floor(running * p.advKatarMultiplier);
+      steps.push({ label: 'Adv Katar', operation: `× ${round(p.advKatarMultiplier, 4)}`, result: running });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    const extraDmg = p.extraDmg || 0;
+    if (extraDmg !== 0) {
+      const extraDmgCri = p.canCri ? floor(extraDmg * p.criMultiplierBonus) : extraDmg;
+      running = running + extraDmgCri;
+      steps.push({ label: 'Extra Damage', operation: `+ ${extraDmgCri}`, result: running, color: 'green' });
+    }
+
+    return {
+      title: 'Skill Damage (Physical)',
+      steps,
+      minDamage: dmg.skillMinDamage,
+      maxDamage: dmg.skillMaxDamage,
+      dps: dmg.skillDps,
+      dpsLabel: 'Skill DPS',
+    };
+  }
+
+  private _buildMagicalSkillBreakdown(p: any, dmg: any): DamageBreakdown {
+    const steps: DamageStep[] = [];
+    let running = p.totalMatkMax as number;
+
+    steps.push({ label: 'Total MATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.sMatkMultiplier !== 1) {
+      running = floor(running * p.sMatkMultiplier);
+      steps.push({ label: 'S.Matk', operation: `× ${round(p.sMatkMultiplier, 4)}`, result: running });
+    }
+
+    if (p.raceMultiplier !== 1) {
+      running = floor(running * p.raceMultiplier);
+      steps.push({ label: 'Race %', operation: `× ${round(p.raceMultiplier, 4)}`, result: running });
+    }
+
+    if (p.sizeMultiplier !== 1) {
+      running = floor(running * p.sizeMultiplier);
+      steps.push({ label: 'Size %', operation: `× ${round(p.sizeMultiplier, 4)}`, result: running });
+    }
+
+    if (p.elementMultiplier !== 1) {
+      running = floor(running * p.elementMultiplier);
+      steps.push({ label: 'Element %', operation: `× ${round(p.elementMultiplier, 4)}`, result: running });
+    }
+
+    if (p.monsterTypeMultiplier !== 1) {
+      running = floor(running * p.monsterTypeMultiplier);
+      steps.push({ label: 'Monster Class %', operation: `× ${round(p.monsterTypeMultiplier, 4)}`, result: running });
+    }
+
+    if (p.matkPercentMultiplier !== 1) {
+      running = floor(running * p.matkPercentMultiplier);
+      steps.push({ label: 'MATK %', operation: `× ${round(p.matkPercentMultiplier, 4)}`, result: running });
+    }
+
+    if (p.cometMultiplier != null && p.cometMultiplier !== 1) {
+      running = floor(running * p.cometMultiplier);
+      steps.push({ label: 'Comet', operation: `× ${round(p.cometMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    running = floor(running * p.baseSkillMultiplier);
+    steps.push({ label: 'Base Skill %', operation: `× ${round(p.baseSkillMultiplier, 4)}`, result: running, color: 'yellow' });
+
+    if (p.myElementMultiplier != null && p.myElementMultiplier !== 1) {
+      running = floor(running * p.myElementMultiplier);
+      steps.push({ label: 'My Element', operation: `× ${round(p.myElementMultiplier, 4)}`, result: running });
+    }
+
+    if (p.mresReduction !== 1) {
+      running = floor(running * p.mresReduction);
+      steps.push({ label: 'MRES Reduction', operation: `× ${round(p.mresReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * round(p.hardDef, 4));
+      steps.push({ label: 'Hard MDEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.softMDef !== 0) {
+      running = running - p.softMDef;
+      steps.push({ label: 'Soft MDEF', operation: `− ${p.softMDef}`, result: running, color: 'red' });
+    }
+
+    if (p.equipSkillMultiplier !== 1) {
+      running = floor(running * p.equipSkillMultiplier);
+      steps.push({ label: 'Skill Bonus %', operation: `× ${round(p.equipSkillMultiplier, 4)}`, result: running });
+    }
+
+    if (p.propertyMultiplier !== 1) {
+      running = floor(running * p.propertyMultiplier);
+      steps.push({ label: 'Property', operation: `× ${round(p.propertyMultiplier, 4)}`, result: running });
+    }
+
+    if (p.finalDmgMultiplier !== 1) {
+      running = floor(running * p.finalDmgMultiplier);
+      steps.push({ label: 'Element Final %', operation: `× ${round(p.finalDmgMultiplier, 4)}`, result: running });
+    }
+
+    if (p.magicFinalMultiplier !== 1) {
+      running = floor(running * p.magicFinalMultiplier);
+      steps.push({ label: 'Magic Final %', operation: `× ${round(p.magicFinalMultiplier, 4)}`, result: running });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    return {
+      title: 'Skill Damage (Magical)',
+      steps,
+      minDamage: dmg.skillMinDamage,
+      maxDamage: dmg.skillMaxDamage,
+      dps: dmg.skillDps,
+      dpsLabel: 'Skill DPS',
     };
   }
 }
