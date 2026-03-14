@@ -367,9 +367,9 @@
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['hit_row']" [escape]="false" tooltipPosition="right">
                     Hit:
-                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalHit || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_atk" style="cursor:pointer;" (click)="openBreakdown('hit'); $event.stopPropagation()">{{ totalSummary?.calc?.totalHit || 0 }}</span>
                     Perfect:
-                    <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalPerfectHit || 0 }} %</span>
+                    <span class="font-semibold px-1 summary_stat_atk" style="cursor:pointer;" (click)="openBreakdown('hit'); $event.stopPropagation()">{{ totalSummary?.calc?.totalPerfectHit || 0 }} %</span>
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['cri_row']" [escape]="false" tooltipPosition="right">
                     CriRate:
@@ -396,7 +396,7 @@
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['flee']" [escape]="false" tooltipPosition="right">
                     Flee:
-                    <span class="font-semibold px-1 summary_stat_def">{{ totalSummary?.calc?.totalFlee || 0 }} + {{ totalSummary?.calc?.totalPerfectDodge || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_def" style="cursor:pointer;" (click)="openBreakdown('flee'); $event.stopPropagation()">{{ totalSummary?.calc?.totalFlee || 0 }} + {{ totalSummary?.calc?.totalPerfectDodge || 0 }}</span>
                   </div>
                 </div>
               </div>

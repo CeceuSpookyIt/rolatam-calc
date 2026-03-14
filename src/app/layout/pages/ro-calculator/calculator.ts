@@ -2407,4 +2407,160 @@ export class Calculator {
       totalValue: String(total),
     };
   }
+
+  getHitBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalDex, totalLuk, totalCon } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const { hit, perfectHit } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base HIT (Stats)
+    const baseEntries: BreakdownEntry[] = [
+      { source: '175', value: 175, color: 'white' },
+      { source: 'Level', value: baseLvl, color: 'white' },
+      { source: 'DEX', value: totalDex, color: 'white' },
+      { source: 'floor(LUK / 3)', value: floor(totalLuk / 3), color: 'white' },
+      { source: 'CON × 2', value: totalCon * 2, color: 'white' },
+    ];
+    const baseHit = 175 + baseLvl + totalDex + floor(totalLuk / 3) + totalCon * 2;
+
+    sections.push({
+      label: 'Base HIT (Stats)',
+      entries: baseEntries,
+      formula: `175 + ${baseLvl} + ${totalDex} + floor(${totalLuk}/3) + ${totalCon}×2 = ${baseHit}`,
+      subtotal: baseHit,
+    });
+
+    // 2. Equipment HIT
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const hitVal = (stats as any)?.hit;
+      if (hitVal && hitVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: hitVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos HIT',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com HIT',
+    });
+
+    // 3. Perfect HIT
+    const perfectBase = floor(totalLuk / 10);
+    const perfectEntries: BreakdownEntry[] = [
+      { source: 'floor(LUK / 10)', value: perfectBase, color: 'white' },
+    ];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const phVal = (stats as any)?.perfectHit;
+      if (phVal && phVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        perfectEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: phVal });
+      }
+    }
+    const totalPerfectHit = floor(totalLuk / 10) + (perfectHit || 0);
+
+    sections.push({
+      label: 'Perfect HIT',
+      entries: perfectEntries,
+      formula: `floor(${totalLuk}/10) + ${perfectHit || 0} = ${totalPerfectHit}`,
+      subtotal: totalPerfectHit,
+    });
+
+    const totalHit = this.miscSummary.totalHit || 0;
+
+    return {
+      title: 'HIT Breakdown',
+      sections,
+      totalLabel: 'HIT',
+      totalValue: `${totalHit} (Perfect: ${totalPerfectHit}%)`,
+    };
+  }
+
+  getFleeBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalAgi, totalLuk, totalCon } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const { flee, perfectDodge } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base FLEE (Stats)
+    const baseEntries: BreakdownEntry[] = [
+      { source: '100', value: 100, color: 'white' },
+      { source: 'Level', value: baseLvl, color: 'white' },
+      { source: 'AGI', value: totalAgi, color: 'white' },
+      { source: 'floor(LUK / 5)', value: floor(totalLuk / 5), color: 'white' },
+      { source: 'CON × 2', value: totalCon * 2, color: 'white' },
+    ];
+    const baseFlee = 100 + floor(baseLvl + totalAgi + totalLuk / 5) + totalCon * 2;
+
+    sections.push({
+      label: 'Base FLEE (Stats)',
+      entries: baseEntries,
+      formula: `100 + floor(${baseLvl} + ${totalAgi} + ${totalLuk}/5) + ${totalCon}×2 = ${baseFlee}`,
+      subtotal: baseFlee,
+    });
+
+    // 2. Equipment FLEE
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const fleeVal = (stats as any)?.flee;
+      if (fleeVal && fleeVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: fleeVal });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos FLEE',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com FLEE',
+    });
+
+    // 3. Perfect Dodge
+    const perfectBase = floor(1 + totalLuk * 0.1);
+    const perfectEntries: BreakdownEntry[] = [
+      { source: '1 + floor(LUK × 0.1)', value: perfectBase, color: 'white' },
+    ];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const pdVal = (stats as any)?.perfectDodge;
+      if (pdVal && pdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        perfectEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: pdVal });
+      }
+    }
+    const totalPerfectDodge = this.miscSummary.totalPerfectDodge || 0;
+
+    sections.push({
+      label: 'Perfect Dodge',
+      entries: perfectEntries,
+      formula: `floor(1 + ${totalLuk}×0.1) + ${perfectDodge || 0} = ${totalPerfectDodge}`,
+      subtotal: totalPerfectDodge,
+    });
+
+    const totalFlee = this.miscSummary.totalFlee || 0;
+
+    return {
+      title: 'FLEE Breakdown',
+      sections,
+      totalLabel: 'FLEE',
+      totalValue: `${totalFlee} + ${totalPerfectDodge}`,
+    };
+  }
 }

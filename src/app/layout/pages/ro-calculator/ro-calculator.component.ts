@@ -1702,6 +1702,12 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'mdef':
         breakdown = this.calculator.getMdefBreakdown();
         break;
+      case 'hit':
+        breakdown = this.calculator.getHitBreakdown();
+        break;
+      case 'flee':
+        breakdown = this.calculator.getFleeBreakdown();
+        break;
     }
 
     if (!breakdown) return;
