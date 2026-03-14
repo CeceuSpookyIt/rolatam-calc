@@ -1793,6 +1793,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'skillBonus':
         breakdown = this.calculator.getSkillBonusBreakdown(this.model.selectedAtkSkill);
         break;
+      case 'baseSkill':
+        breakdown = this.calculator.getBaseSkillBreakdown();
+        break;
     }
 
     if (!breakdown) return;
