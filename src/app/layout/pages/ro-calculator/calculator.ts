@@ -2591,11 +2591,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.pAtk || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos P.Atk',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com P.Atk',
     });
 
@@ -2603,7 +2608,7 @@ export class Calculator {
       title: 'P.Atk Breakdown',
       sections,
       totalLabel: 'P.Atk',
-      totalValue: `${this.totalEquipStatus.pAtk || 0}`,
+      totalValue: `${totalFromEquipStatus}`,
     };
   }
 
@@ -2623,11 +2628,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.sMatk || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos S.Matk',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com S.Matk',
     });
 
@@ -2635,7 +2645,7 @@ export class Calculator {
       title: 'S.Matk Breakdown',
       sections,
       totalLabel: 'S.Matk',
-      totalValue: `${this.totalEquipStatus.sMatk || 0}`,
+      totalValue: `${totalFromEquipStatus}`,
     };
   }
 
@@ -2655,11 +2665,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.cRate || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos C.Rate',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com C.Rate',
     });
 
@@ -2667,7 +2682,7 @@ export class Calculator {
       title: 'C.Rate Breakdown',
       sections,
       totalLabel: 'C.Rate',
-      totalValue: `${this.totalEquipStatus.cRate || 0}`,
+      totalValue: `${totalFromEquipStatus}`,
     };
   }
 
@@ -2687,11 +2702,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.criDmg || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos Crit Dmg',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com Crit Dmg',
     });
 
@@ -2699,7 +2719,7 @@ export class Calculator {
       title: 'Crit Dmg Breakdown',
       sections,
       totalLabel: 'Crit Dmg',
-      totalValue: `${this.totalEquipStatus.criDmg || 0}%`,
+      totalValue: `${totalFromEquipStatus}%`,
     };
   }
 
@@ -2719,11 +2739,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.melee || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos Melee',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com Melee',
     });
 
@@ -2731,7 +2756,7 @@ export class Calculator {
       title: 'Melee Breakdown',
       sections,
       totalLabel: 'Melee',
-      totalValue: `${this.totalEquipStatus.melee || 0}%`,
+      totalValue: `${totalFromEquipStatus}%`,
     };
   }
 
@@ -2751,11 +2776,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.range || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos Range',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com Range',
     });
 
@@ -2763,7 +2793,7 @@ export class Calculator {
       title: 'Range Breakdown',
       sections,
       totalLabel: 'Range',
-      totalValue: `${this.totalEquipStatus.range || 0}%`,
+      totalValue: `${totalFromEquipStatus}%`,
     };
   }
 
@@ -2804,11 +2834,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hitFromEquipStatus = this.totalEquipStatus.hit || 0;
+    const hitAdditional = hitFromEquipStatus - equipTotal;
+    if (hitAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hitAdditional });
+    }
 
     sections.push({
       label: 'Equipamentos HIT',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: hitFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com HIT',
     });
 
@@ -2871,11 +2906,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const aspdFromEquipStatus = this.totalEquipStatus.aspd || 0;
+    const aspdAdditional = aspdFromEquipStatus - equipTotal;
+    if (aspdAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: aspdAdditional });
+    }
 
     sections.push({
       label: 'Equipamentos ASPD',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: aspdFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com ASPD',
     });
 
@@ -2892,11 +2932,16 @@ export class Calculator {
     }
     percentEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const percentTotal = percentEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const aspdPctFromEquipStatus = this.totalEquipStatus.aspdPercent || 0;
+    const aspdPctAdditional = aspdPctFromEquipStatus - percentTotal;
+    if (aspdPctAdditional !== 0) {
+      percentEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: aspdPctAdditional, detail: '%' });
+    }
 
     sections.push({
       label: 'ASPD %',
       entries: percentEntries,
-      subtotal: percentTotal,
+      subtotal: aspdPctFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com ASPD %',
     });
 
@@ -2945,11 +2990,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const fleeFromEquipStatus = this.totalEquipStatus.flee || 0;
+    const fleeAdditional = fleeFromEquipStatus - equipTotal;
+    if (fleeAdditional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: fleeAdditional });
+    }
 
     sections.push({
       label: 'Equipamentos FLEE',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: fleeFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com FLEE',
     });
 
@@ -3010,11 +3060,16 @@ export class Calculator {
     }
     hpEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const hpTotal = hpEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hpFromEquipStatus = this.totalEquipStatus.hp || 0;
+    const hpAdditional = hpFromEquipStatus - hpTotal;
+    if (hpAdditional !== 0) {
+      hpEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hpAdditional });
+    }
 
     sections.push({
       label: 'Equipamentos HP',
       entries: hpEntries,
-      subtotal: hpTotal,
+      subtotal: hpFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com HP',
     });
 
@@ -3031,11 +3086,16 @@ export class Calculator {
     }
     hpPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const hpPctTotal = hpPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const hpPctFromEquipStatus = this.totalEquipStatus.hpPercent || 0;
+    const hpPctAdditional = hpPctFromEquipStatus - hpPctTotal;
+    if (hpPctAdditional !== 0) {
+      hpPctEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: hpPctAdditional, detail: '%' });
+    }
 
     sections.push({
       label: 'HP %',
       entries: hpPctEntries,
-      subtotal: hpPctTotal,
+      subtotal: hpPctFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com HP %',
     });
 
@@ -3071,11 +3131,16 @@ export class Calculator {
     }
     spEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const spTotal = spEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const spFromEquipStatus = this.totalEquipStatus.sp || 0;
+    const spAdditional = spFromEquipStatus - spTotal;
+    if (spAdditional !== 0) {
+      spEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: spAdditional });
+    }
 
     sections.push({
       label: 'Equipamentos SP',
       entries: spEntries,
-      subtotal: spTotal,
+      subtotal: spFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com SP',
     });
 
@@ -3092,11 +3157,16 @@ export class Calculator {
     }
     spPctEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const spPctTotal = spPctEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const spPctFromEquipStatus = this.totalEquipStatus.spPercent || 0;
+    const spPctAdditional = spPctFromEquipStatus - spPctTotal;
+    if (spPctAdditional !== 0) {
+      spPctEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: spPctAdditional, detail: '%' });
+    }
 
     sections.push({
       label: 'SP %',
       entries: spPctEntries,
-      subtotal: spPctTotal,
+      subtotal: spPctFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com SP %',
     });
 
@@ -3124,11 +3194,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.matkPercent || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos Matk %',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com Matk %',
     });
 
@@ -3136,7 +3211,7 @@ export class Calculator {
       title: 'Matk % Breakdown',
       sections,
       totalLabel: 'Matk %',
-      totalValue: `${this.totalEquipStatus.matkPercent || 0}%`,
+      totalValue: `${totalFromEquipStatus}%`,
     };
   }
 
@@ -3162,11 +3237,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.vct || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos VCT',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com VCT',
     });
 
@@ -3174,7 +3254,7 @@ export class Calculator {
       title: 'VCT Breakdown',
       sections,
       totalLabel: 'VCT',
-      totalValue: `${this.totalEquipStatus.vct || 0}%`,
+      totalValue: `${totalFromEquipStatus}%`,
     };
   }
 
@@ -3200,11 +3280,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.fct || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos FCT',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com FCT',
     });
 
@@ -3212,7 +3297,7 @@ export class Calculator {
       title: 'FCT Breakdown',
       sections,
       totalLabel: 'FCT',
-      totalValue: `${this.totalEquipStatus.fct || 0}`,
+      totalValue: `${totalFromEquipStatus}`,
     };
   }
 
@@ -3232,11 +3317,16 @@ export class Calculator {
     }
     equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const totalFromEquipStatus = this.totalEquipStatus.acd || 0;
+    const additional = totalFromEquipStatus - equipTotal;
+    if (additional !== 0) {
+      equipEntries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+    }
 
     sections.push({
       label: 'Equipamentos ACD',
       entries: equipEntries,
-      subtotal: equipTotal,
+      subtotal: totalFromEquipStatus,
       emptyMessage: 'Nenhum equipamento com ACD',
     });
 
@@ -3244,7 +3334,7 @@ export class Calculator {
       title: 'ACD Breakdown',
       sections,
       totalLabel: 'ACD',
-      totalValue: `${this.totalEquipStatus.acd || 0}`,
+      totalValue: `${totalFromEquipStatus}`,
     };
   }
 
