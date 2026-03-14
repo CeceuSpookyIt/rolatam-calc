@@ -1799,6 +1799,127 @@ export class Calculator {
     return this.possiblyDamages;
   }
 
+  getAtkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const atkSummary = this.dmgCalculator.atkSummaryForUI;
+    const { totalStr, totalDex, totalLuk, totalPow } = this.dmgCalculator.status;
+    const baseLvl = this.model.level;
+    const isRange = this.weaponData?.data?.rangeType === 'range';
+    const [primaryStat, primaryLabel, secondaryStat, secondaryLabel] = isRange
+      ? [totalDex, 'DEX', totalStr, 'STR']
+      : [totalStr, 'STR', totalDex, 'DEX'];
+
+    // 1. Status ATK
+    const statusEntries: BreakdownEntry[] = [
+      { source: `Level / 4`, value: floor(baseLvl / 4), color: 'white' },
+      { source: primaryLabel, value: primaryStat, color: 'white' },
+      { source: `${secondaryLabel} / 5`, value: floor(secondaryStat / 5), color: 'white' },
+      { source: 'LUK / 3', value: floor(totalLuk / 3), color: 'white' },
+    ];
+    if (totalPow > 0) {
+      statusEntries.push({ source: 'POW × 5', value: totalPow * 5, color: 'white' });
+    }
+    const formulaStr = totalPow > 0
+      ? `floor(${baseLvl}/4 + ${secondaryStat}/5 + ${primaryStat} + ${totalLuk}/3) + ${totalPow}×5`
+      : `floor(${baseLvl}/4 + ${secondaryStat}/5 + ${primaryStat} + ${totalLuk}/3)`;
+
+    sections.push({
+      label: 'Status ATK',
+      entries: statusEntries,
+      formula: formulaStr,
+      subtotal: atkSummary.totalStatusAtk,
+    });
+
+    // 2. Weapon ATK
+    const weaponData = this.weaponData?.data;
+    const baseWeaponAtk = weaponData?.baseWeaponAtk || 0;
+    const refineBonus = weaponData?.refineBonus || 0;
+    const highUpgradeBonus = weaponData?.highUpgradeBonus || 0;
+    const weaponEntries: BreakdownEntry[] = [];
+
+    if (baseWeaponAtk > 0) {
+      const weaponName = this.equipItem.get('weapon' as any)?.name || 'Arma';
+      weaponEntries.push({ source: weaponName, value: baseWeaponAtk, color: 'white' });
+    }
+    if (refineBonus > 0) {
+      weaponEntries.push({ source: `Refine +${this.model.weaponRefine || 0}`, value: refineBonus, color: 'white' });
+    }
+    if (highUpgradeBonus > 0) {
+      weaponEntries.push({ source: 'High Upgrade Bonus', value: highUpgradeBonus, color: 'white' });
+    }
+    const weaponTotal = baseWeaponAtk + refineBonus + highUpgradeBonus;
+
+    sections.push({
+      label: 'Weapon ATK',
+      entries: weaponEntries,
+      subtotal: weaponTotal,
+      emptyMessage: 'Nenhuma arma equipada',
+    });
+
+    // 3. Mastery ATK
+    const masteryEntries: BreakdownEntry[] = [];
+    if (atkSummary.skillAtkMastery > 0) {
+      masteryEntries.push({ source: 'Skill Mastery', value: atkSummary.skillAtkMastery });
+    }
+    if (atkSummary.buffAtk > 0) {
+      masteryEntries.push({ source: 'Buff ATK', value: atkSummary.buffAtk });
+    }
+    if (atkSummary.uiMastery > 0) {
+      masteryEntries.push({ source: 'UI Mastery', value: atkSummary.uiMastery });
+    }
+    if (atkSummary.hiddenMastery > 0) {
+      masteryEntries.push({ source: 'Hidden Mastery', value: atkSummary.hiddenMastery });
+    }
+    const masteryTotal = atkSummary.totalMasteryAtk + atkSummary.totalHideMasteryAtk;
+
+    sections.push({
+      label: 'Mastery ATK',
+      entries: masteryEntries,
+      subtotal: masteryTotal,
+      emptyMessage: 'Nenhum mastery ativo',
+    });
+
+    // 4. Equipment ATK
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const atkVal = (stats as any)?.atk;
+      if (atkVal && atkVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        const source = itemData?.name || slotLabel;
+        equipEntries.push({
+          source,
+          slot: slotLabel,
+          value: atkVal,
+        });
+      }
+    }
+
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos ATK',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com ATK',
+    });
+
+    // Total
+    const statusAtk = atkSummary.totalStatusAtk;
+    const otherAtk = weaponTotal + masteryTotal + equipTotal;
+
+    return {
+      title: 'ATK Breakdown',
+      sections,
+      totalLabel: 'ATK',
+      totalValue: `${statusAtk} + ${otherAtk}`,
+    };
+  }
+
   getCriBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
     const sections: BreakdownSection[] = [];
     const itemSummaryFull = this.getItemSummary();

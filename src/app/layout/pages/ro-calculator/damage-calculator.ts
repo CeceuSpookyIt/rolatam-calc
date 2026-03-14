@@ -1462,6 +1462,9 @@ export class DamageCalculator {
       totalHideMasteryAtk: hiddenMastery,
       totalBuffAtk: buffAtk,
       totalStatusMatk: this.getStatusMatk(),
+      // Individual subcomponents for breakdown
+      skillAtkMastery, uiMastery, hiddenMastery, buffAtk,
+      equipAtk, skillAtk, striking,
     };
   }
 }

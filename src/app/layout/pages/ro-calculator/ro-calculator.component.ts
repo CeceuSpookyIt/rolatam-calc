@@ -1690,6 +1690,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'cri':
         breakdown = this.calculator.getCriBreakdown(context, this.totalSummary?.dmg);
         break;
+      case 'atk':
+        breakdown = this.calculator.getAtkBreakdown();
+        break;
     }
 
     if (!breakdown) return;

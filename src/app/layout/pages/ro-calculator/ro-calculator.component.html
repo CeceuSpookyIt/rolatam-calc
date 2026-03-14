@@ -338,7 +338,7 @@
                 <div class="grid grid-nogutter">
                   <div class="col-12" [pTooltip]="statDeltaTooltips['atk_row']" [escape]="false" tooltipPosition="right">
                     Alt+Q Atk:
-                    <span class="font-semibold px-1 summary_stat_atk">
+                    <span class="font-semibold px-1 summary_stat_atk" style="cursor:pointer;" (click)="openBreakdown('atk'); $event.stopPropagation()">
                       {{ totalSummary?.calc?.totalStatusAtk || 0 }} +
                       {{
                         totalSummary?.weapon?.baseWeaponAtk +
