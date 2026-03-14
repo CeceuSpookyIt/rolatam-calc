@@ -3392,4 +3392,84 @@ export class Calculator {
       totalValue: `${accuracyValue}%`,
     };
   }
+
+  getElementBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const entries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('p_element_') || key.startsWith('m_element_') || key.startsWith('m_my_element_')) && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('p_element_', 'Phys ').replace('m_element_', 'Mag ').replace('m_my_element_', 'Mag Own ');
+          entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Element Damage',
+      entries,
+      subtotal: total,
+      emptyMessage: 'Nenhum equipamento com bônus elemental',
+    });
+
+    const multiplier = context === 'basic'
+      ? (damageSummary?.propertyMultiplier ?? 0)
+      : (damageSummary?.skillPropertyMultiplier ?? 0);
+
+    return {
+      title: 'Element Breakdown',
+      sections,
+      totalLabel: 'Element',
+      totalValue: `x ${multiplier}`,
+    };
+  }
+
+  getSizePenaltyBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+
+    const entries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const statObj = stats as any;
+      if (!statObj) continue;
+      for (const [key, val] of Object.entries(statObj)) {
+        if ((key.startsWith('p_size_') || key.startsWith('m_size_') || key === 'ignore_size_penalty') && val && (val as number) !== 0) {
+          const itemData = this.equipItem.get(slot as any);
+          const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+          const label = key.replace('p_size_', 'Phys ').replace('m_size_', 'Mag ').replace('ignore_size_penalty', 'Ignore Size');
+          entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        }
+      }
+    }
+    entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Size Damage',
+      entries,
+      subtotal: total,
+      emptyMessage: 'Nenhum equipamento com bônus de tamanho',
+    });
+
+    const penalty = context === 'basic'
+      ? (damageSummary?.sizePenalty ?? 0)
+      : (damageSummary?.skillSizePenalty ?? 0);
+
+    return {
+      title: 'Size Penalty Breakdown',
+      sections,
+      totalLabel: 'Size Penalty',
+      totalValue: `${penalty}%`,
+    };
+  }
 }

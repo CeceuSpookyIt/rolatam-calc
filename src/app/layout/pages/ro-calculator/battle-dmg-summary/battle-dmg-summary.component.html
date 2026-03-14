@@ -11,7 +11,7 @@
   <div class="col-7">
     Element:
     <span class="{{ 'property_' + totalSummary?.calcSkill?.propertySkill }} px-1 font-semibold">{{ totalSummary?.calcSkill?.propertySkill }}</span
-    ><span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.skillPropertyMultiplier }})</span>
+    ><span class="summary_highlight px-2" style="cursor:pointer;" (click)="statBreakdownClick.emit('element:skill')">( x {{ totalSummary?.dmg?.skillPropertyMultiplier }})</span>
     <span>
       <button
         pButton
@@ -46,15 +46,17 @@
     ></app-calc-value>
   </div>
   <div class="col-6" [hidden]="totalSummary?.calcSkill?.dmgType === 'Magical'">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="SizePenalty:"
-      unit=" %"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.skillSizePenalty"
-      [max2]="totalSummary2?.dmg?.skillSizePenalty"
-    ></app-calc-value>
+    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('sizePenalty:skill')">
+      <app-calc-value
+        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+        label="SizePenalty:"
+        unit=" %"
+        styleClass="summary_highlight"
+        styleClass2="summary_compare"
+        [max]="totalSummary?.dmg?.skillSizePenalty"
+        [max2]="totalSummary2?.dmg?.skillSizePenalty"
+      ></app-calc-value>
+    </span>
   </div>
   <div class="col-6" [hidden]="totalSummary?.calcSkill?.dmgType === 'Magical'">
     <span style="cursor:pointer;" (click)="statBreakdownClick.emit('accuracy:skill')">
@@ -422,18 +424,20 @@
       <div class="col-6">
         Element:
         <span class="{{ 'property_' + totalSummary?.propertyAtk }} px-1 font-semibold">{{ totalSummary?.propertyAtk }}</span
-        ><span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.propertyMultiplier }})</span>
+        ><span class="summary_highlight px-2" style="cursor:pointer;" (click)="statBreakdownClick.emit('element:basic')">( x {{ totalSummary?.dmg?.propertyMultiplier }})</span>
       </div>
       <div class="col-6">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="SizePenalty:"
-          unit=" %"
-          styleClass="summary_highlight"
-          styleClass2="summary_compare"
-          [max]="totalSummary?.dmg?.sizePenalty"
-          [max2]="totalSummary2?.dmg?.sizePenalty"
-        ></app-calc-value>
+        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('sizePenalty:basic')">
+          <app-calc-value
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="SizePenalty:"
+            unit=" %"
+            styleClass="summary_highlight"
+            styleClass2="summary_compare"
+            [max]="totalSummary?.dmg?.sizePenalty"
+            [max2]="totalSummary2?.dmg?.sizePenalty"
+          ></app-calc-value>
+        </span>
       </div>
       <div class="col-6">
         <span style="cursor:pointer;" (click)="statBreakdownClick.emit('accuracy:basic')">

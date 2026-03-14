@@ -1762,6 +1762,12 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'accuracy':
         breakdown = this.calculator.getAccuracyBreakdown(context, this.totalSummary?.dmg);
         break;
+      case 'element':
+        breakdown = this.calculator.getElementBreakdown(context, this.totalSummary?.dmg);
+        break;
+      case 'sizePenalty':
+        breakdown = this.calculator.getSizePenaltyBreakdown(context, this.totalSummary?.dmg);
+        break;
     }
 
     if (!breakdown) return;
