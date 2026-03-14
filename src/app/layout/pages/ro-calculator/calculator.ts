@@ -3597,4 +3597,189 @@ export class Calculator {
       maxDamage: dmg.criMaxDamage,
     };
   }
+
+  getSkillDamageBreakdown(): DamageBreakdown | null {
+    const p = this.dmgCalculator.damagePipelineForUI.skill;
+    if (!p || !p.dmgType) return null;
+    const dmg = this.damageSummary;
+    if (p.dmgType === 'Magical') {
+      return this._buildMagicalSkillBreakdown(p, dmg);
+    }
+    return this._buildPhysicalSkillBreakdown(p, dmg);
+  }
+
+  private _buildPhysicalSkillBreakdown(p: any, dmg: any): DamageBreakdown {
+    const steps: DamageStep[] = [];
+    let running = p.totalMaxOver as number;
+
+    steps.push({ label: 'Total ATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.modifyFinalAtkFactor !== 1) {
+      running = floor(running * p.modifyFinalAtkFactor);
+      steps.push({ label: 'Job Modifier', operation: `× ${round(p.modifyFinalAtkFactor, 4)}`, result: running });
+    }
+
+    if (p.canCri && p.criMultiplierBonus !== 1) {
+      running = floor(running * p.criMultiplierBonus);
+      steps.push({ label: 'Crit Dmg %', operation: `× ${round(p.criMultiplierBonus, 4)}`, result: running });
+    }
+
+    if (p.rangedMultiplier !== 1) {
+      running = floor(running * p.rangedMultiplier);
+      steps.push({ label: 'Melee/Range %', operation: `× ${round(p.rangedMultiplier, 4)}`, result: running });
+    }
+
+    running = floor(running * p.baseSkillMultiplier);
+    steps.push({ label: 'Base Skill %', operation: `× ${round(p.baseSkillMultiplier, 4)}`, result: running, color: 'yellow' });
+
+    if (p.equipSkillMultiplier !== 1) {
+      running = floor(running * p.equipSkillMultiplier);
+      steps.push({ label: 'Skill Bonus %', operation: `× ${round(p.equipSkillMultiplier, 4)}`, result: running });
+    }
+
+    if (p.resReduction !== 1) {
+      running = floor(running * p.resReduction);
+      steps.push({ label: 'RES Reduction', operation: `× ${round(p.resReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * p.hardDef);
+      steps.push({ label: 'Hard DEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.softDef !== 0) {
+      running = running - p.softDef;
+      steps.push({ label: 'Soft DEF', operation: `− ${p.softDef}`, result: running, color: 'red' });
+    }
+
+    if (p.canCri) {
+      running = floor(running * p.criMultiplierBase);
+      steps.push({ label: 'Crit Multiplier', operation: `× ${round(p.criMultiplierBase, 4)}`, result: running, color: 'yellow' });
+    }
+
+    if (p.advKatarMultiplier !== 1) {
+      running = floor(running * p.advKatarMultiplier);
+      steps.push({ label: 'Adv Katar', operation: `× ${round(p.advKatarMultiplier, 4)}`, result: running });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    const extraDmg = p.extraDmg || 0;
+    if (extraDmg !== 0) {
+      const extraDmgCri = p.canCri ? floor(extraDmg * p.criMultiplierBonus) : extraDmg;
+      running = running + extraDmgCri;
+      steps.push({ label: 'Extra Damage', operation: `+ ${extraDmgCri}`, result: running, color: 'green' });
+    }
+
+    return {
+      title: 'Skill Damage (Physical)',
+      steps,
+      minDamage: dmg.skillMinDamage,
+      maxDamage: dmg.skillMaxDamage,
+      dps: dmg.skillDps,
+      dpsLabel: 'Skill DPS',
+    };
+  }
+
+  private _buildMagicalSkillBreakdown(p: any, dmg: any): DamageBreakdown {
+    const steps: DamageStep[] = [];
+    let running = p.totalMatkMax as number;
+
+    steps.push({ label: 'Total MATK', operation: `${running}`, result: running, color: 'white' });
+
+    if (p.sMatkMultiplier !== 1) {
+      running = floor(running * p.sMatkMultiplier);
+      steps.push({ label: 'S.Matk', operation: `× ${round(p.sMatkMultiplier, 4)}`, result: running });
+    }
+
+    if (p.raceMultiplier !== 1) {
+      running = floor(running * p.raceMultiplier);
+      steps.push({ label: 'Race %', operation: `× ${round(p.raceMultiplier, 4)}`, result: running });
+    }
+
+    if (p.sizeMultiplier !== 1) {
+      running = floor(running * p.sizeMultiplier);
+      steps.push({ label: 'Size %', operation: `× ${round(p.sizeMultiplier, 4)}`, result: running });
+    }
+
+    if (p.elementMultiplier !== 1) {
+      running = floor(running * p.elementMultiplier);
+      steps.push({ label: 'Element %', operation: `× ${round(p.elementMultiplier, 4)}`, result: running });
+    }
+
+    if (p.monsterTypeMultiplier !== 1) {
+      running = floor(running * p.monsterTypeMultiplier);
+      steps.push({ label: 'Monster Class %', operation: `× ${round(p.monsterTypeMultiplier, 4)}`, result: running });
+    }
+
+    if (p.matkPercentMultiplier !== 1) {
+      running = floor(running * p.matkPercentMultiplier);
+      steps.push({ label: 'MATK %', operation: `× ${round(p.matkPercentMultiplier, 4)}`, result: running });
+    }
+
+    if (p.cometMultiplier != null && p.cometMultiplier !== 1) {
+      running = floor(running * p.cometMultiplier);
+      steps.push({ label: 'Comet', operation: `× ${round(p.cometMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    running = floor(running * p.baseSkillMultiplier);
+    steps.push({ label: 'Base Skill %', operation: `× ${round(p.baseSkillMultiplier, 4)}`, result: running, color: 'yellow' });
+
+    if (p.myElementMultiplier != null && p.myElementMultiplier !== 1) {
+      running = floor(running * p.myElementMultiplier);
+      steps.push({ label: 'My Element', operation: `× ${round(p.myElementMultiplier, 4)}`, result: running });
+    }
+
+    if (p.mresReduction !== 1) {
+      running = floor(running * p.mresReduction);
+      steps.push({ label: 'MRES Reduction', operation: `× ${round(p.mresReduction, 4)}`, result: running });
+    }
+
+    if (p.hardDef !== 1) {
+      running = floor(running * round(p.hardDef, 4));
+      steps.push({ label: 'Hard MDEF', operation: `× ${round(p.hardDef, 4)}`, result: running });
+    }
+
+    if (p.softMDef !== 0) {
+      running = running - p.softMDef;
+      steps.push({ label: 'Soft MDEF', operation: `− ${p.softMDef}`, result: running, color: 'red' });
+    }
+
+    if (p.equipSkillMultiplier !== 1) {
+      running = floor(running * p.equipSkillMultiplier);
+      steps.push({ label: 'Skill Bonus %', operation: `× ${round(p.equipSkillMultiplier, 4)}`, result: running });
+    }
+
+    if (p.propertyMultiplier !== 1) {
+      running = floor(running * p.propertyMultiplier);
+      steps.push({ label: 'Property', operation: `× ${round(p.propertyMultiplier, 4)}`, result: running });
+    }
+
+    if (p.finalDmgMultiplier !== 1) {
+      running = floor(running * p.finalDmgMultiplier);
+      steps.push({ label: 'Element Final %', operation: `× ${round(p.finalDmgMultiplier, 4)}`, result: running });
+    }
+
+    if (p.magicFinalMultiplier !== 1) {
+      running = floor(running * p.magicFinalMultiplier);
+      steps.push({ label: 'Magic Final %', operation: `× ${round(p.magicFinalMultiplier, 4)}`, result: running });
+    }
+
+    if (p.debuffMultiplier !== 1) {
+      running = floor(running * p.debuffMultiplier);
+      steps.push({ label: 'Debuff', operation: `× ${round(p.debuffMultiplier, 4)}`, result: running, color: 'yellow' });
+    }
+
+    return {
+      title: 'Skill Damage (Magical)',
+      steps,
+      minDamage: dmg.skillMinDamage,
+      maxDamage: dmg.skillMaxDamage,
+      dps: dmg.skillDps,
+      dpsLabel: 'Skill DPS',
+    };
+  }
 }
