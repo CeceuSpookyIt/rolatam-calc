@@ -3591,38 +3591,36 @@ export class Calculator {
       steps.push({ label: '+ Equipment ATK', operation: `+ ${extraAtk}`, result: running, color: 'green' });
     }
 
-    // Step 4: Individual modifiers (ATK%, race, size, element, monsterType, EDP, property)
-    // These apply to weapon+extra through Group A (atkPercent) and Group B (race×size×element×class)
-    // then combined: statusAtk + floor((groupA + groupB) × propertyMultiplier)
+    // Step 4: Group A (ATK%) and Group B (race×size×element×class) — parallel branches
+    // Combined: statusAtk + floor((groupA + groupB) × propertyMultiplier)
     const rawBase = p.rawWeaponPlusExtra || 0;
     if (rawBase > 0) {
-      const modifierSteps: { label: string; op: string; color?: string }[] = [];
-      if (p.atkPercent && p.atkPercent !== 1) modifierSteps.push({ label: 'ATK %', op: `× ${round(p.atkPercent, 4)}` });
-      if (p.raceMultiplier && p.raceMultiplier !== 1) modifierSteps.push({ label: 'Race %', op: `× ${round(p.raceMultiplier, 4)}` });
-      if (p.sizeMultiplier && p.sizeMultiplier !== 1) modifierSteps.push({ label: 'Size %', op: `× ${round(p.sizeMultiplier, 4)}` });
-      if (p.elementMultiplier && p.elementMultiplier !== 1) modifierSteps.push({ label: 'Element %', op: `× ${round(p.elementMultiplier, 4)}` });
-      if (p.monsterTypeMultiplier && p.monsterTypeMultiplier !== 1) modifierSteps.push({ label: 'Monster Class %', op: `× ${round(p.monsterTypeMultiplier, 4)}` });
-      if (p.cometMultiplier && p.cometMultiplier !== 1) modifierSteps.push({ label: 'Comet', op: `× ${round(p.cometMultiplier, 4)}`, color: 'yellow' });
-      if (p.isEDP) modifierSteps.push({ label: 'EDP (Equip)', op: `× 4`, color: 'yellow' });
-      if (p.propertyMultiplier && p.propertyMultiplier !== 1) modifierSteps.push({ label: 'Property', op: `× ${round(p.propertyMultiplier, 4)}`, color: 'yellow' });
-
-      // Compute the actual combined result
       const groupA = p.groupAMaxOver || 0;
       const groupB = p.groupBMaxOver || 0;
-      const combinedAfterProperty = floor((groupA + groupB) * (p.propertyMultiplier || 1));
-      running = statusAtk2 + combinedAfterProperty;
 
-      // Show each modifier as a step — result column shows running total only on last modifier
-      for (let i = 0; i < modifierSteps.length; i++) {
-        const m = modifierSteps[i];
-        const isLast = i === modifierSteps.length - 1;
-        steps.push({
-          label: `× ${m.label}`,
-          operation: m.op,
-          result: isLast ? running : -1,
-          color: (m.color || 'muted') as any,
-        });
+      // Group A: ATK%
+      if (p.atkPercent && p.atkPercent !== 1) {
+        steps.push({ label: '  Group A: × ATK %', operation: `× ${round(p.atkPercent, 4)}`, result: -1, color: 'muted' as any });
       }
+      steps.push({ label: '+ Group A', operation: `+ ${floor(groupA)}`, result: -1, color: 'white' as any });
+
+      // Group B: individual multipliers
+      if (p.raceMultiplier && p.raceMultiplier !== 1) steps.push({ label: '  Group B: × Race %', operation: `× ${round(p.raceMultiplier, 4)}`, result: -1, color: 'muted' as any });
+      if (p.sizeMultiplier && p.sizeMultiplier !== 1) steps.push({ label: '  Group B: × Size %', operation: `× ${round(p.sizeMultiplier, 4)}`, result: -1, color: 'muted' as any });
+      if (p.elementMultiplier && p.elementMultiplier !== 1) steps.push({ label: '  Group B: × Element %', operation: `× ${round(p.elementMultiplier, 4)}`, result: -1, color: 'muted' as any });
+      if (p.monsterTypeMultiplier && p.monsterTypeMultiplier !== 1) steps.push({ label: '  Group B: × Monster Class %', operation: `× ${round(p.monsterTypeMultiplier, 4)}`, result: -1, color: 'muted' as any });
+      if (p.cometMultiplier && p.cometMultiplier !== 1) steps.push({ label: '  Group B: × Comet', operation: `× ${round(p.cometMultiplier, 4)}`, result: -1, color: 'yellow' as any });
+      if (p.isEDP) steps.push({ label: '  Group B: × EDP (Equip)', operation: `× 4`, result: -1, color: 'yellow' as any });
+      steps.push({ label: '+ Group B', operation: `+ ${floor(groupB)}`, result: -1, color: 'white' as any });
+
+      // Property multiplier applied to (A + B)
+      const combinedAfterProperty = floor((groupA + groupB) * (p.propertyMultiplier || 1));
+      if (p.propertyMultiplier && p.propertyMultiplier !== 1) {
+        steps.push({ label: '× Property', operation: `× ${round(p.propertyMultiplier, 4)}`, result: -1, color: 'yellow' as any });
+      }
+
+      running = statusAtk2 + combinedAfterProperty;
+      steps.push({ label: '= ATK após modifiers', result: running, color: 'white' as any });
     }
 
     // Step 5: × P.Atk
