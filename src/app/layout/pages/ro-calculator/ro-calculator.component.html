@@ -354,11 +354,11 @@
                   </div>
                   <div class="col-6" [pTooltip]="statDeltaTooltips['pAtk']" [escape]="false" tooltipPosition="right">
                     P.Atk:
-                    <span class="font-semibold px-1 summary_stat_atk2">{{ totalSummary?.dmg?.pAtk || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_atk2" style="cursor:pointer;" (click)="openBreakdown('pAtk'); $event.stopPropagation()">{{ totalSummary?.dmg?.pAtk || 0 }}</span>
                   </div>
                   <div class="col-6" [pTooltip]="statDeltaTooltips['cRate']" [escape]="false" tooltipPosition="right">
                     C.Rate:
-                    <span class="font-semibold px-1 summary_stat_atk2">{{ totalSummary?.dmg?.cRate || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_atk2" style="cursor:pointer;" (click)="openBreakdown('cRate'); $event.stopPropagation()">{{ totalSummary?.dmg?.cRate || 0 }}</span>
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['aspd']" [escape]="false" tooltipPosition="right">
                     ASPD:
@@ -422,7 +422,7 @@
                     Matk
                     <span class="font-semibold px-1 summary_stat_matk">{{ totalSummary?.matkPercent || 0 }} %</span>
                     S.Matk:
-                    <span class="font-semibold px-1 summary_stat_matk2">{{ totalSummary?.dmg?.sMatk || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_matk2" style="cursor:pointer;" (click)="openBreakdown('sMatk'); $event.stopPropagation()">{{ totalSummary?.dmg?.sMatk || 0 }}</span>
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['acd']" [escape]="false" tooltipPosition="right">
                     After Cast Delay:

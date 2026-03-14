@@ -1714,6 +1714,15 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       case 'criDmg':
         breakdown = this.calculator.getCritDmgBreakdown();
         break;
+      case 'pAtk':
+        breakdown = this.calculator.getPatkBreakdown();
+        break;
+      case 'sMatk':
+        breakdown = this.calculator.getSmatkBreakdown();
+        break;
+      case 'cRate':
+        breakdown = this.calculator.getCrateBreakdown();
+        break;
       case 'melee':
         breakdown = this.calculator.getMeleeBreakdown();
         break;

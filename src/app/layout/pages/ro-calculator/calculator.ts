@@ -2408,6 +2408,102 @@ export class Calculator {
     };
   }
 
+  getPatkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.pAtk;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos P.Atk',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com P.Atk',
+    });
+
+    return {
+      title: 'P.Atk Breakdown',
+      sections,
+      totalLabel: 'P.Atk',
+      totalValue: `${this.totalEquipStatus.pAtk || 0}`,
+    };
+  }
+
+  getSmatkBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.sMatk;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos S.Matk',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com S.Matk',
+    });
+
+    return {
+      title: 'S.Matk Breakdown',
+      sections,
+      totalLabel: 'S.Matk',
+      totalValue: `${this.totalEquipStatus.sMatk || 0}`,
+    };
+  }
+
+  getCrateBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const itemSummaryFull = this.getItemSummary();
+    const equipEntries: BreakdownEntry[] = [];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.cRate;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos C.Rate',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com C.Rate',
+    });
+
+    return {
+      title: 'C.Rate Breakdown',
+      sections,
+      totalLabel: 'C.Rate',
+      totalValue: `${this.totalEquipStatus.cRate || 0}`,
+    };
+  }
+
   getCritDmgBreakdown(): StatBreakdown {
     const sections: BreakdownSection[] = [];
     const itemSummaryFull = this.getItemSummary();
