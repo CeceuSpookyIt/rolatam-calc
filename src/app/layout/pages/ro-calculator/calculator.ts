@@ -2408,6 +2408,172 @@ export class Calculator {
     };
   }
 
+  getResBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalSta } = this.dmgCalculator.status;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base RES (STA)
+    const staContrib = totalSta + floor(totalSta / 3) * 5;
+    const baseEntries: BreakdownEntry[] = [
+      { source: 'STA', value: totalSta, color: 'white' },
+      { source: 'floor(STA / 3) × 5', value: floor(totalSta / 3) * 5, color: 'white' },
+    ];
+
+    sections.push({
+      label: 'Base RES (STA)',
+      entries: baseEntries,
+      formula: `${totalSta} + floor(${totalSta}/3)×5 = ${staContrib}`,
+      subtotal: staContrib,
+    });
+
+    // 2. Equipment RES
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.res;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos RES',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com RES',
+    });
+
+    // 3. Refine Bonus RES (itemLevel 2 equipment)
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusRes = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2 && Number(refine) > 0) {
+        const bonus = Number(refine) * 2;
+        bonusRes += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: `+${refine} Lv2`,
+        });
+      }
+    }
+
+    if (bonusRes > 0) {
+      sections.push({
+        label: 'Refine Bonus RES (Lv2)',
+        entries: refineEntries,
+        subtotal: bonusRes,
+      });
+    }
+
+    return {
+      title: 'RES Breakdown',
+      sections,
+      totalLabel: 'RES',
+      totalValue: `${this.res}`,
+    };
+  }
+
+  getMresBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { totalWis } = this.dmgCalculator.status;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Base MRES (WIS)
+    const wisContrib = totalWis + floor(totalWis / 3) * 5;
+    const baseEntries: BreakdownEntry[] = [
+      { source: 'WIS', value: totalWis, color: 'white' },
+      { source: 'floor(WIS / 3) × 5', value: floor(totalWis / 3) * 5, color: 'white' },
+    ];
+
+    sections.push({
+      label: 'Base MRES (WIS)',
+      entries: baseEntries,
+      formula: `${totalWis} + floor(${totalWis}/3)×5 = ${wisContrib}`,
+      subtotal: wisContrib,
+    });
+
+    // 2. Equipment MRES
+    const equipEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const val = (stats as any)?.mres;
+      if (val && val !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        equipEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: val });
+      }
+    }
+    equipEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const equipTotal = equipEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Equipamentos MRES',
+      entries: equipEntries,
+      subtotal: equipTotal,
+      emptyMessage: 'Nenhum equipamento com MRES',
+    });
+
+    // 3. Refine Bonus MRES (itemLevel 2 equipment) - same bonusRes as RES
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusRes = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2 && Number(refine) > 0) {
+        const bonus = Number(refine) * 2;
+        bonusRes += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: `+${refine} Lv2`,
+        });
+      }
+    }
+
+    if (bonusRes > 0) {
+      sections.push({
+        label: 'Refine Bonus MRES (Lv2)',
+        entries: refineEntries,
+        subtotal: bonusRes,
+      });
+    }
+
+    return {
+      title: 'MRES Breakdown',
+      sections,
+      totalLabel: 'MRES',
+      totalValue: `${this.mres}`,
+    };
+  }
+
   getPatkBreakdown(): StatBreakdown {
     const sections: BreakdownSection[] = [];
     const itemSummaryFull = this.getItemSummary();
