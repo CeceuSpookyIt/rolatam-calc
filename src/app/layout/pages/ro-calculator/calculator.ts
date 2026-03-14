@@ -2023,6 +2023,155 @@ export class Calculator {
     };
   }
 
+  getDefBreakdown(): StatBreakdown {
+    const sections: BreakdownSection[] = [];
+    const { level } = this.model;
+    const { totalVit, totalAgi } = this.dmgCalculator.status;
+    const { softDef: equipSoftDef = 0, softDefPercent = 0, def: equipDef = 0, defPercent = 0 } = this.totalEquipStatus;
+    const itemSummaryFull = this.getItemSummary();
+
+    // 1. Soft DEF
+    const softDefEntries: BreakdownEntry[] = [
+      { source: 'VIT / 2', value: floor(totalVit / 2), color: 'white' },
+      { source: 'AGI / 5', value: floor(totalAgi / 5), color: 'white' },
+      { source: 'Level / 2', value: floor(level / 2), color: 'white' },
+    ];
+
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const sdVal = (stats as any)?.softDef;
+      if (sdVal && sdVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        softDefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: sdVal });
+      }
+    }
+
+    if (softDefPercent !== 0) {
+      softDefEntries.push({ source: 'Soft DEF %', value: softDefPercent, detail: '%' });
+    }
+
+    const rawSoftDef = floor(totalVit / 2 + totalAgi / 5 + level / 2);
+    const formulaSoftDef = softDefPercent !== 0
+      ? `floor((${rawSoftDef} + ${equipSoftDef}) × ${100 + softDefPercent}/100)`
+      : `floor(${totalVit}/2 + ${totalAgi}/5 + ${level}/2) + equipSoftDef`;
+
+    sections.push({
+      label: 'Soft DEF',
+      entries: softDefEntries,
+      formula: formulaSoftDef,
+      subtotal: this.softDef,
+    });
+
+    // 2. Hard DEF (Equipment)
+    const hardDefEntries: BreakdownEntry[] = [];
+    for (const [slot, stats] of Object.entries(itemSummaryFull)) {
+      if (slot === 'consumableBonuses') continue;
+      const defVal = (stats as any)?.def;
+      if (defVal && defVal !== 0) {
+        const itemData = this.equipItem.get(slot as any);
+        const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
+        hardDefEntries.push({ source: itemData?.name || slotLabel, slot: slotLabel, value: defVal });
+      }
+    }
+    hardDefEntries.sort((a, b) => (b.value as number) - (a.value as number));
+    const hardDefEquipTotal = hardDefEntries.reduce((sum, e) => sum + (e.value as number), 0);
+
+    sections.push({
+      label: 'Hard DEF (Equip)',
+      entries: hardDefEntries,
+      subtotal: hardDefEquipTotal,
+      emptyMessage: 'Nenhum equipamento com DEF',
+    });
+
+    // 3. Refine DEF Bonus
+    const bonus = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5];
+    const calcDefByRefine = (refine: number) => bonus.filter((_, i) => i + 1 <= refine).reduce((sum, val) => sum + val, 0);
+
+    const { headUpperRefine, armorRefine, shieldRefine, garmentRefine, bootRefine } = this.model;
+    const refineSlots: [string, number, string][] = [
+      ['headUpper', headUpperRefine, 'Topo'],
+      ['armor', armorRefine, 'Armadura'],
+      ['shield', shieldRefine, 'Escudo'],
+      ['garment', garmentRefine, 'Manto'],
+      ['boot', bootRefine, 'Sapato'],
+    ];
+
+    const refineEntries: BreakdownEntry[] = [];
+    let bonusDefByRefine = 0;
+    for (const [slotKey, refine, slotLabel] of refineSlots) {
+      if (Number(refine) > 0) {
+        const defByRefine = calcDefByRefine(Number(refine));
+        bonusDefByRefine += defByRefine;
+        const itemData = this.equipItem.get(slotKey as any);
+        refineEntries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: defByRefine,
+          detail: `+${refine}`,
+        });
+      }
+    }
+
+    sections.push({
+      label: 'Refine DEF Bonus',
+      entries: refineEntries,
+      subtotal: bonusDefByRefine,
+      emptyMessage: 'Nenhum refine',
+    });
+
+    // 4. Item Level 2 Bonus
+    const { headUpper, armor, shield, garment, boot } = this.model;
+    const lv2Slots: [number, number, string, string][] = [
+      [headUpper, headUpperRefine, 'headUpper', 'Topo'],
+      [armor, armorRefine, 'armor', 'Armadura'],
+      [shield, shieldRefine, 'shield', 'Escudo'],
+      [garment, garmentRefine, 'garment', 'Manto'],
+      [boot, bootRefine, 'boot', 'Sapato'],
+    ];
+
+    const lv2Entries: BreakdownEntry[] = [];
+    let additionalDef = 0;
+    for (const [itemId, refine, slotKey, slotLabel] of lv2Slots) {
+      if (this.getItem(itemId)?.itemLevel === 2) {
+        const bonus = round(calcDefByRefine(Number(refine)) * 0.2, 0);
+        additionalDef += bonus;
+        const itemData = this.equipItem.get(slotKey as any);
+        lv2Entries.push({
+          source: itemData?.name || slotLabel,
+          slot: slotLabel,
+          value: bonus,
+          detail: 'Lv2',
+        });
+      }
+    }
+
+    if (additionalDef > 0) {
+      sections.push({
+        label: 'Item Level 2 Bonus',
+        entries: lv2Entries,
+        subtotal: additionalDef,
+      });
+    }
+
+    // 5. DEF %
+    if (defPercent !== 0) {
+      sections.push({
+        label: 'DEF %',
+        entries: [{ source: 'DEF %', value: defPercent, detail: '%' }],
+        formula: `floor((${hardDefEquipTotal} + ${bonusDefByRefine}) × ${100 + defPercent}/100) + ${additionalDef}`,
+        subtotal: this.def,
+      });
+    }
+
+    return {
+      title: 'DEF Breakdown',
+      sections,
+      totalLabel: 'DEF',
+      totalValue: `${this.softDef} + ${this.def}`,
+    };
+  }
+
   getCriBreakdown(context: BreakdownContext, damageSummary: any): StatBreakdown {
     const sections: BreakdownSection[] = [];
     const itemSummaryFull = this.getItemSummary();

@@ -384,9 +384,9 @@
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['def_res_row']" [escape]="false" tooltipPosition="right">
                     Def:
-                    <span class="font-semibold px-1 summary_stat_def">{{ totalSummary?.calc?.softDef || 0 }} + {{ totalSummary?.calc?.def || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_def" style="cursor:pointer;" (click)="openBreakdown('def'); $event.stopPropagation()">{{ totalSummary?.calc?.softDef || 0 }} + {{ totalSummary?.calc?.def || 0 }}</span>
                     Res:
-                    <span class="font-semibold px-1 summary_stat_def2">{{ totalSummary?.calc?.res || 0 }}</span>
+                    <span class="font-semibold px-1 summary_stat_def2" style="cursor:pointer;" (click)="openBreakdown('res'); $event.stopPropagation()">{{ totalSummary?.calc?.res || 0 }}</span>
                   </div>
                   <div class="col-12" [pTooltip]="statDeltaTooltips['mdef_mres_row']" [escape]="false" tooltipPosition="right">
                     Mdef:
