@@ -3629,11 +3629,16 @@ export class Calculator {
     const sections: BreakdownSection[] = [];
     const itemSummaryFull = this.getItemSummary();
 
-    // p_element_X / m_element_X: bonus based on attack element (propertyAtk)
-    // m_my_element_X: bonus when skill matches character's element
+    // 3 types of element bonus:
+    // p_element_X / m_element_X: damage vs monster of element X → filter by MONSTER element
+    // m_my_element_X / p_my_element_X: damage of property X → filter by ATTACK element
+    const monsterElement = (this.monster?.data?.elementName || '').toLowerCase();
     const atkElement = (context === 'basic' ? this.propertyBasicAtk : (damageSummary?.skillPropertyAtk || this.propertyBasicAtk) || '').toLowerCase();
-    const relevantAtkSuffixes = new Set(['all']);
-    if (atkElement) relevantAtkSuffixes.add(atkElement);
+
+    const monsterSuffixes = new Set(['all']);
+    if (monsterElement) monsterSuffixes.add(monsterElement);
+    const atkSuffixes = new Set(['all']);
+    if (atkElement) atkSuffixes.add(atkElement);
 
     const entries: BreakdownEntry[] = [];
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
@@ -3644,30 +3649,32 @@ export class Calculator {
         if (!val || (val as number) === 0) continue;
 
         if (key.startsWith('p_element_') || key.startsWith('m_element_')) {
-          // Filter by attack element
+          // Damage vs monster of element X → filter by monster element
           const suffix = key.startsWith('p_element_') ? key.replace('p_element_', '') : key.replace('m_element_', '');
-          if (!relevantAtkSuffixes.has(suffix)) continue;
+          if (!monsterSuffixes.has(suffix)) continue;
 
           const itemData = this.equipItem.get(slot as any);
           const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
-          const label = key.startsWith('p_element_') ? `Phys ${suffix}` : `Mag ${suffix}`;
-          entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
-        } else if (key.startsWith('m_my_element_')) {
-          // Filter by skill element (same as atkElement for consistency)
-          const suffix = key.replace('m_my_element_', '');
-          if (!relevantAtkSuffixes.has(suffix)) continue;
+          const typeLabel = key.startsWith('p_element_') ? 'Phys' : 'Mag';
+          entries.push({ source: `${itemData?.name || slotLabel} (${typeLabel} vs ${suffix})`, slot: slotLabel, value: val as number });
+        } else if (key.startsWith('m_my_element_') || key.startsWith('p_my_element_')) {
+          // Damage of property X → filter by attack element
+          const suffix = key.startsWith('m_my_element_') ? key.replace('m_my_element_', '') : key.replace('p_my_element_', '');
+          if (!atkSuffixes.has(suffix)) continue;
 
           const itemData = this.equipItem.get(slot as any);
           const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
-          entries.push({ source: `${itemData?.name || slotLabel} (Mag Own ${suffix})`, slot: slotLabel, value: val as number });
+          const typeLabel = key.startsWith('m_my_element_') ? 'Mag' : 'Phys';
+          entries.push({ source: `${itemData?.name || slotLabel} (${typeLabel} prop ${suffix})`, slot: slotLabel, value: val as number });
         }
       }
     }
     entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
     const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
 
+    const monsterLabel = monsterElement ? monsterElement.charAt(0).toUpperCase() + monsterElement.slice(1) : '?';
     sections.push({
-      label: `Element Damage (${atkElement || '?'})`,
+      label: `Element Damage (vs ${monsterLabel}, atk: ${atkElement || '?'})`,
       entries,
       subtotal: total,
       emptyMessage: 'Nenhum equipamento com bônus elemental',
