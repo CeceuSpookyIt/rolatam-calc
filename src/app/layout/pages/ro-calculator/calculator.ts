@@ -3372,6 +3372,7 @@ export class Calculator {
     const isTrait = traitStats.includes(statName);
     const allKey = isTrait ? 'allTrait' : 'allStatus';
 
+    // Equipment contributions
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
       if (slot === 'consumableBonuses') continue;
       const s = stats as any;
@@ -3390,15 +3391,53 @@ export class Calculator {
       }
     }
 
+    // Buff contributions (Agi Up, Blessing, Impositio, etc.)
+    for (const [buffName, scripts] of Object.entries(this.buffEquipAtkBonus)) {
+      const s = scripts as any;
+      if (!s) continue;
+      const statVal = s[statName];
+      if (statVal && statVal !== 0) {
+        entries.push({ source: buffName, slot: 'Buff', value: statVal, color: 'yellow' });
+      }
+      const allVal = s[allKey];
+      if (allVal && allVal !== 0) {
+        entries.push({ source: buffName, slot: 'Buff', value: allVal, detail: allKey, color: 'yellow' });
+      }
+    }
+    for (const [buffName, scripts] of Object.entries(this.buffMasteryAtkBonus)) {
+      const s = scripts as any;
+      if (!s) continue;
+      const statVal = s[statName];
+      if (statVal && statVal !== 0) {
+        entries.push({ source: buffName, slot: 'Buff', value: statVal, color: 'yellow' });
+      }
+    }
+
+    // Consumable contributions
+    const consumableStats = itemSummaryFull['consumableBonuses'] as any[];
+    if (consumableStats) {
+      for (const consume of consumableStats) {
+        if (!consume) continue;
+        const statVal = consume[statName];
+        if (statVal && statVal !== 0) {
+          entries.push({ source: 'Consumable', slot: 'Item', value: statVal, color: 'muted' });
+        }
+        const allVal = consume[allKey];
+        if (allVal && allVal !== 0) {
+          entries.push({ source: 'Consumable', slot: 'Item', value: allVal, detail: allKey, color: 'muted' });
+        }
+      }
+    }
+
     entries.sort((a, b) => (b.value as number) - (a.value as number));
     const equipTotal = entries.reduce((sum, e) => sum + (e.value as number), 0);
 
-    // Check for missing sources (buffs, class skills, consumables, etc.)
+    // Catch remaining difference if any
     const totalFromEquipStatus = (this.totalEquipStatus[statName] || 0) + (this.totalEquipStatus[allKey] || 0);
     const realTotal = jobBonus + totalFromEquipStatus;
     const additional = realTotal - equipTotal;
     if (additional !== 0) {
-      entries.push({ source: 'Skill/Class Bonus', slot: 'Skill', value: additional });
+      entries.push({ source: 'Outros', slot: '', value: additional });
     }
 
     sections.push({
