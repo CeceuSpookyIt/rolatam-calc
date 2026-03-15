@@ -722,6 +722,10 @@
         <!-- Consumables -->
         <p-accordion class="mt-1 consumable build-accordion">
           <p-accordionTab header="Consumíveis">
+            <div class="col-12 mb-1">
+              <i class="pi" [ngClass]="consumablesEnabled ? 'pi-eye' : 'pi-eye-slash'" style="cursor:pointer; color: #aaa;" (click)="toggleConsumables(); $event.stopPropagation()"></i>
+              <span class="pl-2" style="color: #aaa; font-size: 0.85rem;">{{ consumablesEnabled ? 'Ativo' : 'Desativado' }}</span>
+            </div>
             <div class="grid grid-nogutter">
               <div class="col-4">
                 <p-listbox [options]="consumableList" [(ngModel)]="model.consumables" [multiple]="true" [metaKeySelection]="false" (onChange)="onConsumableChange()">
@@ -781,6 +785,7 @@
             <div class="grid grid-nogutter">
               <div class="col-4">
                 <p-tag severity="info" value="Buffs"></p-tag>
+                <i class="pi" [ngClass]="buffsEnabled ? 'pi-eye' : 'pi-eye-slash'" style="cursor:pointer; margin-left:8px; color: #aaa;" (click)="toggleBuffs()"></i>
                 <span class="skill_debuff pl-2">Vermelho = Debuff monster</span>
                 <div class="grid grid-nogutter">
                   <div *ngFor="let bishopBuff of skillBuffs; let i = index" class="col-12">
@@ -824,6 +829,7 @@
               </div>
               <div class="col-4">
                 <p-tag severity="danger" value="Activating Skills/Effects"></p-tag>
+                <i class="pi" [ngClass]="activeSkillsEnabled ? 'pi-eye' : 'pi-eye-slash'" style="cursor:pointer; margin-left:8px; color: #aaa;" (click)="toggleActiveSkills()"></i>
                 <div class="grid grid-nogutter">
                   <div *ngFor="let activeSkill of activeSkills; let i = index" class="col-12">
                     <div [ngSwitch]="activeSkill.inputType">

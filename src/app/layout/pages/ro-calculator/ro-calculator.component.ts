@@ -267,6 +267,19 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   aspdPotionList: DropdownModel[] = [];
   aspdPotionList2: DropdownModel[] = AspdPotionList2;
 
+  // Toggle states
+  buffsEnabled = true;
+  activeSkillsEnabled = true;
+  consumablesEnabled = true;
+
+  // Backups for when disabled
+  private _skillBuffsBackup: number[] = [];
+  private _activeSkillsBackup: number[] = [];
+  private _consumablesBackup: number[] = [];
+  private _consumables2Backup: (number | undefined)[] = [];
+  private _aspdPotionBackup: number = undefined;
+  private _aspdPotionsBackup: number[] = [];
+
   totalPoints = 0;
   availablePoints = 0;
   appropriateLevel = 0;
@@ -2821,6 +2834,48 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   onBaseStatusChange() {
     this.updateAvailablePoints();
     this.updateItemEvent.next(1);
+  }
+
+  toggleBuffs() {
+    this.buffsEnabled = !this.buffsEnabled;
+    if (!this.buffsEnabled) {
+      this._skillBuffsBackup = [...this.model.skillBuffs];
+      this.model.skillBuffs = this.model.skillBuffs.map(() => 0);
+    } else {
+      this.model.skillBuffs = [...this._skillBuffsBackup];
+    }
+    this.onSkillClassChange();
+  }
+
+  toggleActiveSkills() {
+    this.activeSkillsEnabled = !this.activeSkillsEnabled;
+    if (!this.activeSkillsEnabled) {
+      this._activeSkillsBackup = [...this.model.activeSkills];
+      this.model.activeSkills = this.model.activeSkills.map(() => 0);
+    } else {
+      this.model.activeSkills = [...this._activeSkillsBackup];
+    }
+    this.onSkillClassChange();
+  }
+
+  toggleConsumables() {
+    this.consumablesEnabled = !this.consumablesEnabled;
+    if (!this.consumablesEnabled) {
+      this._consumablesBackup = [...this.model.consumables];
+      this._consumables2Backup = [...this.model.consumables2];
+      this._aspdPotionBackup = this.model.aspdPotion;
+      this._aspdPotionsBackup = [...(this.model.aspdPotions || [])];
+      this.model.consumables = [];
+      this.model.consumables2 = this.model.consumables2.map(() => undefined);
+      this.model.aspdPotion = undefined;
+      this.model.aspdPotions = [];
+    } else {
+      this.model.consumables = [...this._consumablesBackup];
+      this.model.consumables2 = [...this._consumables2Backup];
+      this.model.aspdPotion = this._aspdPotionBackup;
+      this.model.aspdPotions = [...this._aspdPotionsBackup];
+    }
+    this.onConsumableChange();
   }
 
   onConsumableChange() {
