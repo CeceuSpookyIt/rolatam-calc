@@ -598,16 +598,20 @@ export class DamageCalculator {
     const { totalAtk, propertyAtk } = params;
     const race = this.toPercent(this.getRaceMultiplier('p'));
     const size = this.toPercent(this.getSizeMultiplier('p'));
-    const element = this.toPercent(this.getElementMultiplier('p', propertyAtk));
+    const element = this.toPercent(this.getElementMultiplier('p'));
     const monsterType = this.toPercent(this.getMonsterTypeMultiplier('p'));
     const comet = this.getCometMultiplier();
-    // console.log({ race, size, element, monsterType, comet, monster: this.monster.name });
+
+    // Physical "my element" bonus — damage when attacking WITH a specific element
+    const myElementBonus = (this.totalBonus.p_my_element_all || 0) + (this.totalBonus[`p_my_element_${propertyAtk.toLowerCase()}`] || 0);
+    const myElement = this.toPercent(100 + myElementBonus);
 
     let total = floor(totalAtk * race);
     total = floor(total * size);
     total = floor(total * element); // tested
     total = floor(total * monsterType); // tested
     total = floor(total * comet);
+    total = floor(total * myElement);
     total = this.applyFinalMultiplier(total, 'phy');
 
     return total;
@@ -641,12 +645,12 @@ export class DamageCalculator {
     return round(total, 3);
   }
 
-  private getElementMultiplier(atkType: 'p' | 'm', propertyAtk: ElementType = ElementType.Neutral) {
+  private getElementMultiplier(atkType: 'p' | 'm') {
     const prefix = `${atkType}_element`;
     const base = this.totalBonus[`${prefix}_all`] || 0;
-    const elementKey = propertyAtk.toLowerCase();
+    const monsterElement = this.monster.element;
 
-    const total = 100 + base + (this.totalBonus[`${prefix}_${elementKey}`] ?? 0);
+    const total = 100 + base + (this.totalBonus[`${prefix}_${monsterElement}`] ?? 0);
 
     return round(total, 3);
   }
@@ -844,9 +848,10 @@ export class DamageCalculator {
         // Individual group B multipliers for detailed breakdown
         raceMultiplier: this.toPercent(this.getRaceMultiplier('p')),
         sizeMultiplier: this.toPercent(this.getSizeMultiplier('p')),
-        elementMultiplier: this.toPercent(this.getElementMultiplier('p', propertyAtk)),
+        elementMultiplier: this.toPercent(this.getElementMultiplier('p')),
         monsterTypeMultiplier: this.toPercent(this.getMonsterTypeMultiplier('p')),
         cometMultiplier: this.getCometMultiplier(),
+        myElementMultiplier: this.toPercent(100 + (this.totalBonus.p_my_element_all || 0) + (this.totalBonus[`p_my_element_${propertyAtk.toLowerCase()}`] || 0)),
         isEDP,
         // Combined group multipliers
         groupAMaxOver: aMaxOver,
@@ -1048,7 +1053,7 @@ export class DamageCalculator {
     const cometMultiplier = this.getCometMultiplier();
     const raceMultiplier = this.toPercent(this.getRaceMultiplier('m'));
     const sizeMultiplier = this.toPercent(this.getSizeMultiplier('m'));
-    const elementMultiplier = this.toPercent(this.getElementMultiplier('m', skillPropertyAtk));
+    const elementMultiplier = this.toPercent(this.getElementMultiplier('m'));
     const monsterTypeMultiplier = this.toPercent(this.getMonsterTypeMultiplier('m'));
     const debuffMultiplier = this.getDebuffMultiplier(SkillType.MAGICAL);
 

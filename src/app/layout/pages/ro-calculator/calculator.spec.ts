@@ -480,8 +480,8 @@ describe('Calculator', () => {
       expect(oratio!.isDebuff).toBe(true);
       const yesOption = oratio!.dropdown!.find((d: any) => d.isUse);
       expect(yesOption).toBeDefined();
-      expect(yesOption!.bonus.p_element_holy).toBe(20);
-      expect(yesOption!.bonus.m_element_holy).toBe(20);
+      expect(yesOption!.bonus.p_my_element_holy).toBe(20);
+      expect(yesOption!.bonus.m_my_element_holy).toBe(20);
     });
   });
 

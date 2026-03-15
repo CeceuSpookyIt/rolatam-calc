@@ -143,6 +143,18 @@ export interface EquipmentSummaryModel {
   m_size_m: number;
   m_size_l: number;
 
+  p_my_element_all: number;
+  p_my_element_neutral: number;
+  p_my_element_water: number;
+  p_my_element_earth: number;
+  p_my_element_fire: number;
+  p_my_element_wind: number;
+  p_my_element_poison: number;
+  p_my_element_holy: number;
+  p_my_element_dark: number;
+  p_my_element_ghost: number;
+  p_my_element_undead: number;
+
   m_my_element_all: number;
   m_my_element_neutral: number;
   m_my_element_water: number;
