@@ -581,6 +581,25 @@
           ></app-calc-value>
         </span>
       </div>
+      <!-- Basic attack proc (e.g., Giant Growth 2.5x) -->
+      <ng-container *ngIf="totalSummary?.dmg?.basicProcChance">
+        <div class="col-6">
+          <app-calc-value
+            label="Proc ({{ totalSummary?.dmg?.basicProcChance }}%):"
+            styleClass="summary_chance"
+            [min]="totalSummary?.dmg?.basicProcMinDamage"
+            [max]="totalSummary?.dmg?.basicProcMaxDamage"
+          ></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value
+            label="Proc Cri:"
+            styleClass="summary_chance"
+            [min]="totalSummary?.dmg?.basicProcCriMinDamage"
+            [max]="totalSummary?.dmg?.basicProcCriMaxDamage"
+          ></app-calc-value>
+        </div>
+      </ng-container>
       <div class="col-12">
         <span style="cursor:pointer;" (click)="statBreakdownClick.emit('basicDmg:basic')">
           <app-calc-value

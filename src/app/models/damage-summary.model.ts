@@ -13,6 +13,12 @@ export interface BasicDamageSummaryModel {
   totalPene: number;
   accuracy: number;
   basicDps: number;
+  basicDpsWithProc?: number;
+  basicProcMinDamage?: number;
+  basicProcMaxDamage?: number;
+  basicProcCriMinDamage?: number;
+  basicProcCriMaxDamage?: number;
+  basicProcChance?: number;
   basicBattleTime: number;
   pAtk: number;
   sMatk: number;

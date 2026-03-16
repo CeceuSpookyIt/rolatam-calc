@@ -1344,7 +1344,32 @@ export class DamageCalculator {
       min: basicMinDamage,
     });
 
+    // Basic attack proc (e.g., Giant Growth 30% chance for 2.5x damage)
+    const procChance = (this.totalBonus['basicAtkProcChance'] || 0) / 100;
+    const procMultiplier = (this.totalBonus['basicAtkProcMultiplier'] || 0) / 100;
+    let basicDpsWithProc: number | undefined;
+    let basicProcMinDamage: number | undefined;
+    let basicProcMaxDamage: number | undefined;
+    let basicProcCriMinDamage: number | undefined;
+    let basicProcCriMaxDamage: number | undefined;
+    if (procChance > 0 && procMultiplier > 0) {
+      basicProcMinDamage = floor(basicMinDamage * procMultiplier);
+      basicProcMaxDamage = floor(basicMaxDamage * procMultiplier);
+      basicProcCriMinDamage = floor(criMinDamage * procMultiplier);
+      basicProcCriMaxDamage = floor(criMaxDamage * procMultiplier);
+      const procDps = calcDmgDps({
+        accRate: misc.accuracy,
+        cri: criRateToMonster,
+        criDmg: floor((basicProcCriMinDamage + basicProcCriMaxDamage) / 2),
+        hitsPerSec: basicAspd.hitsPerSec,
+        max: basicProcMaxDamage,
+        min: basicProcMinDamage,
+      });
+      basicDpsWithProc = floor(basicDps * (1 - procChance) + procDps * procChance);
+    }
+
     const { pAtk, sMatk, cRate } = this.traitBonus;
+    const effectiveDps = basicDpsWithProc || basicDps;
     const basicDmg: BasicDamageSummaryModel = {
       basicMinDamage,
       basicMaxDamage,
@@ -1357,8 +1382,14 @@ export class DamageCalculator {
       criRateToMonster,
       totalPene: this.isActiveInfilltration ? 100 : this.getTotalPhysicalPene(),
       accuracy: misc.accuracy,
-      basicDps,
-      basicBattleTime: basicDps > 0 ? Math.round((this.monster.data.hp / basicDps) * 10) / 10 : 0,
+      basicDps: effectiveDps,
+      basicDpsWithProc,
+      basicProcMinDamage,
+      basicProcMaxDamage,
+      basicProcCriMinDamage,
+      basicProcCriMaxDamage,
+      basicProcChance: procChance > 0 ? procChance * 100 : undefined,
+      basicBattleTime: effectiveDps > 0 ? Math.round((this.monster.data.hp / effectiveDps) * 10) / 10 : 0,
       pAtk,
       sMatk,
       cRate,

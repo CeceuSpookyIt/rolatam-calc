@@ -916,7 +916,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         'effectedBasicDamageMin', 'effectedBasicDamageMax',
         'effectedBasicCriDamageMin', 'effectedBasicCriDamageMax',
         'effectedSkillDamageMin', 'effectedSkillDamageMax',
-        'basicDps', 'effectedBasicDps', 'skillDps', 'effectedSkillDps',
+        'basicDps', 'basicDpsWithProc', 'basicProcMinDamage', 'basicProcMaxDamage',
+        'basicProcCriMinDamage', 'basicProcCriMaxDamage',
+        'effectedBasicDps', 'skillDps', 'effectedSkillDps',
       ];
       for (const key of dmgKeys) {
         if (typeof d[key] === 'number') {

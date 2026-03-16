@@ -307,7 +307,7 @@ export class RuneKnight extends LordKnight {
       label: 'Rune: Turisus',
       inputType: 'selectButton',
       dropdown: [
-        { label: 'Yes', value: 1, isUse: true, bonus: { flatBasicDmg: 250, str: 30, melee: 15 } },
+        { label: 'Yes', value: 1, isUse: true, bonus: { flatBasicDmg: 250, str: 30, melee: 15, basicAtkProcChance: 30, basicAtkProcMultiplier: 250 } },
         { label: 'No', value: 0, isUse: false },
       ],
     },
