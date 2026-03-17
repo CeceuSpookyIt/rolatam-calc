@@ -1688,7 +1688,7 @@ export class Calculator {
     return this;
   }
 
-  calcDmgWithExtraBonus(params: { skillValue: string; isUseHpL: boolean; }): BasicDamageSummaryModel & SkillDamageSummaryModel {
+  calcDmgWithExtraBonus(params: { skillValue: string; isUseHpL: boolean; }): BasicDamageSummaryModel & SkillDamageSummaryModel & { combinedBasicDps?: number; combinedBasicBattleTime?: number } {
     this.calcAllAtk();
 
     const c = this.getChanceBonus();
@@ -1701,16 +1701,24 @@ export class Calculator {
       .getTotalSummary();
 
     const { skillValue } = params;
-    const { basicDmg, skillDmg } = calculator.calculateAllDamages({
+    const { basicDmg, skillDmg, basicAspd } = calculator.calculateAllDamages({
       skillValue,
       propertyAtk: this.propertyBasicAtk,
       maxHp,
       maxSp,
     });
 
+    this.basicAspd = basicAspd;
+    this.calculateAutocastDamages();
+
+    const combinedBasicDps = (basicDmg.basicDps || 0) + this.autocastOnHitDps;
+    const monsterHp = this.monster.data.hp;
+
     return {
       ...basicDmg,
       ...skillDmg,
+      combinedBasicDps,
+      combinedBasicBattleTime: combinedBasicDps > 0 ? Math.round((monsterHp / combinedBasicDps) * 10) / 10 : 0,
     };
   }
 

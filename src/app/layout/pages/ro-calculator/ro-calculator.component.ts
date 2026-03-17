@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { formatBattleTime } from 'src/app/utils/format-battle-time';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -300,6 +301,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   chanceList = [] as ChanceModel[];
   selectedChances = [] as string[];
   isRedAura = false;
+  formatBattleTime = formatBattleTime;
 
   isCalculating = false;
   private calculator = new Calculator();
@@ -719,6 +721,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       { field: 'criMaxDamage', header: 'BasicCriDmg' },
       { field: 'criMaxDamage', header: 'BasicDPS' },
       { field: 'basicCriRate', header: 'BasicCri%' },
+      { field: 'combinedBasicDps' as any, header: 'DPS AA' },
+      { field: 'combinedBasicBattleTime' as any, header: 'Tempo AA(s)' },
     ];
     const availableCols = new Map(this.cols.map((a) => [a.field, a]));
 
@@ -925,10 +929,13 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           d[key] = Math.floor(d[key] / 1000);
         }
       }
-      // Recalculate battle time based on reduced DPS
-      for (const [dpsKey, btKey] of [['skillDps', 'skillBattleTime'], ['basicDps', 'basicBattleTime']] as const) {
-        if (typeof d[dpsKey] === 'number' && d[dpsKey] > 0) {
-          d[btKey] = Math.round((this.monsterDataMap[this.selectedMonster]?.stats?.health / d[dpsKey]) * 10) / 10;
+      // Recalculate battle time: monster HP stays the same, DPS is reduced
+      const monsterHp = this.monsterDataMap[this.selectedMonster]?.stats?.health;
+      if (monsterHp) {
+        for (const [dpsKey, btKey] of [['skillDps', 'skillBattleTime'], ['basicDps', 'basicBattleTime']] as [string, string][]) {
+          if (typeof d[dpsKey] === 'number' && d[dpsKey] > 0) {
+            d[btKey] = Math.round((monsterHp / d[dpsKey]) * 10) / 10;
+          }
         }
       }
     }
@@ -1357,10 +1364,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       if (this.isRedAura) {
         for (const key of ['basicMinDamage', 'basicMaxDamage', 'criMinDamage', 'criMaxDamage',
           'skillMinDamage', 'skillMaxDamage', 'skillCriMinDamage', 'skillCriMaxDamage',
-          'basicDps', 'skillDps']) {
+          'basicDps', 'skillDps', 'combinedBasicDps'] as any[]) {
           if (typeof result[key] === 'number') result[key] = Math.floor(result[key] / 1000);
         }
-        for (const [dpsKey, btKey] of [['skillDps', 'skillBattleTime'], ['basicDps', 'basicBattleTime']]) {
+        for (const [dpsKey, btKey] of [['skillDps', 'skillBattleTime'], ['basicDps', 'basicBattleTime'], ['combinedBasicDps', 'combinedBasicBattleTime']] as [string, string][]) {
           if (typeof result[dpsKey] === 'number' && result[dpsKey] > 0) {
             result[btKey] = Math.round((health / result[dpsKey]) * 10) / 10;
           }

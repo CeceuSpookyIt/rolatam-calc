@@ -5,471 +5,93 @@
   <div class="col-12" [hidden]="!totalSummary?.dmg?.requireTxt">
     Require: <span class="summary_monster_value text-lg px-1" style="color: var(--red-500)">{{ totalSummary?.dmg?.requireTxt }}</span>
   </div>
-  <div class="col-5">
-    Type <span class="summary_highlight font-semibold">{{ totalSummary?.calcSkill?.dmgType }}</span>
-  </div>
-  <div class="col-7">
-    Element:
-    <span class="{{ 'property_' + totalSummary?.calcSkill?.propertySkill }} px-1 font-semibold">{{ totalSummary?.calcSkill?.propertySkill }}</span>
-    <span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.skillPropertyMultiplier }})</span>
-    <span>
-      <button
-        pButton
-        type="button"
-        class="p-button-text p-button-warning py-0"
-        icon="pi pi-search"
-        [disabled]="isInProcessingPreset"
-        (click)="onShowElementalTableClick()"
-      ></button>
-    </span>
-  </div>
-  <div class="col-6">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="BaseSkill:"
-      unit="%"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.calcSkill?.baseSkillDamage"
-      [max2]="totalSummary2?.calcSkill?.baseSkillDamage"
-    ></app-calc-value>
-  </div>
-  <div class="col-6">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillBonus:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="BonusSkill:"
-        unit="%"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.dmg?.skillBonusFromEquipment"
-        [max2]="totalSummary2?.dmg?.skillBonusFromEquipment"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-6" [hidden]="totalSummary?.calcSkill?.dmgType === 'Magical'">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('sizePenalty:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="SizePenalty:"
-        unit=" %"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.dmg?.skillSizePenalty"
-        [max2]="totalSummary2?.dmg?.skillSizePenalty"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-6" [hidden]="totalSummary?.calcSkill?.dmgType === 'Magical'">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('accuracy:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="Precisão:"
-        unit="%"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.dmg?.skillAccuracy"
-        [max2]="totalSummary2?.dmg?.skillAccuracy"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-6">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('penetration:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="{{ totalSummary?.dmg?.skillTotalPeneLabel || 'Penetração' }}"
-        unit="%"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.dmg?.skillTotalPene"
-        [max2]="totalSummary2?.dmg?.skillTotalPene"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-6">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="{{ totalSummary?.dmg?.skillTotalPeneResLabel || 'Penetração' }}"
-      unit="%"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.skillTotalPeneRes"
-      [max2]="totalSummary2?.dmg?.skillTotalPeneRes"
-    ></app-calc-value>
-  </div>
-  <div class="col-6">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="ASPD:"
-      unit=" Hits/s"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.calc?.hitPerSecs"
-      [max2]="totalSummary2?.calc?.hitPerSecs"
-    ></app-calc-value>
-  </div>
 
-  <div class="col-12 py-1 divider" [hidden]="!totalSummary?.dmg?.isUsedCurrentHP">
-    <p-divider></p-divider>
-  </div>
-
-  <div class="col-6" [hidden]="!totalSummary?.dmg?.isUsedCurrentHP">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="CurrentHP:"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.currentHp"
-      [max2]="totalSummary2?.dmg?.currentHp"
-    ></app-calc-value>
-  </div>
-  <div class="col-6" [hidden]="!totalSummary?.dmg?.isUsedCurrentSP">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="CurrentSp:"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.currentSp"
-      [max2]="totalSummary2?.dmg?.currentSp"
-    ></app-calc-value>
-  </div>
-
-  <div class="col-12 py-1 divider" [hidden]="!!totalSummary?.dmg?.requireTxt">
-    <p-divider></p-divider>
-  </div>
-
-  <!-- Skill Summary -->
+  <!-- ==================== SKILL - Highlighted ==================== -->
   <div class="col-12" [hidden]="!!totalSummary?.dmg?.requireTxt">
     <div class="grid grid-nogutter">
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('vct:skill')">
+      <div class="col-12 mb-1">
+        <span class="font-bold text-primary" style="font-size: 0.9rem; letter-spacing: 0.05em;">SKILL</span>
+      </div>
+      <div class="col-12 mb-1">
+        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillDmg:skill')">
           <app-calc-value
             [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="VCT:"
-            styleClass="summary_value"
+            [label]="totalSummary?.dmg?.skillDamageLabel || 'Skill'"
+            styleClass="summary_damage"
             styleClass2="summary_compare"
-            [isGreaterIsBetter]="false"
-            [displayRaw]="true"
-            [raw]="totalSummary?.calcSkill?.vct"
-            [max]="totalSummary?.calcSkill?.reducedVct"
-            [max2]="totalSummary2?.calcSkill?.reducedVct"
+            [showPercentDiff]="true"
+            [totalHit]="totalSummary?.calcSkill?.totalHits"
+            [totalHit2]="totalSummary2?.calcSkill?.totalHits"
+            [min]="totalSummary?.dmg?.skillMinDamage"
+            [max]="totalSummary?.dmg?.skillMaxDamage"
+            [min2]="totalSummary2?.dmg?.skillMinDamage"
+            [max2]="totalSummary2?.dmg?.skillMaxDamage"
           ></app-calc-value>
         </span>
       </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('fct:skill')">
+      <div class="col-6" [hidden]="totalSummary?.dmg?.isAutoSpell">
+        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillDmg:skill')">
           <app-calc-value
             [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="FCT:"
-            styleClass="summary_value"
-            styleClass2="summary_compare"
-            [isGreaterIsBetter]="false"
-            [displayRaw]="true"
-            [raw]="totalSummary?.calcSkill?.fct"
-            [max]="totalSummary?.calcSkill?.reducedFct"
-            [max2]="totalSummary2?.calcSkill?.reducedFct"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('cd:skill')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="CD:"
-            styleClass="summary_value"
-            styleClass2="summary_compare"
-            [isGreaterIsBetter]="false"
-            [displayRaw]="true"
-            [raw]="totalSummary?.calcSkill?.cd"
-            [max]="totalSummary?.calcSkill?.reducedCd"
-            [max2]="totalSummary2?.calcSkill?.reducedCd"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('acd:skill')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="Delay:"
-            styleClass="summary_value"
-            styleClass2="summary_compare"
-            [isGreaterIsBetter]="false"
-            [displayRaw]="true"
-            [raw]="totalSummary?.calcSkill?.acd"
-            [max]="totalSummary?.calcSkill?.reducedAcd"
-            [max2]="totalSummary2?.calcSkill?.reducedAcd"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="Cast:"
-          styleClass="summary_damage"
-          styleClass2="summary_compare"
-          [isGreaterIsBetter]="false"
-          [max]="totalSummary?.calcSkill?.castPeriod"
-          [max2]="totalSummary2?.calcSkill?.castPeriod"
-        ></app-calc-value>
-      </div>
-      <div class="col-6">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="Skill/s:"
-          unit=" Hits/s"
-          styleClass="summary_highlight"
-          styleClass2="summary_compare"
-          [max]="totalSummary?.calcSkill?.totalHitPerSec"
-          [max2]="totalSummary2?.calcSkill?.totalHitPerSec"
-        ></app-calc-value>
-      </div>
-      <!-- Precast Cycle Summary -->
-      <ng-container *ngIf="totalSummary?.calcSkill?.precastSteps?.length > 0">
-        <div class="col-12 mt-2" style="border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 0.5rem;">
-          <small style="color: #94a3b8; font-weight: 600;">Ciclo de Rotação</small>
-        </div>
-        <ng-container *ngFor="let step of totalSummary?.calcSkill?.precastSteps">
-          <div class="col-6">
-            <app-calc-value
-              [label]="step.label + ' ×' + step.repeat + ':'"
-              styleClass="summary_value"
-              [isGreaterIsBetter]="false"
-              [max]="step.stepTime"
-            ></app-calc-value>
-          </div>
-        </ng-container>
-        <div class="col-6">
-          <app-calc-value
-            label="Release:"
-            styleClass="summary_value"
-            [isGreaterIsBetter]="false"
-            [max]="totalSummary?.calcSkill?.releaseTime"
-          ></app-calc-value>
-        </div>
-        <div class="col-6">
-          <app-calc-value
-            label="Ciclo Total:"
+            label="DPS:"
             styleClass="summary_highlight"
-            [isGreaterIsBetter]="false"
-            [max]="totalSummary?.calcSkill?.cycleTotalTime"
+            styleClass2="summary_compare"
+            [showPercentDiff]="true"
+            [max]="totalSummary?.autocast?.onSkillEntries?.length ? totalSummary?.autocast?.combinedSkillDps : totalSummary?.dmg?.skillDps"
+            [max2]="totalSummary2?.autocast?.onSkillEntries?.length ? totalSummary2?.autocast?.combinedSkillDps : totalSummary2?.dmg?.skillDps"
+          ></app-calc-value>
+        </span>
+      </div>
+      <div class="col-6" [hidden]="totalSummary?.dmg?.isAutoSpell">
+        <span>Tempo: </span>
+        <span class="text-lg font-medium px-1 summary_highlight">{{ formatTime(totalSummary?.autocast?.onSkillEntries?.length ? totalSummary?.autocast?.combinedSkillBattleTime : totalSummary?.dmg?.skillBattleTime) }}</span>
+      </div>
+      <!-- Triggered skill -->
+      <ng-container *ngIf="totalSummary?.dmg?.effectedSkillDamageMin > 0 && selectedChances?.length">
+        <div class="col-12">
+          <app-calc-value
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="Triggered:"
+            styleClass="summary_chance"
+            styleClass2="summary_compare"
+            [totalHit]="totalSummary?.calcSkill?.totalHits"
+            [totalHit2]="totalSummary2?.calcSkill?.totalHits"
+            [min]="totalSummary?.dmg?.effectedSkillDamageMin"
+            [max]="totalSummary?.dmg?.effectedSkillDamageMax"
+            [min2]="totalSummary2?.dmg?.effectedSkillDamageMin || totalSummary2?.dmg?.skillMinDamage"
+            [max2]="totalSummary2?.dmg?.effectedSkillDamageMax || totalSummary2?.dmg?.skillMaxDamage"
+          ></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="DPS:"
+            styleClass="summary_chance_hilight"
+            styleClass2="summary_compare"
+            [showPercentDiff]="true"
+            [max]="totalSummary?.dmg?.effectedSkillDps"
+            [max2]="totalSummary2?.dmg?.effectedSkillDps || totalSummary2?.dmg?.skillDps"
+          ></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="Skill/s:"
+            styleClass="summary_chance_hilight"
+            styleClass2="summary_compare"
+            [max]="totalSummary?.dmg?.effectedSkillHitsPerSec"
+            [max2]="totalSummary2?.dmg?.effectedSkillHitsPerSec || totalSummary2?.calcSkill?.totalHitPerSec"
           ></app-calc-value>
         </div>
       </ng-container>
     </div>
   </div>
 
-  <div class="col-12 py-1 divider" [hidden]="!!totalSummary?.dmg?.requireTxt">
-    <p-divider></p-divider>
-  </div>
-
-  <!-- Skill Damage -->
-  <div class="col-6" [hidden]="!totalSummary?.dmg?.skillCanCri" style="display:flex;align-items:center;">
-    <span style="cursor:pointer;flex:1;" (click)="statBreakdownClick.emit('cri:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="CriRate:"
-        styleClass="summary_damage"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.dmg?.skillCriRateToMonster"
-        [max2]="totalSummary2?.dmg?.skillCriRateToMonster"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-6" [hidden]="!totalSummary?.dmg?.skillCanCri">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="CriDmg:"
-      unit="%"
-      styleClass="summary_damage"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.skillCriDmgToMonster"
-      [max2]="totalSummary2?.dmg?.skillCriDmgToMonster"
-    ></app-calc-value>
-  </div>
-  <div class="col-12" [hidden]="!totalSummary?.dmg?.skillCanCri || totalSummary?.dmg?.skillCriRateToMonster >= 100">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="SkillDmg:"
-      styleClass="summary_damage"
-      styleClass2="summary_compare"
-      [showPercentDiff]="true"
-      [totalHit]="totalSummary?.calcSkill?.totalHits"
-      [totalHit2]="totalSummary2?.calcSkill?.totalHits"
-      [min]="totalSummary?.dmg?.skillMinDamageNoCri"
-      [max]="totalSummary?.dmg?.skillMaxDamageNoCri"
-      [min2]="totalSummary2?.dmg?.skillMinDamageNoCri"
-      [max2]="totalSummary2?.dmg?.skillMaxDamageNoCri"
-    ></app-calc-value>
-  </div>
-  <div class="col-12" [hidden]="!totalSummary?.dmg?.maxStack">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      [label]="totalSummary?.dmg?.skillNoStackDamageLabel"
-      styleClass="summary_damage"
-      styleClass2="summary_compare"
-      [showPercentDiff]="true"
-      [totalHit]="totalSummary?.calcSkill?.totalHits"
-      [totalHit2]="totalSummary2?.calcSkill?.totalHits"
-      [min]="totalSummary?.dmg?.noStackMinCriDamage"
-      [max]="totalSummary?.dmg?.noStackMaxCriDamage"
-      [min2]="totalSummary2?.dmg?.noStackMinCriDamage"
-      [max2]="totalSummary2?.dmg?.noStackMaxCriDamage"
-    ></app-calc-value>
-  </div>
-  <div class="col-12" [hidden]="!!totalSummary?.dmg?.requireTxt">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillDmg:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        [label]="totalSummary?.dmg?.skillDamageLabel"
-        styleClass="summary_damage"
-        styleClass2="summary_compare"
-        [showPercentDiff]="true"
-        [totalHit]="totalSummary?.calcSkill?.totalHits"
-        [totalHit2]="totalSummary2?.calcSkill?.totalHits"
-        [min]="totalSummary?.dmg?.skillMinDamage"
-        [max]="totalSummary?.dmg?.skillMaxDamage"
-        [min2]="totalSummary2?.dmg?.skillMinDamage"
-        [max2]="totalSummary2?.dmg?.skillMaxDamage"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-12" *ngIf="totalSummary?.dmg?.skillPart2Label && totalSummary?.dmg?.skillMaxDamage2">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      [label]="totalSummary?.dmg?.skillPart2Label"
-      styleClass="summary_damage"
-      styleClass2="summary_compare"
-      [totalHit]="totalSummary?.calcSkill?.totalHits"
-      [totalHit2]="totalSummary2?.calcSkill?.totalHits"
-      [min]="totalSummary?.dmg?.skillMinDamage2"
-      [max]="totalSummary?.dmg?.skillMaxDamage2"
-      [min2]="totalSummary2?.dmg?.skillMinDamage2"
-      [max2]="totalSummary2?.dmg?.skillMaxDamage2"
-    ></app-calc-value>
-  </div>
-  <!-- <div class="col-12" [hidden]="totalSummary?.dmg?.skillMaxDamageHE <= 0">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="HE:"
-        styleClass="summary_damage"
-        styleClass2="summary_compare"
-        [min]="totalSummary?.dmg?.skillMinDamageHE"
-        [max]="totalSummary?.dmg?.skillMaxDamageHE"
-        [min2]="totalSummary2?.dmg?.skillMinDamageHE"
-        [max2]="totalSummary2?.dmg?.skillMaxDamageHE"
-      ></app-calc-value>
-    </div> -->
-  <div class="col-12" [hidden]="totalSummary?.dmg?.isAutoSpell || !!totalSummary?.dmg?.requireTxt">
-    <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillDmg:skill')">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        label="DPS:"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [showPercentDiff]="true"
-        [max]="totalSummary?.dmg?.skillDps"
-        [max2]="totalSummary2?.dmg?.skillDps"
-      ></app-calc-value>
-    </span>
-  </div>
-  <div class="col-12" [hidden]="totalSummary?.dmg?.isAutoSpell || !!totalSummary?.dmg?.requireTxt">
-    <span>Tempo: </span>
-    <span class="text-lg font-medium px-1 summary_highlight">{{ formatTime(totalSummary?.dmg?.skillBattleTime) }}</span>
-    <span *ngIf="isEnableCompare && totalSummary2?.dmg" [hidden]="totalSummary?.dmg?.skillBattleTime === totalSummary2?.dmg?.skillBattleTime">
-      <i class="pi pi-arrow-right vs_sign px-1"></i>
-      <span class="text-lg font-medium px-1 summary_compare">{{ formatTime(totalSummary2?.dmg?.skillBattleTime) }}</span>
-    </span>
-  </div>
-  <!-- Autocast on skill -->
-  <ng-container *ngIf="totalSummary?.autocast?.onSkillEntries?.length">
-    <div class="col-12 mt-1" style="border-left: 3px solid var(--primary-color); padding-left: 8px; margin-left: 4px;">
-      <span class="font-bold text-primary" style="font-size: 0.8rem;">AUTOCAST (on skill)</span>
-    </div>
-    <ng-container *ngFor="let ac of totalSummary?.autocast?.onSkillEntries">
-      <div class="col-12" style="padding-left: 16px;">
-        <span class="summary_value font-semibold">{{ ac.skillName }}</span>
-        <span class="summary_highlight px-1">Lv{{ ac.skillLevel }}</span>
-        <span class="{{ 'property_' + ac.element }} px-1 font-semibold">{{ ac.element }}</span>
-        <span class="summary_monster_value px-1">({{ ac.chancePercent }}%)</span>
-      </div>
-      <div class="col-6" style="padding-left: 16px;">
-        <app-calc-value label="Dmg:" styleClass="summary_damage" [min]="ac.minDamage" [max]="ac.maxDamage"></app-calc-value>
-      </div>
-      <div class="col-6">
-        <app-calc-value label="DPS:" styleClass="summary_highlight" [max]="ac.dps"></app-calc-value>
-      </div>
-      <div class="col-6" style="padding-left: 16px;" *ngIf="ac.criMinDamage">
-        <app-calc-value label="CriDmg:" styleClass="summary_damage" [min]="ac.criMinDamage" [max]="ac.criMaxDamage"></app-calc-value>
-      </div>
-    </ng-container>
-    <div class="col-12" style="padding-left: 16px;">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.autocast"
-        label="Autocast DPS:"
-        styleClass="summary_highlight"
-        styleClass2="summary_compare"
-        [max]="totalSummary?.autocast?.onSkillDps"
-        [max2]="totalSummary2?.autocast?.onSkillDps || 0"
-      ></app-calc-value>
-    </div>
-    <div class="col-12" style="padding-left: 16px;">
-      <app-calc-value
-        [enableCompare]="isEnableCompare && totalSummary2?.autocast"
-        label="DPS Total (Skill + AC):"
-        styleClass="summary_chance_hilight"
-        styleClass2="summary_compare"
-        [showPercentDiff]="true"
-        [max]="totalSummary?.autocast?.combinedSkillDps"
-        [max2]="totalSummary2?.autocast?.combinedSkillDps || totalSummary2?.dmg?.skillDps || 0"
-      ></app-calc-value>
-    </div>
-    <div class="col-12" style="padding-left: 16px;" [hidden]="totalSummary?.dmg?.isAutoSpell || !!totalSummary?.dmg?.requireTxt">
-      <span>Tempo: </span>
-      <span class="text-lg font-medium px-1 summary_chance_hilight">{{ formatTime(totalSummary?.autocast?.combinedSkillBattleTime) }}</span>
-      <span style="font-size: 0.75rem; color: var(--text-color-secondary);">(Skill + AC)</span>
-    </div>
-  </ng-container>
-  <div class="col-12" [hidden]="totalSummary?.dmg?.effectedSkillDamageMin <= 0 || !selectedChances?.length">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="Triggered:"
-      styleClass="summary_chance"
-      styleClass2="summary_compare"
-      [totalHit]="totalSummary?.calcSkill?.totalHits"
-      [totalHit2]="totalSummary2?.calcSkill?.totalHits"
-      [min]="totalSummary?.dmg?.effectedSkillDamageMin"
-      [max]="totalSummary?.dmg?.effectedSkillDamageMax"
-      [min2]="totalSummary2?.dmg?.effectedSkillDamageMin || totalSummary2?.dmg?.skillMinDamage"
-      [max2]="totalSummary2?.dmg?.effectedSkillDamageMax || totalSummary2?.dmg?.skillMaxDamage"
-    ></app-calc-value>
-  </div>
-  <div class="col-12" [hidden]="totalSummary?.dmg?.effectedSkillDamageMin <= 0 || !selectedChances?.length">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="Skill/s:"
-      styleClass="summary_chance_hilight"
-      styleClass2="summary_compare"
-      [max]="totalSummary?.dmg?.effectedSkillHitsPerSec"
-      [max2]="totalSummary2?.dmg?.effectedSkillHitsPerSec || totalSummary2?.calcSkill?.totalHitPerSec"
-    ></app-calc-value>
-  </div>
-  <div class="col-12" [hidden]="totalSummary?.dmg?.effectedSkillDamageMin <= 0 || !selectedChances?.length">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="DPS:"
-      styleClass="summary_chance_hilight"
-      styleClass2="summary_compare"
-      [showPercentDiff]="true"
-      [max]="totalSummary?.dmg?.effectedSkillDps"
-      [max2]="totalSummary2?.dmg?.effectedSkillDps || totalSummary2?.dmg?.skillDps"
-    ></app-calc-value>
-  </div>
-
   <div class="col-12 py-1 divider">
     <p-divider></p-divider>
   </div>
 
-  <!-- Basic Damage -->
+  <!-- ==================== AUTO ATAQUE - Highlighted ==================== -->
   <div class="col-12" [hidden]="hideBasicAtk">
     <div class="grid grid-nogutter">
       <div class="col-12 mb-1">
@@ -477,78 +99,17 @@
         <span class="summary_monster_value px-1 font-bold" style="color: var(--red-500); font-size: 0.75rem;" [hidden]="!showLeftWeapon || !model.leftWeapon">***ATK mão esquerda não calculado</span>
       </div>
       <div class="col-6">
-        Element:
-        <span class="{{ 'property_' + totalSummary?.propertyAtk }} px-1 font-semibold">{{ totalSummary?.propertyAtk }}</span>
-        <span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.propertyMultiplier }})</span>
-      </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('sizePenalty:basic')">
+        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('basicDmg:basic')">
           <app-calc-value
             [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="SizePenalty:"
-            unit=" %"
-            styleClass="summary_highlight"
-            styleClass2="summary_compare"
-            [max]="totalSummary?.dmg?.sizePenalty"
-            [max2]="totalSummary2?.dmg?.sizePenalty"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('accuracy:basic')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="Precisão:"
-            unit="%"
-            styleClass="summary_highlight"
-            styleClass2="summary_compare"
-            [max]="totalSummary?.dmg?.accuracy"
-            [max2]="totalSummary2?.dmg?.accuracy"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('penetration:basic')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="Penetração:"
-            unit="%"
-            styleClass="summary_highlight"
-            styleClass2="summary_compare"
-            [max]="totalSummary?.dmg?.totalPene"
-            [max2]="totalSummary2?.dmg?.totalPene"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-6">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.calc"
-          label="ASPD:"
-          styleClass="summary_highlight"
-          styleClass2="summary_compare"
-          [max]="totalSummary?.calc?.totalAspd"
-          [max2]="totalSummary2?.calc?.totalAspd"
-        ></app-calc-value>
-      </div>
-      <div class="col-6">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.calc"
-          label="Hits/s:"
-          styleClass="summary_highlight"
-          styleClass2="summary_compare"
-          [max]="totalSummary?.calc?.hitPerSecs"
-          [max2]="totalSummary2?.calc?.hitPerSecs"
-        ></app-calc-value>
-      </div>
-      <div class="col-6" style="display:flex;align-items:center;">
-        <span style="cursor:pointer;flex:1;" (click)="statBreakdownClick.emit('cri:basic')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="CriRate:"
+            label="Basic:"
             styleClass="summary_damage"
             styleClass2="summary_compare"
-            [max]="totalSummary?.dmg?.criRateToMonster"
-            [max2]="totalSummary2?.dmg?.criRateToMonster"
+            [showPercentDiff]="true"
+            [min]="totalSummary?.dmg?.basicMinDamage"
+            [max]="totalSummary?.dmg?.basicMaxDamage"
+            [min2]="totalSummary2?.dmg?.basicMinDamage"
+            [max2]="totalSummary2?.dmg?.basicMaxDamage"
           ></app-calc-value>
         </span>
       </div>
@@ -563,21 +124,6 @@
             [max]="totalSummary?.dmg?.criMaxDamage"
             [min2]="totalSummary2?.dmg?.criMinDamage"
             [max2]="totalSummary2?.dmg?.criMaxDamage"
-          ></app-calc-value>
-        </span>
-      </div>
-      <div class="col-12">
-        <span style="cursor:pointer;" (click)="statBreakdownClick.emit('basicDmg:basic')">
-          <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-            label="Basic:"
-            styleClass="summary_damage"
-            styleClass2="summary_compare"
-            [showPercentDiff]="true"
-            [min]="totalSummary?.dmg?.basicMinDamage"
-            [max]="totalSummary?.dmg?.basicMaxDamage"
-            [min2]="totalSummary2?.dmg?.basicMinDamage"
-            [max2]="totalSummary2?.dmg?.basicMaxDamage"
           ></app-calc-value>
         </span>
       </div>
@@ -600,7 +146,7 @@
           ></app-calc-value>
         </div>
       </ng-container>
-      <div class="col-12">
+      <div class="col-6">
         <span style="cursor:pointer;" (click)="statBreakdownClick.emit('basicDmg:basic')">
           <app-calc-value
             [enableCompare]="isEnableCompare && totalSummary2?.dmg"
@@ -608,133 +154,237 @@
             styleClass="summary_highlight"
             styleClass2="summary_compare"
             [showPercentDiff]="true"
-            [max]="totalSummary?.dmg?.basicDps"
-            [max2]="totalSummary2?.dmg?.basicDps"
+            [max]="totalSummary?.autocast?.onHitEntries?.length ? totalSummary?.autocast?.combinedBasicDps : totalSummary?.dmg?.basicDps"
+            [max2]="totalSummary2?.autocast?.onHitEntries?.length ? totalSummary2?.autocast?.combinedBasicDps : totalSummary2?.dmg?.basicDps"
           ></app-calc-value>
         </span>
       </div>
-      <div class="col-12">
+      <div class="col-6">
         <span>Tempo: </span>
-        <span class="text-lg font-medium px-1 summary_highlight">{{ formatTime(totalSummary?.dmg?.basicBattleTime) }}</span>
-        <span *ngIf="isEnableCompare && totalSummary2?.dmg" [hidden]="totalSummary?.dmg?.basicBattleTime === totalSummary2?.dmg?.basicBattleTime">
-          <i class="pi pi-arrow-right vs_sign px-1"></i>
-          <span class="text-lg font-medium px-1 summary_compare">{{ formatTime(totalSummary2?.dmg?.basicBattleTime) }}</span>
-        </span>
+        <span class="text-lg font-medium px-1 summary_highlight">{{ formatTime(totalSummary?.autocast?.onHitEntries?.length ? totalSummary?.autocast?.combinedBasicBattleTime : totalSummary?.dmg?.basicBattleTime) }}</span>
       </div>
-      <div class="col-12" [hidden]="totalSummary?.dmg?.effectedBasicDamageMin <= 0 || !selectedChances?.length">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="Triggered Basic:"
-          styleClass="summary_chance"
-          styleClass2="summary_compare"
-          [showPercentDiff]="true"
-          [min]="totalSummary?.dmg?.effectedBasicDamageMin"
-          [max]="totalSummary?.dmg?.effectedBasicDamageMax"
-          [min2]="totalSummary2?.dmg?.effectedBasicDamageMin || totalSummary2?.dmg?.basicMinDamage"
-          [max2]="totalSummary2?.dmg?.effectedBasicDamageMax || totalSummary2?.dmg?.basicMaxDamage"
-        ></app-calc-value>
-      </div>
-      <div class="col-12" [hidden]="totalSummary?.dmg?.effectedBasicDamageMin <= 0 || !selectedChances?.length">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="Triggered CriDmg:"
-          styleClass="summary_chance"
-          styleClass2="summary_compare"
-          [min]="totalSummary?.dmg?.effectedBasicCriDamageMin"
-          [max]="totalSummary?.dmg?.effectedBasicCriDamageMax"
-          [min2]="totalSummary2?.dmg?.effectedBasicCriDamageMin || totalSummary2?.dmg?.criMinDamage"
-          [max2]="totalSummary2?.dmg?.effectedBasicCriDamageMax || totalSummary2?.dmg?.criMaxDamage"
-        ></app-calc-value>
-      </div>
-      <div class="col-12" [hidden]="totalSummary?.dmg?.effectedBasicDamageMin <= 0 || !selectedChances?.length">
-        <app-calc-value
-          [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-          label="DPS:"
-          styleClass="summary_chance_hilight"
-          styleClass2="summary_compare"
-          [showPercentDiff]="true"
-          [max]="totalSummary?.dmg?.effectedBasicDps"
-          [max2]="totalSummary2?.dmg?.effectedBasicDps || totalSummary2?.dmg?.basicDps"
-        ></app-calc-value>
-      </div>
-      <!-- Autocast on hit -->
-      <ng-container *ngIf="totalSummary?.autocast?.onHitEntries?.length">
-        <div class="col-12 mt-1" style="border-left: 3px solid var(--primary-color); padding-left: 8px; margin-left: 4px;">
-          <span class="font-bold text-primary" style="font-size: 0.8rem;">AUTOCAST (on hit)</span>
-        </div>
-        <ng-container *ngFor="let ac of totalSummary?.autocast?.onHitEntries">
-          <div class="col-12" style="padding-left: 16px;">
-            <span class="summary_value font-semibold">{{ ac.skillName }}</span>
-            <span class="summary_highlight px-1">Lv{{ ac.skillLevel }}</span>
-            <span class="{{ 'property_' + ac.element }} px-1 font-semibold">{{ ac.element }}</span>
-            <span class="summary_monster_value px-1">({{ ac.chancePercent }}%)</span>
-          </div>
-          <div class="col-6" style="padding-left: 16px;">
-            <app-calc-value label="Dmg:" styleClass="summary_damage" [min]="ac.minDamage" [max]="ac.maxDamage"></app-calc-value>
-          </div>
-          <div class="col-6">
-            <app-calc-value label="DPS:" styleClass="summary_highlight" [max]="ac.dps"></app-calc-value>
-          </div>
-          <div class="col-6" style="padding-left: 16px;" *ngIf="ac.criMinDamage">
-            <app-calc-value label="CriDmg:" styleClass="summary_damage" [min]="ac.criMinDamage" [max]="ac.criMaxDamage"></app-calc-value>
-          </div>
-        </ng-container>
-        <div class="col-12" style="padding-left: 16px;">
+      <!-- Triggered basic -->
+      <ng-container *ngIf="totalSummary?.dmg?.effectedBasicDamageMin > 0 && selectedChances?.length">
+        <div class="col-6">
           <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.autocast"
-            label="Autocast DPS:"
-            styleClass="summary_highlight"
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="Triggered Basic:"
+            styleClass="summary_chance"
             styleClass2="summary_compare"
-            [max]="totalSummary?.autocast?.onHitDps"
-            [max2]="totalSummary2?.autocast?.onHitDps || 0"
+            [showPercentDiff]="true"
+            [min]="totalSummary?.dmg?.effectedBasicDamageMin"
+            [max]="totalSummary?.dmg?.effectedBasicDamageMax"
+            [min2]="totalSummary2?.dmg?.effectedBasicDamageMin || totalSummary2?.dmg?.basicMinDamage"
+            [max2]="totalSummary2?.dmg?.effectedBasicDamageMax || totalSummary2?.dmg?.basicMaxDamage"
           ></app-calc-value>
         </div>
-        <div class="col-12" style="padding-left: 16px;">
+        <div class="col-6">
           <app-calc-value
-            [enableCompare]="isEnableCompare && totalSummary2?.autocast"
-            label="DPS Total (Auto Ataque + AC):"
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="Triggered CriDmg:"
+            styleClass="summary_chance"
+            styleClass2="summary_compare"
+            [min]="totalSummary?.dmg?.effectedBasicCriDamageMin"
+            [max]="totalSummary?.dmg?.effectedBasicCriDamageMax"
+            [min2]="totalSummary2?.dmg?.effectedBasicCriDamageMin || totalSummary2?.dmg?.criMinDamage"
+            [max2]="totalSummary2?.dmg?.effectedBasicCriDamageMax || totalSummary2?.dmg?.criMaxDamage"
+          ></app-calc-value>
+        </div>
+        <div class="col-12">
+          <app-calc-value
+            [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+            label="DPS:"
             styleClass="summary_chance_hilight"
             styleClass2="summary_compare"
             [showPercentDiff]="true"
-            [max]="totalSummary?.autocast?.combinedBasicDps"
-            [max2]="totalSummary2?.autocast?.combinedBasicDps || totalSummary2?.dmg?.basicDps || 0"
+            [max]="totalSummary?.dmg?.effectedBasicDps"
+            [max2]="totalSummary2?.dmg?.effectedBasicDps || totalSummary2?.dmg?.basicDps"
           ></app-calc-value>
-        </div>
-        <div class="col-12" style="padding-left: 16px;">
-          <span>Tempo: </span>
-          <span class="text-lg font-medium px-1 summary_chance_hilight">{{ formatTime(totalSummary?.autocast?.combinedBasicBattleTime) }}</span>
-          <span style="font-size: 0.75rem; color: var(--text-color-secondary);">(Auto Ataque + AC)</span>
         </div>
       </ng-container>
     </div>
   </div>
 
-  <!-- Autocast on hurt (separate section, if any) -->
-  <div class="col-12" *ngIf="totalSummary?.autocast?.onHurtEntries?.length">
-    <div class="grid grid-nogutter">
-      <div class="col-12 py-1 divider">
-        <p-divider></p-divider>
-      </div>
-      <div class="col-12 mb-1">
-        <span class="font-bold text-primary" style="font-size: 0.9rem; letter-spacing: 0.05em;">AUTOCAST (on hurt)</span>
-      </div>
-      <ng-container *ngFor="let ac of totalSummary?.autocast?.onHurtEntries">
+  <div class="col-12 py-1 divider">
+    <p-divider></p-divider>
+  </div>
+
+  <!-- ==================== DETALHES (Accordion) ==================== -->
+  <div class="col-12">
+    <p-accordion>
+      <p-accordionTab header="Detalhes">
+      <div class="grid grid-nogutter">
+
+        <!-- Shared Stats -->
+        <div class="col-6">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.calc" label="ASPD:" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.calc?.totalAspd" [max2]="totalSummary2?.calc?.totalAspd"></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.calc" label="Hits/s:" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.calc?.hitPerSecs" [max2]="totalSummary2?.calc?.hitPerSecs"></app-calc-value>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('accuracy:basic')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Precisão:" unit="%" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.accuracy" [max2]="totalSummary2?.dmg?.accuracy"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('penetration:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="{{ totalSummary?.dmg?.skillTotalPeneLabel || 'Penetração' }}" unit="%" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.skillTotalPene" [max2]="totalSummary2?.dmg?.skillTotalPene"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6" [hidden]="totalSummary?.calcSkill?.dmgType === 'Magical'">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('sizePenalty:basic')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="SizePenalty:" unit=" %" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.sizePenalty" [max2]="totalSummary2?.dmg?.sizePenalty"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('cri:basic')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="CriRate:" styleClass="summary_damage" styleClass2="summary_compare" [max]="totalSummary?.dmg?.criRateToMonster" [max2]="totalSummary2?.dmg?.criRateToMonster"></app-calc-value>
+          </span>
+        </div>
+
+        <!-- Element -->
+        <div class="col-12 py-1 divider"><p-divider></p-divider></div>
         <div class="col-12">
-          <span class="summary_value font-semibold">{{ ac.skillName }}</span>
-          <span class="summary_highlight px-1">Lv{{ ac.skillLevel }}</span>
-          <span class="{{ 'property_' + ac.element }} px-1 font-semibold">{{ ac.element }}</span>
-          <span class="summary_monster_value px-1">({{ ac.chancePercent }}%)</span>
+          Element:
+          <span class="{{ 'property_' + totalSummary?.propertyAtk }} px-1 font-semibold">{{ totalSummary?.propertyAtk }}</span>
+          <span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.propertyMultiplier }})</span>
+          <button pButton type="button" class="p-button-text p-button-warning py-0" icon="pi pi-search" [disabled]="isInProcessingPreset" (click)="onShowElementalTableClick()"></button>
+        </div>
+
+        <!-- Skill-specific -->
+        <div class="col-12 py-1 divider"><p-divider></p-divider></div>
+        <div class="col-12 mb-1">
+          <span class="font-bold text-primary" style="font-size: 0.85rem;">SKILL</span>
+          <span class="summary_highlight font-semibold px-2">{{ totalSummary?.calcSkill?.dmgType }}</span>
         </div>
         <div class="col-6">
-          <app-calc-value label="Dmg:" styleClass="summary_damage" [min]="ac.minDamage" [max]="ac.maxDamage"></app-calc-value>
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="BaseSkill:" unit="%" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.calcSkill?.baseSkillDamage" [max2]="totalSummary2?.calcSkill?.baseSkillDamage"></app-calc-value>
         </div>
         <div class="col-6">
-          <app-calc-value label="DPS:" styleClass="summary_highlight" [max]="ac.dps"></app-calc-value>
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('skillBonus:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="BonusSkill:" unit="%" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.skillBonusFromEquipment" [max2]="totalSummary2?.dmg?.skillBonusFromEquipment"></app-calc-value>
+          </span>
         </div>
-        <div class="col-6" *ngIf="ac.criMinDamage">
-          <app-calc-value label="CriDmg:" styleClass="summary_damage" [min]="ac.criMinDamage" [max]="ac.criMaxDamage"></app-calc-value>
+        <!-- CurrentHP/SP -->
+        <div class="col-6" [hidden]="!totalSummary?.dmg?.isUsedCurrentHP">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="CurrentHP:" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.currentHp" [max2]="totalSummary2?.dmg?.currentHp"></app-calc-value>
         </div>
-      </ng-container>
-    </div>
+        <div class="col-6" [hidden]="!totalSummary?.dmg?.isUsedCurrentSP">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="CurrentSp:" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.dmg?.currentSp" [max2]="totalSummary2?.dmg?.currentSp"></app-calc-value>
+        </div>
+        <!-- Cast Times -->
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('vct:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="VCT:" styleClass="summary_value" styleClass2="summary_compare" [isGreaterIsBetter]="false" [displayRaw]="true" [raw]="totalSummary?.calcSkill?.vct" [max]="totalSummary?.calcSkill?.reducedVct" [max2]="totalSummary2?.calcSkill?.reducedVct"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('fct:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="FCT:" styleClass="summary_value" styleClass2="summary_compare" [isGreaterIsBetter]="false" [displayRaw]="true" [raw]="totalSummary?.calcSkill?.fct" [max]="totalSummary?.calcSkill?.reducedFct" [max2]="totalSummary2?.calcSkill?.reducedFct"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('cd:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="CD:" styleClass="summary_value" styleClass2="summary_compare" [isGreaterIsBetter]="false" [displayRaw]="true" [raw]="totalSummary?.calcSkill?.cd" [max]="totalSummary?.calcSkill?.reducedCd" [max2]="totalSummary2?.calcSkill?.reducedCd"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <span style="cursor:pointer;" (click)="statBreakdownClick.emit('acd:skill')">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Delay:" styleClass="summary_value" styleClass2="summary_compare" [isGreaterIsBetter]="false" [displayRaw]="true" [raw]="totalSummary?.calcSkill?.acd" [max]="totalSummary?.calcSkill?.reducedAcd" [max2]="totalSummary2?.calcSkill?.reducedAcd"></app-calc-value>
+          </span>
+        </div>
+        <div class="col-6">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Cast:" styleClass="summary_damage" styleClass2="summary_compare" [isGreaterIsBetter]="false" [max]="totalSummary?.calcSkill?.castPeriod" [max2]="totalSummary2?.calcSkill?.castPeriod"></app-calc-value>
+        </div>
+        <div class="col-6">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Skill/s:" unit=" Hits/s" styleClass="summary_highlight" styleClass2="summary_compare" [max]="totalSummary?.calcSkill?.totalHitPerSec" [max2]="totalSummary2?.calcSkill?.totalHitPerSec"></app-calc-value>
+        </div>
+        <!-- Precast Cycle -->
+        <ng-container *ngIf="totalSummary?.calcSkill?.precastSteps?.length > 0">
+          <div class="col-12 mt-2" style="border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 0.5rem;">
+            <small style="color: #94a3b8; font-weight: 600;">Ciclo de Rotação</small>
+          </div>
+          <ng-container *ngFor="let step of totalSummary?.calcSkill?.precastSteps">
+            <div class="col-6">
+              <app-calc-value [label]="step.label + ' ×' + step.repeat + ':'" styleClass="summary_value" [isGreaterIsBetter]="false" [max]="step.stepTime"></app-calc-value>
+            </div>
+          </ng-container>
+          <div class="col-6">
+            <app-calc-value label="Release:" styleClass="summary_value" [isGreaterIsBetter]="false" [max]="totalSummary?.calcSkill?.releaseTime"></app-calc-value>
+          </div>
+          <div class="col-6">
+            <app-calc-value label="Ciclo Total:" styleClass="summary_highlight" [isGreaterIsBetter]="false" [max]="totalSummary?.calcSkill?.cycleTotalTime"></app-calc-value>
+          </div>
+        </ng-container>
+        <!-- Skill Crit Details -->
+        <ng-container *ngIf="totalSummary?.dmg?.skillCanCri">
+          <div class="col-6">
+            <span style="cursor:pointer;" (click)="statBreakdownClick.emit('cri:skill')">
+              <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Skill CriRate:" styleClass="summary_damage" styleClass2="summary_compare" [max]="totalSummary?.dmg?.skillCriRateToMonster" [max2]="totalSummary2?.dmg?.skillCriRateToMonster"></app-calc-value>
+            </span>
+          </div>
+          <div class="col-6">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Skill CriDmg:" unit="%" styleClass="summary_damage" styleClass2="summary_compare" [max]="totalSummary?.dmg?.skillCriDmgToMonster" [max2]="totalSummary2?.dmg?.skillCriDmgToMonster"></app-calc-value>
+          </div>
+          <div class="col-12" [hidden]="totalSummary?.dmg?.skillCriRateToMonster >= 100">
+            <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="SkillDmg (no cri):" styleClass="summary_damage" styleClass2="summary_compare" [showPercentDiff]="true" [totalHit]="totalSummary?.calcSkill?.totalHits" [totalHit2]="totalSummary2?.calcSkill?.totalHits" [min]="totalSummary?.dmg?.skillMinDamageNoCri" [max]="totalSummary?.dmg?.skillMaxDamageNoCri" [min2]="totalSummary2?.dmg?.skillMinDamageNoCri" [max2]="totalSummary2?.dmg?.skillMaxDamageNoCri"></app-calc-value>
+          </div>
+        </ng-container>
+        <div class="col-12" [hidden]="!totalSummary?.dmg?.maxStack">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" [label]="totalSummary?.dmg?.skillNoStackDamageLabel" styleClass="summary_damage" styleClass2="summary_compare" [showPercentDiff]="true" [totalHit]="totalSummary?.calcSkill?.totalHits" [totalHit2]="totalSummary2?.calcSkill?.totalHits" [min]="totalSummary?.dmg?.noStackMinCriDamage" [max]="totalSummary?.dmg?.noStackMaxCriDamage" [min2]="totalSummary2?.dmg?.noStackMinCriDamage" [max2]="totalSummary2?.dmg?.noStackMaxCriDamage"></app-calc-value>
+        </div>
+        <div class="col-12" *ngIf="totalSummary?.dmg?.skillPart2Label && totalSummary?.dmg?.skillMaxDamage2">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" [label]="totalSummary?.dmg?.skillPart2Label" styleClass="summary_damage" styleClass2="summary_compare" [totalHit]="totalSummary?.calcSkill?.totalHits" [totalHit2]="totalSummary2?.calcSkill?.totalHits" [min]="totalSummary?.dmg?.skillMinDamage2" [max]="totalSummary?.dmg?.skillMaxDamage2" [min2]="totalSummary2?.dmg?.skillMinDamage2" [max2]="totalSummary2?.dmg?.skillMaxDamage2"></app-calc-value>
+        </div>
+        <div class="col-6" [hidden]="totalSummary?.dmg?.isAutoSpell">
+          <app-calc-value [enableCompare]="isEnableCompare && totalSummary2?.dmg" label="Skill DPS:" styleClass="summary_highlight" styleClass2="summary_compare" [showPercentDiff]="true" [max]="totalSummary?.dmg?.skillDps" [max2]="totalSummary2?.dmg?.skillDps"></app-calc-value>
+        </div>
+        <div class="col-6" [hidden]="totalSummary?.dmg?.isAutoSpell">
+          <span>Tempo: </span>
+          <span class="text-lg font-medium px-1 summary_highlight">{{ formatTime(totalSummary?.dmg?.skillBattleTime) }}</span>
+        </div>
+
+        <!-- Autocast entries (all types) -->
+        <ng-container *ngFor="let acGroup of [
+          { entries: totalSummary?.autocast?.onSkillEntries, entries2: totalSummary2?.autocast?.onSkillEntries, label: 'AUTOCAST (on skill)', dps: totalSummary?.autocast?.onSkillDps, dps2: totalSummary2?.autocast?.onSkillDps, totalDps: totalSummary?.autocast?.combinedSkillDps, totalDps2: totalSummary2?.autocast?.combinedSkillDps || totalSummary2?.dmg?.skillDps || 0 },
+          { entries: totalSummary?.autocast?.onHitEntries, entries2: totalSummary2?.autocast?.onHitEntries, label: 'AUTOCAST (on hit)', dps: totalSummary?.autocast?.onHitDps, dps2: totalSummary2?.autocast?.onHitDps, totalDps: totalSummary?.autocast?.combinedBasicDps, totalDps2: totalSummary2?.autocast?.combinedBasicDps || totalSummary2?.dmg?.basicDps || 0 },
+          { entries: totalSummary?.autocast?.onHurtEntries, entries2: totalSummary2?.autocast?.onHurtEntries, label: 'AUTOCAST (on hurt)', dps: 0, dps2: 0, totalDps: 0, totalDps2: 0 }
+        ]">
+          <ng-container *ngIf="acGroup.entries?.length">
+            <div class="col-12 py-1 divider"><p-divider></p-divider></div>
+            <div class="col-12" style="border-left: 3px solid var(--primary-color); padding-left: 8px; margin-left: 4px;">
+              <span class="font-bold text-primary" style="font-size: 0.8rem;">{{ acGroup.label }}</span>
+            </div>
+            <ng-container *ngFor="let ac of acGroup.entries">
+              <div class="col-12" style="padding-left: 16px;">
+                <span class="summary_value font-semibold">{{ ac.skillName }}</span>
+                <span class="summary_highlight px-1">Lv{{ ac.skillLevel }}</span>
+                <span class="{{ 'property_' + ac.element }} px-1 font-semibold">{{ ac.element }}</span>
+                <span class="summary_monster_value px-1">({{ ac.chancePercent }}%)</span>
+              </div>
+              <div class="col-6" style="padding-left: 16px;">
+                <app-calc-value label="Dmg:" styleClass="summary_damage" [min]="ac.minDamage" [max]="ac.maxDamage"></app-calc-value>
+              </div>
+              <div class="col-6">
+                <app-calc-value label="DPS:" styleClass="summary_highlight" [max]="ac.dps"></app-calc-value>
+              </div>
+              <div class="col-6" style="padding-left: 16px;" *ngIf="ac.criMinDamage">
+                <app-calc-value label="CriDmg:" styleClass="summary_damage" [min]="ac.criMinDamage" [max]="ac.criMaxDamage"></app-calc-value>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="acGroup.dps">
+              <div class="col-6" style="padding-left: 16px;">
+                <app-calc-value [enableCompare]="isEnableCompare" label="AC DPS:" styleClass="summary_highlight" styleClass2="summary_compare" [max]="acGroup.dps" [max2]="acGroup.dps2 || 0"></app-calc-value>
+              </div>
+              <div class="col-6" style="padding-left: 16px;">
+                <app-calc-value [enableCompare]="isEnableCompare" label="Total:" styleClass="summary_chance_hilight" styleClass2="summary_compare" [showPercentDiff]="true" [max]="acGroup.totalDps" [max2]="acGroup.totalDps2 || 0"></app-calc-value>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </p-accordionTab>
+    </p-accordion>
   </div>
 </div>

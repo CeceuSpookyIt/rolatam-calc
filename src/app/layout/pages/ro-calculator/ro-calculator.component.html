@@ -662,7 +662,12 @@
                 <tr>
                   <td class="{{ 'property_' + item.elementName }}">{{ item.label }}</td>
                   <td *ngFor="let col of columns" class="battle_row_{{ col.field }}">
-                    {{ item[col.field] > 0 ? (item[col.field] | number) : item[col.field] }}
+                    <ng-container *ngIf="col.field === 'skillBattleTime' || col.field === 'basicBattleTime' || col.field === 'combinedBasicBattleTime'; else numberCell">
+                      {{ formatBattleTime(item[col.field]) }}
+                    </ng-container>
+                    <ng-template #numberCell>
+                      {{ item[col.field] > 0 ? (item[col.field] | number) : item[col.field] }}
+                    </ng-template>
                   </td>
                 </tr>
               </ng-template>
