@@ -3797,10 +3797,10 @@ export class Calculator {
       const statObj = stats as any;
       if (!statObj) continue;
       for (const [key, val] of Object.entries(statObj)) {
-        if ((key.startsWith('p_size_') || key.startsWith('m_size_') || key === 'ignore_size_penalty') && val && (val as number) !== 0) {
+        if ((key.startsWith('p_size_') || key === 'ignore_size_penalty') && val && (val as number) !== 0) {
           const itemData = this.equipItem.get(slot as any);
           const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
-          const label = key.replace('p_size_', 'Phys ').replace('m_size_', 'Mag ').replace('ignore_size_penalty', 'Ignore Size');
+          const label = key.replace('p_size_', 'Phys ').replace('ignore_size_penalty', 'Ignore Size');
           entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
         }
       }
@@ -3877,7 +3877,8 @@ export class Calculator {
     const itemSummaryFull = this.getItemSummary();
     const monsterSize = this.monster.size;
 
-    const entries: BreakdownEntry[] = [];
+    const physEntries: BreakdownEntry[] = [];
+    const magEntries: BreakdownEntry[] = [];
     for (const [slot, stats] of Object.entries(itemSummaryFull)) {
       if (slot === 'consumableBonuses') continue;
       const statObj = stats as any;
@@ -3885,35 +3886,45 @@ export class Calculator {
       for (const [key, val] of Object.entries(statObj)) {
         if (!val || (val as number) === 0) continue;
         let suffix: string | null = null;
-        let label = '';
+        let isPhys = false;
         if (key.startsWith('p_size_')) {
           suffix = key.replace('p_size_', '');
-          label = `Phys ${suffix}`;
+          isPhys = true;
         } else if (key.startsWith('m_size_')) {
           suffix = key.replace('m_size_', '');
-          label = `Mag ${suffix}`;
         }
         if (!suffix || (suffix !== 'all' && suffix !== monsterSize)) continue;
         const itemData = this.equipItem.get(slot as any);
         const slotLabel = Calculator.SLOT_LABELS[slot] || slot;
-        entries.push({ source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number });
+        const label = isPhys ? `Phys ${suffix}` : `Mag ${suffix}`;
+        const entry = { source: `${itemData?.name || slotLabel} (${label})`, slot: slotLabel, value: val as number };
+        if (isPhys) physEntries.push(entry); else magEntries.push(entry);
       }
     }
-    entries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
-    const total = entries.reduce((sum, e) => sum + (e.value as number), 0);
+    physEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    magEntries.sort((a, b) => Math.abs(b.value as number) - Math.abs(a.value as number));
+    const physTotal = physEntries.reduce((sum, e) => sum + (e.value as number), 0);
+    const magTotal = magEntries.reduce((sum, e) => sum + (e.value as number), 0);
 
     sections.push({
-      label: `Size Damage (${monsterSize})`,
-      entries,
-      subtotal: total,
-      emptyMessage: 'Nenhum equipamento com bônus de tamanho',
+      label: `Phys Size Damage (${monsterSize})`,
+      entries: physEntries,
+      subtotal: physTotal,
+      emptyMessage: 'Nenhum equipamento com bônus físico de tamanho',
+    });
+
+    sections.push({
+      label: `Mag Size Damage (${monsterSize})`,
+      entries: magEntries,
+      subtotal: magTotal,
+      emptyMessage: 'Nenhum equipamento com bônus mágico de tamanho',
     });
 
     return {
       title: 'Size Breakdown',
       sections,
       totalLabel: 'Size',
-      totalValue: `${100 + total}%`,
+      totalValue: `Phys ${100 + physTotal}% / Mag ${100 + magTotal}%`,
     };
   }
 
