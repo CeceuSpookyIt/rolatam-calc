@@ -72,8 +72,7 @@ export const autoArmorModules = [
   'Auto_Module_C3',   // Attacker Force (Unique, max 1)
   'Auto_Module_C',    // Range Force (Unique, max 1)
   'Auto_Module_C4',   // Critical Force (Unique, max 1)
-  'Auto_Module_C5',   // Recovery Force (Unique, max 1)
-  'Auto_Module_C11',  // Mirror Counter (Unique, max 1)
+  // C5 (Recovery Force) and C11 (Mirror Counter) not yet in LATAM
   'Auto_Module_C6',   // Delay after skill (Unique, max 1)
   'Auto_Module_C8',   // Power Force (Unique, max 1)
   ...autoModEpic,
@@ -83,12 +82,10 @@ export const autoArmorModules = [
 export const autoEngineModules = [
   'Auto_Module_A',    // Defense (Normal, max 3)
   'Auto_Module_A2',   // Magic Defense (Normal, max 3)
-  'Auto_Module_B7',   // Fast (Rare, max 2)
+  'Auto_Module_B13',  // Fast (Rare, max 2)
   'Auto_Module_B14',  // Caster (Rare, max 2)
   'Auto_Module_B15',  // Critical (Rare, max 2)
-  'Auto_Module_C12',  // Above All (Unique, max 1)
   'Auto_Module_C9',   // Powerful (Unique, max 1)
-  'Auto_Module_C13',  // Reflection Reject (Unique, max 1)
 ];
 
 // Leg A/B: Normal(DEF,MDEF) + Rare(Vital,Mental,Heal) + Unique(leg) + Legendary
@@ -116,13 +113,12 @@ export const autoAccRModules = [
   'Auto_Module_A4',   // LUK (Normal, max 2)
   'Auto_Module_A5',   // STR (Normal, max 2)
   'Auto_Module_A6',   // AGI (Normal, max 2)
-  'Auto_Module_A9',   // HP Recovery (Normal, max 2)
+  // A9 (HP Recovery) not yet in LATAM
   'Auto_Module_B3',   // Spell (Rare, max 1)
   'Auto_Module_B4',   // Attack Speed (Rare, max 1)
   'Auto_Module_B5',   // Fatal (Rare, max 1)
   'Auto_Module_B6',   // Expert Archer (Rare, max 1)
-  'Auto_Module_C15',  // Drain Life (Unique, max 1)
-  'Auto_Module_C16',  // Magic Healing (Unique, max 1)
+  // C15 (Drain Life) and C16 (Magic Healing) not yet in LATAM
   'Auto_Module_C10',  // All Force (Unique, max 1)
 ];
 
@@ -134,13 +130,12 @@ export const autoAccLModules = [
   'Auto_Module_A4',   // LUK (Normal, max 2)
   'Auto_Module_A7',   // INT (Normal, max 2)
   'Auto_Module_A8',   // DEX (Normal, max 2)
-  'Auto_Module_A10',  // SP Recovery (Normal, max 2)
+  // A10 (SP Recovery) not yet in LATAM
   'Auto_Module_B3',   // Spell (Rare, max 1)
   'Auto_Module_B4',   // Attack Speed (Rare, max 1)
   'Auto_Module_B5',   // Fatal (Rare, max 1)
   'Auto_Module_B6',   // Expert Archer (Rare, max 1)
-  'Auto_Module_C17',  // Drain Soul (Unique, max 1)
-  'Auto_Module_C18',  // Magic Soul (Unique, max 1)
+  // C17 (Drain Soul) and C18 (Magic Soul) not yet in LATAM
   'Auto_Module_C10',  // All Force (Unique, max 1)
 ];
 
@@ -156,8 +151,7 @@ export const moduleMaxEnchant: Record<string, number> = {
   'Auto_Module_A6': 2,   // AGI
   'Auto_Module_A7': 2,   // INT
   'Auto_Module_A8': 2,   // DEX
-  'Auto_Module_A9': 2,   // HP Recovery
-  'Auto_Module_A10': 2,  // SP Recovery
+  // A9 (HP Recovery) and A10 (SP Recovery) not yet in LATAM
   // Rare — Armor: max 2
   'Auto_Module_B10': 2,  // Attack Power
   'Auto_Module_B11': 2,  // Magic Power
@@ -167,7 +161,7 @@ export const moduleMaxEnchant: Record<string, number> = {
   'Auto_Module_B9': 2,   // Mental
   'Auto_Module_B16': 2,  // Heal
   // Rare — Engine: max 2
-  'Auto_Module_B7': 2,   // Fast
+  'Auto_Module_B13': 2,  // Fast
   'Auto_Module_B14': 2,  // Caster
   'Auto_Module_B15': 2,  // Critical
   // Epic — max 2
@@ -198,14 +192,13 @@ export const moduleRarityMap: Record<string, ModuleRarity> = {
   'Auto_Module_A6': 'Normal',
   'Auto_Module_A7': 'Normal',
   'Auto_Module_A8': 'Normal',
-  'Auto_Module_A9': 'Normal',
-  'Auto_Module_A10': 'Normal',
+  // A9, A10 not yet in LATAM
   // Rare — Accessories
   'Auto_Module_B3': 'Rare',
   'Auto_Module_B4': 'Rare',
   'Auto_Module_B5': 'Rare',
   'Auto_Module_B6': 'Rare',
-  'Auto_Module_B7': 'Rare',
+  'Auto_Module_B13': 'Rare',
   // Rare — Leg
   'Auto_Module_B8': 'Rare',
   'Auto_Module_B9': 'Rare',
@@ -222,23 +215,18 @@ export const moduleRarityMap: Record<string, ModuleRarity> = {
   'Auto_Module_C2': 'Unique',
   'Auto_Module_C3': 'Unique',
   'Auto_Module_C4': 'Unique',
-  'Auto_Module_C5': 'Unique',
+  // C5 (Recovery Force) not yet in LATAM
   'Auto_Module_C6': 'Unique',
   'Auto_Module_C8': 'Unique',
   // Unique — Engine
   'Auto_Module_C9': 'Unique',
-  'Auto_Module_C11': 'Unique',
-  'Auto_Module_C12': 'Unique',
-  'Auto_Module_C13': 'Unique',
+  // C11 (Mirror Counter), C12 (Above All), C13 (Reflection Reject) not yet in LATAM
   // Unique — Leg
   'Auto_Module_C7': 'Unique',
   'Auto_Module_C14': 'Unique',
   // Unique — Accessories
   'Auto_Module_C10': 'Unique',
-  'Auto_Module_C15': 'Unique',
-  'Auto_Module_C16': 'Unique',
-  'Auto_Module_C17': 'Unique',
-  'Auto_Module_C18': 'Unique',
+  // C15-C18 (Drain Life, Magic Healing, Drain Soul, Magic Soul) not yet in LATAM
   // Epic — spread from autoModEpic
   ...Object.fromEntries(autoModEpic.map(aegis => [aegis, 'Epic' as ModuleRarity])),
   // Legendary
