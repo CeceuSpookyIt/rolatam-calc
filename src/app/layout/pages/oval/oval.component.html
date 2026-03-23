@@ -7,6 +7,7 @@
   </div>
 
   <ng-container *ngIf="!isLoading">
+    <!-- Stat cards -->
     <div class="grid mb-4">
       <div class="col-3">
         <div class="surface-card p-3 border-round shadow-1 text-center">
@@ -34,8 +35,122 @@
       </div>
     </div>
 
+    <!-- Trend chart -->
+    <div class="surface-card p-3 border-round shadow-1 mb-4" *ngIf="trendData">
+      <h3 class="mt-0 mb-1" style="color: var(--primary-color)">Tendência Diária</h3>
+      <p class="text-color-secondary text-sm mt-0 mb-3">Spins e contas únicas por dia</p>
+      <p-chart type="line" [data]="trendData" [options]="trendOptions" height="320px"></p-chart>
+    </div>
+
+    <!-- Drop Rates table -->
+    <div class="surface-card p-3 border-round shadow-1 mb-4">
+      <h3 class="mt-0 mb-1" style="color: var(--primary-color)">Drop Rates</h3>
+      <p class="text-color-secondary text-sm mt-0 mb-3">Taxa de drop com intervalo de confiança de 95% (Wilson score, n={{ totalSpins }})</p>
+      <p-table [value]="ranking" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Item</th>
+            <th style="width: 80px">Tier</th>
+            <th style="width: 70px" pSortableColumn="quantity">Drops <p-sortIcon field="quantity"></p-sortIcon></th>
+            <th style="width: 80px" pSortableColumn="percentage">Taxa <p-sortIcon field="percentage"></p-sortIcon></th>
+            <th style="width: 200px">IC 95%</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td>{{ row.item }}</td>
+            <td><span class="tier-label" [ngClass]="tierClass(row.tier)">{{ tierLabel(row.tier) }}</span></td>
+            <td>
+              <span *ngIf="row.quantity > 0">{{ row.quantity }}</span>
+              <span *ngIf="row.quantity === 0" class="text-color-secondary">0</span>
+            </td>
+            <td>
+              <span *ngIf="row.quantity > 0" class="font-bold" [style.color]="tierColor(row.tier)">
+                {{ row.percentage | number:'1.1-1' }}%
+              </span>
+              <span *ngIf="row.quantity === 0" class="text-color-secondary">—</span>
+            </td>
+            <td>
+              <ng-container *ngIf="row.quantity > 0">
+                <div class="ci-bar-container">
+                  <div class="ci-bar-bg">
+                    <div class="ci-bar-range" [style.left.%]="row.rateLo * 3.5" [style.width.%]="(row.rateHi - row.rateLo) * 3.5" [style.background]="tierColor(row.tier)"></div>
+                    <div class="ci-bar-fill" [style.width.%]="row.percentage * 3.5" [style.background]="tierColor(row.tier)"></div>
+                  </div>
+                  <span class="text-color-secondary text-xs">{{ row.rateLo | number:'1.2-2' }}–{{ row.rateHi | number:'1.2-2' }}%</span>
+                </div>
+              </ng-container>
+              <span *ngIf="row.quantity === 0" style="color: #FF6384" class="text-xs">
+                0 drops em {{ totalSpins }} spins → &lt;{{ row.rateHi | number:'1.2-2' }}%
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- Sorte vs Azar -->
+    <div class="surface-card p-3 border-round shadow-1 mb-4" *ngIf="luckyAccounts.length > 0 || unluckyAccounts.length > 0">
+      <h3 class="mt-0 mb-1" style="color: var(--primary-color)">Sorte vs Azar</h3>
+      <p class="text-color-secondary text-sm mt-0 mb-3">Comparação entre contas com mais e menos sorte em itens raros</p>
+
+      <div class="grid">
+        <!-- Lucky -->
+        <div class="col-12 md:col-6" *ngIf="luckyAccounts.length > 0">
+          <h4 class="mt-0 mb-2">Mais Sortudos</h4>
+          <p class="text-color-secondary text-xs mt-0 mb-2">Maior proporção de itens raros por spin</p>
+          <div *ngFor="let a of luckyAccounts; let i = index" class="luck-card">
+            <div>
+              <span class="mr-2">{{ medals[i] }}</span>
+              <span>{{ a.hash }}… <span class="text-color-secondary">({{ a.spins }} spins)</span></span>
+              <br><span class="text-xs text-color-secondary ml-4">{{ a.items }}</span>
+            </div>
+            <div class="text-right">
+              <span class="font-bold lucky-text">{{ a.rares }} raros</span>
+              <span class="text-color-secondary text-xs ml-1">({{ a.rarePct | number:'1.1-1' }}%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unlucky -->
+        <div class="col-12 md:col-6" *ngIf="unluckyAccounts.length > 0">
+          <h4 class="mt-0 mb-2">Mais Azarados</h4>
+          <p class="text-color-secondary text-xs mt-0 mb-2">Mais spins sem nunca tirar item raro</p>
+          <div *ngFor="let a of unluckyAccounts; let i = index" class="luck-card">
+            <div>
+              <span class="mr-2">{{ i + 1 }}.</span>
+              <span>{{ a.hash }}… <span class="text-color-secondary">({{ a.spins }} spins)</span></span>
+            </div>
+            <div class="text-right">
+              <span class="font-bold unlucky-text">0 raros</span>
+              <span class="text-color-secondary text-xs ml-1">(esperado: ~{{ a.expected }})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cumulative Probability -->
+      <hr class="divider">
+      <h4 class="mt-0 mb-1">Probabilidade acumulada</h4>
+      <p class="text-color-secondary text-xs mt-0 mb-3">Chance de tirar pelo menos 1 item em N spins</p>
+
+      <div *ngFor="let tier of probTiers" class="mb-3">
+        <div class="text-sm font-bold mb-1" [style.color]="tier.color">
+          {{ tier.name }}
+          <span *ngIf="tier.note" class="text-color-secondary text-xs font-normal">({{ tier.note }})</span>
+        </div>
+        <div class="text-color-secondary text-xs mb-2">{{ tier.desc }} — taxa: {{ tier.rate * 100 | number:'1.2-2' }}%</div>
+        <div class="flex gap-2 flex-wrap">
+          <div *ngFor="let c of tier.cards" class="prob-card">
+            <div class="prob-value" [style.color]="probColor(c.prob)">{{ formatProb(c.prob) }}%</div>
+            <div class="text-color-secondary text-xs">{{ c.spins }} spin{{ c.spins > 1 ? 's' : '' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ranking + Pie -->
     <div class="grid">
-      <!-- Ranking Geral -->
       <div class="col-12 md:col-7">
         <div class="surface-card p-3 border-round shadow-1 h-full">
           <h3 class="mt-0 mb-3" style="color: var(--primary-color)">Overall Ranking</h3>
@@ -63,12 +178,11 @@
         </div>
       </div>
 
-      <!-- Pie Chart -->
       <div class="col-12 md:col-5">
         <div class="surface-card p-3 border-round shadow-1">
           <h3 class="mt-0 mb-3" style="color: var(--primary-color)">Prize Distribution</h3>
-          <p-chart type="pie" [data]="pieData" [options]="pieOptions" *ngIf="ranking.length > 0" width="100%" height="400px"></p-chart>
-          <p *ngIf="ranking.length === 0" class="text-center text-color-secondary">No data yet.</p>
+          <p-chart type="pie" [data]="pieData" [options]="pieOptions" *ngIf="pieData" width="100%" height="400px"></p-chart>
+          <p *ngIf="!pieData" class="text-center text-color-secondary">No data yet.</p>
         </div>
       </div>
     </div>
