@@ -18,20 +18,39 @@ export class RouletteService {
   constructor(private supabaseService: SupabaseService) {}
 
   getHistory(eventSlug?: string): Observable<RouletteHistoryRow[]> {
-    let query = this.supabaseService.client
-      .from('roulette_history')
-      .select('*')
-      .order('prize_date', { ascending: true });
+    return from(this.fetchAllRows(eventSlug));
+  }
 
-    if (eventSlug) {
-      query = query.eq('event_slug', eventSlug);
+  private async fetchAllRows(eventSlug?: string): Promise<RouletteHistoryRow[]> {
+    const PAGE_SIZE = 1000;
+    const all: RouletteHistoryRow[] = [];
+    let offset = 0;
+    let done = false;
+
+    while (!done) {
+      let query = this.supabaseService.client
+        .from('roulette_history')
+        .select('*')
+        .order('prize_date', { ascending: true })
+        .range(offset, offset + PAGE_SIZE - 1);
+
+      if (eventSlug) {
+        query = query.eq('event_slug', eventSlug);
+      }
+
+      const { data, error } = await query;
+      if (error) throw error;
+
+      const rows = (data ?? []) as RouletteHistoryRow[];
+      all.push(...rows);
+
+      if (rows.length < PAGE_SIZE) {
+        done = true;
+      } else {
+        offset += PAGE_SIZE;
+      }
     }
 
-    return from(query).pipe(
-      map((res) => {
-        if (res.error) throw res.error;
-        return (res.data ?? []) as RouletteHistoryRow[];
-      })
-    );
+    return all;
   }
 }
