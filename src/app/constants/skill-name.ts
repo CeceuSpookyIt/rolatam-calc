@@ -535,6 +535,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   'Storm Gust',
   'Storm Slash',
   'Stratum Tremor',
+  'Summon Flora',
   'Suicidal Destruction',
   'Swirling Petal',
   'Tasty Shrimp Party',

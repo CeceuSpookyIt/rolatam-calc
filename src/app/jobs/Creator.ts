@@ -144,8 +144,8 @@ export class Creator extends Merchant {
       ],
     },
     {
-      label: 'Bio Cannibalize',
-      name: 'Bio Cannibalize',
+      label: 'Summon Flora',
+      name: 'Summon Flora',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
