@@ -173,9 +173,9 @@ export class ElementalMaster extends Sorcerer {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.ElementalMaster];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Diamond Storm',
-      label: '[V3] Diamond Storm Lv5',
-      value: 'Diamond Storm==5',
+      name: 'EM_DIAMOND_STORM',
+      label: '[V3] Execuo Aurora Lv5',
+      value: 'EM_DIAMOND_STORM==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -196,9 +196,9 @@ export class ElementalMaster extends Sorcerer {
       },
     },
     {
-      name: 'Conflagration',
-      label: '[V3] Conflagration Lv5',
-      value: 'Conflagration==5',
+      name: 'EM_CONFLAGRATION',
+      label: '[V3] Conflagrao Lv5',
+      value: 'EM_CONFLAGRATION==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -219,9 +219,9 @@ export class ElementalMaster extends Sorcerer {
       },
     },
     {
-      name: 'Lightning Land',
-      label: '[V3] Lightning Land Lv5',
-      value: 'Lightning Land==5',
+      name: 'EM_LIGHTNING_LAND',
+      label: '[V3] Tormenta Lv5',
+      value: 'EM_LIGHTNING_LAND==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -242,9 +242,9 @@ export class ElementalMaster extends Sorcerer {
       },
     },
     {
-      name: 'Terra Drive',
-      label: '[V3] Terra Drive Lv5',
-      value: 'Terra Drive==5',
+      name: 'EM_TERRA_DRIVE',
+      label: '[V3] Tremor de Terra Lv5',
+      value: 'EM_TERRA_DRIVE==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -265,9 +265,9 @@ export class ElementalMaster extends Sorcerer {
       },
     },
     {
-      name: 'Venom Swamp',
-      label: '[V3] Venom Swamp Lv5',
-      value: 'Venom Swamp==5',
+      name: 'EM_VENOM_SWAMP',
+      label: '[V3] Poo Venenoso Lv5',
+      value: 'EM_VENOM_SWAMP==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -288,9 +288,9 @@ export class ElementalMaster extends Sorcerer {
       },
     },
     {
-      name: 'Elemental Buster',
-      label: '[V3] Elemental Buster Lv10',
-      value: 'Elemental Buster==10',
+      name: 'EM_ELEMENTAL_BUSTER',
+      label: '[V3] Crculo Elemental Lv10',
+      value: 'EM_ELEMENTAL_BUSTER==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -298,7 +298,7 @@ export class ElementalMaster extends Sorcerer {
       isMatk: true,
       hit: 3,
       getElement: () => {
-        const spiritLv = this.activeSkillLv('_ElementalMaster_spirit');
+        const spiritLv = this.activeSkillLv('_CALC_ELEMENTALMASTER_SPIRIT');
 
         return ElementalMasterSpirit[spiritLv] ?? ElementType.Neutral;
       },
@@ -314,7 +314,7 @@ export class ElementalMaster extends Sorcerer {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: '_ElementalMaster_spirit',
+      name: '_CALC_ELEMENTALMASTER_SPIRIT',
       label: 'Master spirit',
       inputType: 'dropdown',
       dropdown: [
@@ -329,13 +329,13 @@ export class ElementalMaster extends Sorcerer {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Magic Book Mastery',
-      label: 'Magic Book Mastery',
+      name: 'EM_MAGIC_BOOK_M',
+      label: 'Estudo dos Elementos',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     // {
-    //   name: 'Elemental Spirit Mastery',
+    //   name: 'EM_ELEMENTAL_SPIRIT_M',
     //   label: 'Elemental Spirit',
     //   inputType: 'dropdown',
     //   dropdown: genSkillList(10)
@@ -358,7 +358,7 @@ export class ElementalMaster extends Sorcerer {
 
     const { totalBonus, weapon } = params;
 
-    const magicBookLv = this.learnLv('Magic Book Mastery');
+    const magicBookLv = this.learnLv('EM_MAGIC_BOOK_M');
     if (magicBookLv > 0 && weapon.isType('book')) {
       addBonus(totalBonus, 'm_my_element_water', magicBookLv);
       addBonus(totalBonus, 'm_my_element_wind', magicBookLv);
@@ -375,11 +375,11 @@ export class ElementalMaster extends Sorcerer {
   private setSpiritBonus(totalBonus: EquipmentSummaryModel) {
     const spiritName = this.spiritName;
     const mapSkill: Record<typeof spiritName, [SKILL_NAME, number]> = {
-      Divulio: ['Cold Bolt', 100],
-      Ardor: ['Fire Bolt', 100],
-      Procella: ['Lightening Bolt', 100],
-      Terramotus: ['Earth Spike', 80],
-      Serpens: ['Kiling Cloud', 50],
+      Divulio: ['MG_COLDBOLT', 100],
+      Ardor: ['MG_FIREBOLT', 100],
+      Procella: ['MG_LIGHTNINGBOLT', 100],
+      Terramotus: ['WZ_EARTHSPIKE', 80],
+      Serpens: ['SO_CLOUD_KILL', 50],
     };
     const mapMyEle: Record<typeof spiritName, keyof typeof totalBonus> = {
       Divulio: 'm_my_element_water',
@@ -399,7 +399,7 @@ export class ElementalMaster extends Sorcerer {
   }
 
   private get spiritName(): (typeof this._spirit)[keyof typeof this._spirit] {
-    const spirit = this.activeSkillLv('_ElementalMaster_spirit');
+    const spirit = this.activeSkillLv('_CALC_ELEMENTALMASTER_SPIRIT');
 
     return this._spirit[spirit];
   }

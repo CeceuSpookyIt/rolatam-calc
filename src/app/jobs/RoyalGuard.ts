@@ -85,10 +85,10 @@ export class RoyalGuard extends Paladin {
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.RoyalGuard];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Banishing Point',
-      label: 'Banishing Point Lv10',
-      value: 'Banishing Point==10',
-      values: ['[Improved] Banishing Point==10'],
+      name: 'LG_BANISHINGPOINT',
+      label: 'Toque do Oblvio Lv10',
+      value: 'LG_BANISHINGPOINT==10',
+      values: ['[Improved] LG_BANISHINGPOINT==10'],
       acd: 0,
       fct: 0,
       vct: 0,
@@ -96,9 +96,9 @@ export class RoyalGuard extends Paladin {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bashLv = this.learnLv('Bash');
+        const bashLv = this.learnLv('SM_BASH');
 
-        if (this.isSkillActive('Grand Judgement')) {
+        if (this.isSkillActive('IG_GRAND_JUDGEMENT')) {
           return skillLevel * 180 + bashLv * 70;
         }
 
@@ -106,10 +106,10 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Genesis Ray',
-      label: 'Genesis Ray Lv10',
-      value: 'Genesis Ray==10',
-      values: ['[Improved] Genesis Ray==10'],
+      name: 'LG_RAYOFGENESIS',
+      label: 'Luz da Criao Lv10',
+      value: 'LG_RAYOFGENESIS==10',
+      values: ['[Improved] LG_RAYOFGENESIS==10'],
       acd: 1,
       fct: 0.5,
       vct: 6.5,
@@ -117,7 +117,7 @@ export class RoyalGuard extends Paladin {
       hit: 7,
       isMatk: true,
       getElement: () => {
-        if (this.isSkillActive('Inspiration')) return ElementType.Neutral;
+        if (this.isSkillActive('LG_INSPIRATION')) return ElementType.Neutral;
 
         return ElementType.Holy;
       },
@@ -125,7 +125,7 @@ export class RoyalGuard extends Paladin {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        if (this.isSkillActive('Inspiration')) {
+        if (this.isSkillActive('LG_INSPIRATION')) {
           return (skillLevel * 300 + totalInt * 3) * (baseLevel / 100);
         }
 
@@ -133,10 +133,10 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Over Brand',
-      label: 'Over Brand Lv5',
-      value: 'Over Brand==5',
-      values: ['[Improved] Over Brand==5'],
+      name: 'LG_OVERBRAND',
+      label: 'Lana do Destino Lv5',
+      value: 'LG_OVERBRAND==5',
+      values: ['[Improved] LG_OVERBRAND==5'],
       acd: 1,
       fct: 0.5,
       vct: 0,
@@ -147,15 +147,15 @@ export class RoyalGuard extends Paladin {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const { totalStr, totalDex } = status;
-        const moonSlasherBonus = this.isSkillActive('Moon Slasher') ? 150 : 0;
+        const moonSlasherBonus = this.isSkillActive('LG_MOONSLASHER') ? 150 : 0;
 
         return (skillLevel * (300 + moonSlasherBonus) + totalStr + totalDex) * (baseLevel / 100);
       },
     },
     {
-      name: 'Shield Press',
-      label: 'Shield Press Lv10',
-      value: 'Shield Press==10',
+      name: 'LG_SHIELDPRESS',
+      label: 'Escudo Compressor Lv10',
+      value: 'LG_SHIELDPRESS==10',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -169,8 +169,8 @@ export class RoyalGuard extends Paladin {
         const { totalStr, totalVit } = status;
         const { weight = 0, refine = 0 } = equipmentBonus.shield || {};
 
-        if (this.isSkillActive('Shield Shooting')) {
-          const shieldMastLv = this.learnLv('Shield Mastery');
+        if (this.isSkillActive('IG_SHIELD_SHOOTING')) {
+          const shieldMastLv = this.learnLv('IG_SHIELD_MASTERY');
           return (totalStr + weight + skillLevel * (260 + shieldMastLv * 15)) * (baseLevel / 100) + totalVit * refine;
         }
 
@@ -178,9 +178,9 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Cannon Spear',
-      label: 'Cannon Spear Lv5',
-      value: 'Cannon Spear==5',
+      name: 'LG_CANNONSPEAR',
+      label: 'Disparo Perfurante Lv5',
+      value: 'LG_CANNONSPEAR==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -192,7 +192,7 @@ export class RoyalGuard extends Paladin {
         const baseLevel = model.level;
         const { totalStr } = status;
 
-        if (this.isSkillActive('Grand Judgement')) {
+        if (this.isSkillActive('IG_GRAND_JUDGEMENT')) {
           return skillLevel * (200 + totalStr) * (baseLevel / 100);
         }
 
@@ -200,9 +200,9 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Cannon Spear',
-      label: '[Improved] Cannon Spear Lv5',
-      value: '[Improved] Cannon Spear==5',
+      name: 'LG_CANNONSPEAR',
+      label: '[Improved] Disparo Perfurante Lv5',
+      value: '[Improved] LG_CANNONSPEAR==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -213,7 +213,7 @@ export class RoyalGuard extends Paladin {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const { totalStr } = status;
-        if (this.isSkillActive('Grand Judgement')) {
+        if (this.isSkillActive('IG_GRAND_JUDGEMENT')) {
           return skillLevel * (200 + totalStr) * (baseLevel / 100);
         }
 
@@ -221,10 +221,10 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Earth Drive',
-      label: 'Earth Drive Lv5',
-      value: 'Earth Drive==5',
-      values: ['[Improved] Earth Drive==5'],
+      name: 'LG_EARTHDRIVE',
+      label: 'Aegis Inferi Lv5',
+      value: 'LG_EARTHDRIVE==5',
+      values: ['[Improved] LG_EARTHDRIVE==5'],
       acd: 1,
       fct: 0,
       vct: 1,
@@ -236,8 +236,8 @@ export class RoyalGuard extends Paladin {
         const baseLevel = model.level;
         const { totalVit, totalStr } = status;
 
-        if (this.isSkillActive('Shield Shooting')) {
-          const shieldMastLv = this.learnLv('Shield Mastery');
+        if (this.isSkillActive('IG_SHIELD_SHOOTING')) {
+          const shieldMastLv = this.learnLv('IG_SHIELD_MASTERY');
           return (totalVit + totalStr + skillLevel * (600 + shieldMastLv * 15)) * (baseLevel / 100);
         }
 
@@ -245,9 +245,9 @@ export class RoyalGuard extends Paladin {
       },
     },
     {
-      name: 'Moon Slasher',
-      label: 'Moon Slasher Lv5',
-      value: 'Moon Slasher==5',
+      name: 'LG_MOONSLASHER',
+      label: 'Espiral Lunar Lv5',
+      value: 'LG_MOONSLASHER==5',
       acd: 1,
       fct: 0,
       vct: 1,
@@ -257,7 +257,7 @@ export class RoyalGuard extends Paladin {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const overbrandLv = this.learnLv('Over Brand');
+        const overbrandLv = this.learnLv('LG_OVERBRAND');
 
         return (120 * skillLevel + overbrandLv * 80) * (baseLevel / 100);
       },
@@ -267,8 +267,8 @@ export class RoyalGuard extends Paladin {
   protected readonly activeSkillList3rd: ActiveSkillModel[] = [
     ShieldSpellFn(),
     {
-      label: 'Earth Drive',
-      name: 'Earth Drive',
+      label: 'Aegis Inferi',
+      name: 'LG_EARTHDRIVE',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -277,8 +277,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Ride Peco',
-      name: 'Ride Peco',
+      label: 'Montaria',
+      name: 'KN_RIDING',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, skillLv: 1, isUse: true, bonus: { ridePeco: 1 } },
@@ -287,7 +287,7 @@ export class RoyalGuard extends Paladin {
     },
     {
       label: 'Inspiration 5',
-      name: 'Inspiration',
+      name: 'LG_INSPIRATION',
       inputType: 'selectButton',
       isEquipAtk: true,
       dropdown: [
@@ -302,8 +302,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Moon Slasher',
-      name: 'Moon Slasher',
+      label: 'Espiral Lunar',
+      name: 'LG_MOONSLASHER',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -315,8 +315,8 @@ export class RoyalGuard extends Paladin {
 
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Shield Press',
-      name: 'Shield Press',
+      label: 'Escudo Compressor',
+      name: 'LG_SHIELDPRESS',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -333,8 +333,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Over Brand',
-      name: 'Over Brand',
+      label: 'Lana do Destino',
+      name: 'LG_OVERBRAND',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -346,8 +346,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Inspiration',
-      name: 'Inspiration',
+      label: 'Consagrao',
+      name: 'LG_INSPIRATION',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -359,8 +359,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Piety',
-      name: 'Piety',
+      label: 'Devoo',
+      name: 'LG_PIETY',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -372,8 +372,8 @@ export class RoyalGuard extends Paladin {
       ],
     },
     {
-      label: 'Moon Slasher',
-      name: 'Moon Slasher',
+      label: 'Espiral Lunar',
+      name: 'LG_MOONSLASHER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -406,10 +406,10 @@ export class RoyalGuard extends Paladin {
     const c = this.getMasteryAtkByMonsterElement(info.monster.element);
 
     let sum = b.totalAtk + c.totalAtk;
-    const spearMasteryLv = this.learnLv('Spear Mastery');
+    const spearMasteryLv = this.learnLv('KN_SPEARMASTERY');
     if ((weaponType === 'spear' || weaponType === 'twohandSpear') && spearMasteryLv > 0) {
       sum += spearMasteryLv * 4;
-      if (this.isSkillActive('Ride Peco')) sum += spearMasteryLv;
+      if (this.isSkillActive('KN_RIDING')) sum += spearMasteryLv;
     }
 
     for (const [, bonus] of Object.entries(bonuses)) {
@@ -435,15 +435,15 @@ export class RoyalGuard extends Paladin {
       }
     }
 
-    if (this.isSkillActive('Ride Peco')) {
-      totalBonus.decreaseSkillAspdPercent = (totalBonus.decreaseSkillAspdPercent || 0) + (50 - this.learnLv('Cavalier Mastery') * 10);
+    if (this.isSkillActive('KN_RIDING')) {
+      totalBonus.decreaseSkillAspdPercent = (totalBonus.decreaseSkillAspdPercent || 0) + (50 - this.learnLv('KN_CAVALIERMASTERY') * 10);
 
       if (typeName === 'spear' || typeName === 'twohandSpear') {
         totalBonus['sizePenalty_m'] = 100;
       }
     }
 
-    if (this.isSkillActive('Spear Quicken')) {
+    if (this.isSkillActive('CR_SPEARQUICKEN')) {
       totalBonus.cri = (totalBonus.cri || 0) + 30;
       totalBonus.flee = (totalBonus.flee || 0) + 20;
       totalBonus.skillAspd = (totalBonus.skillAspd || 0) + 7;

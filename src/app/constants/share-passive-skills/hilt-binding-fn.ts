@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const HiltBindingFn = (): PassiveSkillModel => ({
-  label: 'Hilt Binding',
-  name: 'Hilt Binding',
+  label: 'Punho Firme',
+  name: 'BS_HILTBINDING',
   inputType: 'dropdown',
   isMasteryAtk: true,
   dropdown: [

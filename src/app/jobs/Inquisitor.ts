@@ -169,9 +169,9 @@ export class Inquisitor extends Sura {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Inquisitor];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'First Brand',
-      label: '[V3] First Brand Lv5',
-      value: 'First Brand==5',
+      name: 'IQ_FIRST_BRAND',
+      label: '[V3] Estigma Lv5',
+      value: 'IQ_FIRST_BRAND==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -186,9 +186,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Second Faith',
-      label: '[V3] Second Faith Lv5',
-      value: 'Second Faith==5',
+      name: 'IQ_SECOND_FAITH',
+      label: '[V3] Golpe Pantocrator Lv5',
+      value: 'IQ_SECOND_FAITH==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -204,9 +204,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Third Punish',
-      label: '[V3] Third Punish Lv5',
-      value: 'Third Punish==5',
+      name: 'IQ_THIRD_PUNISH',
+      label: '[V3] Soco Guilhotina Lv5',
+      value: 'IQ_THIRD_PUNISH==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -225,9 +225,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Second Judgement',
-      label: '[V3] Second Judgement Lv5',
-      value: 'Second Judgement==5',
+      name: 'IQ_SECOND_JUDGEMENT',
+      label: '[V3] Toque Intercessor Lv5',
+      value: 'IQ_SECOND_JUDGEMENT==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -243,9 +243,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Third Consecration',
-      label: '[V3] Third Consecration Lv5',
-      value: 'Third Consecration==5',
+      name: 'IQ_THIRD_CONSECRATION',
+      label: '[V3] Veredicto Lv5',
+      value: 'IQ_THIRD_CONSECRATION==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -261,9 +261,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Second Flame',
-      label: '[V3] Second Flame Lv5',
-      value: 'Second Flame==5',
+      name: 'IQ_SECOND_FLAME',
+      label: '[V3] Palma Fervorosa Lv5',
+      value: 'IQ_SECOND_FLAME==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -278,9 +278,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Third Flame Bomb',
-      label: '[V3] Third Flame Bomb Lv5',
-      value: 'Third Flame Bomb==5',
+      name: 'IQ_THIRD_FLAME_BOMB',
+      label: '[V3] Fogueira Divina Lv5',
+      value: 'IQ_THIRD_FLAME_BOMB==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -296,9 +296,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Explosion Blaster',
-      label: '[V3] Explosion Blaster Lv5',
-      value: 'Explosion Blaster==5',
+      name: 'IQ_EXPOSION_BLASTER',
+      label: '[V3] Tcnica da Mo Explosiva Lv5',
+      value: 'IQ_EXPOSION_BLASTER==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -311,7 +311,7 @@ export class Inquisitor extends Sura {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('Oleum Sanctum')) {
+        if (this.isSkillActive('IQ_OLEUM_SANCTUM')) {
           return (skillLevel * 3200 + totalPow * 15) * (baseLevel / 100);
         }
 
@@ -319,9 +319,9 @@ export class Inquisitor extends Sura {
       },
     },
     {
-      name: 'Massive Flame Blaster',
-      label: '[V3] Massive Flame Blaster Lv10',
-      value: 'Massive Flame Blaster==10',
+      name: 'IQ_MASSIVE_F_BLASTER',
+      label: '[V3] Punho Labareda Lv10',
+      value: 'IQ_MASSIVE_F_BLASTER==10',
       acd: 1,
       fct: 0,
       vct: 0,
@@ -341,7 +341,7 @@ export class Inquisitor extends Sura {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: '_3Faith',
+      name: '_CALC_3FAITH',
       label: 'Faith 5',
       inputType: 'dropdown',
       dropdown: [
@@ -352,7 +352,7 @@ export class Inquisitor extends Sura {
       ],
     },
     {
-      name: 'Oleum Sanctum',
+      name: 'IQ_OLEUM_SANCTUM',
       label: 'Oleum Sanctum 5',
       isDebuff: true,
       inputType: 'selectButton',
@@ -368,8 +368,8 @@ export class Inquisitor extends Sura {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Will of Faith',
-      label: 'Will of Faith',
+      name: 'IQ_WILL_OF_FAITH',
+      label: 'Caminhos da F ',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
@@ -391,13 +391,13 @@ export class Inquisitor extends Sura {
 
     const { totalBonus, weapon } = params;
 
-    const willOfFaithLv = this.learnLv('Will of Faith');
+    const willOfFaithLv = this.learnLv('IQ_WILL_OF_FAITH');
     if (willOfFaithLv > 0 && weapon.isType('fist')) {
       addBonus(totalBonus, 'p_race_demon', willOfFaithLv + 2);
       addBonus(totalBonus, 'p_race_undead', willOfFaithLv + 2);
     }
 
-    const faithChoice = _3Faith[this.activeSkillLv('_3Faith') as keyof typeof _3Faith];
+    const faithChoice = _3Faith[this.activeSkillLv('_CALC_3FAITH') as keyof typeof _3Faith];
     if (faithChoice === 'Sincere') {
       addBonus(totalBonus, 'aspd', 3);
       addBonus(totalBonus, 'perfectHit', 5 * 4);

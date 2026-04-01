@@ -84,8 +84,8 @@ export class Taekwondo extends CharacterBase {
   protected readonly _atkSkillList: AtkSkillModel[] = [];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
     {
-      label: 'Seven Wind',
-      name: 'Seven Wind',
+      label: 'Brisa Leve',
+      name: 'TK_SEVENWIND',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -103,7 +103,7 @@ export class Taekwondo extends CharacterBase {
     {
       inputType: 'dropdown',
       label: 'Run',
-      name: 'Run',
+      name: 'NPC_RUN',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, skillLv: 1, isUse: true },
@@ -120,8 +120,8 @@ export class Taekwondo extends CharacterBase {
     },
     {
       inputType: 'dropdown',
-      label: 'Happy Break',
-      name: 'Happy Break',
+      label: 'Retiro Rpido',
+      name: 'TK_SPTIME',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, skillLv: 1, isUse: true },
@@ -138,8 +138,8 @@ export class Taekwondo extends CharacterBase {
     },
     {
       inputType: 'dropdown',
-      label: 'Peaceful Break',
-      name: 'Peaceful Break',
+      label: 'Trgua Rpida',
+      name: 'TK_HPTIME',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, skillLv: 1, isUse: true },

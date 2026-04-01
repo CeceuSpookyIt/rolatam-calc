@@ -85,10 +85,10 @@ export class Mechanic extends Whitesmith {
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.Mechanic];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Axe Tornado',
-      label: 'Axe Tornado Lv5',
-      value: 'Axe Tornado==5',
-      values: ['[Improved] Axe Tornado==5'],
+      name: 'NC_AXETORNADO',
+      label: 'F¨ria do Furaco  Lv5',
+      value: 'NC_AXETORNADO==5',
+      values: ['[Improved] NC_AXETORNADO==5'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -101,7 +101,7 @@ export class Mechanic extends Whitesmith {
         const baseLevel = model.level;
         const totalVit = status.totalVit;
 
-        if (this.isSkillActive('Axe Stomp')) {
+        if (this.isSkillActive('MT_AXE_STOMP')) {
           return (230 + skillLevel * 250 + totalVit * 2) * (baseLevel / 100);
         }
 
@@ -109,9 +109,9 @@ export class Mechanic extends Whitesmith {
       },
     },
     {
-      name: 'Knuckle Boost',
-      label: 'Knuckle Boost Lv5',
-      value: 'Knuckle Boost==5',
+      name: 'NC_BOOSTKNUCKLE',
+      label: 'Punho Foguete Lv5',
+      value: 'NC_BOOSTKNUCKLE==5',
       acd: 0,
       fct: 0,
       vct: 0.5,
@@ -127,9 +127,9 @@ export class Mechanic extends Whitesmith {
       },
     },
     {
-      name: 'Vulcan Arm',
-      label: 'Vulcan Arm Lv3',
-      value: 'Vulcan Arm==3',
+      name: 'NC_VULCANARM',
+      label: 'Metralhadora Lv3',
+      value: 'NC_VULCANARM==3',
       acd: 0.1,
       fct: 0,
       vct: 0.2,
@@ -145,9 +145,9 @@ export class Mechanic extends Whitesmith {
       },
     },
     {
-      name: 'Axe Boomerang',
-      label: 'Axe Boomerang Lv5',
-      value: 'Axe Boomerang==5',
+      name: 'NC_AXEBOOMERANG',
+      label: 'Arremesso de Machado Lv5',
+      value: 'NC_AXEBOOMERANG==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -170,10 +170,10 @@ export class Mechanic extends Whitesmith {
       },
     },
     {
-      name: 'Arm Cannon',
-      label: 'Arm Cannon Lv5',
-      value: 'Arm Cannon==5',
-      values: ['[Improved] Arm Cannon==5', 'Arm Cannon==1', 'Arm Cannon==2', 'Arm Cannon==3', 'Arm Cannon==4'],
+      name: 'NC_ARMSCANNON',
+      label: 'Canho Lv5',
+      value: 'NC_ARMSCANNON==5',
+      values: ['[Improved] NC_ARMSCANNON==5', 'NC_ARMSCANNON==1', 'NC_ARMSCANNON==2', 'NC_ARMSCANNON==3', 'NC_ARMSCANNON==4'],
       acd: 1,
       fct: 0.1,
       vct: 2,
@@ -190,10 +190,10 @@ export class Mechanic extends Whitesmith {
       },
     },
     {
-      name: 'Power Swing',
-      label: 'Power Swing Lv10',
-      value: 'Power Swing==1',
-      values: ['[Improved] Power Swing==10'],
+      name: 'NC_POWERSWING',
+      label: 'Brandir Machado Lv10',
+      value: 'NC_POWERSWING==1',
+      values: ['[Improved] NC_POWERSWING==10'],
       acd: 1,
       fct: 0,
       vct: 0,
@@ -215,8 +215,8 @@ export class Mechanic extends Whitesmith {
   ];
   protected readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      label: 'On Magogear',
-      name: 'On Magogear',
+      label: 'Licena de Pilotagem',
+      name: 'NC_MADOLICENCE',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
@@ -227,8 +227,8 @@ export class Mechanic extends Whitesmith {
 
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Axe Mastery',
-      name: 'Axe Mastery',
+      label: 'Percia com Machado e Espada',
+      name: 'AM_AXEMASTERY',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -246,8 +246,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Fire Earth Research',
-      name: 'Fire Earth Research',
+      label: 'Sabedoria de Hefesto',
+      name: 'NC_RESEARCHFE',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -260,8 +260,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Axe Boomerang',
-      name: 'Axe Boomerang',
+      label: 'Arremesso de Machado',
+      name: 'NC_AXEBOOMERANG',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -273,8 +273,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Lava Flow',
-      name: 'Lava Flow',
+      label: 'Inundao de Magma',
+      name: 'MH_MAGMA_FLOW',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -286,8 +286,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Power Swing',
-      name: 'Power Swing',
+      label: 'Brandir Machado',
+      name: 'NC_POWERSWING',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -304,8 +304,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Madogear License',
-      name: 'Madogear License',
+      label: 'Licena de Pilotagem',
+      name: 'NC_MADOLICENCE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -317,8 +317,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Arm Cannon',
-      name: 'Arm Cannon',
+      label: 'Canho',
+      name: 'NC_ARMSCANNON',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -330,8 +330,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Neutral Barrier',
-      name: 'Neutral Barrier',
+      label: 'Campo Protetor',
+      name: 'NC_NEUTRALBARRIER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -341,8 +341,8 @@ export class Mechanic extends Whitesmith {
       ],
     },
     {
-      label: 'Pile Bunker',
-      name: 'Pile Bunker',
+      label: 'Bate Estaca',
+      name: 'NC_PILEBUNKER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -378,14 +378,14 @@ export class Mechanic extends Whitesmith {
       sum += bonus[`x_atk_element_${element}`] || 0;
     }
 
-    if (this.isSkillActive('On Magogear')) {
-      sum += this.learnLv('Madogear License') * 15;
+    if (this.isSkillActive('NC_MADOLICENCE')) {
+      sum += this.learnLv('NC_MADOLICENCE') * 15;
     }
 
     if (weaponType === 'axe' || weaponType === 'twohandAxe') {
-      sum += this.learnLv('Axe Mastery') * 5;
+      sum += this.learnLv('AM_AXEMASTERY') * 5;
     } else if (weaponType === 'mace' || weaponType === 'twohandMace') {
-      sum += this.learnLv('Axe Mastery') * 4;
+      sum += this.learnLv('AM_AXEMASTERY') * 4;
     }
 
     return sum;
@@ -409,15 +409,15 @@ export class Mechanic extends Whitesmith {
 
     const weaponType = weapon?.data?.typeName;
     if (weaponType === 'axe' || weaponType === 'twohandAxe') {
-      totalBonus.hit = (totalBonus.hit || 0) + this.learnLv('Axe Mastery') * 3;
+      totalBonus.hit = (totalBonus.hit || 0) + this.learnLv('AM_AXEMASTERY') * 3;
     } else if (weaponType === 'mace' || weaponType === 'twohandMace') {
-      totalBonus.hit = (totalBonus.hit || 0) + this.learnLv('Axe Mastery') * 2;
+      totalBonus.hit = (totalBonus.hit || 0) + this.learnLv('AM_AXEMASTERY') * 2;
     }
 
     return totalBonus;
   }
 
   protected get abrLv() {
-    return this.activeSkillLv('_Meister_ABR_List');
+    return this.activeSkillLv('_CALC_MEISTER_ABR_LIST');
   }
 }

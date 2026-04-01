@@ -85,8 +85,8 @@ export class Scholar extends Mage {
   protected readonly activeSkillListHi: ActiveSkillModel[] = [
     {
       inputType: 'selectButton',
-      label: 'Foresight',
-      name: 'Foresight',
+      label: 'Prescincia',
+      name: 'PF_MEMORIZE',
       dropdown: [
         { label: 'Yes', isUse: true, value: 1 },
         { label: 'No', isUse: false, value: 0 },
@@ -94,8 +94,8 @@ export class Scholar extends Mage {
     },
     // {
     //   inputType: 'dropdown',
-    //   label: 'Flame Launcher',
-    //   name: 'Flame Launcher',
+    //   label: 'Lana Chamas',
+    //   name: 'NC_FLAMELAUNCHER',
     //   dropdown: [
     //     { label: '-', isUse: false, value: 0 },
     //     { label: 'Lv 1', isUse: true, value: 1, bonus: { m_my_element_fire: 1 } },
@@ -107,8 +107,8 @@ export class Scholar extends Mage {
     // },
     {
       inputType: 'dropdown',
-      label: 'Lightning Loader',
-      name: 'Lightning Loader',
+      label: 'Encantar com Ventania',
+      name: 'SA_LIGHTNINGLOADER',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { m_my_element_wind: 1 } },
@@ -120,8 +120,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Frost Weapon',
-      name: 'Frost Weapon',
+      label: 'Encantar com Geada',
+      name: 'SA_FROSTWEAPON',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { m_my_element_water: 1 } },
@@ -134,8 +134,8 @@ export class Scholar extends Mage {
 
     {
       inputType: 'dropdown',
-      label: 'Seismic Weapon',
-      name: 'Seismic Weapon',
+      label: 'Encantar com Terremoto',
+      name: 'SA_SEISMICWEAPON',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { m_my_element_earth: 1 } },
@@ -150,7 +150,7 @@ export class Scholar extends Mage {
     {
       inputType: 'dropdown',
       label: 'Adv Book',
-      name: 'Advanced Book',
+      name: 'SA_ADVANCEDBOOK',
       isMasteryAtk: true,
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -168,8 +168,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Dragonology',
-      name: 'Dragonology',
+      label: 'Dragonologia',
+      name: 'SA_DRAGONOLOGY',
       isMasteryAtk: true,
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -207,8 +207,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Indulge',
-      name: 'Indulge',
+      label: 'Indulgir',
+      name: 'PF_HPCONVERSION',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -220,8 +220,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Auto Spell',
-      name: 'Auto Spell',
+      label: 'Desejo Arcano',
+      name: 'SA_AUTOSPELL',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -238,8 +238,8 @@ export class Scholar extends Mage {
     },
     // {
     //   inputType: 'dropdown',
-    //   label: 'Flame Launcher',
-    //   name: 'Flame Launcher',
+    //   label: 'Lana Chamas',
+    //   name: 'NC_FLAMELAUNCHER',
     //   dropdown: [
     //     { label: '-', isUse: false, value: 0 },
     //     { label: 'Lv 1', isUse: true, value: 1},
@@ -251,8 +251,8 @@ export class Scholar extends Mage {
     // },
     {
       inputType: 'dropdown',
-      label: 'Lightning Loader',
-      name: 'Lightning Loader',
+      label: 'Encantar com Ventania',
+      name: 'SA_LIGHTNINGLOADER',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -264,8 +264,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Frost Weapon',
-      name: 'Frost Weapon',
+      label: 'Encantar com Geada',
+      name: 'SA_FROSTWEAPON',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -277,8 +277,8 @@ export class Scholar extends Mage {
     },
     {
       inputType: 'dropdown',
-      label: 'Seismic Weapon',
-      name: 'Seismic Weapon',
+      label: 'Encantar com Terremoto',
+      name: 'SA_SEISMICWEAPON',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -291,8 +291,8 @@ export class Scholar extends Mage {
 
     {
       inputType: 'dropdown',
-      label: 'Land Protector',
-      name: 'Land Protector',
+      label: 'Proteger Terreno',
+      name: 'SA_LANDPROTECTOR',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },

@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const SongOfMana: PassiveSkillModel = {
-  label: 'Song Of Mana',
-  name: 'Song Of Mana',
+  label: 'Cano de Alfheim',
+  name: 'WM_SONG_OF_MANA',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

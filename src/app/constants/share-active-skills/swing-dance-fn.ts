@@ -2,7 +2,7 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const SwingDanceFn = (): PassiveSkillModel => ({
   label: 'Swing Dance 5',
-  name: 'Swing Dance',
+  name: 'WA_SWING_DANCE',
   inputType: 'selectButton',
   dropdown: [
     { label: 'Yes', value: 5, isUse: true, bonus: { skillAspd: 5 * 4, fctPercent: 5 * 6 } },

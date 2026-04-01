@@ -98,9 +98,9 @@ export class Minstrel extends Dancer {
 
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Arrow Vulcan',
-      label: 'Arrow Vulcan Lv10',
-      value: 'Arrow Vulcan==10',
+      name: 'CG_ARROWVULCAN',
+      label: 'Vulco de Flechas Lv10',
+      value: 'CG_ARROWVULCAN==10',
       acd: 0.5,
       fct: 0.5,
       vct: 1.5,
@@ -114,9 +114,9 @@ export class Minstrel extends Dancer {
       },
     },
     {
-      label: 'Metalic Sound Lv10',
-      name: 'Metalic Sound',
-      value: 'Metalic Sound==10',
+      label: 'Rudo Estridente Lv10',
+      name: 'WM_METALICSOUND',
+      value: 'WM_METALICSOUND==10',
       acd: 0.5,
       fct: 0,
       vct: 4,
@@ -136,15 +136,15 @@ export class Minstrel extends Dancer {
       },
     },
     {
-      name: 'Severe Rainstorm',
-      label: 'Severe Rainstorm',
-      value: 'Severe Rainstorm==5',
+      name: 'WM_SEVERE_RAINSTORM',
+      label: 'Temporal de Flechas',
+      value: 'WM_SEVERE_RAINSTORM==5',
       values: [
-        '[Improved] Severe Rainstorm==1',
-        '[Improved] Severe Rainstorm==2',
-        '[Improved] Severe Rainstorm==3',
-        '[Improved] Severe Rainstorm==4',
-        '[Improved] Severe Rainstorm==5',
+        '[Improved] WM_SEVERE_RAINSTORM==1',
+        '[Improved] WM_SEVERE_RAINSTORM==2',
+        '[Improved] WM_SEVERE_RAINSTORM==3',
+        '[Improved] WM_SEVERE_RAINSTORM==4',
+        '[Improved] WM_SEVERE_RAINSTORM==5',
       ],
       acd: 1,
       fct: 0.5,
@@ -152,11 +152,11 @@ export class Minstrel extends Dancer {
       cd: (lv) => 4.5 + lv * 0.5,
       totalHit: 12,
       levelList: [
-        { label: 'Severe Rainstorm Lv1', value: 'Severe Rainstorm==1' },
-        { label: 'Severe Rainstorm Lv2', value: 'Severe Rainstorm==2' },
-        { label: 'Severe Rainstorm Lv3', value: 'Severe Rainstorm==3' },
-        { label: 'Severe Rainstorm Lv4', value: 'Severe Rainstorm==4' },
-        { label: 'Severe Rainstorm Lv5', value: 'Severe Rainstorm==5' },
+        { label: 'Temporal de Flechas Lv1', value: 'WM_SEVERE_RAINSTORM==1' },
+        { label: 'Temporal de Flechas Lv2', value: 'WM_SEVERE_RAINSTORM==2' },
+        { label: 'Temporal de Flechas Lv3', value: 'WM_SEVERE_RAINSTORM==3' },
+        { label: 'Temporal de Flechas Lv4', value: 'WM_SEVERE_RAINSTORM==4' },
+        { label: 'Temporal de Flechas Lv5', value: 'WM_SEVERE_RAINSTORM==5' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { weapon, status, skillLevel, model } = input;
@@ -174,10 +174,10 @@ export class Minstrel extends Dancer {
       },
     },
     {
-      name: 'Reverberation',
-      label: 'Reverberation Lv5',
-      value: 'Reverberation==5',
-      values: ['[Improved] Reverberation==5'],
+      name: 'WM_REVERBERATION',
+      label: 'Ressonncia Lv5',
+      value: 'WM_REVERBERATION==5',
+      values: ['[Improved] WM_REVERBERATION==5'],
       acd: 0.5,
       fct: 0.5,
       vct: 1.5,
@@ -194,8 +194,8 @@ export class Minstrel extends Dancer {
 
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      label: 'Rush To Windmill',
-      name: 'Rush To Windmill',
+      label: 'Sinfonia dos Ventos',
+      name: 'MI_RUSH_WINDMILL',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -214,8 +214,8 @@ export class Minstrel extends Dancer {
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     SevereRainstormFn(),
     {
-      label: 'Musical Lesson',
-      name: 'Musical Lesson',
+      label: 'Li¥es de M¨sica',
+      name: 'BA_MUSICALLESSON',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -234,8 +234,8 @@ export class Minstrel extends Dancer {
     },
     Lesson,
     {
-      label: 'Musical Strike',
-      name: 'Musical Strike',
+      label: 'Flecha Mel£dica',
+      name: 'BA_MUSICALSTRIKE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

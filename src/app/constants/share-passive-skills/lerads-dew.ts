@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const LeradsDew: PassiveSkillModel = {
-  label: "Lerad's Dew",
-  name: "Lerad's Dew",
+  label: 'Orvalho de Idun',
+  name: 'WM_LERADS_DEW',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

@@ -162,23 +162,23 @@ export class SpiritHandler extends Doram {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.SpiritHandler];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Chulho Sonic Claw',
-      label: '[V2] Chulho Sonic Claw Lv7',
-      value: 'Chulho Sonic Claw==7',
+      name: 'SH_CHUL_HO_SONIC_CLAW',
+      label: '[V2] Garras de Ona Lv7',
+      value: 'SH_CHUL_HO_SONIC_CLAW==7',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0.25,
       hit: 2,
-      canCri: () => this.learnLv('Commune with Chulho') >= 1,
+      canCri: () => this.learnLv('SH_COMMUNE_WITH_CHUL_HO') >= 1,
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Chulho')) {
+        const skillBonusLv = this.learnLv('SH_MYSTICAL_CREATURE_MASTERY');
+        if (this.learnLv('SH_COMMUNE_WITH_CHUL_HO')) {
           return (500 + skillLevel * (850) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -186,9 +186,9 @@ export class SpiritHandler extends Doram {
       },
     },
     {
-      name: 'Howling of Chulho',
-      label: '[V2] Howling of Chulho Lv7',
-      value: 'Howling of Chulho==7',
+      name: 'SH_HOWLING_OF_CHUL_HO',
+      label: '[V2] Rugido da Ona Lv7',
+      value: 'SH_HOWLING_OF_CHUL_HO==7',
       acd: 0,
       fct: 1,
       vct: 0,
@@ -197,8 +197,8 @@ export class SpiritHandler extends Doram {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Chulho')) {
+        const skillBonusLv = this.learnLv('SH_MYSTICAL_CREATURE_MASTERY');
+        if (this.learnLv('SH_COMMUNE_WITH_CHUL_HO')) {
           return (700 + skillLevel * (1150) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -206,9 +206,9 @@ export class SpiritHandler extends Doram {
       },
     },
     {
-      name: 'Hogogong Strike',
-      label: '[V2] Hogogong Strike Lv7',
-      value: 'Hogogong Strike==7',
+      name: 'SH_HOGOGONG_STRIKE',
+      label: '[V2] Patada Felina Lv7',
+      value: 'SH_HOGOGONG_STRIKE==7',
       acd: 0,
       fct: 1,
       vct: 0,
@@ -221,8 +221,8 @@ export class SpiritHandler extends Doram {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Chulho')) {
+        const skillBonusLv = this.learnLv('SH_MYSTICAL_CREATURE_MASTERY');
+        if (this.learnLv('SH_COMMUNE_WITH_CHUL_HO')) {
           return (250 + skillLevel * (350) + skillBonusLv * 20 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -230,21 +230,21 @@ export class SpiritHandler extends Doram {
       },
     },
     {
-      name: 'Hyunrok Breeze',
-      label: '[V2] Hyunrok Breeze Lv7',
-      value: 'Hyunrok Breeze==7',
+      name: 'SH_HYUN_ROKS_BREEZE',
+      label: '[V2] Brisa Silvestre Lv7',
+      value: 'SH_HYUN_ROKS_BREEZE==7',
       acd: 0.5,
       fct: 1.5,
       vct: 3,
       cd: 4.5,
       isMatk: true,
-      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hynrok')] || ElementType.Neutral,
+      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('SH_COLORS_OF_HYUN_ROK')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Hyunrok')) {
+        const skillBonusLv = this.learnLv('SH_MYSTICAL_CREATURE_MASTERY');
+        if (this.learnLv('SH_COMMUNE_WITH_HYUN_ROK')) {
           return (700 + skillLevel * 800 + skillBonusLv * 40 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -252,21 +252,21 @@ export class SpiritHandler extends Doram {
       },
     },
     {
-      name: 'Hyunrok Cannon',
-      label: '[V2] Hyunrok Cannon Lv7',
-      value: 'Hyunrok Cannon==7',
+      name: 'SH_HYUN_ROK_CANNON',
+      label: '[V2] Lana Galhada Lv7',
+      value: 'SH_HYUN_ROK_CANNON==7',
       acd: 0,
       fct: 1.5,
       vct: 2,
       cd: 0.3,
       isMatk: true,
-      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hynrok')] || ElementType.Neutral,
+      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('SH_COLORS_OF_HYUN_ROK')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Hyunrok')) {
+        const skillBonusLv = this.learnLv('SH_MYSTICAL_CREATURE_MASTERY');
+        if (this.learnLv('SH_COMMUNE_WITH_HYUN_ROK')) {
           return (800 + skillLevel * 1100 + skillBonusLv * 75 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -276,8 +276,8 @@ export class SpiritHandler extends Doram {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      label: 'Colors of Hynrok',
-      name: 'Colors of Hynrok',
+      label: 'Cores do Arco-ris',
+      name: 'SH_COLORS_OF_HYUN_ROK',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -293,7 +293,7 @@ export class SpiritHandler extends Doram {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Commune with Chulho',
+      name: 'SH_COMMUNE_WITH_CHUL_HO',
       label: 'Commune Chulho',
       inputType: 'dropdown',
       dropdown: [
@@ -302,7 +302,7 @@ export class SpiritHandler extends Doram {
       ],
     },
     {
-      name: 'Commune with Hyunrok',
+      name: 'SH_COMMUNE_WITH_HYUN_ROK',
       label: 'Commune Hyunrok',
       inputType: 'dropdown',
       dropdown: [
@@ -311,7 +311,7 @@ export class SpiritHandler extends Doram {
       ],
     },
     {
-      name: 'Mystical Creature Mastery',
+      name: 'SH_MYSTICAL_CREATURE_MASTERY',
       label: 'Mystical Cre Mastery',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ pAtk: floor(lv * 1.5), sMatk: floor(lv * 1.5) }))

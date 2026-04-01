@@ -3,7 +3,7 @@ import { BragisPoemFn, DarkClawFn, ShieldSpellFn, SwingDanceFn } from './share-a
 
 export const JobBuffs: ActiveSkillModel[] = [
   {
-    name: 'Cantocandidus',
+    name: 'AB_CANTO',
     label: 'Agi Up',
     inputType: 'dropdown',
     dropdown: [
@@ -20,7 +20,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Clementia',
+    name: 'AB_CLEMENTIA',
     label: 'Blessing',
     inputType: 'dropdown',
     dropdown: [
@@ -35,7 +35,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Impositio Manus',
+    name: 'PR_IMPOSITIO',
     label: 'Impositio 5',
     inputType: 'selectButton',
     dropdown: [
@@ -44,7 +44,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Expiatio',
+    name: 'AB_EXPIATIO',
     label: 'Expiatio 5',
     inputType: 'selectButton',
     dropdown: [
@@ -53,7 +53,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Competentia',
+    name: 'CD_COMPETENTIA',
     label: '[4th] Competentia',
     inputType: 'selectButton',
     dropdown: [
@@ -62,7 +62,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: '_Religio_Benedictum',
+    name: '_CALC_RELIGIO_BENEDICTUM',
     label: '[4th] All Trait +10',
     inputType: 'selectButton',
     dropdown: [
@@ -71,7 +71,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: '_Argutus Vita_Telum',
+    name: '_CALC_ARGUTUS_VITA_TELUM',
     label: '[4th] Penet. Res/MRes 25',
     inputType: 'selectButton',
     dropdown: [
@@ -80,7 +80,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   // {
-  //   name: 'Religio',
+  //   name: 'CD_RELIGIO',
   //   label: 'Religio 5',
   //   inputType: 'selectButton',
   //   dropdown: [
@@ -89,7 +89,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'Benedictum',
+  //   name: 'CD_BENEDICTUM',
   //   label: 'Benedictum 5',
   //   inputType: 'selectButton',
   //   dropdown: [
@@ -98,7 +98,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'Argutus Vita',
+  //   name: 'CD_ARGUTUS_VITA',
   //   label: 'Argutus Vita 5',
   //   inputType: 'selectButton',
   //   dropdown: [
@@ -107,7 +107,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'Argutus Telum',
+  //   name: 'CD_ARGUTUS_TELUM',
   //   label: 'Argutus Telum 5',
   //   inputType: 'selectButton',
   //   dropdown: [
@@ -116,7 +116,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   {
-    name: 'Presens Acies',
+    name: 'CD_PRESENS_ACIES',
     label: 'Presens Acies 5',
     inputType: 'selectButton',
     dropdown: [
@@ -125,8 +125,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Crazy Uproar',
-    label: 'Crazy Uproar',
+    name: 'MC_LOUD',
+    label: 'Grito de Guerra',
     inputType: 'selectButton',
     isMasteryAtk: true,
     dropdown: [
@@ -135,7 +135,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Adrenaline Rush',
+    name: 'BS_ADRENALINE',
     label: 'Adrenaline 5',
     inputType: 'selectButton',
     dropdown: [
@@ -144,7 +144,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Power Thrust',
+    name: 'BS_OVERTHRUST',
     label: 'Power Thrust 5',
     inputType: 'selectButton',
     dropdown: [
@@ -155,26 +155,26 @@ export const JobBuffs: ActiveSkillModel[] = [
   {
     label: 'Weapon Perfect 5',
     inputType: 'selectButton',
-    name: 'Weapon Perfection',
+    name: 'BS_WEAPONPERFECT',
     dropdown: [
       { label: 'Yes', value: 5, skillLv: 5, isUse: true, bonus: { ignore_size_penalty: 1 } },
       { label: 'No', value: 0, isUse: false },
     ],
   },
   {
-    name: 'Soul',
+    name: 'NJ_NEN',
     label: 'Soul 5',
     inputType: 'dropdown',
     dropdown: [
       { label: '-', isUse: false, value: 0 },
       { label: 'Shadow Soul', isUse: true, value: 1, bonus: { cri: 20, aspd: 3 } },
-      { label: 'Fairy Soul', isUse: true, value: 2, bonus: { matk: 50, vct: 10 } },
+      { label: 'Espírito da Fada', isUse: true, value: 2, bonus: { matk: 50, vct: 10 } },
       { label: 'Falcon Soul', isUse: true, value: 3, bonus: { atk: 50, hit: 15 } },
     ],
   },
   {
-    name: "Odin's Power",
-    label: "Odin's Power",
+    name: 'ALL_ODINS_POWER',
+    label: 'Poder de Odin',
     inputType: 'dropdown',
     dropdown: [
       { label: '-', isUse: false, value: 0 },
@@ -183,7 +183,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Comet Amp',
+    name: '_CALC_COMET_AMP',
     label: 'Comet Amp',
     inputType: 'selectButton',
     isDebuff: true,
@@ -193,8 +193,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    label: 'Magnum Break',
-    name: 'Magnum Break',
+    label: 'Impacto Explosivo',
+    name: 'SM_MAGNUM',
     inputType: 'dropdown',
     dropdown: [
       { label: '-', value: 0, isUse: false },
@@ -203,8 +203,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    label: 'Bunch of Shrimp',
-    name: 'Bunch of Shrimp',
+    label: 'Chuva de Mariscos',
+    name: 'SU_BUNCHOFSHRIMP',
     inputType: 'selectButton',
     dropdown: [
       { label: 'Yes', isUse: true, value: 1, bonus: { atkPercent: 10, matkPercent: 10 } },
@@ -212,7 +212,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Moonlight Serenade',
+    name: 'WA_MOONLIT_SERENADE',
     label: 'Moonlight Ser 5',
     inputType: 'dropdown',
     dropdown: [
@@ -225,7 +225,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Striking',
+    name: 'SO_STRIKING',
     label: 'Striking 5',
     inputType: 'selectButton',
     isEquipAtk: true,
@@ -235,8 +235,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Raid',
-    label: 'Raid',
+    name: 'RG_RAID',
+    label: 'Ataque Surpresa',
     inputType: 'selectButton',
     isDebuff: true,
     dropdown: [
@@ -246,8 +246,8 @@ export const JobBuffs: ActiveSkillModel[] = [
   },
   DarkClawFn(),
   {
-    name: 'Debuff_Spore Explosion',
-    label: 'Spore Explosion',
+    name: '_CALC_DEBUFF_SPORE_EXPLOSION',
+    label: 'Esporo Explosivo',
     inputType: 'selectButton',
     isDebuff: true,
     dropdown: [
@@ -259,7 +259,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   BragisPoemFn(),
   SwingDanceFn(),
   {
-    name: 'Mystical Amplification',
+    name: 'HW_MAGICPOWER',
     label: 'Mystical Amp 10',
     inputType: 'selectButton',
     dropdown: [
@@ -268,7 +268,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Spell Enchanting',
+    name: 'EM_SPELL_ENCHANTING',
     label: 'Spell Enchanting 5',
     inputType: 'selectButton',
     dropdown: [
@@ -277,7 +277,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   // {
-  //   name: 'Geffenia Nocturne',
+  //   name: 'TR_GEF_NOCTURN',
   //   label: 'Geffenia Nocturne 10',
   //   inputType: 'selectButton',
   //   isDebuff: true,
@@ -287,7 +287,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'Rhapsody of Mineworker',
+  //   name: 'TR_AIN_RHAPSODY',
   //   label: 'Rhapsody of Mineworker 10',
   //   inputType: 'selectButton',
   //   isDebuff: true,
@@ -297,7 +297,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'Serenade of Jawaii',
+  //   name: 'TR_JAWAII_SERENADE',
   //   label: 'Serenade of Jawaii 5',
   //   inputType: 'selectButton',
   //   isDebuff: true,
@@ -307,7 +307,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   // {
-  //   name: 'March of Prontera',
+  //   name: 'TR_PRON_MARCH',
   //   label: 'Serenade of Jawaii 5',
   //   inputType: 'selectButton',
   //   isDebuff: true,
@@ -317,7 +317,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   //   ],
   // },
   {
-    name: '_Trouvere_Troubadour_pAtk_sMatk',
+    name: '_CALC_TROUVERE_TROUBADOUR_PATK_SMATK',
     label: '+ P.ATK S.Matk',
     inputType: 'dropdown',
     dropdown: [
@@ -328,7 +328,7 @@ export const JobBuffs: ActiveSkillModel[] = [
   },
 
   {
-    name: '_Trouvere_Troubadour_ignore_res_mres',
+    name: '_CALC_TROUVERE_TROUBADOUR_IGNORE_RES_MRES',
     label: 'Res/MRes -100',
     inputType: 'selectButton',
     isDebuff: true,
@@ -338,7 +338,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: '_Meister_Quake',
+    name: '_CALC_MEISTER_QUAKE',
     label: 'Quake 10',
     inputType: 'selectButton',
     isDebuff: true,
@@ -348,7 +348,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Oratio',
+    name: 'AB_ORATIO',
     label: 'Oratio 10',
     inputType: 'selectButton',
     isDebuff: true,
@@ -358,7 +358,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: 'Oleum Sanctum',
+    name: 'IQ_OLEUM_SANCTUM',
     label: 'Oleum Sanctum 5',
     inputType: 'selectButton',
     isDebuff: true,
@@ -372,8 +372,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   // {
-  //   name: 'Climax',
-  //   label: 'Climax',
+  //   name: 'AG_CLIMAX',
+  //   label: 'Intensificao',
   //   inputType: 'dropdown',
   //   dropdown: [
   //     { label: '-', value: 0, isUse: false },

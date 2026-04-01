@@ -3,8 +3,8 @@ import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 export const NoLimitFn = (): ActiveSkillModel => ({
   isEquipAtk: true,
   inputType: 'dropdown',
-  label: 'No Limits',
-  name: 'No Limits',
+  label: 'Ilimitar',
+  name: 'RA_UNLIMIT',
   dropdown: [
     { label: '-', value: 0, isUse: false },
     { label: 'Lv 1', value: 1, skillLv: 1, isUse: true, bonus: { range: 150 } },

@@ -2,8 +2,8 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const IllusionShockFn = (): PassiveSkillModel => ({
   inputType: 'dropdown',
-  label: 'Illusion - Shock',
-  name: 'Illusion - Shock',
+  label: 'Genjutsu: Assalto das Sombras',
+  name: 'KO_KYOUGAKU',
   dropdown: [
     { label: '-', value: 0, isUse: false },
     { label: 'Lv 1', value: 1, isUse: true },

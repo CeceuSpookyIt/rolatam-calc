@@ -2,8 +2,8 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const ImproveDodgeFn = (): PassiveSkillModel => ({
   inputType: 'dropdown',
-  label: 'Improve Dodge',
-  name: 'Improve Dodge',
+  label: 'Cambalhota',
+  name: 'TK_DODGE',
   isEquipAtk: true,
   dropdown: [
     { label: '-', value: 0, isUse: false },

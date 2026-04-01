@@ -164,9 +164,9 @@ export class NightWatch extends Rebellion {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.NightWatch];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'The Vigilante at Night',
-      label: '[V2] The Vigilante at Night Lv5',
-      value: 'The Vigilante at Night==5',
+      name: 'NW_THE_VIGILANTE_AT_NIGHT',
+      label: '[V2] Viglia Noturna Lv5',
+      value: 'NW_THE_VIGILANTE_AT_NIGHT==5',
       acd: 1,
       fct: 1.5,
       vct: 0,
@@ -184,7 +184,7 @@ export class NightWatch extends Rebellion {
         const { totalCon } = status;
         const baseLevel = model.level;
 
-        const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
+        const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT');
 
         if (weapon.isSubType('Gatling Gun')) {
           return (skillLevel * (300 + aimningCnt * 100) + totalCon * 2) * (baseLevel / 100);
@@ -194,9 +194,9 @@ export class NightWatch extends Rebellion {
       },
     },
     {
-      name: 'Only One Bullet',
-      label: '[V2] Only One Bullet Lv5',
-      value: 'Only One Bullet==5',
+      name: 'NW_ONLY_ONE_BULLET',
+      label: '[V2] Disparo Único Lv5',
+      value: 'NW_ONLY_ONE_BULLET==5',
       acd: 0.5,
       fct: 1,
       vct: 0,
@@ -215,7 +215,7 @@ export class NightWatch extends Rebellion {
         const { model, skillLevel, status, weapon } = input;
         const { totalCon } = status;
         const baseLevel = model.level;
-        const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
+        const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT');
 
         if (weapon.isSubType('Revolver')) {
           return (800 + skillLevel * (1500 + aimningCnt * 350) + totalCon * 3) * (baseLevel / 100);
@@ -225,9 +225,9 @@ export class NightWatch extends Rebellion {
       },
     },
     {
-      name: 'Spiral Shooting',
-      label: '[V2] Spiral Shooting Lv5',
-      value: 'Spiral Shooting==5',
+      name: 'NW_SPIRAL_SHOOTING',
+      label: '[V2] Atirar em Espiral Lv5',
+      value: 'NW_SPIRAL_SHOOTING==5',
       acd: 1,
       fct: 1.5,
       vct: 0,
@@ -246,7 +246,7 @@ export class NightWatch extends Rebellion {
         const { model, skillLevel, status, weapon } = input;
         const { totalCon } = status;
         const baseLevel = model.level;
-        const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
+        const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT');
 
         if (weapon.isSubType('Rifle')) {
           return (1200 + skillLevel * (1700 + aimningCnt * 150) + totalCon * 3) * (baseLevel / 100);
@@ -256,9 +256,9 @@ export class NightWatch extends Rebellion {
       },
     },
     {
-      name: 'Magazine for One',
-      label: '[V2] Magazine for One Lv5',
-      value: 'Magazine for One==5',
+      name: 'NW_MAGAZINE_FOR_ONE',
+      label: '[V2] Artilharia Pesada Lv5',
+      value: 'NW_MAGAZINE_FOR_ONE==5',
       acd: 1,
       fct: 1,
       vct: 0,
@@ -276,7 +276,7 @@ export class NightWatch extends Rebellion {
         const { model, skillLevel, status, weapon } = input;
         const { totalCon } = status;
         const baseLevel = model.level;
-        const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
+        const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT');
 
         if (weapon.isSubType('Revolver')) {
           return (150 + skillLevel * (450 + aimningCnt * 100) + totalCon * 2) * (baseLevel / 100);
@@ -286,9 +286,9 @@ export class NightWatch extends Rebellion {
       },
     },
     {
-      name: 'Wild Fire',
-      label: '[V2] Wild Fire Lv5',
-      value: 'Wild Fire==5',
+      name: 'NW_WILD_FIRE',
+      label: '[V2] Chuva de Tiros Lv5',
+      value: 'NW_WILD_FIRE==5',
       acd: 1,
       fct: 1,
       vct: 0,
@@ -304,7 +304,7 @@ export class NightWatch extends Rebellion {
         const { model, skillLevel, status, weapon } = input;
         const { totalCon } = status;
         const baseLevel = model.level;
-        const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
+        const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT');
 
         if (weapon.isSubType('Shotgun')) {
           return (1000 + skillLevel * (2450 + aimningCnt * 500) + totalCon * 3) * (baseLevel / 100);
@@ -314,9 +314,9 @@ export class NightWatch extends Rebellion {
       },
     },
     {
-      name: 'Basic Grenade',
-      label: '[V2] Basic Grenade Lv5',
-      value: 'Basic Grenade==5',
+      name: 'NW_BASIC_GRENADE',
+      label: '[V2] Jogar Granada Lv5',
+      value: 'NW_BASIC_GRENADE==5',
       acd: 0,
       fct: 1,
       vct: 0,
@@ -327,15 +327,15 @@ export class NightWatch extends Rebellion {
         const { totalCon } = status;
         const baseLevel = model.level;
 
-        const grenadeMaster = this.learnLv('Grenade Mastery');
+        const grenadeMaster = this.learnLv('NW_GRENADE_MASTERY');
 
         return (1000 + skillLevel * 950 + grenadeMaster * 50 + totalCon * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Hasty Fire in the Hole',
-      label: '[V2] Hasty Fire in the Hole Lv5',
-      value: 'Hasty Fire in the Hole==5',
+      name: 'NW_HASTY_FIRE_IN_THE_HOLE',
+      label: '[V2] Gatilho Incandescente Lv5',
+      value: 'NW_HASTY_FIRE_IN_THE_HOLE==5',
       acd: 0,
       fct: 1,
       vct: 0,
@@ -346,15 +346,15 @@ export class NightWatch extends Rebellion {
         const { totalCon } = status;
         const baseLevel = model.level;
 
-        const grenadeMaster = this.learnLv('Grenade Mastery');
+        const grenadeMaster = this.learnLv('NW_GRENADE_MASTERY');
 
         return (1500 + skillLevel * 1050 + grenadeMaster * 20 + totalCon * 3) * (baseLevel / 100);
       },
     },
     // {
-    //   name: 'Grenade Dropping',
-    //   label: 'Grenade Dropping Lv5',
-    //   value: 'Grenade Dropping==5',
+    //   name: 'NW_GRENADES_DROPPING',
+    //   label: 'Queda de Granadas Lv5',
+    //   value: 'NW_GRENADES_DROPPING==5',
     //   acd: 0,
     //   fct: 1,
     //   vct: 0,
@@ -372,7 +372,7 @@ export class NightWatch extends Rebellion {
     //     const { totalCon } = status;
     //     const baseLevel = model.level;
 
-    //     const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count')
+    //     const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT')
 
     //     if (weapon.isSubType('Gatling Gun')) {
     //       return (300*skillLevel+ aimningCnt*skillLevel* 100+totalCon*5) * (baseLevel / 100);
@@ -382,9 +382,9 @@ export class NightWatch extends Rebellion {
     //   },
     // },
     // {
-    //   name: 'Mission Bombard',
-    //   label: 'Mission Bombard Lv10',
-    //   value: 'Mission Bombard==10',
+    //   name: 'NW_MISSION_BOMBARD',
+    //   label: 'Bombardeio Lv10',
+    //   value: 'NW_MISSION_BOMBARD==10',
     //   acd: 1,
     //   fct: 1,
     //   vct: 0,
@@ -394,7 +394,7 @@ export class NightWatch extends Rebellion {
     //     const { totalCon } = status;
     //     const baseLevel = model.level;
 
-    //     const grenadeMaster = this.learnLv('Grenade Mastery')
+    //     const grenadeMaster = this.learnLv('NW_GRENADE_MASTERY')
 
     //     return (5000 + 1800 * skillLevel + grenadeMaster * 100 + totalCon * 5) * (baseLevel / 100);
     //   },
@@ -407,16 +407,16 @@ export class NightWatch extends Rebellion {
     //       const { totalCon } = status;
     //       const baseLevel = model.level;
 
-    //       const grenadeMaster = this.learnLv('Grenade Mastery')
+    //       const grenadeMaster = this.learnLv('NW_GRENADE_MASTERY')
 
     //       return (800 + 200 * skillLevel + grenadeMaster * 30 + totalCon * 5) * (baseLevel / 100);
     //     },
     //   }
     // },
     // {
-    //   name: 'Wild Shot',
+    //   name: 'NW_WILD_SHOT',
     //   label: 'Wild Shot Lv5',
-    //   value: 'Wild Shot==5',
+    //   value: 'NW_WILD_SHOT==5',
     //   acd: 1,
     //   fct: 1,
     //   vct: 0,
@@ -435,7 +435,7 @@ export class NightWatch extends Rebellion {
     //     const { totalCon } = status;
     //     const baseLevel = model.level;
 
-    //     const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count')
+    //     const aimningCnt = this.activeSkillLv('_CALC_NIGHTWATCH_AIMING_COUNT')
 
     //     if (weapon.isSubType('Gatling Gun')) {
     //       return (300*skillLevel+ aimningCnt*skillLevel* 100+totalCon*5) * (baseLevel / 100);
@@ -445,9 +445,9 @@ export class NightWatch extends Rebellion {
     //   },
     // },
     // {
-    //   name: 'Midnight Fallen',
+    //   name: 'NW_MIDNIGHT_FALLEN',
     //   label: 'Midnight Fallen Lv5',
-    //   value: 'Midnight Fallen==5',
+    //   value: 'NW_MIDNIGHT_FALLEN==5',
     //   acd: 1,
     //   fct: 1.5,
     //   vct: 0,
@@ -470,7 +470,7 @@ export class NightWatch extends Rebellion {
     //       "Grenade Launcher": 340,
     //     }
 
-    //     const hiddenCardBonus = this.isSkillActive('Hidden Card') ? hiddenCardBonusMap[weapon.data.subTypeName] : 0
+    //     const hiddenCardBonus = this.isSkillActive('NW_HIDDEN_CARD') ? hiddenCardBonusMap[weapon.data.subTypeName] : 0
 
 
     //     return (2400+800*skillLevel+hiddenCardBonus*skillLevel) * (baseLevel / 100);
@@ -479,14 +479,14 @@ export class NightWatch extends Rebellion {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Hidden Card',
-      label: 'Hidden Card',
+      name: 'NW_HIDDEN_CARD',
+      label: 'Carta na Manga',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ range: lv * 10, pAtk: lv * 3 }))
     },
     {
-      name: 'Intensive Aim',
-      label: 'Intensive Aim',
+      name: 'NW_INTENSIVE_AIM',
+      label: 'Mira Focalizada',
       inputType: 'selectButton',
       isEquipAtk: true,
       dropdown: [
@@ -495,8 +495,8 @@ export class NightWatch extends Rebellion {
       ]
     },
     {
-      name: 'Grenade Fragment',
-      label: 'Grenade Fragment',
+      name: 'NW_GRENADE_FRAGMENT',
+      label: 'Fragmentao',
       inputType: 'dropdown',
       dropdown: genSkillListWithLabel(6
         , lv => `${['-', 'Water', 'Wind', 'Earth', 'Fire', 'Dark', 'Holy'][lv]}`
@@ -504,7 +504,7 @@ export class NightWatch extends Rebellion {
       )
     },
     {
-      name: '_NightWatch_Aiming Count',
+      name: '_CALC_NIGHTWATCH_AIMING_COUNT',
       label: 'Aiming Count',
       inputType: 'dropdown',
       dropdown: genSkillListWithLabel(10, lv => (`${lv}`))
@@ -512,14 +512,14 @@ export class NightWatch extends Rebellion {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'PFI',
+      name: 'NW_P_F_I',
       label: 'P.F.I.',
       inputType: 'dropdown',
       dropdown: genSkillList(10)
     },
     {
-      name: 'Grenade Mastery',
-      label: 'Grenade Mastery',
+      name: 'NW_GRENADE_MASTERY',
+      label: 'Percia em Granada',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ con: lv }))
     },
@@ -541,7 +541,7 @@ export class NightWatch extends Rebellion {
 
     const { totalBonus, weapon } = params;
 
-    const pfiLv = this.learnLv('PFI');
+    const pfiLv = this.learnLv('NW_P_F_I');
     if (pfiLv > 0 && weapon.isType('gun')) {
       addBonus(totalBonus, 'pAtk', pfiLv + 2);
     }

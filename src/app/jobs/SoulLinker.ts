@@ -85,7 +85,7 @@ export class SoulLinker extends Taekwondo {
   protected readonly activeSkillListHi: ActiveSkillModel[] = [
     {
       label: 'Esma Lv10',
-      name: 'Esma',
+      name: 'SL_SMA',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -97,7 +97,7 @@ export class SoulLinker extends Taekwondo {
     {
       inputType: 'dropdown',
       label: 'Kaahi',
-      name: 'Kaahi',
+      name: 'SL_KAAHI',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, skillLv: 1, isUse: true },

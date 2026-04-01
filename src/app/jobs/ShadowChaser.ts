@@ -87,10 +87,10 @@ export class ShadowChaser extends Stalker {
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.ShadowChaser];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Fatal Manace',
-      label: 'Fatal Manace Lv10',
-      value: 'Fatal Manace==10',
-      values: ['[Improved] Fatal Manace==10'],
+      name: 'SM_FATALBLOW',
+      label: 'Ataque Fatal Lv10',
+      value: 'SM_FATALBLOW==10',
+      values: ['[Improved] SM_FATALBLOW==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -101,7 +101,7 @@ export class ShadowChaser extends Stalker {
         const baseLevel = model.level;
         const totalAgi = status.totalAgi;
 
-        if (this.isSkillActive('Abyss Dagger')) {
+        if (this.isSkillActive('ABC_ABYSS_DAGGER')) {
           return (skillLevel * 150 + totalAgi * 3) * (baseLevel / 100);
         }
 
@@ -109,10 +109,10 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Triangle Shot',
-      label: 'Triangle Shot Lv10',
-      value: 'Triangle Shot==10',
-      values: ['[Improved] Triangle Shot==10'],
+      name: 'SC_TRIANGLESHOT',
+      label: 'Disparo Triplo Lv10',
+      value: 'SC_TRIANGLESHOT==10',
+      values: ['[Improved] SC_TRIANGLESHOT==10'],
       acd: 0.32,
       fct: 0,
       vct: 0,
@@ -127,9 +127,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Feint Bomb',
-      label: 'Feint Bomb Lv10',
-      value: 'Feint Bomb==10',
+      name: 'SC_FEINTBOMB',
+      label: 'C£pia Explosiva Lv10',
+      value: 'SC_FEINTBOMB==10',
       acd: 0,
       fct: 0,
       vct: 1,
@@ -144,9 +144,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Arrow Storm',
-      label: 'Arrow Storm Lv10',
-      value: 'Arrow Storm==10',
+      name: 'RA_ARROWSTORM',
+      label: 'Tempestade de Flechas Lv10',
+      value: 'RA_ARROWSTORM==10',
       acd: 0,
       fct: 0.3,
       vct: 2,
@@ -155,15 +155,15 @@ export class ShadowChaser extends Stalker {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const fearBreezeBonus = this.isSkillActive('Fear Breeze') ? 70 : 0;
+        const fearBreezeBonus = this.isSkillActive('RA_FEARBREEZE') ? 70 : 0;
 
         return (200 + (180 + fearBreezeBonus) * skillLevel) * (baseLevel / 100);
       },
     },
     {
-      name: 'Psychic Wave',
-      label: 'Psychic Wave',
-      value: 'Psychic Wave==5',
+      name: 'SO_PSYCHIC_WAVE',
+      label: 'Onda Psquica',
+      value: 'SO_PSYCHIC_WAVE==5',
       fct: (lv) => 1.1 - lv * 0.1,
       vct: (lv) => 7 + lv,
       cd: 5,
@@ -171,11 +171,11 @@ export class ShadowChaser extends Stalker {
       totalHit: ({ skillLevel: lv }) => 2 + lv,
       isMatk: true,
       levelList: [
-        { label: 'Psychic Wave Lv1', value: 'Psychic Wave==1' },
-        { label: 'Psychic Wave Lv2', value: 'Psychic Wave==2' },
-        { label: 'Psychic Wave Lv3', value: 'Psychic Wave==3' },
-        { label: 'Psychic Wave Lv4', value: 'Psychic Wave==4' },
-        { label: 'Psychic Wave Lv5', value: 'Psychic Wave==5' },
+        { label: 'Onda Psquica Lv1', value: 'SO_PSYCHIC_WAVE==1' },
+        { label: 'Onda Psquica Lv2', value: 'SO_PSYCHIC_WAVE==2' },
+        { label: 'Onda Psquica Lv3', value: 'SO_PSYCHIC_WAVE==3' },
+        { label: 'Onda Psquica Lv4', value: 'SO_PSYCHIC_WAVE==4' },
+        { label: 'Onda Psquica Lv5', value: 'SO_PSYCHIC_WAVE==5' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
@@ -194,9 +194,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Comet',
-      label: 'Comet Lv5',
-      value: 'Comet==5',
+      name: 'WL_COMET',
+      label: 'Cometa Lv5',
+      value: 'WL_COMET==5',
       acd: 1.5,
       fct: 2,
       vct: 10,
@@ -212,9 +212,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Meteor Storm',
-      label: 'Meteor Storm',
-      value: 'Meteor Storm==3',
+      name: 'WZ_METEOR',
+      label: 'Chuva de Meteoros',
+      value: 'WZ_METEOR==3',
       acd: 1,
       fct: 1.5,
       vct: 6.3,
@@ -223,31 +223,31 @@ export class ShadowChaser extends Stalker {
       element: ElementType.Fire,
       totalHit: ({ skillLevel: lv }) => ({ 1: 2, 2: 3, 3: 3, 4: 4, 5: 4, 6: 5, 7: 5, 8: 6, 9: 6, 10: 7 }[lv]),
       levelList: [
-        { label: 'Meteor Storm Lv1', value: 'Meteor Storm==1' },
-        { label: 'Meteor Storm Lv2', value: 'Meteor Storm==2' },
-        { label: 'Meteor Storm Lv3', value: 'Meteor Storm==3' },
-        { label: 'Meteor Storm Lv4', value: 'Meteor Storm==4' },
-        { label: 'Meteor Storm Lv5', value: 'Meteor Storm==5' },
-        { label: 'Meteor Storm Lv6', value: 'Meteor Storm==6' },
-        { label: 'Meteor Storm Lv7', value: 'Meteor Storm==7' },
-        { label: 'Meteor Storm Lv8', value: 'Meteor Storm==8' },
-        { label: 'Meteor Storm Lv9', value: 'Meteor Storm==9' },
-        { label: 'Meteor Storm Lv10', value: 'Meteor Storm==10' },
+        { label: 'Chuva de Meteoros Lv1', value: 'WZ_METEOR==1' },
+        { label: 'Chuva de Meteoros Lv2', value: 'WZ_METEOR==2' },
+        { label: 'Chuva de Meteoros Lv3', value: 'WZ_METEOR==3' },
+        { label: 'Chuva de Meteoros Lv4', value: 'WZ_METEOR==4' },
+        { label: 'Chuva de Meteoros Lv5', value: 'WZ_METEOR==5' },
+        { label: 'Chuva de Meteoros Lv6', value: 'WZ_METEOR==6' },
+        { label: 'Chuva de Meteoros Lv7', value: 'WZ_METEOR==7' },
+        { label: 'Chuva de Meteoros Lv8', value: 'WZ_METEOR==8' },
+        { label: 'Chuva de Meteoros Lv9', value: 'WZ_METEOR==9' },
+        { label: 'Chuva de Meteoros Lv10', value: 'WZ_METEOR==10' },
       ],
       formula: (): number => {
         return 125;
       },
     },
     {
-      name: 'Severe Rainstorm',
-      label: 'Severe Rainstorm',
-      value: 'Severe Rainstorm==5',
+      name: 'WM_SEVERE_RAINSTORM',
+      label: 'Temporal de Flechas',
+      value: 'WM_SEVERE_RAINSTORM==5',
       values: [
-        '[Improved] Severe Rainstorm==1',
-        '[Improved] Severe Rainstorm==2',
-        '[Improved] Severe Rainstorm==3',
-        '[Improved] Severe Rainstorm==4',
-        '[Improved] Severe Rainstorm==5',
+        '[Improved] WM_SEVERE_RAINSTORM==1',
+        '[Improved] WM_SEVERE_RAINSTORM==2',
+        '[Improved] WM_SEVERE_RAINSTORM==3',
+        '[Improved] WM_SEVERE_RAINSTORM==4',
+        '[Improved] WM_SEVERE_RAINSTORM==5',
       ],
       acd: 1,
       fct: 0.5,
@@ -255,11 +255,11 @@ export class ShadowChaser extends Stalker {
       cd: (lv) => 4.5 + lv * 0.5,
       totalHit: 12,
       levelList: [
-        { label: 'Severe Rainstorm Lv1', value: 'Severe Rainstorm==1' },
-        { label: 'Severe Rainstorm Lv2', value: 'Severe Rainstorm==2' },
-        { label: 'Severe Rainstorm Lv3', value: 'Severe Rainstorm==3' },
-        { label: 'Severe Rainstorm Lv4', value: 'Severe Rainstorm==4' },
-        { label: 'Severe Rainstorm Lv5', value: 'Severe Rainstorm==5' },
+        { label: 'Temporal de Flechas Lv1', value: 'WM_SEVERE_RAINSTORM==1' },
+        { label: 'Temporal de Flechas Lv2', value: 'WM_SEVERE_RAINSTORM==2' },
+        { label: 'Temporal de Flechas Lv3', value: 'WM_SEVERE_RAINSTORM==3' },
+        { label: 'Temporal de Flechas Lv4', value: 'WM_SEVERE_RAINSTORM==4' },
+        { label: 'Temporal de Flechas Lv5', value: 'WM_SEVERE_RAINSTORM==5' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { weapon, status, skillLevel, model } = input;
@@ -277,10 +277,10 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Ignition Break',
-      label: 'Ignition Break Lv5',
-      value: 'Ignition Break==5',
-      values: ['[Improved 2nd] Ignition Break==5'],
+      name: 'RK_IGNITIONBREAK',
+      label: 'Impacto Flamejante Lv5',
+      value: 'RK_IGNITIONBREAK==5',
+      values: ['[Improved 2nd] RK_IGNITIONBREAK==5'],
       acd: 0,
       fct: 0,
       vct: 1,
@@ -296,9 +296,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Reverberation',
-      label: 'Reverberation Lv5',
-      value: 'Reverberation==5',
+      name: 'WM_REVERBERATION',
+      label: 'Ressonncia Lv5',
+      value: 'WM_REVERBERATION==5',
       acd: 0.5,
       fct: 0.5,
       vct: 1.5,
@@ -312,9 +312,9 @@ export class ShadowChaser extends Stalker {
       },
     },
     {
-      name: 'Genesis Ray',
-      label: 'Genesis Ray Lv10',
-      value: 'Genesis Ray==10',
+      name: 'LG_RAYOFGENESIS',
+      label: 'Luz da Criao Lv10',
+      value: 'LG_RAYOFGENESIS==10',
       acd: 1,
       fct: 0.5,
       vct: 6.5,
@@ -322,7 +322,7 @@ export class ShadowChaser extends Stalker {
       hit: 7,
       isMatk: true,
       getElement: () => {
-        if (this.isSkillActive('Inspiration')) return ElementType.Neutral;
+        if (this.isSkillActive('LG_INSPIRATION')) return ElementType.Neutral;
 
         return ElementType.Holy;
       },
@@ -330,7 +330,7 @@ export class ShadowChaser extends Stalker {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        if (this.isSkillActive('Inspiration')) {
+        if (this.isSkillActive('LG_INSPIRATION')) {
           return (skillLevel * 300 + totalInt * 3) * (baseLevel / 100);
         }
 
@@ -341,8 +341,8 @@ export class ShadowChaser extends Stalker {
 
   protected readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      label: 'Preserve',
-      name: 'Preserve',
+      label: 'Preservar',
+      name: 'ST_PRESERVE',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, isUse: true },
@@ -350,8 +350,8 @@ export class ShadowChaser extends Stalker {
       ],
     },
     {
-      label: 'Shadow Spell Lv10',
-      name: 'Shadow Spell',
+      label: 'Desejo das Sombras Lv10',
+      name: 'SC_AUTOSHADOWSPELL',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, isUse: true, bonus: { matk: 50 } },
@@ -363,7 +363,7 @@ export class ShadowChaser extends Stalker {
     {
       inputType: 'selectButton',
       label: 'Mystical Amp 5',
-      name: 'Mystical Amplification',
+      name: 'HW_MAGICPOWER',
       isEquipAtk: true,
       dropdown: [
         { label: 'Yes', isUse: true, value: 5, bonus: { mysticAmp: 25 } },
@@ -377,8 +377,8 @@ export class ShadowChaser extends Stalker {
     DoubleStrafeFn(),
     {
       inputType: 'dropdown',
-      label: 'Sword Mastery',
-      name: 'Sword Mastery',
+      label: 'Percia com Espada',
+      name: 'SM_SWORD',
       isMasteryAtk: true,
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -397,8 +397,8 @@ export class ShadowChaser extends Stalker {
     SnatcherFn(),
     {
       inputType: 'dropdown',
-      label: 'Back Stab',
-      name: 'Back Stab',
+      label: 'Apunhalar',
+      name: 'RG_BACKSTAP',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -416,7 +416,7 @@ export class ShadowChaser extends Stalker {
     {
       inputType: 'dropdown',
       label: 'Intimidate',
-      name: 'Intimidate',
+      name: 'RG_INTIMIDATE',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -428,8 +428,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Plagiarism',
-      name: 'Plagiarism',
+      label: 'Plgio',
+      name: 'RG_PLAGIARISM',
       isEquipAtk: true,
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -447,8 +447,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Maelstrom',
-      name: 'Maelstrom',
+      label: 'Redemoinho de Absoro',
+      name: 'SC_MAELSTROM',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -458,8 +458,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Feint Bomb',
-      name: 'Feint Bomb',
+      label: 'C£pia Explosiva',
+      name: 'SC_FEINTBOMB',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -476,8 +476,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Urgent Escape',
-      name: 'Urgent Escape',
+      label: 'Escapar',
+      name: 'SC_ESCAPE',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -489,8 +489,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Shadow Formation',
-      name: 'Shadow Formation',
+      label: 'Vnculo Sombrio',
+      name: 'SC_SHADOWFORM',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -502,8 +502,8 @@ export class ShadowChaser extends Stalker {
     },
     {
       inputType: 'dropdown',
-      label: 'Reproduce',
-      name: 'Reproduce',
+      label: 'Mimetismo',
+      name: 'SC_REPRODUCE',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -534,7 +534,7 @@ export class ShadowChaser extends Stalker {
   override calcSkillDmgByTotalHit(params: { finalDamage: number; skill: AtkSkillModel; info: InfoForClass }) {
     const { finalDamage, skill, info } = params;
     const isDagger = info.weapon.data?.typeName === 'dagger';
-    if (skill.name === 'Fatal Manace' && isDagger) {
+    if (skill.name === 'SM_FATALBLOW' && isDagger) {
       return finalDamage * 2;
     }
 

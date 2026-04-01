@@ -161,20 +161,20 @@ export class Biolo extends Genetic {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Biolo];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Explosive Powder',
+      name: 'BO_EXPLOSIVE_POWDER',
       label: '[V3] Explosive Powder Lv5',
-      value: 'Explosive Powder==5',
+      value: 'BO_EXPLOSIVE_POWDER==5',
       acd: 0.25,
       fct: 0,
       vct: 0,
       cd: 0.7,
       isMelee: true,
-      totalHit: () => this.isSkillActive('Research Report') ? 5 : 3,
+      totalHit: () => this.isSkillActive('BO_RESEARCHREPORT') ? 5 : 3,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        if (this.isSkillActive('Research Report')) {
+        if (this.isSkillActive('BO_RESEARCHREPORT')) {
           return (400 + skillLevel * 550 + totalPow * 10) * (baseLevel / 100);
         }
 
@@ -182,14 +182,14 @@ export class Biolo extends Genetic {
       },
     },
     {
-      name: 'Mayhemic Thorns',
+      name: 'BO_MAYHEMIC_THORNS',
       label: '[V3] Mayhemic Thorns Lv10',
-      value: 'Mayhemic Thorns==10',
+      value: 'BO_MAYHEMIC_THORNS==10',
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
       cd: 0.7,
-      totalHit: () => this.isSkillActive('Research Report') ? 5 : 3,
+      totalHit: () => this.isSkillActive('BO_RESEARCHREPORT') ? 5 : 3,
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -197,7 +197,7 @@ export class Biolo extends Genetic {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        if (this.isSkillActive('Research Report')) {
+        if (this.isSkillActive('BO_RESEARCHREPORT')) {
           return (250 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
         }
 
@@ -207,14 +207,14 @@ export class Biolo extends Genetic {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: '_Biolo_Monster_List',
+      name: '_CALC_BIOLO_MONSTER_LIST',
       label: 'Wooden',
       inputType: 'dropdown',
       dropdown: genBioloMonsterSkillList(),
     },
     {
-      name: 'Research Report',
-      label: 'Research Report',
+      name: 'BO_RESEARCHREPORT',
+      label: 'Relatat£rio de Pesquisa',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },

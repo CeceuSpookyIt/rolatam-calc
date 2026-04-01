@@ -84,10 +84,10 @@ export class GuillotineCross extends AssassinCross {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.GuillotineCross];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      label: 'Soul Destroyer',
-      name: 'Soul Destroyer',
-      value: 'Soul Destroyer==10',
-      values: ['[Improved 1st] Soul Destroyer==10', '[Improved 2nd] Soul Destroyer==10'],
+      label: 'Destruidor de Almas',
+      name: 'ASC_BREAKER',
+      value: 'ASC_BREAKER==10',
+      values: ['[Improved 1st] ASC_BREAKER==10', '[Improved 2nd] ASC_BREAKER==10'],
       acd: 1,
       fct: 0.25,
       vct: 0.25,
@@ -104,10 +104,10 @@ export class GuillotineCross extends AssassinCross {
       },
     },
     {
-      name: 'Rolling Cutter',
-      label: 'Rolling Cutter Lv5',
-      value: 'Rolling Cutter==5',
-      values: ['[Improved] Rolling Cutter==5'],
+      name: 'GC_ROLLINGCUTTER',
+      label: 'Lminas de Loki Lv5',
+      value: 'GC_ROLLINGCUTTER==5',
+      values: ['[Improved] GC_ROLLINGCUTTER==5'],
       acd: 0.2,
       fct: 0,
       vct: 0,
@@ -121,10 +121,10 @@ export class GuillotineCross extends AssassinCross {
       },
     },
     {
-      name: 'Cross Impact',
-      label: 'Cross Impact Lv5',
-      value: 'Cross Impact==5',
-      values: ['[Improved 1st] Cross Impact==5', '[Improved 2rd] Cross Impact==5'],
+      name: 'GC_CROSSIMPACT',
+      label: 'Lminas Retalhadoras Lv5',
+      value: 'GC_CROSSIMPACT==5',
+      values: ['[Improved 1st] GC_CROSSIMPACT==5', '[Improved 2rd] GC_CROSSIMPACT==5'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -142,9 +142,9 @@ export class GuillotineCross extends AssassinCross {
       },
     },
     {
-      label: 'Counter Slash Lv10',
-      name: 'Counter Slash',
-      value: 'Counter Slash==10',
+      label: 'Retaliao Lv10',
+      name: 'GC_COUNTERSLASH',
+      value: 'GC_COUNTERSLASH==10',
       acd: 1,
       fct: 0,
       vct: 0,
@@ -160,10 +160,10 @@ export class GuillotineCross extends AssassinCross {
       },
     },
     {
-      name: 'Cross Ripper Slasher',
-      label: 'Cross Ripper Slasher Lv5',
-      value: 'Cross Ripper Slasher==5',
-      values: ['[Improved] Cross Ripper Slasher==5'],
+      name: 'GC_CROSSRIPPERSLASHER',
+      label: 'Castigo de Loki Lv5',
+      value: 'GC_CROSSRIPPERSLASHER==5',
+      values: ['[Improved] GC_CROSSRIPPERSLASHER==5'],
       acd: 0.3,
       fct: 0,
       vct: 0,
@@ -172,7 +172,7 @@ export class GuillotineCross extends AssassinCross {
         const { model, skillLevel, status } = input;
         const { level: baseLevel } = model;
         const { totalAgi } = status;
-        const spinCnt = this.activeSkillLv('Spin Count');
+        const spinCnt = this.activeSkillLv('_CALC_SPIN_COUNT');
 
         return skillLevel * 80 * (baseLevel / 100) + 200 * spinCnt + totalAgi * 3;
       },
@@ -181,7 +181,7 @@ export class GuillotineCross extends AssassinCross {
 
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      name: 'Spin Count',
+      name: '_CALC_SPIN_COUNT',
       label: 'Spin Count',
       inputType: 'dropdown',
       dropdown: [
@@ -199,7 +199,7 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Poisonous Weapon',
+      name: 'GC_POISONINGWEAPON',
       label: 'Poisoning',
       inputType: 'dropdown',
       dropdown: [
@@ -209,7 +209,7 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Cloaking Exceed',
+      name: 'GC_CLOAKINGEXCEED',
       label: 'Cloaking Exceed 5',
       inputType: 'selectButton',
       dropdown: [
@@ -221,8 +221,8 @@ export class GuillotineCross extends AssassinCross {
 
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      name: 'New Poison Research',
-      label: 'New Poison Research',
+      name: 'GC_RESEARCHNEWPOISON',
+      label: 'Pesquisa de Toxinas',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -239,8 +239,8 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Dark Illusion',
-      label: 'Dark Illusion',
+      name: 'GC_DARKILLUSION',
+      label: 'Passo Sombrio',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -252,8 +252,8 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Cross Ripper Slasher',
-      label: 'Cross Ripper Slasher',
+      name: 'GC_CROSSRIPPERSLASHER',
+      label: 'Castigo de Loki',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -265,8 +265,8 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Cross Impact',
-      label: 'Cross Impact',
+      name: 'GC_CROSSIMPACT',
+      label: 'Lminas Retalhadoras',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -278,8 +278,8 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Weapon Blocking',
-      label: 'Weapon Blocking',
+      name: 'GC_WEAPONBLOCKING',
+      label: 'Reflexo de Combate',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -291,8 +291,8 @@ export class GuillotineCross extends AssassinCross {
       ],
     },
     {
-      name: 'Cloaking Exceed',
-      label: 'Cloaking Exceed',
+      name: 'GC_CLOAKINGEXCEED',
+      label: 'Ocultao',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },

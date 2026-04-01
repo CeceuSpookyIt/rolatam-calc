@@ -162,9 +162,9 @@ export class Shinkiro extends Kagerou {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Shinkiro];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Shadow Hunting',
-      label: '[V2] Shadow Hunting Lv10',
-      value: 'Shadow Hunting==10',
+      name: 'SS_KAGEGARI',
+      label: '[V2] Lmina das Trevas Lv10',
+      value: 'SS_KAGEGARI==10',
       acd: 0.15,
       fct: 0,
       vct: 0,
@@ -174,15 +174,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Shadow Flash');
+        const skillBonusLv = this.learnLv('SS_KAGEGISSEN');
 
         return (500 + skillLevel * (400 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
-      name: 'Shadow Dance',
-      label: '[V2] Shadow Dance Lv10',
-      value: 'Shadow Dance==10',
+      name: 'SS_KAGENOMAI',
+      label: '[V2] Dana das Trevas Lv10',
+      value: 'SS_KAGENOMAI==10',
       acd: 0.25,
       fct: 1,
       vct: 1,
@@ -193,15 +193,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Shadow Hunting');
+        const skillBonusLv = this.learnLv('SS_KAGEGARI');
 
         return (400 + skillLevel * (550 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
-      name: 'Shadow Flash',
-      label: '[V2] Shadow Flash Lv10',
-      value: 'Shadow Flash==10',
+      name: 'SS_KAGEGISSEN',
+      label: '[V2] Centelha das Trevas Lv10',
+      value: 'SS_KAGEGISSEN==10',
       acd: 0.25,
       fct: 0,
       vct: 0,
@@ -211,15 +211,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Shadow Dance');
+        const skillBonusLv = this.learnLv('SS_KAGENOMAI');
 
         return (1600 + skillLevel * (700 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Huuma Shuriken - Grasp',
-      label: '[V2] Huuma Shuriken - Grasp Lv10',
-      value: 'Huuma Shuriken - Grasp==10',
+      name: 'SS_FUUMASHOUAKU',
+      label: '[V2] Huuma Aderente Lv10',
+      value: 'SS_FUUMASHOUAKU==10',
       acd: 0,
       fct: 1,
       vct: 1.2,
@@ -229,15 +229,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Huuma Shuriken - Construct');
+        const skillBonusLv = this.learnLv('SS_FUUMAKOUCHIKU');
 
         return (700 + skillLevel * (200 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
-      name: 'Huuma Shuriken - Construct',
-      label: '[V2] Huuma Shuriken - Construct Lv10',
-      value: 'Huuma Shuriken - Construct==10',
+      name: 'SS_FUUMAKOUCHIKU',
+      label: '[V2] Huuma Andarilho Lv10',
+      value: 'SS_FUUMAKOUCHIKU==10',
       acd: 0,
       fct: 1,
       vct: 1.2,
@@ -247,7 +247,7 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Huuma Shuriken - Grasp');
+        const skillBonusLv = this.learnLv('SS_FUUMASHOUAKU');
         const primary = (600 + skillLevel * (400 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
         const secondary = (800 + skillLevel * (600 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
 
@@ -255,9 +255,9 @@ export class Shinkiro extends Kagerou {
       },
     },
     {
-      name: 'Kunai - Distortion',
-      label: '[V2] Kunai - Distortion Lv10',
-      value: 'Kunai - Distortion==10',
+      name: 'SS_KUNAIWAIKYOKU',
+      label: '[V2] Kunai Distorcida Lv10',
+      value: 'SS_KUNAIWAIKYOKU==10',
       acd: 0,
       fct: 0,
       vct: 0.2,
@@ -267,15 +267,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Kunai - Refraction');
+        const skillBonusLv = this.learnLv('SS_KUNAIKUSSETSU');
 
         return (300 + skillLevel * (600 + skillBonusLv * 10) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
-      name: 'Kunai - Rotation',
-      label: '[V2] Kunai - Rotation Lv5',
-      value: 'Kunai - Rotation==5',
+      name: 'SS_KUNAIKAITEN',
+      label: '[V2] Kunai Rotat£ria Lv5',
+      value: 'SS_KUNAIKAITEN==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -285,15 +285,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Kunai - Distortion');
+        const skillBonusLv = this.learnLv('SS_KUNAIWAIKYOKU');
 
         return (800 + skillLevel * (700 + skillBonusLv * 70) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
-      name: 'Kunai - Refraction',
-      label: '[V2] Kunai - Refraction Lv10',
-      value: 'Kunai - Refraction==10',
+      name: 'SS_KUNAIKUSSETSU',
+      label: '[V2] Kunai Refratada Lv10',
+      value: 'SS_KUNAIKUSSETSU==10',
       acd: 0.5,
       fct: 0.5,
       vct: 1.5,
@@ -303,15 +303,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Kunai - Rotation');
+        const skillBonusLv = this.learnLv('SS_KUNAIKAITEN');
 
         return (200 + skillLevel * (360 + skillBonusLv * 10) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Red Flame Cannon',
-      label: '[V2] Red Flame Cannon Lv10',
-      value: 'Red Flame Cannon==10',
+      name: 'SS_SEKIENHOU',
+      label: '[V2] Mahou da Chama Vermelha Lv10',
+      value: 'SS_SEKIENHOU==10',
       acd: 0,
       fct: 1,
       vct: 2,
@@ -323,15 +323,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Darkening Cannon');
+        const skillBonusLv = this.learnLv('SS_ANTENPOU');
 
         return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Cold Blooded Cannon',
-      label: '[V2] Cold Blooded Cannon Lv10',
-      value: 'Cold Blooded Cannon==10',
+      name: 'SS_REIKETSUHOU',
+      label: '[V2] Mahou da Nvoa Fria Lv10',
+      value: 'SS_REIKETSUHOU==10',
       acd: 0,
       fct: 1,
       vct: 3,
@@ -343,15 +343,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Darkening Cannon');
+        const skillBonusLv = this.learnLv('SS_ANTENPOU');
 
         return (250 + skillLevel * (550 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Thundering Cannon',
-      label: '[V2] Thundering Cannon Lv10',
-      value: 'Thundering Cannon==10',
+      name: 'SS_RAIDENPOU',
+      label: '[V2] Mahou da Trovoada Lv10',
+      value: 'SS_RAIDENPOU==10',
       acd: 0,
       fct: 1,
       vct: 2,
@@ -363,15 +363,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Darkening Cannon');
+        const skillBonusLv = this.learnLv('SS_ANTENPOU');
 
         return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Golden Dragon Cannon',
-      label: '[V2] Golden Dragon Cannon Lv10',
-      value: 'Golden Dragon Cannon==10',
+      name: 'SS_KINRYUUHOU',
+      label: '[V2] Mahou do Drago Áureo Lv10',
+      value: 'SS_KINRYUUHOU==10',
       acd: 0,
       fct: 1,
       vct: 3,
@@ -382,15 +382,15 @@ export class Shinkiro extends Kagerou {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Darkening Cannon');
+        const skillBonusLv = this.learnLv('SS_ANTENPOU');
 
         return (300 + skillLevel * (400 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Darkening Cannon',
-      label: '[V2] Darkening Cannon Lv10',
-      value: 'Darkening Cannon==10',
+      name: 'SS_ANTENPOU',
+      label: '[V2] Mahou da Escurido Lv10',
+      value: 'SS_ANTENPOU==10',
       acd: 0,
       fct: 1,
       vct: 3,
@@ -410,56 +410,56 @@ export class Shinkiro extends Kagerou {
   private readonly activeSkillList4th: ActiveSkillModel[] = [];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Shadow Hunting',
-      label: 'Shadow Hunting',
+      name: 'SS_KAGEGARI',
+      label: 'Lmina das Trevas',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Shadow Dance',
-      label: 'Shadow Dance',
+      name: 'SS_KAGENOMAI',
+      label: 'Dana das Trevas',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Shadow Flash',
-      label: 'Shadow Flash',
+      name: 'SS_KAGEGISSEN',
+      label: 'Centelha das Trevas',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Huuma Shuriken - Construct',
+      name: 'SS_FUUMAKOUCHIKU',
       label: 'Huuma - Construct',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Huuma Shuriken - Grasp',
+      name: 'SS_FUUMASHOUAKU',
       label: 'Huuma - Grasp',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Kunai - Distortion',
-      label: 'Kunai - Distortion',
+      name: 'SS_KUNAIWAIKYOKU',
+      label: 'Kunai Distorcida',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Kunai - Rotation',
-      label: 'Kunai - Rotation',
+      name: 'SS_KUNAIKAITEN',
+      label: 'Kunai Rotat£ria',
       inputType: 'dropdown',
       dropdown: genSkillList(5),
     },
     {
-      name: 'Kunai - Refraction',
-      label: 'Kunai - Refraction',
+      name: 'SS_KUNAIKUSSETSU',
+      label: 'Kunai Refratada',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Darkening Cannon',
-      label: 'Darkening Cannon',
+      name: 'SS_ANTENPOU',
+      label: 'Mahou da Escurido',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },

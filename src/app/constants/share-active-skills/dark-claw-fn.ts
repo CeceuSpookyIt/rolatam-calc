@@ -1,7 +1,7 @@
 import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const DarkClawFn = (): ActiveSkillModel => ({
-  name: 'Dark Claw',
+  name: 'GC_DARKCROW',
   label: 'Dark Claw 5',
   isDebuff: true,
   inputType: 'selectButton',

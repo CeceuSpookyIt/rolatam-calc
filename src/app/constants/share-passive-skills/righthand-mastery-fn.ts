@@ -2,8 +2,8 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const RighthandMasteryFn = (): PassiveSkillModel => ({
   inputType: 'dropdown',
-  label: 'Righthand Mastery',
-  name: 'Righthand Mastery',
+  label: 'Percia com Mo Direita',
+  name: 'AS_RIGHT',
   dropdown: [
     { label: '-', value: 0, isUse: false },
     { label: 'Lv 1', value: 1, isUse: true },

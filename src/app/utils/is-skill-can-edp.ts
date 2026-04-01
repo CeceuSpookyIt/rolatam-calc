@@ -1,5 +1,5 @@
 const CannotEDP = {
-  'Meteor Assault': false,
+  'ASC_METEORASSAULT': false,
 } as const;
 
 export const isSkillCanEDP = (skillName: string) => {

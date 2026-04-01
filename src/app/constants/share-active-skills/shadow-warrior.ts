@@ -1,8 +1,8 @@
 import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const ShadowWarrior: ActiveSkillModel = {
-  label: 'Shadow Warrior',
-  name: 'Shadow Warrior',
+  label: 'Contrato das Sombras',
+  name: 'KG_KAGEMUSYA',
   inputType: 'selectButton',
   dropdown: [
     {

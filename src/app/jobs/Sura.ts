@@ -85,9 +85,9 @@ export class Sura extends Champion {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.Sura];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Dragon Combo',
-      label: 'Dragon Combo Lv10',
-      value: 'Dragon Combo==10',
+      name: 'SR_DRAGONCOMBO',
+      label: 'Punho do Drago Lv10',
+      value: 'SR_DRAGONCOMBO==10',
       fct: 0,
       vct: 0,
       acd: 1,
@@ -102,9 +102,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Fallen Empire',
-      label: 'Fallen Empire Lv10',
-      value: 'Fallen Empire==10',
+      name: 'SR_FALLENEMPIRE',
+      label: 'Runa Lv10',
+      value: 'SR_FALLENEMPIRE==10',
       fct: 0,
       vct: 0,
       acd: 1,
@@ -123,9 +123,9 @@ export class Sura extends Champion {
       },
     },
     // {
-    //   name: 'Flash Combo',
-    //   label: 'Flash Combo Lv5',
-    //   value: 'Flash Combo==1',
+    //   name: 'SR_FLASHCOMBO',
+    //   label: 'Combo Rpido Lv5',
+    //   value: 'SR_FLASHCOMBO==1',
     //   fct: 0,
     //   vct: 0,
     //   acd: 1,
@@ -143,9 +143,9 @@ export class Sura extends Champion {
     //   },
     // },
     {
-      name: 'Lion Howling',
-      label: 'Lion Howling Lv5',
-      value: 'Lion Howling==5',
+      name: 'SR_HOWLINGOFLION',
+      label: 'Rugido do Leo Lv5',
+      value: 'SR_HOWLINGOFLION==5',
       fct: 0,
       vct: 0,
       acd: 1,
@@ -159,10 +159,10 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Sky Blow',
-      label: 'Sky Blow Lv5',
-      value: 'Sky Blow==5',
-      values: ['[Improved] Sky Blow==5'],
+      name: 'SR_SKYNETBLOW',
+      label: 'Soco Furaco Lv5',
+      value: 'SR_SKYNETBLOW==5',
+      values: ['[Improved] SR_SKYNETBLOW==5'],
       fct: 0,
       vct: 0,
       acd: 0.5,
@@ -177,9 +177,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Earth Shaker',
-      label: 'Earth Shaker Lv5',
-      value: 'Earth Shaker==5',
+      name: 'SR_EARTHSHAKER',
+      label: 'Impacto Ssmico Lv5',
+      value: 'SR_EARTHSHAKER==5',
       fct: 0,
       vct: 0,
       acd: 0,
@@ -193,9 +193,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Rampage Blast',
-      label: 'Rampage Blast Lv5',
-      value: 'Rampage Blast==5',
+      name: 'SR_RAMPAGEBLASTER',
+      label: 'Exploso Espiritual Lv5',
+      value: 'SR_RAMPAGEBLASTER==5',
       fct: 0,
       vct: 0,
       acd: 1,
@@ -203,10 +203,10 @@ export class Sura extends Champion {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const vigorLv = this.learnLv('Vigor Explosion');
+        const vigorLv = this.learnLv('DK_VIGOR');
 
         let totalDmg = 0;
-        if (this.isSkillActive('Earth Shaker')) {
+        if (this.isSkillActive('SR_EARTHSHAKER')) {
           totalDmg = (vigorLv * 300 + skillLevel * 550) * (baseLevel / 100);
         } else {
           totalDmg = (vigorLv * 200 + skillLevel * 350) * (baseLevel / 100);
@@ -216,9 +216,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Tiger Cannon',
-      label: 'Tiger Cannon Lv10',
-      value: 'Tiger Cannon==10',
+      name: 'SR_TIGERCANNON',
+      label: 'Garra de Tigre Lv10',
+      value: 'SR_TIGERCANNON==10',
       fct: 0,
       vct: 2,
       acd: 1,
@@ -244,8 +244,8 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Tiger Cannon',
-      label: 'Tiger Cannon Lv10 (Combo)',
+      name: 'SR_TIGERCANNON',
+      label: 'Garra de Tigre Lv10 (Combo)',
       value: 'Tiger Cannon Combo==10',
       fct: 0,
       vct: 2,
@@ -272,9 +272,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Knuckle Arrow',
-      label: 'Knuckle Arrow Lv10',
-      value: 'Knuckle Arrow==10',
+      name: 'SR_KNUCKLEARROW',
+      label: 'Pancada Corporal Lv10',
+      value: 'SR_KNUCKLEARROW==10',
       fct: 0,
       vct: 0,
       acd: 1,
@@ -293,9 +293,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Lightning Ride',
-      label: 'Lightning Ride Lv5',
-      value: 'Lightning Ride==5',
+      name: 'SR_RIDEINLIGHTNING',
+      label: 'Tempestade Espiritual Lv5',
+      value: 'SR_RIDEINLIGHTNING==5',
       fct: 0,
       vct: 1,
       acd: 1,
@@ -318,9 +318,9 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Hell Gate',
+      name: 'SR_HELLGATE',
       label: 'Hell Gate',
-      value: 'Hell Gate==10',
+      value: 'SR_HELLGATE==10',
       fct: 0,
       vct: (lv) => 0.8 + lv * 0.2,
       acd: (lv) => lv * 0.1,
@@ -328,16 +328,16 @@ export class Sura extends Champion {
       isHit100: true,
       hit: 7,
       levelList: [
-        { label: 'Hell Gate Lv1', value: 'Hell Gate==1' },
-        { label: 'Hell Gate Lv2', value: 'Hell Gate==2' },
-        { label: 'Hell Gate Lv3', value: 'Hell Gate==3' },
-        { label: 'Hell Gate Lv4', value: 'Hell Gate==4' },
-        { label: 'Hell Gate Lv5', value: 'Hell Gate==5' },
-        { label: 'Hell Gate Lv6', value: 'Hell Gate==6' },
-        { label: 'Hell Gate Lv7', value: 'Hell Gate==7' },
-        { label: 'Hell Gate Lv8', value: 'Hell Gate==8' },
-        { label: 'Hell Gate Lv9', value: 'Hell Gate==9' },
-        { label: 'Hell Gate Lv10', value: 'Hell Gate==10' },
+        { label: 'Hell Gate Lv1', value: 'SR_HELLGATE==1' },
+        { label: 'Hell Gate Lv2', value: 'SR_HELLGATE==2' },
+        { label: 'Hell Gate Lv3', value: 'SR_HELLGATE==3' },
+        { label: 'Hell Gate Lv4', value: 'SR_HELLGATE==4' },
+        { label: 'Hell Gate Lv5', value: 'SR_HELLGATE==5' },
+        { label: 'Hell Gate Lv6', value: 'SR_HELLGATE==6' },
+        { label: 'Hell Gate Lv7', value: 'SR_HELLGATE==7' },
+        { label: 'Hell Gate Lv8', value: 'SR_HELLGATE==8' },
+        { label: 'Hell Gate Lv9', value: 'SR_HELLGATE==9' },
+        { label: 'Hell Gate Lv10', value: 'SR_HELLGATE==10' },
       ],
       currentHpFn: (maxHp) => this.getCurrentHP(maxHp),
       currentSpFn: (maxSp) => this.getCurrentSP(maxSp),
@@ -358,7 +358,7 @@ export class Sura extends Champion {
       },
     },
     {
-      name: 'Hell Gate',
+      name: 'SR_HELLGATE',
       label: 'Hell Gate (Combo)',
       value: 'Hell Gate (Combo)==10',
       fct: 0,
@@ -401,8 +401,8 @@ export class Sura extends Champion {
 
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      label: 'Rising Dragon',
-      name: 'Rising Dragon',
+      label: 'Drago Ascendente',
+      name: 'SR_RAISINGDRAGON',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -420,7 +420,7 @@ export class Sura extends Champion {
     },
     {
       label: 'GT - Opposite',
-      name: 'Gentle Touch - Opposite',
+      name: 'SR_GENTLETOUCH_CHANGE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -458,7 +458,7 @@ export class Sura extends Champion {
     },
     {
       label: 'GT - Alive',
-      name: 'Gentle Touch - Alive',
+      name: 'SR_GENTLETOUCH_ENERGYGAIN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -470,8 +470,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Earth Shaker',
-      name: 'Earth Shaker',
+      label: 'Impacto Ssmico',
+      name: 'SR_EARTHSHAKER',
       isDebuff: true,
       inputType: 'selectButton',
       dropdown: [
@@ -481,7 +481,7 @@ export class Sura extends Champion {
     },
     {
       label: 'Total Spirit',
-      name: 'Total Spirit',
+      name: '_CALC_TOTAL_SPIRIT',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -496,8 +496,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Flash Combo',
-      name: 'Flash Combo',
+      label: 'Combo Rpido',
+      name: 'SR_FLASHCOMBO',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -511,7 +511,7 @@ export class Sura extends Champion {
     },
     {
       label: 'Current HP',
-      name: 'Current HP',
+      name: '_CALC_CURRENT_HP',
       inputType: 'dropdown',
       dropdown: [
         { label: '100 %', value: 0, isUse: false },
@@ -528,7 +528,7 @@ export class Sura extends Champion {
     },
     {
       label: 'Current SP',
-      name: 'Current SP',
+      name: '_CALC_CURRENT_SP',
       inputType: 'dropdown',
       dropdown: [
         { label: '100 %', value: 0, isUse: false },
@@ -546,8 +546,8 @@ export class Sura extends Champion {
 
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Divine Protection',
-      name: 'Divine Protection',
+      label: 'Proteo Divina',
+      name: 'AL_DP',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -564,8 +564,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Iron Hand',
-      name: 'Iron Hand',
+      label: 'Punhos de Ferro',
+      name: 'MO_IRONHAND',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -583,8 +583,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Dodge',
-      name: 'Dodge',
+      label: 'Cair das Ptalas',
+      name: 'MO_DODGE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -601,8 +601,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Vigor Explosion',
-      name: 'Vigor Explosion',
+      label: 'Determinao',
+      name: 'DK_VIGOR',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -614,8 +614,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Rising Dragon',
-      name: 'Rising Dragon',
+      label: 'Drago Ascendente',
+      name: 'SR_RAISINGDRAGON',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -633,7 +633,7 @@ export class Sura extends Champion {
     },
     {
       label: 'GT - Alive',
-      name: 'Gentle Touch - Alive',
+      name: 'SR_GENTLETOUCH_ENERGYGAIN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -646,7 +646,7 @@ export class Sura extends Champion {
     },
     {
       label: 'GT - Opposite',
-      name: 'Gentle Touch - Opposite',
+      name: 'SR_GENTLETOUCH_CHANGE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -658,8 +658,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Rampage Blast',
-      name: 'Rampage Blast',
+      label: 'Exploso Espiritual',
+      name: 'SR_RAMPAGEBLASTER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -667,8 +667,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Lightning Ride',
-      name: 'Lightning Ride',
+      label: 'Tempestade Espiritual',
+      name: 'SR_RIDEINLIGHTNING',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -676,8 +676,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Vigor condensation',
-      name: 'Vigor condensation',
+      label: 'Determinao',
+      name: 'DK_VIGOR',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -689,8 +689,8 @@ export class Sura extends Champion {
       ],
     },
     {
-      label: 'Chain Combo',
-      name: 'Chain Combo',
+      label: 'Combo Qudruplo',
+      name: 'MO_CHAINCOMBO',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -723,8 +723,8 @@ export class Sura extends Champion {
 
   override setAdditionalBonus(params: AdditionalBonusInput) {
     const { totalBonus, skillName } = params;
-    const flashComboLv = this.activeSkillLv('Flash Combo');
-    if (skillName === 'Tiger Cannon' && flashComboLv > 0) {
+    const flashComboLv = this.activeSkillLv('SR_FLASHCOMBO');
+    if (skillName === 'SR_TIGERCANNON' && flashComboLv > 0) {
       totalBonus['weaponAtk'] = (flashComboLv + 1) * 20;
     }
 
@@ -732,13 +732,13 @@ export class Sura extends Champion {
   }
 
   private getCurrentHP(maxHp: number) {
-    const currentHp = this.activeSkillLv('Current HP') || 100;
+    const currentHp = this.activeSkillLv('_CALC_CURRENT_HP') || 100;
 
     return floor(maxHp * currentHp * 0.01);
   }
 
   private getCurrentSP(maxSp: number) {
-    const currentSp = this.activeSkillLv('Current SP') || 100;
+    const currentSp = this.activeSkillLv('_CALC_CURRENT_SP') || 100;
 
     return floor(maxSp * currentSp * 0.01);
   }

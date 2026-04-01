@@ -1,8 +1,8 @@
 import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const CartBoost: ActiveSkillModel = {
-  label: 'Cart Boost Lv5',
-  name: 'Cart Boost',
+  label: 'Impulso no Carrinho Lv5',
+  name: 'WS_CARTBOOST',
   inputType: 'selectButton',
   isMasteryAtk: true,
   dropdown: [

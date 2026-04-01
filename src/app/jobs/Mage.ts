@@ -156,9 +156,9 @@ export class Mage extends CharacterBase {
   protected readonly classNames = [ClassName.Mage];
   protected readonly _atkSkillList: AtkSkillModel[] = [
     {
-      label: 'Fire Bolt Lv10',
-      name: 'Fire Bolt',
-      value: 'Fire Bolt==10',
+      label: 'Lanas de Fogo Lv10',
+      name: 'MG_FIREBOLT',
+      value: 'MG_FIREBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -171,9 +171,9 @@ export class Mage extends CharacterBase {
       },
     },
     {
-      label: 'Cold Bolt Lv10',
-      name: 'Cold Bolt',
-      value: 'Cold Bolt==10',
+      label: 'Lanas de Gelo Lv10',
+      name: 'MG_COLDBOLT',
+      value: 'MG_COLDBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -186,9 +186,9 @@ export class Mage extends CharacterBase {
       },
     },
     {
-      label: 'Lightening Bolt Lv10',
-      name: 'Lightening Bolt',
-      value: 'Lightening Bolt==10',
+      label: 'Relmpago Lv10',
+      name: 'MG_LIGHTNINGBOLT',
+      value: 'MG_LIGHTNINGBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -205,8 +205,8 @@ export class Mage extends CharacterBase {
   protected readonly _passiveSkillList: PassiveSkillModel[] = [
     {
       inputType: 'dropdown',
-      label: 'Safety Wall',
-      name: 'Safety Wall',
+      label: 'Escudo Mgico',
+      name: 'MG_SAFETYWALL',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },

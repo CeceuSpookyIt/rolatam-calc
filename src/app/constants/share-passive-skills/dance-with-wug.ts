@@ -2,7 +2,7 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const DanceWithWug: PassiveSkillModel = {
   label: 'Dance With Wug',
-  name: 'Dance With Wug',
+  name: 'WM_DANCE_WITH_WUG',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

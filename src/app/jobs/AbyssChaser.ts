@@ -164,9 +164,9 @@ export class AbyssChaser extends ShadowChaser {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.AbyssChaser];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Abyss Dagger',
-      label: '[V3] Abyss Dagger Lv5',
-      value: 'Abyss Dagger==5',
+      name: 'ABC_ABYSS_DAGGER',
+      label: '[V3] Ofensiva Abissal Lv5',
+      value: 'ABC_ABYSS_DAGGER==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -188,9 +188,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'Unlucky Rush',
-      label: '[V3] Unlucky Rush Lv5',
-      value: 'Unlucky Rush==5',
+      name: 'ABC_UNLUCKY_RUSH',
+      label: '[V3] Salto Revs Lv5',
+      value: 'ABC_UNLUCKY_RUSH==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -205,9 +205,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'Deft Stab',
-      label: '[V3] Deft Stab Lv10',
-      value: 'Deft Stab==10',
+      name: 'ABC_DEFT_STAB',
+      label: '[V3] Esfaquear Lv10',
+      value: 'ABC_DEFT_STAB==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -223,9 +223,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'Chain Reaction Shot',
-      label: '[V3] Chain Reaction Shot Lv5',
-      value: 'Chain Reaction Shot==5',
+      name: 'ABC_CHAIN_REACTION_SHOT',
+      label: '[V3] Disparo Progressivo Lv5',
+      value: 'ABC_CHAIN_REACTION_SHOT==5',
       acd: 0,
       fct: 1,
       vct: 1,
@@ -248,9 +248,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'Frenzy Shot',
-      label: '[V3] Frenzy Shot Lv10 (1 hit)',
-      value: 'Frenzy Shot==10',
+      name: 'ABC_FRENZY_SHOT',
+      label: '[V3] Rajada Frentica Lv10 (1 hit)',
+      value: 'ABC_FRENZY_SHOT==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -273,9 +273,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'From the Abyss',
-      label: '[V3] From the Abyss Lv5',
-      value: 'From the Abyss==5',
+      name: 'ABC_FROM_THE_ABYSS',
+      label: '[V3] Invocao do Abismo Lv5',
+      value: 'ABC_FROM_THE_ABYSS==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -292,9 +292,9 @@ export class AbyssChaser extends ShadowChaser {
       },
     },
     {
-      name: 'Abyss Square',
-      label: '[V3] Abyss Square Lv5 (fora da área da skill)',
-      value: 'Abyss Square==5',
+      name: 'ABC_ABYSS_SQUARE',
+      label: '[V3] Fenda do Abismo Lv5 (fora da área da skill)',
+      value: 'ABC_ABYSS_SQUARE==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -306,15 +306,15 @@ export class AbyssChaser extends ShadowChaser {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+        const magicSwordMasLv = this.learnLv('ABC_MAGIC_SWORD_M');
 
         return (skillLevel * (570 + magicSwordMasLv * 20) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Omega Abyss Strike',
-      label: '[V3] Omega Abyss Strike Lv10',
-      value: 'Omega Abyss Strike==10',
+      name: 'ABC_ABYSS_STRIKE',
+      label: '[V3] Meteoro mega Lv10',
+      value: 'ABC_ABYSS_STRIKE==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -333,8 +333,8 @@ export class AbyssChaser extends ShadowChaser {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Strip Shadow',
-      label: 'Strip Shadow',
+      name: 'ABC_STRIP_SHADOW',
+      label: 'Remoo Sombria Total',
       isDebuff: true,
       inputType: 'selectButton',
       dropdown: [
@@ -343,14 +343,14 @@ export class AbyssChaser extends ShadowChaser {
       ],
     },
     {
-      name: 'Abyss Slayer',
-      label: 'Abyss Slayer',
+      name: 'ABC_ABYSS_SLAYER',
+      label: 'Sangue-Frio',
       inputType: 'dropdown',
       dropdown: genSkillList(10, (lv) => ({ pAtk: 10 + lv * 2, sMatk: 10 + lv * 2, hit: 100 + lv * 20 })),
     },
     {
-      name: 'Abyss Dagger',
-      label: 'Abyss Dagger',
+      name: 'ABC_ABYSS_DAGGER',
+      label: 'Ofensiva Abissal',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 5, isUse: true },
@@ -360,14 +360,14 @@ export class AbyssChaser extends ShadowChaser {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Dagger & Bow Mastery',
-      label: 'Dagger & Bow Mastery',
+      name: 'ABC_DAGGER_AND_BOW_M',
+      label: 'Versatilidade',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
     {
-      name: 'Magic Sword Mastery',
-      label: 'Magic Sword Mastery',
+      name: 'ABC_MAGIC_SWORD_M',
+      label: 'Lmina Mgica',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
@@ -389,7 +389,7 @@ export class AbyssChaser extends ShadowChaser {
 
     const { totalBonus, weapon } = params;
 
-    const dAndBowLv = this.learnLv('Dagger & Bow Mastery');
+    const dAndBowLv = this.learnLv('ABC_DAGGER_AND_BOW_M');
     if (dAndBowLv > 0 && weapon.isType('dagger', 'bow')) {
       const mapM = [0, 2, 3, 5, 6, 8, 9, 11, 12, 14, 15];
       addBonus(totalBonus, 'p_size_s', dAndBowLv);
@@ -397,7 +397,7 @@ export class AbyssChaser extends ShadowChaser {
       addBonus(totalBonus, 'p_size_l', dAndBowLv * 2);
     }
 
-    const magicLv = this.learnLv('Magic Sword Mastery');
+    const magicLv = this.learnLv('ABC_MAGIC_SWORD_M');
     if (magicLv > 0 && weapon.isType('dagger', 'sword')) {
       addBonus(totalBonus, 'm_size_all', Math.ceil(magicLv * 1.5));
     }

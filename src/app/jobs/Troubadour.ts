@@ -165,9 +165,9 @@ export class Troubadour extends Minstrel {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Troubadour];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Rhythm Shooting',
-      label: '[V3] Rhythm Shooting Lv5',
-      value: 'Rhythm Shooting==5',
+      name: 'TR_RHYTHMSHOOTING',
+      label: '[V3] Disparo Rtmico Lv5',
+      value: 'TR_RHYTHMSHOOTING==5',
       acd: 0.15,
       fct: 0,
       vct: 2,
@@ -182,7 +182,7 @@ export class Troubadour extends Minstrel {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
-        const stageMannerLv = this.learnLv('Stage Manner');
+        const stageMannerLv = this.learnLv('TR_STAGE_MANNER');
 
         // if (this.isSkillActive('Sonic Brand'))
 
@@ -190,9 +190,9 @@ export class Troubadour extends Minstrel {
       },
     },
     {
-      name: 'Rose Blossom',
-      label: '[V3] Rose Blossom Lv5',
-      value: 'Rose Blossom==5',
+      name: 'TR_ROSEBLOSSOM',
+      label: '[V3] Atirar Rosas Lv5',
+      value: 'TR_ROSEBLOSSOM==5',
       acd: 0.15,
       fct: 0.5,
       vct: 1,
@@ -207,9 +207,9 @@ export class Troubadour extends Minstrel {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
-        const stageMannerLv = this.learnLv('Stage Manner');
+        const stageMannerLv = this.learnLv('TR_STAGE_MANNER');
 
-        if (this.isSkillActive('_Debuf_Sonic_Brand')) {
+        if (this.isSkillActive('_CALC_DEBUF_SONIC_BRAND')) {
           const main = ((200 + skillLevel * 2200) + (status.totalCon * 3 * stageMannerLv)) * (baseLevel / 100);
           const second = ((250 + skillLevel * 3000) + (status.totalCon * 3 * stageMannerLv)) * (baseLevel / 100);
 
@@ -242,7 +242,7 @@ export class Troubadour extends Minstrel {
 
     const { totalBonus, weapon } = params;
 
-    const stageMannerLv = this.learnLv('Stage Manner');
+    const stageMannerLv = this.learnLv('TR_STAGE_MANNER');
     if (stageMannerLv > 0 && weapon.isType('bow', 'instrument', 'whip')) {
       addBonus(totalBonus, 'pAtk', stageMannerLv * 3);
       addBonus(totalBonus, 'sMatk', stageMannerLv * 3);

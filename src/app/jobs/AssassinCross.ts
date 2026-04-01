@@ -83,9 +83,9 @@ export class AssassinCross extends Thief {
   protected readonly classNamesHi = [ClassName.Assassin, ClassName.HiClass, ClassName.AssassinCross];
   protected readonly atkSkillListHi: AtkSkillModel[] = [
     {
-      name: 'Meteor Assault',
-      label: 'Meteor Assault Lv10',
-      value: 'Meteor Assault==10',
+      name: 'ASC_METEORASSAULT',
+      label: 'Impacto Meteoro Lv10',
+      value: 'ASC_METEORASSAULT==10',
       fct: 0.3,
       vct: 0.25,
       cd: 0.5,
@@ -104,7 +104,7 @@ export class AssassinCross extends Thief {
     {
       inputType: 'dropdown',
       label: 'Venom Imp',
-      name: 'Venom Impression',
+      name: 'GC_VENOMIMPRESS',
       isEquipAtk: true,
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -118,7 +118,7 @@ export class AssassinCross extends Thief {
     {
       inputType: 'selectButton',
       label: 'EDP',
-      name: 'Enchant Deadly Poison',
+      name: 'ASC_EDP',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true, bonus: { edp: 1 } },
         { label: 'No', value: 0, isUse: false },
@@ -128,8 +128,8 @@ export class AssassinCross extends Thief {
   protected readonly passiveSkillListHi: PassiveSkillModel[] = [
     {
       inputType: 'dropdown',
-      label: 'Katar Mastery',
-      name: 'Katar Mastery',
+      label: 'Percia com Katar',
+      name: 'AS_KATAR',
       isMasteryAtk: true,
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -148,7 +148,7 @@ export class AssassinCross extends Thief {
     {
       inputType: 'dropdown',
       label: 'Adv Katar',
-      name: 'Advanced Katar Mastery',
+      name: 'ASC_KATAR',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { advKatar: 12 } },
@@ -160,8 +160,8 @@ export class AssassinCross extends Thief {
     },
     {
       inputType: 'dropdown',
-      label: 'Lefthand Mastery',
-      name: 'Lefthand Mastery',
+      label: 'Percia com Mo Esquerda',
+      name: 'AS_LEFT',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { weapon_left: 40 } },
@@ -173,8 +173,8 @@ export class AssassinCross extends Thief {
     },
     {
       inputType: 'dropdown',
-      label: 'Soul Destroyer',
-      name: 'Soul Destroyer',
+      label: 'Destruidor de Almas',
+      name: 'ASC_BREAKER',
       isMasteryAtk: true,
       dropdown: [
         { label: '-', isUse: false, value: 0 },

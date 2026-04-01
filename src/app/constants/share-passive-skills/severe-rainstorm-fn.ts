@@ -2,7 +2,7 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const SevereRainstormFn = (): PassiveSkillModel => ({
   label: 'Severe Rains',
-  name: 'Severe Rainstorm',
+  name: 'WM_SEVERE_RAINSTORM',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

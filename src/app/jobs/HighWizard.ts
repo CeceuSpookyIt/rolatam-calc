@@ -84,9 +84,9 @@ export class HighWizard extends Mage {
   protected readonly classNamesHi = [ClassName.Wizard, ClassName.HiClass, ClassName.HighWizard];
   protected readonly atkSkillListHi: AtkSkillModel[] = [
     // {
-    //   name: 'Soul Drain',
-    //   label: 'Soul Drain Lv10',
-    //   value: 'Soul Drain==10',
+    //   name: 'HW_SOULDRAIN',
+    //   label: 'Dreno de Alma Lv10',
+    //   value: 'HW_SOULDRAIN==10',
     //   acd: 0,
     //   fct: 0,
     //   vct: 0,
@@ -100,9 +100,9 @@ export class HighWizard extends Mage {
     //   },
     // },
     {
-      name: 'Napalm Vulcan',
-      label: 'Napalm Vulcan Lv5',
-      value: 'Napalm Vulcan==5',
+      name: 'HW_NAPALMVULCAN',
+      label: 'Vulco Napalm Lv5',
+      value: 'HW_NAPALMVULCAN==5',
       fct: 0.3,
       vct: 0.5,
       acd: 0.5,
@@ -121,9 +121,9 @@ export class HighWizard extends Mage {
       },
     },
     {
-      name: 'Lord of Vermilion',
-      label: 'Lord of Vermilion Lv10',
-      value: 'Lord of Vermilion==10',
+      name: 'WZ_VERMILION',
+      label: 'Ira de Thor Lv10',
+      value: 'WZ_VERMILION==10',
       acd: 5,
       fct: 1.68,
       vct: 6.72,
@@ -139,9 +139,9 @@ export class HighWizard extends Mage {
       },
     },
     {
-      label: "Heaven's Drive Lv5",
-      name: "Heaven's Drive",
-      value: "Heaven's Drive==5",
+      label: 'F¨ria da Terra Lv5',
+      name: 'WZ_HEAVENDRIVE',
+      value: 'WZ_HEAVENDRIVE==5',
       fct: 0.8,
       vct: 1.9,
       acd: 0.5,
@@ -154,9 +154,9 @@ export class HighWizard extends Mage {
       },
     },
     {
-      name: 'Meteor Storm',
-      label: 'Meteor Storm Lv10',
-      value: 'Meteor Storm==10',
+      name: 'WZ_METEOR',
+      label: 'Chuva de Meteoros Lv10',
+      value: 'WZ_METEOR==10',
       acd: 5,
       fct: 1.5,
       vct: 6.72,
@@ -171,9 +171,9 @@ export class HighWizard extends Mage {
       },
     },
     {
-      name: 'Gravitational Field',
-      label: 'Gravitational Field Lv5',
-      value: 'Gravitational Field==5',
+      name: 'HW_GRAVITATION',
+      label: 'Campo Gravitacional Lv5',
+      value: 'HW_GRAVITATION==5',
       acd: 1,
       fct: 1,
       vct: 5,
@@ -197,7 +197,7 @@ export class HighWizard extends Mage {
     {
       inputType: 'selectButton',
       label: 'Mystical Amp 10',
-      name: 'Mystical Amplification',
+      name: 'HW_MAGICPOWER',
       isEquipAtk: true,
       dropdown: [
         { label: 'Yes', isUse: true, value: 10, bonus: { mysticAmp: 50 } },
@@ -207,8 +207,8 @@ export class HighWizard extends Mage {
   ];
   protected readonly passiveSkillListHi: PassiveSkillModel[] = [
     {
-      label: 'Soul Drain',
-      name: 'Soul Drain',
+      label: 'Dreno de Alma',
+      name: 'HW_SOULDRAIN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -226,7 +226,7 @@ export class HighWizard extends Mage {
     },
     {
       label: 'Gravitational',
-      name: 'Gravitational Field',
+      name: 'HW_GRAVITATION',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -239,7 +239,7 @@ export class HighWizard extends Mage {
     },
     {
       label: 'Mystical Amp',
-      name: 'Mystical Amplification',
+      name: 'HW_MAGICPOWER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

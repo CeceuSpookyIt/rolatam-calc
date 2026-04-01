@@ -84,10 +84,10 @@ export class Ranger extends Sniper {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.Ranger];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Arrow Storm',
-      label: 'Arrow Storm Lv10',
-      value: 'Arrow Storm==10',
-      values: ['[Improved] Arrow Storm==10'],
+      name: 'RA_ARROWSTORM',
+      label: 'Tempestade de Flechas Lv10',
+      value: 'RA_ARROWSTORM==10',
+      values: ['[Improved] RA_ARROWSTORM==10'],
       acd: 0,
       fct: 0.3,
       vct: 2,
@@ -96,16 +96,16 @@ export class Ranger extends Sniper {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const fearBreezeBonus = this.isSkillActive('Fear Breeze') ? 70 : 0;
+        const fearBreezeBonus = this.isSkillActive('RA_FEARBREEZE') ? 70 : 0;
 
         return (200 + (180 + fearBreezeBonus) * skillLevel) * (baseLevel / 100);
       },
     },
     {
-      name: 'Aimed Bolt',
-      label: 'Aimed Bolt Lv10',
-      value: 'Aimed Bolt==10',
-      values: ['Aimed Bolt==10'],
+      name: 'RA_AIMEDBOLT',
+      label: 'Disparo Certeiro Lv10',
+      value: 'RA_AIMEDBOLT==10',
+      values: ['RA_AIMEDBOLT==10'],
       acd: 2,
       fct: 1,
       vct: 2,
@@ -113,7 +113,7 @@ export class Ranger extends Sniper {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        if (this.isSkillActive('Fear Breeze')) {
+        if (this.isSkillActive('RA_FEARBREEZE')) {
           return (800 + skillLevel * 35) * (baseLevel / 100);
         }
 
@@ -127,7 +127,7 @@ export class Ranger extends Sniper {
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
       label: 'Fear Breeze 5',
-      name: 'Fear Breeze',
+      name: 'RA_FEARBREEZE',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -142,8 +142,8 @@ export class Ranger extends Sniper {
     {
       isMasteryAtk: true,
       inputType: 'dropdown',
-      label: 'Main Ranger',
-      name: 'Main Ranger',
+      label: 'Tticas de Sobrevivncia',
+      name: 'RA_RANGERMAIN',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         {
@@ -219,8 +219,8 @@ export class Ranger extends Sniper {
       ],
     },
     {
-      label: 'Trap Research',
-      name: 'Trap Research',
+      label: 'Percia com Armadilha',
+      name: 'RA_RESEARCHTRAP',
       inputType: 'dropdown',
       isEquipAtk: true,
       dropdown: [
@@ -238,8 +238,8 @@ export class Ranger extends Sniper {
       ],
     },
     {
-      label: 'Wug Strike',
-      name: 'Wug Strike',
+      label: 'Ataque Selvagem',
+      name: 'SU_SVG_SPIRIT',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -251,8 +251,8 @@ export class Ranger extends Sniper {
       ],
     },
     {
-      label: 'Fear Breeze',
-      name: 'Fear Breeze',
+      label: 'Disparo Selvagem',
+      name: 'RA_FEARBREEZE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -264,8 +264,8 @@ export class Ranger extends Sniper {
       ],
     },
     {
-      label: 'Camouflage',
-      name: 'Camouflage',
+      label: 'Camuflagem',
+      name: 'RA_CAMOUFLAGE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -277,8 +277,8 @@ export class Ranger extends Sniper {
       ],
     },
     {
-      label: 'Wug Rider',
-      name: 'Wug Rider',
+      label: 'Montaria em Worg',
+      name: 'RA_WUGRIDER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

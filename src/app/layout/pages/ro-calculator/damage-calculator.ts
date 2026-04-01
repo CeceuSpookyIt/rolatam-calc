@@ -1464,7 +1464,7 @@ export class DamageCalculator {
     let noStackMinCriDamage = 0;
     let noStackMinDamage = 0;
 
-    if (skillName === 'Fist Spell' && typeof skillData.treatedAsSkillNameFn === 'function') {
+    if (skillName === 'SO_SPELLFIST' && typeof skillData.treatedAsSkillNameFn === 'function') {
       const newSkillValue = skillData.treatedAsSkillNameFn(skillValue);
       const newSkillData = this._class.atkSkills.find((a) => a.value === newSkillValue || a.levelList?.findIndex((b) => b.value === newSkillValue) >= 0);
       if (newSkillData) {

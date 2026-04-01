@@ -85,9 +85,9 @@ export class ArchBishop extends HighPriest {
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.ArchBishop];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Holy Light',
-      label: 'Holy Light',
-      value: 'Holy Light==1',
+      name: 'AL_HOLYLIGHT',
+      label: 'Luz Divina',
+      value: 'AL_HOLYLIGHT==1',
       acd: 0,
       cd: 0,
       fct: 0,
@@ -99,9 +99,9 @@ export class ArchBishop extends HighPriest {
       },
     },
     {
-      name: 'Magnus Exorcismus',
+      name: 'PR_MAGNUS',
       label: 'Magnus Exorcismus Lv10',
-      value: 'Magnus Exorcismus==10',
+      value: 'PR_MAGNUS==10',
       acd: 1,
       cd: 6,
       fct: 1,
@@ -121,10 +121,10 @@ export class ArchBishop extends HighPriest {
       },
     },
     {
-      name: 'Judex',
+      name: 'AB_JUDEX',
       label: 'Judex Lv10',
-      value: 'Judex==10',
-      values: ['[Improved] Judex==10'],
+      value: 'AB_JUDEX==10',
+      values: ['[Improved] AB_JUDEX==10'],
       fct: 0.5,
       vct: 2,
       acd: 0.5,
@@ -140,10 +140,10 @@ export class ArchBishop extends HighPriest {
       },
     },
     {
-      name: 'Adoramus',
+      name: 'AB_ADORAMUS',
       label: 'Adoramus Lv10',
-      value: 'Adoramus==10',
-      values: ['[Improved] Adoramus==10'],
+      value: 'AB_ADORAMUS==10',
+      values: ['[Improved] AB_ADORAMUS==10'],
       fct: 0.5,
       vct: 2,
       acd: 0.5,
@@ -159,7 +159,7 @@ export class ArchBishop extends HighPriest {
       },
     },
     {
-      name: 'Adoramus',
+      name: 'AB_ADORAMUS',
       label: 'Adoramus Lv10 (In Ancilla)',
       value: '[Improved] Adoramus Ancilla==10',
       fct: 0.5,
@@ -177,9 +177,9 @@ export class ArchBishop extends HighPriest {
       },
     },
     {
-      name: 'Hell Inferno',
-      label: 'Hell Inferno Lv5',
-      value: 'Hell Inferno==5',
+      name: 'WL_HELLINFERNO',
+      label: 'Chamas de Hela Lv5',
+      value: 'WL_HELLINFERNO==5',
       fct: 1,
       vct: 3,
       acd: 0.5,
@@ -212,7 +212,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Magnificat',
-      name: 'Magnificat',
+      name: 'PR_MAGNIFICAT',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -225,7 +225,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Offertorium',
-      name: 'Offertorium',
+      name: 'AB_OFFERTORIUM',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 5', isUse: true, value: 5 },
@@ -233,8 +233,8 @@ export class ArchBishop extends HighPriest {
     },
     {
       inputType: 'dropdown',
-      label: 'Basilica',
-      name: 'Basilica',
+      label: 'Baslica',
+      name: 'HP_BASILICA',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         {
@@ -249,8 +249,8 @@ export class ArchBishop extends HighPriest {
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
       inputType: 'dropdown',
-      label: 'Mace Mastery',
-      name: 'Mace Mastery',
+      label: 'Percia com Maa',
+      name: 'PR_MACEMASTERY',
       isEquipAtk: true,
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -268,8 +268,8 @@ export class ArchBishop extends HighPriest {
     },
     {
       inputType: 'dropdown',
-      label: 'Meditation',
-      name: 'Meditation',
+      label: 'Meditatio',
+      name: 'HP_MEDITATIO',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true, bonus: { spPercent: 1 } },
@@ -287,7 +287,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Kyrie',
-      name: 'Kyrie Eleison',
+      name: 'PR_KYRIE',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -305,7 +305,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Assumptio',
-      name: 'Assumptio',
+      name: 'HP_ASSUMPTIO',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -318,7 +318,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Clementia',
-      name: 'Clementia',
+      name: 'AB_CLEMENTIA',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -328,8 +328,8 @@ export class ArchBishop extends HighPriest {
     },
     {
       inputType: 'dropdown',
-      label: 'Laudaagnus',
-      name: 'Laudaagnus',
+      label: 'Lauda Agnus',
+      name: 'AB_LAUDAAGNUS',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -341,7 +341,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Expiatio',
-      name: 'Expiatio',
+      name: 'AB_EXPIATIO',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -354,7 +354,7 @@ export class ArchBishop extends HighPriest {
     {
       inputType: 'dropdown',
       label: 'Impositio Manus',
-      name: 'Impositio Manus',
+      name: 'PR_IMPOSITIO',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },

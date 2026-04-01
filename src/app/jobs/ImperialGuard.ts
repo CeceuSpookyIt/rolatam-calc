@@ -164,9 +164,9 @@ export class ImperialGuard extends RoyalGuard {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.ImperialGuard];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Overslash',
-      label: '[V3] Overslash Lv10 (1 hit)',
-      value: 'Overslash==10',
+      name: 'IG_OVERSLASH',
+      label: '[V3] Talho do Destino Lv10 (1 hit)',
+      value: 'IG_OVERSLASH==10',
       acd: 0.5,
       fct: 0.5,
       vct: 0,
@@ -176,15 +176,15 @@ export class ImperialGuard extends RoyalGuard {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const ssMastLv = this.learnLv('Spear & Sword Mastery');
+        const ssMastLv = this.learnLv('IG_SPEAR_SWORD_M');
 
         return (skillLevel * (120 + ssMastLv * 10) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Shield Shooting',
-      label: '[V3] Shield Shooting Lv5',
-      value: 'Shield Shooting==5',
+      name: 'IG_SHIELD_SHOOTING',
+      label: '[V3] Arremessar Escudo Lv5',
+      value: 'IG_SHIELD_SHOOTING==5',
       acd: 0.5,
       fct: 0.5,
       vct: 0.5,
@@ -196,15 +196,15 @@ export class ImperialGuard extends RoyalGuard {
         const { weight, refine } = equipmentBonus.shield;
         const { totalPow } = status;
         const { level: baseLevel } = model;
-        const shieldMastLv = this.learnLv('Shield Mastery');
+        const shieldMastLv = this.learnLv('IG_SHIELD_MASTERY');
 
         return (200 + skillLevel * (1300 + shieldMastLv * 15) + totalPow * 5 + weight + refine * 4) * (baseLevel / 100);
       },
     },
     {
-      name: 'Cross Rain',
-      label: '[V3] Cross Rain Lv10',
-      value: 'Cross Rain==10',
+      name: 'IG_CROSS_RAIN',
+      label: '[V3] Crux Tempestas Lv10',
+      value: 'IG_CROSS_RAIN==10',
       acd: 0.15,
       fct: 1.5,
       vct: 4,
@@ -216,9 +216,9 @@ export class ImperialGuard extends RoyalGuard {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const ssMastLv = this.learnLv('Spear & Sword Mastery');
+        const ssMastLv = this.learnLv('IG_SPEAR_SWORD_M');
 
-        if (this.isSkillActive('Holy Shield')) {
+        if (this.isSkillActive('IG_HOLY_SHIELD')) {
           return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -228,8 +228,8 @@ export class ImperialGuard extends RoyalGuard {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Attack Stance',
-      label: 'Attack Stance',
+      name: 'IG_ATTACK_STANCE',
+      label: 'Posio de Ataque',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -241,8 +241,8 @@ export class ImperialGuard extends RoyalGuard {
       ],
     },
     {
-      name: 'Holy Shield',
-      label: 'Holy Shield',
+      name: 'IG_HOLY_SHIELD',
+      label: 'Escudo Divino',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -254,8 +254,8 @@ export class ImperialGuard extends RoyalGuard {
       ],
     },
     {
-      name: 'Grand Judgement',
-      label: 'Grand Judgement',
+      name: 'IG_GRAND_JUDGEMENT',
+      label: 'Lana do Suplcio',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, isUse: true },
@@ -263,8 +263,8 @@ export class ImperialGuard extends RoyalGuard {
       ],
     },
     {
-      name: 'Shield Shooting',
-      label: 'Shield Shooting',
+      name: 'IG_SHIELD_SHOOTING',
+      label: 'Arremessar Escudo',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 5, isUse: true },
@@ -274,8 +274,8 @@ export class ImperialGuard extends RoyalGuard {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Spear & Sword Mastery',
-      label: 'Spear & Sword Mastery',
+      name: 'IG_SPEAR_SWORD_M',
+      label: 'Percia Hoplita',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -292,8 +292,8 @@ export class ImperialGuard extends RoyalGuard {
       ],
     },
     {
-      name: 'Shield Mastery',
-      label: 'Shield Mastery',
+      name: 'IG_SHIELD_MASTERY',
+      label: 'Percia com Escudo',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -327,7 +327,7 @@ export class ImperialGuard extends RoyalGuard {
 
     const { totalBonus, weapon } = params;
 
-    const ssMastLv = this.learnLv('Spear & Sword Mastery');
+    const ssMastLv = this.learnLv('IG_SPEAR_SWORD_M');
     if (ssMastLv > 0 && weapon.isType('sword', 'twohandSword', 'spear', 'twohandSpear')) {
       addBonus(totalBonus, 'hit', ssMastLv * 3);
     }

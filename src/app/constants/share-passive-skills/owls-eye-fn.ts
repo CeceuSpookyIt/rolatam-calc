@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const OwlsEyeFn = (): PassiveSkillModel => ({
-  label: "Owl's Eye",
-  name: "Owl's Eye",
+  label: 'Olhos de Coruja',
+  name: 'AC_OWL',
   inputType: 'dropdown',
   isEquipAtk: true,
   dropdown: [

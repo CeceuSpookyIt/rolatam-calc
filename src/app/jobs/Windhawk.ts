@@ -163,9 +163,9 @@ export class Windhawk extends Ranger {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Windhawk];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Crescive Bolt',
-      label: '[V3] Crescive Bolt Lv10',
-      value: 'Crescive Bolt==10',
+      name: 'WH_CRESCIVE_BOLT',
+      label: '[V3] Tiro Crescente Lv10',
+      value: 'WH_CRESCIVE_BOLT==10',
       acd: 0.3,
       fct: 1,
       vct: 1,
@@ -178,21 +178,21 @@ export class Windhawk extends Ranger {
         const { model, skillLevel, status, stack } = input;
         const baseLevel = model.level;
         const totalStack = stack;
-        const calaBonus = this.isSkillActive('Calamity Gale') ? 1.2 : 1;
+        const calaBonus = this.isSkillActive('WH_CALAMITYGALE') ? 1.2 : 1;
 
         return (skillLevel * 340 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
       },
     },
     {
-      name: 'Gale Storm',
-      label: '[V3] Gale Storm Lv10',
-      value: 'Gale Storm==10',
+      name: 'WH_GALESTORM',
+      label: '[V3] Vendaval de Flechas Lv10',
+      value: 'WH_GALESTORM==10',
       acd: 0.15,
       fct: 0.5,
       vct: 1,
       cd: 1.5,
       hit: 5,
-      canCri: () => this.isSkillActive('Calamity Gale'),
+      canCri: () => this.isSkillActive('WH_CALAMITYGALE'),
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
@@ -201,9 +201,9 @@ export class Windhawk extends Ranger {
       },
     },
     {
-      name: 'Hawk Rush',
-      label: '[V3] Hawk Rush Lv5',
-      value: 'Hawk Rush==5',
+      name: 'WH_HAWKRUSH',
+      label: '[V3] Mergulho Areo Lv5',
+      value: 'WH_HAWKRUSH==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -220,7 +220,7 @@ export class Windhawk extends Ranger {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
-        const natureFrieldlyLv = this.learnLv('Nature Friendly');
+        const natureFrieldlyLv = this.learnLv('WH_NATUREFRIENDLY');
 
         return (skillLevel * 500 + status.totalCon * 5) * (1 + 0.1 * natureFrieldlyLv) * (baseLevel / 100);
       },
@@ -228,8 +228,8 @@ export class Windhawk extends Ranger {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Calamity Gale',
-      label: 'Calamity Gale',
+      name: 'WH_CALAMITYGALE',
+      label: 'Ventos Sinistros',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true, bonus: { range: 350 } },
@@ -239,8 +239,8 @@ export class Windhawk extends Ranger {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Nature Friendly',
-      label: 'Nature Friendly',
+      name: 'WH_NATUREFRIENDLY',
+      label: 'Amigo da Natureza',
       inputType: 'dropdown',
       dropdown: [
         { label: 'Lv 1', value: 1, isUse: true },
@@ -268,15 +268,15 @@ export class Windhawk extends Ranger {
     const { totalBonus, skillName } = params;
     // const {race, elementUpper} = monster;
 
-    if (this.isSkillActive('Calamity Gale')) {
+    if (this.isSkillActive('WH_CALAMITYGALE')) {
       // if (race === '' || elementUpper === ElementType.Water) {
       // }
-      const noLimitLv = this.activeSkillLv('No Limits');
+      const noLimitLv = this.activeSkillLv('RA_UNLIMIT');
       if (noLimitLv > 0) {
         totalBonus.range -= 100 + noLimitLv * 50;
       }
 
-      if (skillName === 'Crescive Bolt' || skillName === 'Gale Storm') {
+      if (skillName === 'WH_CRESCIVE_BOLT' || skillName === 'WH_GALESTORM') {
         totalBonus.p_race_fish = (totalBonus.p_race_fish || 0) + 50;
         totalBonus.p_element_water = (totalBonus.p_element_water || 0) + 50;
       }
@@ -289,7 +289,7 @@ export class Windhawk extends Ranger {
   //   const {totalBonus, skillName, monster} = params;
   //   const {race, elementUpper} = monster;
 
-  //   if (this.isSkillActive('Calamity Gale') && (skillName === 'Crescive Bolt' || skillName === 'Gale Storm')) {
+  //   if (this.isSkillActive('WH_CALAMITYGALE') && (skillName === 'WH_CRESCIVE_BOLT' || skillName === 'WH_GALESTORM')) {
   //     if (race === '' || elementUpper === ElementType.Water) {
 
   //     }

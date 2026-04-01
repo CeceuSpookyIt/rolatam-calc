@@ -84,9 +84,9 @@ export class Rebellion extends Gunslinger {
   private readonly classNames2nd = [ClassName.Rebellion];
   private readonly atkSkillList2nd: AtkSkillModel[] = [
     {
-      label: 'Round Trip Lv10',
-      name: 'Round Trip',
-      value: 'Round Trip==10',
+      label: 'Expurgar Lv10',
+      name: 'RL_R_TRIP',
+      value: 'RL_R_TRIP==10',
       acd: 1,
       fct: 0,
       vct: 0,
@@ -99,9 +99,9 @@ export class Rebellion extends Gunslinger {
       },
     },
     {
-      label: 'Fire Dance Lv10',
-      name: 'Fire Dance',
-      value: 'Fire Dance==10',
+      label: 'Descarregar Tambor Lv10',
+      name: 'RL_FIREDANCE',
+      value: 'RL_FIREDANCE==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -109,15 +109,15 @@ export class Rebellion extends Gunslinger {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const desperadoLv = this.learnLv('Desperado');
+        const desperadoLv = this.learnLv('GS_DESPERADO');
 
         return (skillLevel * 100 + 200 + desperadoLv * 20) * (baseLevel / 100);
       },
     },
     {
-      label: 'Vanishing Buster Lv10',
-      name: 'Vanishing Buster',
-      value: 'Vanishing Buster==10',
+      label: 'Disparo Perfurante Lv10',
+      name: 'LG_CANNONSPEAR',
+      value: 'LG_CANNONSPEAR==10',
       acd: 0.4,
       fct: 0.7,
       vct: 1,
@@ -130,9 +130,9 @@ export class Rebellion extends Gunslinger {
       },
     },
     {
-      label: 'Dragon Tail Lv10',
-      name: 'Dragon Tail',
-      value: 'Dragon Tail==10',
+      label: 'Lanar Mssil Lv10',
+      name: 'RL_D_TAIL',
+      value: 'RL_D_TAIL==10',
       acd: 1,
       fct: 0,
       vct: 3,
@@ -147,9 +147,9 @@ export class Rebellion extends Gunslinger {
       },
     },
     {
-      label: "God's Hammer Lv10 (0 coin)",
-      name: "God's Hammer",
-      value: "God's Hammer_0==10",
+      label: 'Execuo Lv10 (0 coin)',
+      name: 'RL_HAMMER_OF_GOD',
+      value: 'RL_HAMMER_OF_GOD_0==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -163,9 +163,9 @@ export class Rebellion extends Gunslinger {
       },
     },
     {
-      label: "God's Hammer Lv10 (10 coins)",
-      name: "God's Hammer",
-      value: "God's Hammer==10",
+      label: 'Execuo Lv10 (10 coins)',
+      name: 'RL_HAMMER_OF_GOD',
+      value: 'RL_HAMMER_OF_GOD==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -179,9 +179,9 @@ export class Rebellion extends Gunslinger {
       },
     },
     {
-      label: 'Shatter Storm Lv5',
-      name: 'Shatter Storm',
-      value: 'Shatter Storm==5',
+      label: 'Rajada Estilhaante Lv5',
+      name: 'RL_S_STORM',
+      value: 'RL_S_STORM==5',
       acd: 0,
       fct: 1,
       vct: 1,
@@ -199,7 +199,7 @@ export class Rebellion extends Gunslinger {
       isEquipAtk: true,
       inputType: 'selectButton',
       label: 'Platinum Altar 10',
-      name: 'Platinum Altar',
+      name: 'RL_P_ALTER',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true, bonus: { atk: 150 } },
         { label: 'No', value: 0, isUse: false },
@@ -208,7 +208,7 @@ export class Rebellion extends Gunslinger {
     {
       inputType: 'selectButton',
       label: 'Hot Barrel 5',
-      name: 'Hot Barrel',
+      name: 'RL_HEAT_BARREL',
       isEquipAtk: true,
       dropdown: [
         { label: 'Yes', value: 5, isUse: true, bonus: { flatDmg: 160, aspd: 5 } },
@@ -218,16 +218,16 @@ export class Rebellion extends Gunslinger {
     {
       isMasteryAtk: true,
       inputType: 'selectButton',
-      label: "Rich's Coin",
-      name: "Rich's Coin",
+      label: 'Farta Fortuna',
+      name: 'RL_RICHS_COIN',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true, bonus: { atk: 30 } },
         { label: 'No', value: 0, isUse: false },
       ],
     },
     {
-      label: 'Shatter Storm',
-      name: 'Shatter Storm',
+      label: 'Rajada Estilhaante',
+      name: 'RL_S_STORM',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
@@ -235,8 +235,8 @@ export class Rebellion extends Gunslinger {
       ],
     },
     {
-      label: 'Crimson Marker',
-      name: 'Crimson Marker',
+      label: 'Marcar em Brasa',
+      name: 'RL_C_MARKER',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
@@ -249,7 +249,7 @@ export class Rebellion extends Gunslinger {
     {
       inputType: 'dropdown',
       label: 'Desperado',
-      name: 'Desperado',
+      name: 'GS_DESPERADO',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -266,8 +266,8 @@ export class Rebellion extends Gunslinger {
     },
     {
       inputType: 'dropdown',
-      label: 'Gunslinger Mine',
-      name: 'Gunslinger Mine',
+      label: 'Ignio',
+      name: 'RL_FLICKER',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -284,8 +284,8 @@ export class Rebellion extends Gunslinger {
     },
     {
       inputType: 'dropdown',
-      label: 'Wounding Shot',
-      name: 'Wounding Shot',
+      label: 'Saque Rpido',
+      name: 'RL_QD_SHOT',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
@@ -298,8 +298,8 @@ export class Rebellion extends Gunslinger {
     {
       isEquipAtk: true,
       inputType: 'dropdown',
-      label: 'Snake Eyes',
-      name: 'Snake Eyes',
+      label: 'Olhos de Serpente',
+      name: 'GS_SNAKEEYE',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true, bonus: { hit: 1 } },
@@ -317,8 +317,8 @@ export class Rebellion extends Gunslinger {
     {
       isEquipAtk: true,
       inputType: 'dropdown',
-      label: 'Single Action',
-      name: 'Single Action',
+      label: 'Ataque Concentrado',
+      name: 'GS_SINGLEACTION',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true, bonus: { hit: 1 * 2, skillAspd: 1 } },
@@ -334,8 +334,8 @@ export class Rebellion extends Gunslinger {
       ],
     },
     {
-      label: 'Chain Action',
-      name: 'Chain Action',
+      label: 'Reao em Cadeia',
+      name: 'GS_CHAINACTION',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -352,8 +352,8 @@ export class Rebellion extends Gunslinger {
       ],
     },
     {
-      name: 'Platinum Altar',
-      label: 'Platinum Altar',
+      name: 'RL_P_ALTER',
+      label: 'Proteo de Platina',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -365,8 +365,8 @@ export class Rebellion extends Gunslinger {
       ],
     },
     {
-      name: 'Hot Barrel',
-      label: 'Hot Barrel',
+      name: 'RL_HEAT_BARREL',
+      label: 'Furor',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -378,8 +378,8 @@ export class Rebellion extends Gunslinger {
       ],
     },
     {
-      name: 'Fire Rain',
-      label: 'Fire Rain',
+      name: 'RL_FIRE_RAIN',
+      label: 'Disparo Labareda',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

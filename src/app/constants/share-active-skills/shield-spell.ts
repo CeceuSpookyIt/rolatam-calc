@@ -2,7 +2,7 @@ import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const ShieldSpellFn = (): ActiveSkillModel => {
   return {
-    name: 'Shield Spell',
+    name: 'LG_SHIELDSPELL',
     label: 'Shield Spell 3',
     inputType: 'selectButton',
     isEquipAtk: true,

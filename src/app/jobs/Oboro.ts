@@ -90,9 +90,9 @@ export class Oboro extends Ninja {
 
   private readonly atkSkillList2nd: AtkSkillModel[] = [
     {
-      label: 'Flaming Petals Lv10',
-      name: 'Flaming Petals',
-      value: 'Flaming Petals==10',
+      label: 'Ptalas Flamejantes Lv10',
+      name: 'NJ_KOUENKA',
+      value: 'NJ_KOUENKA==10',
       acd: 0,
       fct: 1.4,
       vct: 5.6,
@@ -105,9 +105,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Freezing Spear Lv10',
-      name: 'Freezing Spear',
-      value: 'Freezing Spear==10',
+      label: 'Grande Floco de Neve Lv10',
+      name: 'NJ_HYOUSYOURAKU',
+      value: 'NJ_HYOUSYOURAKU==10',
       acd: 0,
       fct: 1.4,
       vct: 5.6,
@@ -120,9 +120,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Freezing Spear Lv10 (in Watery Evasion)',
-      name: 'Freezing Spear',
-      value: 'Freezing Spear Water==10',
+      label: 'Grande Floco de Neve Lv10 (in Watery Evasion)',
+      name: 'NJ_HYOUSYOURAKU',
+      value: 'NJ_HYOUSYOURAKU Water==10',
       acd: 0,
       fct: 1.4,
       vct: 5.6,
@@ -137,9 +137,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Wind Blade Lv10',
-      name: 'Wind Blade',
-      value: 'Wind Blade==10',
+      label: 'Lmina de Vento Lv10',
+      name: 'NJ_HUUJIN',
+      value: 'NJ_HUUJIN==10',
       acd: 0,
       fct: 1.1,
       vct: 4.4,
@@ -152,9 +152,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Exploding Dragon Lv5',
-      name: 'Exploding Dragon',
-      value: 'Exploding Dragon==5',
+      label: 'Punho do Drago Lv5',
+      name: 'SR_DRAGONCOMBO',
+      value: 'SR_DRAGONCOMBO==5',
       acd: 0.5,
       fct: 0.8,
       vct: 2,
@@ -169,9 +169,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Snow Flake Draft Lv5',
-      name: 'Snow Flake Draft',
-      value: 'Snow Flake Draft==5',
+      label: 'Grande Floco de Neve Lv5',
+      name: 'NJ_HYOUSYOURAKU',
+      value: 'NJ_HYOUSYOURAKU==5',
       acd: 0.5,
       fct: 0.8,
       vct: 2.5,
@@ -186,9 +186,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'First Wind Lv5',
-      name: 'First Wind',
-      value: 'First Wind==5',
+      label: 'Brisa Cortante Lv5',
+      name: 'NJ_KAMAITACHI',
+      value: 'NJ_KAMAITACHI==5',
       acd: 0,
       fct: 0.3,
       vct: 1.2,
@@ -203,9 +203,9 @@ export class Oboro extends Ninja {
       },
     },
     {
-      label: 'Cross Slash Lv10',
-      name: 'Cross Slash',
-      value: 'Cross Slash==10',
+      label: 'Impacto Cruzado Lv10',
+      name: 'KO_JYUMONJIKIRI',
+      value: 'KO_JYUMONJIKIRI==10',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -214,7 +214,7 @@ export class Oboro extends Ninja {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonus = this.isSkillActive('Cross Wound') ? baseLevel * skillLevel : 0;
+        const bonus = this.isSkillActive('SHC_CROSS_SLASH') ? baseLevel * skillLevel : 0;
 
         return skillLevel * 200 * (baseLevel / 100) + bonus;
       },
@@ -226,8 +226,8 @@ export class Oboro extends Ninja {
     S16thNight,
     DistortedCrescent,
     {
-      label: '[Debuf] Cross Wound',
-      name: 'Cross Wound',
+      label: '[Debuf] Shadow Wound',
+      name: 'SHC_CROSS_SLASH',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
@@ -238,8 +238,8 @@ export class Oboro extends Ninja {
 
   private readonly passiveSkillList2nd: PassiveSkillModel[] = [
     {
-      label: 'Flaming Petals',
-      name: 'Flaming Petals',
+      label: 'Ptalas Flamejantes',
+      name: 'NJ_KOUENKA',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -256,8 +256,8 @@ export class Oboro extends Ninja {
       ],
     },
     {
-      label: 'Freezing Spear',
-      name: 'Freezing Spear',
+      label: 'Grande Floco de Neve',
+      name: 'NJ_HYOUSYOURAKU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -274,8 +274,8 @@ export class Oboro extends Ninja {
       ],
     },
     {
-      label: 'Wind Blade',
-      name: 'Wind Blade',
+      label: 'Lmina de Vento',
+      name: 'NJ_HUUJIN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -292,8 +292,8 @@ export class Oboro extends Ninja {
       ],
     },
     {
-      label: 'Illusion - Bewitch',
-      name: 'Illusion - Bewitch',
+      label: 'Genjutsu: Substituio',
+      name: 'KO_GENWAKU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -305,8 +305,8 @@ export class Oboro extends Ninja {
       ],
     },
     {
-      label: 'Illusion - Death',
-      name: 'Illusion - Death',
+      label: 'Genjutsu: Chamado da Morte',
+      name: 'KO_JYUSATSU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -319,8 +319,8 @@ export class Oboro extends Ninja {
     },
     IllusionShockFn(),
     {
-      label: 'Moonlight Fantasy',
-      name: 'Moonlight Fantasy',
+      label: 'Iluso do Luar',
+      name: 'OB_OBOROGENSOU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -352,7 +352,7 @@ export class Oboro extends Ninja {
   }
 
   override getMasteryMatk(info: InfoForClass): number {
-    const _16Night = this.activeSkillLv('16th Night');
+    const _16Night = this.activeSkillLv('KO_IZAYOI');
     if (_16Night <= 0) return 0;
 
     const { model } = info;
@@ -362,7 +362,7 @@ export class Oboro extends Ninja {
 
   override setAdditionalBonus(params: AdditionalBonusInput) {
     const { totalBonus, model } = params;
-    if (this.isSkillActive('Distorted Crescent')) {
+    if (this.isSkillActive('OB_ZANGETSU')) {
       const bonus = floor(model.level / 3) + 100;
       totalBonus.atk += bonus;
       totalBonus.matk += bonus;

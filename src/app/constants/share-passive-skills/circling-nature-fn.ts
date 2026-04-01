@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const CirclingNatureFn = (): PassiveSkillModel => ({
-  label: 'Circling Nature',
-  name: 'Circling Nature',
+  label: 'Amigo da Natureza',
+  name: 'WH_NATUREFRIENDLY',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

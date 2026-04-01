@@ -2,7 +2,7 @@ import { ActiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const DistortedCrescent: ActiveSkillModel = {
   label: 'Distorted Cres 5',
-  name: 'Distorted Crescent',
+  name: 'OB_ZANGETSU',
   inputType: 'selectButton',
   isEquipAtk: true,
   dropdown: [

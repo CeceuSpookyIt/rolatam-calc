@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const GreatEchoFn = (): PassiveSkillModel => ({
-  label: 'Great Echo',
-  name: 'Great Echo',
+  label: 'Brado de Odin',
+  name: 'WM_GREAT_ECHO',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },

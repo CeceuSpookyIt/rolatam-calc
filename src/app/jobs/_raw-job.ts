@@ -14,8 +14,8 @@ export class RawJob extends Swordman {
   protected readonly atkSkillList4th: AtkSkillModel[] = [];
   protected readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      label: "Owl's Eye 10",
-      name: "Owl's Eye",
+      label: 'Olhos de Coruja 10',
+      name: 'AC_OWL',
       inputType: 'selectButton',
       isEquipAtk: true,
       dropdown: [
@@ -26,8 +26,8 @@ export class RawJob extends Swordman {
   ];
   protected readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      label: 'Axe Boomerang',
-      name: 'Axe Boomerang',
+      label: 'Arremesso de Machado',
+      name: 'NC_AXEBOOMERANG',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -45,7 +45,7 @@ export class RawJob extends Swordman {
     },
     {
       label: 'Two hand Quick 10',
-      name: 'Two hand Quicken',
+      name: 'KN_TWOHANDQUICKEN',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, skillLv: 10, isUse: true },
@@ -53,8 +53,8 @@ export class RawJob extends Swordman {
       ],
     },
     {
-      label: 'Clashing Spiral',
-      name: 'Clashing Spiral',
+      label: 'Perfurar em Espiral',
+      name: 'LK_SPIRALPIERCE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

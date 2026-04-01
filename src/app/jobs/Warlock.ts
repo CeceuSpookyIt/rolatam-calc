@@ -83,9 +83,9 @@ export class Warlock extends HighWizard {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.Warlock];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Comet',
-      label: 'Comet Lv5',
-      value: 'Comet==5',
+      name: 'WL_COMET',
+      label: 'Cometa Lv5',
+      value: 'WL_COMET==5',
       acd: 1.5,
       fct: 2,
       vct: 10,
@@ -101,9 +101,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Crimson Rock',
-      label: 'Crimson Rock Lv5',
-      value: 'Crimson Rock==5',
+      name: 'WL_CRIMSONROCK',
+      label: 'Meteoro Escarlate Lv5',
+      value: 'WL_CRIMSONROCK==5',
       fct: 1,
       vct: 5,
       acd: 0.5,
@@ -119,9 +119,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Jack Frost',
-      label: 'Jack Frost Lv5',
-      value: 'Jack Frost==5',
+      name: 'WL_JACKFROST',
+      label: 'Esquife de Gelo Lv5',
+      value: 'WL_JACKFROST==5',
       acd: 1,
       fct: 1,
       vct: 4,
@@ -137,8 +137,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Jack Frost',
-      label: 'Jack Frost Lv5 (in Frost)',
+      name: 'WL_JACKFROST',
+      label: 'Esquife de Gelo Lv5 (in Frost)',
       value: 'Jack Frost Frost==5',
       acd: 1,
       fct: 1,
@@ -155,9 +155,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Soul Expansion',
-      label: 'Soul Expansion Lv5',
-      value: 'Soul Expansion==5',
+      name: 'WL_SOULEXPANSION',
+      label: 'Impacto Espiritual Lv5',
+      value: 'WL_SOULEXPANSION==5',
       acd: 0.5,
       fct: 0,
       vct: 2,
@@ -173,9 +173,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Chain Lightning',
-      label: 'Chain Lightning Lv5',
-      value: 'Chain Lightning==5',
+      name: 'WL_CHAINLIGHTNING',
+      label: 'Corrente Eltrica Lv5',
+      value: 'WL_CHAINLIGHTNING==5',
       acd: 3,
       fct: 1,
       vct: 5.5,
@@ -191,9 +191,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Earth Strain',
-      label: 'Earth Strain Lv5',
-      value: 'Earth Strain==5',
+      name: 'WL_EARTHSTRAIN',
+      label: 'Abalo Ssmico Lv5',
+      value: 'WL_EARTHSTRAIN==5',
       acd: 1,
       fct: 1,
       vct: 6,
@@ -209,9 +209,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Frost Misty',
-      label: 'Frost Misty Lv5',
-      value: 'Frost Misty==5',
+      name: 'WL_FROSTMISTY',
+      label: 'Zero Absoluto Lv5',
+      value: 'WL_FROSTMISTY==5',
       acd: 1,
       fct: 0.5,
       vct: 4,
@@ -227,9 +227,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Hell Inferno',
-      label: 'Hell Inferno Lv5',
-      value: 'Hell Inferno==5',
+      name: 'WL_HELLINFERNO',
+      label: 'Chamas de Hela Lv5',
+      value: 'WL_HELLINFERNO==5',
       fct: 1,
       vct: 3,
       acd: 0.5,
@@ -258,9 +258,9 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Drain Life',
-      label: 'Drain Life Lv5',
-      value: 'Drain Life==5',
+      name: 'WL_DRAINLIFE',
+      label: 'Drenar Vida Lv5',
+      value: 'WL_DRAINLIFE==5',
       acd: 0,
       fct: 1,
       vct: 4,
@@ -275,9 +275,9 @@ export class Warlock extends HighWizard {
       },
     },
     // {
-    //   name: 'Tetra Vortex',
+    //   name: 'WL_TETRAVORTEX',
     //   label: 'Tetra Vortex Lv10',
-    //   value: 'Tetra Vortex==10',
+    //   value: 'WL_TETRAVORTEX==10',
     //   acd: 0,
     //   fct: 1,
     //   vct: 14,
@@ -296,8 +296,8 @@ export class Warlock extends HighWizard {
     // },
     // --- Released variants ---
     {
-      name: 'Comet',
-      label: 'Comet Lv5 (Released)',
+      name: 'WL_COMET',
+      label: 'Cometa Lv5 (Released)',
       value: 'Comet Released==5',
       acd: 0,
       fct: 0,
@@ -321,8 +321,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Crimson Rock',
-      label: 'Crimson Rock Lv5 (Released)',
+      name: 'WL_CRIMSONROCK',
+      label: 'Meteoro Escarlate Lv5 (Released)',
       value: 'Crimson Rock Released==5',
       acd: 0,
       fct: 0,
@@ -346,8 +346,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Jack Frost',
-      label: 'Jack Frost Lv5 (Released)',
+      name: 'WL_JACKFROST',
+      label: 'Esquife de Gelo Lv5 (Released)',
       value: 'Jack Frost Released==5',
       acd: 0,
       fct: 0,
@@ -371,8 +371,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Soul Expansion',
-      label: 'Soul Expansion Lv5 (Released)',
+      name: 'WL_SOULEXPANSION',
+      label: 'Impacto Espiritual Lv5 (Released)',
       value: 'Soul Expansion Released==5',
       acd: 0,
       fct: 0,
@@ -396,8 +396,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Chain Lightning',
-      label: 'Chain Lightning Lv5 (Released)',
+      name: 'WL_CHAINLIGHTNING',
+      label: 'Corrente Eltrica Lv5 (Released)',
       value: 'Chain Lightning Released==5',
       acd: 0,
       fct: 0,
@@ -421,8 +421,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Earth Strain',
-      label: 'Earth Strain Lv5 (Released)',
+      name: 'WL_EARTHSTRAIN',
+      label: 'Abalo Ssmico Lv5 (Released)',
       value: 'Earth Strain Released==5',
       acd: 0,
       fct: 0,
@@ -446,8 +446,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Hell Inferno',
-      label: 'Hell Inferno Lv5 (Released)',
+      name: 'WL_HELLINFERNO',
+      label: 'Chamas de Hela Lv5 (Released)',
       value: 'Hell Inferno Released==5',
       acd: 0,
       fct: 0,
@@ -484,8 +484,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Drain Life',
-      label: 'Drain Life Lv5 (Released)',
+      name: 'WL_DRAINLIFE',
+      label: 'Drenar Vida Lv5 (Released)',
       value: 'Drain Life Released==5',
       acd: 0,
       fct: 0,
@@ -508,8 +508,8 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Frost Misty',
-      label: 'Frost Misty Lv5 (Released)',
+      name: 'WL_FROSTMISTY',
+      label: 'Zero Absoluto Lv5 (Released)',
       value: 'Frost Misty Released==5',
       acd: 0,
       fct: 0,
@@ -533,14 +533,14 @@ export class Warlock extends HighWizard {
       },
     },
     {
-      name: 'Tetra Vortex',
+      name: 'WL_TETRAVORTEX',
       label: 'Tetra Vortex Lv10 (Released)',
-      value: 'Tetra Vortex Released Fire==10',
+      value: 'WL_TETRAVORTEX Released Fire==10',
       levelList: [
-        { label: 'Tetra Vortex Lv10 Released (Fogo)', value: 'Tetra Vortex Released Fire==10' },
-        { label: 'Tetra Vortex Lv10 Released (Água)', value: 'Tetra Vortex Released Water==10' },
-        { label: 'Tetra Vortex Lv10 Released (Vento)', value: 'Tetra Vortex Released Wind==10' },
-        { label: 'Tetra Vortex Lv10 Released (Terra)', value: 'Tetra Vortex Released Earth==10' },
+        { label: 'Tetra Vortex Lv10 Released (Fogo)', value: 'WL_TETRAVORTEX Released Fire==10' },
+        { label: 'Tetra Vortex Lv10 Released (Água)', value: 'WL_TETRAVORTEX Released Water==10' },
+        { label: 'Tetra Vortex Lv10 Released (Vento)', value: 'WL_TETRAVORTEX Released Wind==10' },
+        { label: 'Tetra Vortex Lv10 Released (Terra)', value: 'WL_TETRAVORTEX Released Earth==10' },
       ],
       acd: 0,
       fct: 0,
@@ -550,10 +550,10 @@ export class Warlock extends HighWizard {
       totalHit: 4,
       getElement(skillValue) {
         const map = {
-          'Tetra Vortex Released Fire==10': ElementType.Fire,
-          'Tetra Vortex Released Water==10': ElementType.Water,
-          'Tetra Vortex Released Wind==10': ElementType.Wind,
-          'Tetra Vortex Released Earth==10': ElementType.Earth,
+          'WL_TETRAVORTEX Released Fire==10': ElementType.Fire,
+          'WL_TETRAVORTEX Released Water==10': ElementType.Water,
+          'WL_TETRAVORTEX Released Wind==10': ElementType.Wind,
+          'WL_TETRAVORTEX Released Earth==10': ElementType.Earth,
         };
         return map[skillValue];
       },
@@ -579,7 +579,7 @@ export class Warlock extends HighWizard {
     {
       inputType: 'selectButton',
       label: 'Recogn Spell',
-      name: 'Recognized Spell',
+      name: 'WL_RECOGNIZEDSPELL',
       dropdown: [
         { label: 'Yes', isUse: true, value: 1, bonus: { spell_maximize: 1 } },
         { label: 'No', isUse: false, value: 0 },
@@ -588,7 +588,7 @@ export class Warlock extends HighWizard {
     {
       inputType: 'selectButton',
       label: 'Comet Amp',
-      name: 'Comet Amp',
+      name: '_CALC_COMET_AMP',
       isDebuff: true,
       dropdown: [
         { label: 'Yes', isUse: true, value: 1, bonus: { comet: 50 } },
@@ -598,7 +598,7 @@ export class Warlock extends HighWizard {
     {
       inputType: 'dropdown',
       label: 'Intensification',
-      name: 'Intensification',
+      name: '_CALC_INTENSIFICATION',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { final_ghost: 40, vct: 10 } },
@@ -609,8 +609,8 @@ export class Warlock extends HighWizard {
       ],
     },
     {
-      label: 'Released',
-      name: 'Released',
+      label: 'Lanar Magia',
+      name: 'WL_RELEASE',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', isUse: true, value: 1, bonus: { releasedSkill: 1 } },
@@ -621,8 +621,8 @@ export class Warlock extends HighWizard {
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
       inputType: 'dropdown',
-      label: 'Freezing Spell',
-      name: 'Freezing Spell',
+      label: 'Estudo Arcano Avanado',
+      name: 'WL_FREEZE_SP',
       isEquipAtk: true,
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -641,7 +641,7 @@ export class Warlock extends HighWizard {
     {
       inputType: 'dropdown',
       label: 'Radius',
-      name: 'Radius',
+      name: 'WL_RADIUS',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1, bonus: { fctPercent: 10 * 1 } },
@@ -651,8 +651,8 @@ export class Warlock extends HighWizard {
     },
     {
       inputType: 'dropdown',
-      label: 'Recognized Spell',
-      name: 'Recognized Spell',
+      label: 'Maestria Arcana',
+      name: 'WL_RECOGNIZEDSPELL',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -664,8 +664,8 @@ export class Warlock extends HighWizard {
     },
     {
       inputType: 'dropdown',
-      label: 'Soul Expansion',
-      name: 'Soul Expansion',
+      label: 'Impacto Espiritual',
+      name: 'WL_SOULEXPANSION',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -677,8 +677,8 @@ export class Warlock extends HighWizard {
     },
     {
       inputType: 'dropdown',
-      label: 'Comet',
-      name: 'Comet',
+      label: 'Cometa',
+      name: 'WL_COMET',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },
@@ -690,8 +690,8 @@ export class Warlock extends HighWizard {
     },
     {
       inputType: 'dropdown',
-      label: 'Chain Lightning',
-      name: 'Chain Lightning',
+      label: 'Corrente Eltrica',
+      name: 'WL_CHAINLIGHTNING',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
         { label: 'Lv 1', isUse: true, value: 1 },

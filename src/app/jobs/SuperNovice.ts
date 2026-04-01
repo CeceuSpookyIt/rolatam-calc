@@ -86,9 +86,9 @@ export class SuperNovice extends CharacterBase {
   protected readonly classNames = [ClassName.Novice, ClassName.SuperNovice];
   protected readonly _atkSkillList: AtkSkillModel[] = [
     {
-      name: 'Fire Bolt',
-      label: 'Fire Bolt Lv10',
-      value: 'Fire Bolt==10',
+      name: 'MG_FIREBOLT',
+      label: 'Lanas de Fogo Lv10',
+      value: 'MG_FIREBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -101,9 +101,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Cold Bolt',
-      label: 'Cold Bolt Lv10',
-      value: 'Cold Bolt==10',
+      name: 'MG_COLDBOLT',
+      label: 'Lanas de Gelo Lv10',
+      value: 'MG_COLDBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -116,9 +116,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Lightening Bolt',
-      label: 'Lightening Bolt Lv10',
-      value: 'Lightening Bolt==10',
+      name: 'MG_LIGHTNINGBOLT',
+      label: 'Relmpago Lv10',
+      value: 'MG_LIGHTNINGBOLT==10',
       acd: 2.8,
       fct: 1.2,
       vct: 3.2,
@@ -131,9 +131,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      label: "Heaven's Drive Lv5",
-      name: "Heaven's Drive",
-      value: "Heaven's Drive==5",
+      label: 'F¨ria da Terra Lv5',
+      name: 'WZ_HEAVENDRIVE',
+      value: 'WZ_HEAVENDRIVE==5',
       fct: 0.8,
       vct: 1.9,
       acd: 0.5,
@@ -146,9 +146,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Lord of Vermilion',
-      label: 'Lord of Vermilion Lv10',
-      value: 'Lord of Vermilion==10',
+      name: 'WZ_VERMILION',
+      label: 'Ira de Thor Lv10',
+      value: 'WZ_VERMILION==10',
       acd: 5,
       fct: 1.68,
       vct: 6.72,
@@ -163,9 +163,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Gravitational Field',
-      label: 'Gravitational Field Lv5',
-      value: 'Gravitational Field==5',
+      name: 'HW_GRAVITATION',
+      label: 'Campo Gravitacional Lv5',
+      value: 'HW_GRAVITATION==5',
       acd: 1,
       fct: 1,
       vct: 5,
@@ -185,18 +185,18 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Fatal Manace',
-      label: 'Fatal Manace',
-      value: 'Fatal Manace==10',
-      values: ['Fatal Manace Lv7', '[Improved] Fatal Manace==7', '[Improved] Fatal Manace==10'],
+      name: 'SM_FATALBLOW',
+      label: 'Ataque Fatal',
+      value: 'SM_FATALBLOW==10',
+      values: ['Ataque Fatal Lv7', '[Improved] SM_FATALBLOW==7', '[Improved] SM_FATALBLOW==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0,
       isMelee: true,
       levelList: [
-        { label: 'Fatal Manace Lv7', value: 'Fatal Manace==7' },
-        { label: 'Fatal Manace Lv10', value: 'Fatal Manace==10' },
+        { label: 'Ataque Fatal Lv7', value: 'SM_FATALBLOW==7' },
+        { label: 'Ataque Fatal Lv10', value: 'SM_FATALBLOW==10' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
@@ -207,9 +207,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Psychic Wave',
-      label: 'Psychic Wave',
-      value: 'Psychic Wave==5',
+      name: 'SO_PSYCHIC_WAVE',
+      label: 'Onda Psquica',
+      value: 'SO_PSYCHIC_WAVE==5',
       fct: (lv) => 1.1 - lv * 0.1,
       vct: (lv) => 7 + lv,
       cd: 5,
@@ -217,11 +217,11 @@ export class SuperNovice extends CharacterBase {
       totalHit: ({ skillLevel: lv }) => 2 + lv,
       isMatk: true,
       levelList: [
-        { label: 'Psychic Wave Lv1', value: 'Psychic Wave==1' },
-        { label: 'Psychic Wave Lv2', value: 'Psychic Wave==2' },
-        { label: 'Psychic Wave Lv3', value: 'Psychic Wave==3' },
-        { label: 'Psychic Wave Lv4', value: 'Psychic Wave==4' },
-        { label: 'Psychic Wave Lv5', value: 'Psychic Wave==5' },
+        { label: 'Onda Psquica Lv1', value: 'SO_PSYCHIC_WAVE==1' },
+        { label: 'Onda Psquica Lv2', value: 'SO_PSYCHIC_WAVE==2' },
+        { label: 'Onda Psquica Lv3', value: 'SO_PSYCHIC_WAVE==3' },
+        { label: 'Onda Psquica Lv4', value: 'SO_PSYCHIC_WAVE==4' },
+        { label: 'Onda Psquica Lv5', value: 'SO_PSYCHIC_WAVE==5' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
@@ -240,9 +240,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Shield Chain',
-      label: 'Shield Chain Lv5',
-      value: 'Shield Chain==5',
+      name: 'PA_SHIELDCHAIN',
+      label: 'Choque Rpido Lv5',
+      value: 'PA_SHIELDCHAIN==5',
       fct: 0.2,
       vct: 0.8,
       cd: 0,
@@ -258,9 +258,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Bowling Bash',
-      label: 'Bowling Bash Lv10',
-      value: 'Bowling Bash==10',
+      name: 'KN_BOWLINGBASH',
+      label: 'Impacto de Tyr Lv10',
+      value: 'KN_BOWLINGBASH==10',
       fct: 0.35,
       vct: 0,
       cd: 1,
@@ -273,9 +273,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Ignition Break',
-      label: 'Ignition Break Lv5',
-      value: 'Ignition Break==5',
+      name: 'RK_IGNITIONBREAK',
+      label: 'Impacto Flamejante Lv5',
+      value: 'RK_IGNITIONBREAK==5',
       acd: 0,
       fct: 0,
       vct: 1,
@@ -291,9 +291,9 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'Tiger Cannon',
-      label: 'Tiger Cannon Lv10',
-      value: 'Tiger Cannon==10',
+      name: 'SR_TIGERCANNON',
+      label: 'Garra de Tigre Lv10',
+      value: 'SR_TIGERCANNON==10',
       fct: 0,
       vct: 2,
       acd: 1,
@@ -321,7 +321,7 @@ export class SuperNovice extends CharacterBase {
   ];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
     {
-      name: 'Improve Concentration',
+      name: 'AC_CONCENTRATION',
       label: 'Improve Con',
       inputType: 'dropdown',
       isEquipAtk: true,
@@ -340,8 +340,8 @@ export class SuperNovice extends CharacterBase {
       ],
     },
     {
-      name: 'Cart Boost',
-      label: 'Cart Boost',
+      name: 'WS_CARTBOOST',
+      label: 'Impulso no Carrinho',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -352,7 +352,7 @@ export class SuperNovice extends CharacterBase {
     {
       inputType: 'selectButton',
       label: 'EDP',
-      name: 'Enchant Deadly Poison',
+      name: 'ASC_EDP',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true, bonus: { edp: 1 } },
         { label: 'No', value: 0, isUse: false },
@@ -362,8 +362,8 @@ export class SuperNovice extends CharacterBase {
 
   protected readonly _passiveSkillList: PassiveSkillModel[] = [
     {
-      label: 'Break Through',
-      name: 'Break Through',
+      label: 'Crescimento',
+      name: 'NV_BREAKTHROUGH',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -376,8 +376,8 @@ export class SuperNovice extends CharacterBase {
       ],
     },
     {
-      label: 'Transcendence',
-      name: 'Transcendence',
+      label: 'Transcendncia',
+      name: 'NV_TRANSCENDENCE',
       inputType: 'dropdown',
       isEquipAtk: true,
       dropdown: [
@@ -392,8 +392,8 @@ export class SuperNovice extends CharacterBase {
     ImproveDodgeFn(),
     SnatcherFn(),
     {
-      label: 'Sword Mastery',
-      name: 'Sword Mastery',
+      label: 'Percia com Espada',
+      name: 'SM_SWORD',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -412,8 +412,8 @@ export class SuperNovice extends CharacterBase {
     },
     DemonBane,
     {
-      name: "Owl's Eye",
-      label: "Owl's Eye",
+      name: 'AC_OWL',
+      label: 'Olhos de Coruja',
       inputType: 'dropdown',
       isEquipAtk: true,
       dropdown: [
@@ -433,8 +433,8 @@ export class SuperNovice extends CharacterBase {
     FaithFn(),
     BeastBaneFn(),
     {
-      label: 'Axe Mastery',
-      name: 'Axe Mastery',
+      label: 'Percia com Machado e Espada',
+      name: 'AM_AXEMASTERY',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -453,8 +453,8 @@ export class SuperNovice extends CharacterBase {
     },
     HiltBindingFn(),
     {
-      label: 'Weaponry Research',
-      name: 'Weaponry Research',
+      label: 'Percia em Armamento',
+      name: 'BS_WEAPONRESEARCH',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -475,7 +475,7 @@ export class SuperNovice extends CharacterBase {
     DoubleAttackFn(),
     {
       label: 'Gravitational',
-      name: 'Gravitational Field',
+      name: 'HW_GRAVITATION',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -498,7 +498,7 @@ export class SuperNovice extends CharacterBase {
     const c = this.getMasteryAtkByMonsterElement(info.monster.element);
 
     let sum = a.totalAtk + b.totalAtk + c.totalAtk;
-    const spearMasteryLv = this.learnLv('Spear Mastery');
+    const spearMasteryLv = this.learnLv('KN_SPEARMASTERY');
     if ((weaponType === 'spear' || weaponType === 'twohandSpear') && spearMasteryLv > 0) {
       sum += spearMasteryLv * 4;
     }
@@ -513,7 +513,7 @@ export class SuperNovice extends CharacterBase {
   override calcSkillDmgByTotalHit(params: { finalDamage: number; skill: AtkSkillModel; info: InfoForClass; }) {
     const { finalDamage, skill, info } = params;
     const isDagger = info.weapon.data?.typeName === 'dagger';
-    if (skill.name === 'Fatal Manace' && isDagger) {
+    if (skill.name === 'SM_FATALBLOW' && isDagger) {
       return finalDamage * 2;
     }
 

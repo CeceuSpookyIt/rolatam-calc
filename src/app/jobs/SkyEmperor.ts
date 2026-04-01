@@ -174,53 +174,53 @@ export class SkyEmperor extends StarEmperor {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.SkyEmperor];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Noon Blast',
-      label: '[V2] Noon Blast Lv5',
-      value: 'Noon Blast==5',
+      name: 'SKE_NOON_BLAST',
+      label: '[V2] Entardecer Lv5',
+      value: 'SKE_NOON_BLAST==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0.7,
       isMelee: true,
       hit: 2,
-      canCri: () => this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Noon,
+      canCri: () => this.activeSkillLv('_CALC_SKYEMPEROR_RISING_SUN') === RisingSun.Noon,
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Sky Mastery');
+        const skillBonusLv = this.learnLv('SKE_SKY_MASTERY');
 
         return (1600 + skillLevel * (1250 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Sunset Blast',
-      label: '[V2] Sunset Blast Lv5',
-      value: 'Sunset Blast==5',
+      name: 'SKE_SUNSET_BLAST',
+      label: '[V2] Crep¨sculo do Poente Lv5',
+      value: 'SKE_SUNSET_BLAST==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0.3,
       isMelee: true,
       hit: 2,
-      canCri: () => this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Sunset,
+      canCri: () => this.activeSkillLv('_CALC_SKYEMPEROR_RISING_SUN') === RisingSun.Sunset,
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Sky Mastery');
+        const skillBonusLv = this.learnLv('SKE_SKY_MASTERY');
 
         return (950 + skillLevel * (400 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Midnight Kick',
-      label: '[V2] Midnight Kick Lv5',
-      value: 'Midnight Kick==5',
+      name: 'SKE_MIDNIGHT_KICK',
+      label: '[V2] Chute Meia-Lua Lv5',
+      value: 'SKE_MIDNIGHT_KICK==5',
       acd: 0,
       fct: 0.5,
       vct: 1,
@@ -232,9 +232,9 @@ export class SkyEmperor extends StarEmperor {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Sky Mastery');
+        const skillBonusLv = this.learnLv('SKE_SKY_MASTERY');
 
-        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight) {
+        if (this.activeSkillLv('_CALC_SKYEMPEROR_RISING_MOON') === RisingMoon.Midnight) {
           return (1550 + skillLevel * (1450 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -242,9 +242,9 @@ export class SkyEmperor extends StarEmperor {
       },
     },
     {
-      name: 'Dawn Break',
-      label: '[V2] Dawn Break Lv5',
-      value: 'Dawn Break==5',
+      name: 'SKE_DAWN_BREAK',
+      label: '[V2] Alvorada Lv5',
+      value: 'SKE_DAWN_BREAK==5',
       acd: 0,
       fct: 0.5,
       vct: 1,
@@ -256,9 +256,9 @@ export class SkyEmperor extends StarEmperor {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Sky Mastery');
+        const skillBonusLv = this.learnLv('SKE_SKY_MASTERY');
 
-        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset) {
+        if (this.activeSkillLv('_CALC_SKYEMPEROR_RISING_MOON') === RisingMoon.Moonset) {
           return (400 + skillLevel * (600 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -266,9 +266,9 @@ export class SkyEmperor extends StarEmperor {
       },
     },
     {
-      name: 'Star Cannon',
-      label: '[V2] Star Cannon Lv5 (1 hit)',
-      value: 'Star Cannon==5',
+      name: 'SKE_STAR_CANNON',
+      label: '[V2] Constelao Lv5 (1 hit)',
+      value: 'SKE_STAR_CANNON==5',
       acd: 0,
       fct: 0.5,
       vct: 1,
@@ -279,7 +279,7 @@ export class SkyEmperor extends StarEmperor {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Sky Mastery');
+        const skillBonusLv = this.learnLv('SKE_SKY_MASTERY');
 
         return (200 + skillLevel * (500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
       },
@@ -287,8 +287,8 @@ export class SkyEmperor extends StarEmperor {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: '_SkyEmperor_Rising_Sun',
-      label: 'Rising Sun',
+      name: '_CALC_SKYEMPEROR_RISING_SUN',
+      label: 'Amanhecer',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -298,7 +298,7 @@ export class SkyEmperor extends StarEmperor {
       ]
     },
     {
-      name: '_SkyEmperor_Rising_Moon',
+      name: '_CALC_SKYEMPEROR_RISING_MOON',
       label: 'Rising Moon',
       inputType: 'dropdown',
       dropdown: [
@@ -311,14 +311,14 @@ export class SkyEmperor extends StarEmperor {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Sky Mastery',
-      label: 'Sky Mastery',
+      name: 'SKE_SKY_MASTERY',
+      label: 'Maestria Celestial',
       inputType: 'dropdown',
       dropdown: genSkillList(10)
     },
     {
-      name: 'War Book Mastery',
-      label: 'War Book Mastery',
+      name: 'SKE_WAR_BOOK_MASTERY',
+      label: 'Percia com Livro',
       inputType: 'dropdown',
       dropdown: genSkillList(10)
     },
@@ -340,7 +340,7 @@ export class SkyEmperor extends StarEmperor {
 
     const { totalBonus, weapon } = params;
 
-    const warMastLv = this.learnLv('War Book Mastery');
+    const warMastLv = this.learnLv('SKE_WAR_BOOK_MASTERY');
     if (warMastLv > 0 && weapon.isType('book')) {
       addBonus(totalBonus, 'pAtk', warMastLv + 2);
       addBonus(totalBonus, 'hit', warMastLv * 3);

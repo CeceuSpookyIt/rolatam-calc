@@ -159,8 +159,8 @@ export class Thief extends CharacterBase {
   protected readonly _passiveSkillList: PassiveSkillModel[] = [
     ImproveDodgeFn(),
     {
-      name: 'Hiding',
-      label: 'Hiding',
+      name: 'TF_HIDING',
+      label: 'Esconderijo',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

@@ -86,10 +86,10 @@ export class Genetic extends Creator {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.Genetic];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Acid Bomb',
-      label: 'Acid Bomb Lv10',
-      value: 'Acid Bomb==10',
-      values: ['[Improved] Acid Bomb==10'],
+      name: 'CR_ACIDDEMONSTRATION',
+      label: 'Bomba Ácida Lv10',
+      value: 'CR_ACIDDEMONSTRATION==10',
+      values: ['[Improved] CR_ACIDDEMONSTRATION==10'],
       acd: 1,
       fct: 1,
       vct: 0,
@@ -104,10 +104,10 @@ export class Genetic extends Creator {
       },
     },
     {
-      name: 'Cart Cannon',
-      label: 'Cart Cannon Lv5',
-      value: 'Cart Cannon==5',
-      values: ['[Improved 1nd] Cart Cannon==5', '[Improved 2nd] Cart Cannon==5'],
+      name: 'GN_CARTCANNON',
+      label: 'Canho de Pr£tons Lv5',
+      value: 'GN_CARTCANNON==5',
+      values: ['[Improved 1nd] GN_CARTCANNON==5', '[Improved 2nd] GN_CARTCANNON==5'],
       acd: 0.5,
       fct: 0,
       vct: 3,
@@ -124,16 +124,16 @@ export class Genetic extends Creator {
 
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        const cartModelingLv = this.learnLv('Cart Remodeling');
+        const cartModelingLv = this.learnLv('GN_REMODELING_CART');
 
         return (250 * skillLevel + 20 * skillLevel * cartModelingLv + totalInt * 2) * (baseLevel / 100);
       },
     },
     {
-      name: 'Cart Tornado',
+      name: 'GN_CART_TORNADO',
       label: 'Cart Tornado Attack Lv10',
-      value: 'Cart Tornado==10',
-      values: ['[Improved] Cart Tornado==10'],
+      value: 'GN_CART_TORNADO==10',
+      values: ['[Improved] GN_CART_TORNADO==10'],
       acd: 1,
       fct: 0,
       vct: 0,
@@ -145,7 +145,7 @@ export class Genetic extends Creator {
         const { skillLevel, status } = input;
         const { baseStr } = status;
 
-        const cartModelingLv = this.learnLv('Cart Remodeling');
+        const cartModelingLv = this.learnLv('GN_REMODELING_CART');
         const cartWeight = this.bonuses.usedSkillMap.get('Cart Weight') || 0;
 
         if (isBioloWoodenWarrior(this.summonLv)) {
@@ -156,10 +156,10 @@ export class Genetic extends Creator {
       },
     },
     {
-      name: 'Spore Explosion',
-      label: 'Spore Explosion Lv10',
-      value: 'Spore Explosion==10',
-      values: ['[Improved 2nd] Spore Explosion==10'],
+      name: 'GN_SPORE_EXPLOSION',
+      label: 'Esporo Explosivo Lv10',
+      value: 'GN_SPORE_EXPLOSION==10',
+      values: ['[Improved 2nd] GN_SPORE_EXPLOSION==10'],
       acd: 0.5,
       fct: 0,
       vct: 1.5,
@@ -182,8 +182,8 @@ export class Genetic extends Creator {
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     CartBoost,
     {
-      label: 'Cart Weight',
-      name: 'Cart Weight',
+      label: 'Aprimorar Carrinho',
+      name: 'GN_REMODELING_CART',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -202,7 +202,7 @@ export class Genetic extends Creator {
     },
     {
       label: 'Pyroclastic 10',
-      name: 'Pyroclastic',
+      name: 'MH_PYROCLASTIC',
       inputType: 'dropdown',
       isEquipAtk: true,
       dropdown: [
@@ -224,8 +224,8 @@ export class Genetic extends Creator {
 
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Sword Mastery',
-      name: 'Sword Mastery',
+      label: 'Percia com Espada',
+      name: 'SM_SWORD',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -263,8 +263,8 @@ export class Genetic extends Creator {
       ],
     },
     {
-      label: 'Cart Remodeling',
-      name: 'Cart Remodeling',
+      label: 'Aprimorar Carrinho',
+      name: 'GN_REMODELING_CART',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -277,7 +277,7 @@ export class Genetic extends Creator {
     },
     {
       label: 'Mandragora',
-      name: 'Mandragora Howling',
+      name: 'GN_MANDRAGORA',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -289,8 +289,8 @@ export class Genetic extends Creator {
       ],
     },
     {
-      label: 'Cart Cannon',
-      name: 'Cart Cannon',
+      label: 'Canho de Pr£tons',
+      name: 'GN_CARTCANNON',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -302,8 +302,8 @@ export class Genetic extends Creator {
       ],
     },
     {
-      label: 'Summon Flora',
-      name: 'Summon Flora',
+      label: 'Criar Monstro Planta',
+      name: 'AM_CANNIBALIZE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -333,7 +333,7 @@ export class Genetic extends Creator {
 
     let sum = 0;
 
-    const axeMastery = this.learnLv('Axe Mastery');
+    const axeMastery = this.learnLv('AM_AXEMASTERY');
     if (weaponType === 'sword' || weaponType === 'axe' || weaponType === 'twohandAxe') {
       sum += axeMastery * 3;
     }
@@ -342,6 +342,6 @@ export class Genetic extends Creator {
   }
 
   protected get summonLv() {
-    return this.activeSkillLv('_Biolo_Monster_List');
+    return this.activeSkillLv('_CALC_BIOLO_MONSTER_LIST');
   }
 }

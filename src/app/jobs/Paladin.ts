@@ -87,8 +87,8 @@ export class Paladin extends Swordman {
   protected readonly atkSkillListHi: AtkSkillModel[] = [
     {
       label: 'Gloria Domini Lv5',
-      name: 'Gloria Domini',
-      value: 'Gloria Domini==5',
+      name: 'PA_PRESSURE',
+      value: 'PA_PRESSURE==5',
       acd: 1,
       fct: 1,
       vct: 1,
@@ -103,9 +103,9 @@ export class Paladin extends Swordman {
       },
     },
     {
-      name: 'Shield Chain',
-      label: 'Shield Chain Lv5',
-      value: 'Shield Chain==5',
+      name: 'PA_SHIELDCHAIN',
+      label: 'Choque Rpido Lv5',
+      value: 'PA_SHIELDCHAIN==5',
       fct: 0.2,
       vct: 0.8,
       cd: 0,
@@ -116,8 +116,8 @@ export class Paladin extends Swordman {
         const baseLevel = model.level;
         const { refine = 0, weight = 0 } = equipmentBonus.shield;
 
-        if (this.isSkillActive('Shield Shooting')) {
-          const shieldMastLv = this.learnLv('Shield Mastery');
+        if (this.isSkillActive('IG_SHIELD_SHOOTING')) {
+          const shieldMastLv = this.learnLv('IG_SHIELD_MASTERY');
           return (300 + skillLevel * (650 + shieldMastLv * 15) + refine * 4 + weight) * (baseLevel / 100);
         }
 
@@ -128,7 +128,7 @@ export class Paladin extends Swordman {
   protected readonly activeSkillListHi: ActiveSkillModel[] = [
     {
       label: 'Spear Quick 10',
-      name: 'Spear Quicken',
+      name: 'CR_SPEARQUICKEN',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -144,8 +144,8 @@ export class Paladin extends Swordman {
     SpearMastery,
     CavalierMastery,
     {
-      label: 'Spear Quicken',
-      name: 'Spear Quicken',
+      label: 'Rapidez com Lana',
+      name: 'CR_SPEARQUICKEN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -162,8 +162,8 @@ export class Paladin extends Swordman {
       ],
     },
     {
-      label: 'Auto Guard',
-      name: 'Auto Guard',
+      label: 'Bloqueio',
+      name: 'CR_AUTOGUARD',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -180,8 +180,8 @@ export class Paladin extends Swordman {
       ],
     },
     {
-      label: 'Grand Cross',
-      name: 'Grand Cross',
+      label: 'Crux Magnum',
+      name: 'CR_GRANDCROSS',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

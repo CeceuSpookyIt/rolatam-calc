@@ -92,13 +92,13 @@ export class Sorcerer extends Scholar {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.Sorcerer];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'Fist Spell',
-      label: 'Fist Spell Lv10',
-      value: 'Fist Spell==10',
+      name: 'SO_SPELLFIST',
+      label: 'Punho Arcano Lv10',
+      value: 'SO_SPELLFIST==10',
       levelList: [
-        { label: 'Fist Spell Lv10 (Fire Bolt Lv10)', value: 'Fist Spell Fire Bolt==10' },
-        { label: 'Fist Spell Lv10 (Cold Bolt Lv10)', value: 'Fist Spell Cold Bolt==10' },
-        { label: 'Fist Spell Lv10 (Lightening Bolt Lv10)', value: 'Fist Spell Lightening Bolt==10' },
+        { label: 'Punho Arcano Lv10 (Fire Bolt Lv10)', value: 'Fist Spell Fire Bolt==10' },
+        { label: 'Punho Arcano Lv10 (Cold Bolt Lv10)', value: 'Fist Spell Cold Bolt==10' },
+        { label: 'Punho Arcano Lv10 (Lightening Bolt Lv10)', value: 'Fist Spell Lightening Bolt==10' },
       ],
       fct: 0,
       vct: 0,
@@ -116,9 +116,9 @@ export class Sorcerer extends Scholar {
       },
       treatedAsSkillNameFn(skillValue) {
         const map = {
-          'Fist Spell Fire Bolt==10': 'Fire Bolt==10',
-          'Fist Spell Cold Bolt==10': 'Cold Bolt==10',
-          'Fist Spell Lightening Bolt==10': 'Lightening Bolt==10',
+          'Fist Spell Fire Bolt==10': 'MG_FIREBOLT==10',
+          'Fist Spell Cold Bolt==10': 'MG_COLDBOLT==10',
+          'Fist Spell Lightening Bolt==10': 'MG_LIGHTNINGBOLT==10',
         };
 
         return map[skillValue];
@@ -133,9 +133,9 @@ export class Sorcerer extends Scholar {
       },
     },
     {
-      name: 'Diamond Dust',
+      name: 'SO_DIAMONDDUST',
       label: 'Diamond Dust Lv 5',
-      value: 'Diamond Dust==5',
+      value: 'SO_DIAMONDDUST==5',
       fct: 0,
       vct: 7,
       cd: 5,
@@ -147,16 +147,16 @@ export class Sorcerer extends Scholar {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        const bonus = this.learnLv('Frost Weapon') * 300;
+        const bonus = this.learnLv('SA_FROSTWEAPON') * 300;
         const summonerBonus = this.isSummon(ElementalSpiritValue.Aqua_2) ? model.jobLevel * 5 : 0
 
         return ((skillLevel + 2) * totalInt + bonus) * (baseLevel / 100) + summonerBonus;
       },
     },
     {
-      name: 'Earth Grave',
+      name: 'SO_EARTHGRAVE',
       label: 'Earth Grave Lv 5',
-      value: 'Earth Grave==5',
+      value: 'SO_EARTHGRAVE==5',
       fct: 1,
       vct: 3,
       cd: 5,
@@ -167,22 +167,22 @@ export class Sorcerer extends Scholar {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        const bonus = this.learnLv('Seismic Weapon') * 300;
+        const bonus = this.learnLv('SA_SEISMICWEAPON') * 300;
         const summonerBonus = this.isSummon(ElementalSpiritValue.Tera_2) ? model.jobLevel * 5 : 0
 
         return ((skillLevel + 2) * totalInt + bonus) * (baseLevel / 100) + summonerBonus;
       },
     },
     {
-      name: 'Psychic Wave',
-      label: 'Psychic Wave Lv5',
-      value: 'Psychic Wave==5',
+      name: 'SO_PSYCHIC_WAVE',
+      label: 'Onda Psquica Lv5',
+      value: 'SO_PSYCHIC_WAVE==5',
       fct: 0.6,
       vct: 12,
       cd: 5,
       acd: 1,
       getElement: () => {
-        const spiritLv = this.activeSkillLv('_ElementalMaster_spirit');
+        const spiritLv = this.activeSkillLv('_CALC_ELEMENTALMASTER_SPIRIT');
         if (spiritLv) return ElementalMasterSpirit[spiritLv] || ElementType.Neutral
 
         const elementalMapper = {
@@ -191,7 +191,7 @@ export class Sorcerer extends Scholar {
           [ElementalSpiritValue.Ventus_2]: ElementType.Wind,
           [ElementalSpiritValue.Tera_2]: ElementType.Earth,
         }
-        const eleSpiritVal = this.activeSkillLv('_Sorcerer_Elemental_Spirit')
+        const eleSpiritVal = this.activeSkillLv('_CALC_SORCERER_ELEMENTAL_SPIRIT')
         if (eleSpiritVal) return elementalMapper[eleSpiritVal] || ElementType.Neutral
 
         return ElementType.Neutral;
@@ -215,9 +215,9 @@ export class Sorcerer extends Scholar {
       },
     },
     {
-      name: 'Varetyr Spear',
-      label: 'Varetyr Spear Lv10',
-      value: 'Varetyr Spear==10',
+      name: 'SO_VARETYR_SPEAR',
+      label: 'Lanas dos Aesir Lv10',
+      value: 'SO_VARETYR_SPEAR==10',
       fct: 1,
       vct: 4,
       cd: 5,
@@ -229,17 +229,17 @@ export class Sorcerer extends Scholar {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const totalInt = status.totalInt;
-        const strikingLvl = this.learnLv('Striking');
-        const endowLvl = this.learnLv('Lightning Loader');
+        const strikingLvl = this.learnLv('SO_STRIKING');
+        const endowLvl = this.learnLv('SA_LIGHTNINGLOADER');
         const summonerBonus = this.isSummon(ElementalSpiritValue.Ventus_2) ? model.jobLevel * 5 : 0
 
         return (((skillLevel + 4) * totalInt) / 2 + (strikingLvl + endowLvl) * 150) * (baseLevel / 100) + summonerBonus;
       },
     },
     {
-      name: 'Poison Burst',
-      label: 'Poison Burst Lv5',
-      value: 'Poison Burst==5',
+      name: 'GC_POISONSMOKE',
+      label: 'Nevoeiro T£xico Lv5',
+      value: 'GC_POISONSMOKE==5',
       fct: 0,
       vct: 6,
       cd: 2,
@@ -258,7 +258,7 @@ export class Sorcerer extends Scholar {
   ];
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      name: '_Sorcerer_Elemental_Spirit',
+      name: '_CALC_SORCERER_ELEMENTAL_SPIRIT',
       label: 'Elemental Spirit',
       inputType: 'dropdown',
       dropdown: [
@@ -272,8 +272,8 @@ export class Sorcerer extends Scholar {
   ];
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      name: 'Striking',
-      label: 'Striking',
+      name: 'SO_STRIKING',
+      label: 'Encanto de rion',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -285,8 +285,8 @@ export class Sorcerer extends Scholar {
       ],
     },
     {
-      name: 'Diamond Dust',
-      label: 'Diamond Dust',
+      name: 'SO_DIAMONDDUST',
+      label: 'P£ de Diamante',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -298,8 +298,8 @@ export class Sorcerer extends Scholar {
       ],
     },
     {
-      name: 'Earth Grave',
-      label: 'Earth Grave',
+      name: 'SO_EARTHGRAVE',
+      label: 'Castigo de Nerthus',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -351,7 +351,7 @@ export class Sorcerer extends Scholar {
     }
     totalBonus.aspdPercent = (totalBonus.aspdPercent || 0) + aspdPercent;
 
-    if (!this.activeSkillLv('_ElementalMaster_spirit')) {
+    if (!this.activeSkillLv('_CALC_ELEMENTALMASTER_SPIRIT')) {
       if (this.isSummon(ElementalSpiritValue.Agni_2)) {
         addBonus(totalBonus, 'atk', 120)
       } else if (this.isSummon(ElementalSpiritValue.Aqua_2)) {
@@ -368,8 +368,8 @@ export class Sorcerer extends Scholar {
   }
 
   private isSummon(spirit: ElementalSpiritValue) {
-    if (this.activeSkillLv('_ElementalMaster_spirit')) return false;
+    if (this.activeSkillLv('_CALC_ELEMENTALMASTER_SPIRIT')) return false;
 
-    return this.activeSkillLv('_Sorcerer_Elemental_Spirit') === spirit
+    return this.activeSkillLv('_CALC_SORCERER_ELEMENTAL_SPIRIT') === spirit
   }
 }

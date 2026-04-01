@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const Lesson: PassiveSkillModel = {
-  label: 'Lesson',
-  name: 'Lesson',
+  label: 'Domnio Musicial',
+  name: 'WM_LESSON',
   inputType: 'dropdown',
   isMasteryAtk: true,
   dropdown: [

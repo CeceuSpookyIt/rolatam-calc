@@ -86,8 +86,8 @@ export class SoulReaper extends SoulLinker {
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
       label: 'Espa Lv10',
-      name: 'Espa',
-      value: 'Espa==10',
+      name: 'SP_SPA',
+      value: 'SP_SPA==10',
       acd: 0,
       fct: 1,
       vct: 0.5,
@@ -102,8 +102,8 @@ export class SoulReaper extends SoulLinker {
     },
     {
       label: 'Eswhoo Lv10',
-      name: 'Eswhoo',
-      value: 'Eswhoo==10',
+      name: 'SP_SWHOO',
+      value: 'SP_SWHOO==10',
       acd: 0,
       fct: 1,
       vct: 0.5,
@@ -117,9 +117,9 @@ export class SoulReaper extends SoulLinker {
       },
     },
     {
-      label: 'Curse Explosion Lv10',
-      name: 'Curse Explosion',
-      value: 'Curse Explosion==10',
+      label: 'Necroexploso Lv10',
+      name: 'SP_CURSEEXPLOSION',
+      value: 'SP_CURSEEXPLOSION==10',
       acd: 0,
       fct: 1,
       vct: 0.5,
@@ -137,8 +137,8 @@ export class SoulReaper extends SoulLinker {
   protected readonly activeSkillList3rd: ActiveSkillModel[] = [
     // {
     //   inputType: 'dropdown',
-    //   label: 'Fairy Soul',
-    //   name: 'Fairy Soul',
+    //   label: 'Esprito da Fada',
+    //   name: 'SP_SOULFAIRY',
     //   dropdown: [
     //     { label: '-', value: 0, isUse: false },
     //     { label: 'Lv 1', value: 1, skillLv: 1, isUse: true, bonus: { matk: 10, vct: 5 } },
@@ -151,7 +151,7 @@ export class SoulReaper extends SoulLinker {
     {
       inputType: 'dropdown',
       label: 'Total Soul',
-      name: 'Total Soul',
+      name: '_CALC_TOTAL_SOUL',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: '5', value: 5, skillLv: 5, isUse: true, bonus: { x_matk: 5 * 3 } },
@@ -164,7 +164,7 @@ export class SoulReaper extends SoulLinker {
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
       label: 'Espa',
-      name: 'Espa',
+      name: 'SP_SPA',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -182,7 +182,7 @@ export class SoulReaper extends SoulLinker {
     },
     {
       label: 'Eswhoo',
-      name: 'Eswhoo',
+      name: 'SP_SWHOO',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -199,8 +199,8 @@ export class SoulReaper extends SoulLinker {
       ],
     },
     {
-      label: 'Evil Soul Curse',
-      name: 'Evil Soul Curse',
+      label: 'Necromancia',
+      name: 'SP_SOULCURSE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },

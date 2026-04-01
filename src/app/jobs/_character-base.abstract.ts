@@ -233,9 +233,9 @@ export abstract class CharacterBase {
     const cName = this.className;
     if (cName !== ClassName.RuneKnight && cName !== ClassName.DragonKnight) {
       skills.push({
-        name: 'Wind Cutter',
-        label: 'Wind Cutter Lv5',
-        value: 'Wind Cutter==5',
+        name: 'RK_WINDCUTTER',
+        label: 'Vento Cortante Lv5',
+        value: 'RK_WINDCUTTER==5',
         acd: 0.5,
         fct: 0,
         vct: 0,
@@ -261,9 +261,9 @@ export abstract class CharacterBase {
     }
     if (cName !== ClassName.ArchBishop && cName !== ClassName.Cardinal) {
       skills.push({
-        name: 'Adoramus',
+        name: 'AB_ADORAMUS',
         label: 'Adoramus Lv6',
-        value: 'Adoramus==6',
+        value: 'AB_ADORAMUS==6',
         fct: 0.5,
         vct: 2,
         acd: 0.5,
@@ -281,9 +281,9 @@ export abstract class CharacterBase {
     }
     if (cName !== ClassName.Warlock && cName !== ClassName.ArchMage) {
       skills.push({
-        name: 'Napalm Vulcan',
-        label: 'Napalm Vulcan Lv4',
-        value: 'Napalm Vulcan==4',
+        name: 'HW_NAPALMVULCAN',
+        label: 'Vulco Napalm Lv4',
+        value: 'HW_NAPALMVULCAN==4',
         fct: 0.3,
         vct: 0.5,
         acd: 0.5,

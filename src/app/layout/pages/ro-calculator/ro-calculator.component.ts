@@ -1938,7 +1938,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       2: 100232,
       3: 100233,
     };
-    const p = mapPhamacy[rawModel?.skillBuffMap['Special Pharmacy']];
+    const p = mapPhamacy[rawModel?.skillBuffMap['GN_S_PHARMACY']];
     if (Boolean(p) && Array.isArray(rawModel.consumables)) {
       if (!rawModel.consumables.includes(p)) {
         rawModel.consumables.push(p);

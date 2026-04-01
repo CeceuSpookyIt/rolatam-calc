@@ -163,9 +163,9 @@ export class Meister extends Mechanic {
   private classNames4th = [ClassName.Only_4th, ClassName.Meister];
   private atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Axe Stomp',
-      label: '[V3] Axe Stomp Lv5',
-      value: 'Axe Stomp==5',
+      name: 'MT_AXE_STOMP',
+      label: '[V3] Machado Esmagador Lv5',
+      value: 'MT_AXE_STOMP==5',
       acd: 0.25,
       fct: 0,
       vct: 0,
@@ -181,9 +181,9 @@ export class Meister extends Mechanic {
       },
     },
     // {
-    //   name: 'Rush Quake',
-    //   label: '[V3] Rush Quake Lv10',
-    //   value: 'Rush Quake==10',
+    //   name: 'MT_RUSH_QUAKE',
+    //   label: '[V3] Avano Ssmico Lv10',
+    //   value: 'MT_RUSH_QUAKE==10',
     //   acd: 0.5,
     //   fct: 0,
     //   vct: 0,
@@ -199,9 +199,9 @@ export class Meister extends Mechanic {
     //   },
     // },
     {
-      name: 'Spark Blaster',
+      name: 'MT_SPARK_BLASTER',
       label: '[V3] Spark Blaster Lv10',
-      value: 'Spark Blaster==10',
+      value: 'MT_SPARK_BLASTER==10',
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
@@ -218,9 +218,9 @@ export class Meister extends Mechanic {
       },
     },
     {
-      name: 'Triple Laser',
+      name: 'MT_TRIPLE_LASER',
       label: '[V3] Triple Laser Lv5',
-      value: 'Triple Laser==5',
+      value: 'MT_TRIPLE_LASER==5',
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
@@ -238,15 +238,15 @@ export class Meister extends Mechanic {
       },
     },
     {
-      name: 'Mighty Smash',
+      name: 'MT_MIGHTY_SMASH',
       label: '[V3] Mighty Smash Lv10',
-      value: 'Mighty Smash==10',
+      value: 'MT_MIGHTY_SMASH==10',
       acd: 0,
       fct: 0,
       vct: 0,
       cd: 0.3,
       isMelee: true,
-      totalHit: () => this.isSkillActive('Axe Stomp') ? 5 : 3,
+      totalHit: () => this.isSkillActive('MT_AXE_STOMP') ? 5 : 3,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['axe', 'twohandAxe'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -264,7 +264,7 @@ export class Meister extends Mechanic {
   ];
   private activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: '_Meister_Rush',
+      name: '_CALC_MEISTER_RUSH',
       label: 'Rush 10',
       inputType: 'selectButton',
       dropdown: [
@@ -273,14 +273,14 @@ export class Meister extends Mechanic {
       ],
     },
     {
-      name: '_Meister_ABR_List',
+      name: '_CALC_MEISTER_ABR_LIST',
       label: 'ABR Summon',
       inputType: 'dropdown',
       dropdown: genMeisterMonsterSkillList(),
     },
     {
-      name: 'Axe Stomp',
-      label: 'Axe Stomp',
+      name: 'MT_AXE_STOMP',
+      label: 'Machado Esmagador',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 5, isUse: true },
@@ -290,8 +290,8 @@ export class Meister extends Mechanic {
   ];
   private passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Two Hand Defending',
-      label: 'Two Hand Defending',
+      name: 'DK_TWOHANDDEF',
+      label: 'Defesa com as Mos',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },

@@ -171,9 +171,9 @@ export class SoulAscetic extends SoulReaper {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.SoulAscetic];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Exorcism of Malicious Soul',
-      label: '[V2] Exorcism of Malicious Soul Lv5',
-      value: 'Exorcism of Malicious Soul==5',
+      name: 'SOA_EXORCISM_OF_MALICIOUS_SOUL',
+      label: '[V2] Exorcizar Assombrao Lv5',
+      value: 'SOA_EXORCISM_OF_MALICIOUS_SOUL==5',
       acd: 0,
       fct: 1.5,
       vct: 2.2,
@@ -184,10 +184,10 @@ export class SoulAscetic extends SoulReaper {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const soulMasteryLv = this.learnLv('Soul Mastery');
-        const totalSoul = this.activeSkillLv('Total Soul') || 1;
+        const soulMasteryLv = this.learnLv('SOA_SOUL_MASTERY');
+        const totalSoul = this.activeSkillLv('_CALC_TOTAL_SOUL') || 1;
 
-        if (this.isSkillActive('Totem of Tutelary')) {
+        if (this.isSkillActive('SOA_TOTEM_OF_TUTELARY')) {
           return (150 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
 
         }
@@ -196,9 +196,9 @@ export class SoulAscetic extends SoulReaper {
       },
     },
     {
-      name: 'Talisman of Blue Dragon',
-      label: '[V2] Talisman of Blue Dragon Lv5',
-      value: 'Talisman of Blue Dragon==5',
+      name: 'SOA_TALISMAN_OF_BLUE_DRAGON',
+      label: '[V2] Talism do Drago Lv5',
+      value: 'SOA_TALISMAN_OF_BLUE_DRAGON==5',
       acd: 0,
       fct: 1.5,
       vct: 1,
@@ -208,9 +208,9 @@ export class SoulAscetic extends SoulReaper {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const talisMaster = this.learnLv('Talisman Mastery');
+        const talisMaster = this.learnLv('SOA_TALISMAN_MASTERY');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
+        if (this.isSkillActive('SOA_TALISMAN_OF_FIVE_ELEMENTS')) {
           return (350 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
         }
@@ -219,9 +219,9 @@ export class SoulAscetic extends SoulReaper {
       },
     },
     {
-      name: 'Talisman of White Tiger',
-      label: '[V2] Talisman of White Tiger Lv5',
-      value: 'Talisman of White Tiger==5',
+      name: 'SOA_TALISMAN_OF_WHITE_TIGER',
+      label: '[V2] Talism do Tigre Lv5',
+      value: 'SOA_TALISMAN_OF_WHITE_TIGER==5',
       acd: 0,
       fct: 1.5,
       vct: 1,
@@ -232,9 +232,9 @@ export class SoulAscetic extends SoulReaper {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const talisMaster = this.learnLv('Talisman Mastery');
+        const talisMaster = this.learnLv('SOA_TALISMAN_MASTERY');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
+        if (this.isSkillActive('SOA_TALISMAN_OF_FIVE_ELEMENTS')) {
           return (350 + skillLevel * (1350 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
         }
@@ -243,9 +243,9 @@ export class SoulAscetic extends SoulReaper {
       },
     },
     {
-      name: 'Talisman of Red Phoenix',
-      label: '[V2] Talisman of Red Phoenix Lv5',
-      value: 'Talisman of Red Phoenix==5',
+      name: 'SOA_TALISMAN_OF_RED_PHOENIX',
+      label: '[V2] Talim da Fnix Lv5',
+      value: 'SOA_TALISMAN_OF_RED_PHOENIX==5',
       acd: 0,
       fct: 1.5,
       vct: 1,
@@ -256,9 +256,9 @@ export class SoulAscetic extends SoulReaper {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const talisMaster = this.learnLv('Talisman Mastery');
+        const talisMaster = this.learnLv('SOA_TALISMAN_MASTERY');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
+        if (this.isSkillActive('SOA_TALISMAN_OF_FIVE_ELEMENTS')) {
           return (1200 + skillLevel * (1300 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
         }
@@ -267,9 +267,9 @@ export class SoulAscetic extends SoulReaper {
       },
     },
     {
-      name: 'Talisman of Black Tortoise',
-      label: '[V2] Talisman of Black Tortoise Lv5',
-      value: 'Talisman of Black Tortoise==5',
+      name: 'SOA_TALISMAN_OF_BLACK_TORTOISE',
+      label: '[V2] Talism do Jabuti Lv5',
+      value: 'SOA_TALISMAN_OF_BLACK_TORTOISE==5',
       acd: 0,
       fct: 1.5,
       vct: 1,
@@ -280,9 +280,9 @@ export class SoulAscetic extends SoulReaper {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const talisMaster = this.learnLv('Talisman Mastery');
+        const talisMaster = this.learnLv('SOA_TALISMAN_MASTERY');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
+        if (this.isSkillActive('SOA_TALISMAN_OF_FIVE_ELEMENTS')) {
           return (1850 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
         }
@@ -291,16 +291,16 @@ export class SoulAscetic extends SoulReaper {
       },
     },
     {
-      name: 'Talisman of Four Bearing God',
-      label: '[V2] Talisman of Four Bearing God Lv5',
-      value: 'Talisman of Four Bearing God==5',
+      name: 'SOA_TALISMAN_OF_FOUR_BEARING_GOD',
+      label: '[V2] Talism das Divindades Lv5',
+      value: 'SOA_TALISMAN_OF_FOUR_BEARING_GOD==5',
       acd: 0,
       fct: 1.5,
       vct: 1.5,
       cd: 1,
       isMatk: true,
       totalHit: () => {
-        const blessing = this.activeSkillLv('_SoulAscetic_Blessing') as BlessingValueT;
+        const blessing = this.activeSkillLv('_CALC_SOULASCETIC_BLESSING') as BlessingValueT;
         const hitMap = {
           [BlessingValue.East]: 2,
           [BlessingValue.South]: 3,
@@ -309,13 +309,13 @@ export class SoulAscetic extends SoulReaper {
           [BlessingValue.Four_Directions]: 7,
         };
 
-        return hitMap[blessing] || (this.isSkillActive('Talisman of Five Elements') ? 7 : 1);
+        return hitMap[blessing] || (this.isSkillActive('SOA_TALISMAN_OF_FIVE_ELEMENTS') ? 7 : 1);
       },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const talisMaster = this.learnLv('Talisman Mastery');
+        const talisMaster = this.learnLv('SOA_TALISMAN_MASTERY');
 
         return (50 + skillLevel * (250 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
       },
@@ -323,7 +323,7 @@ export class SoulAscetic extends SoulReaper {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Talisman of Five Elements',
+      name: 'SOA_TALISMAN_OF_FIVE_ELEMENTS',
       label: 'Five Elements',
       inputType: 'dropdown',
       dropdown: genSkillList(5, lv => ({
@@ -340,7 +340,7 @@ export class SoulAscetic extends SoulReaper {
       })),
     },
     {
-      name: '_SoulAscetic_Blessing',
+      name: '_CALC_SOULASCETIC_BLESSING',
       label: 'Blessing of',
       inputType: 'dropdown',
       dropdown: [
@@ -353,8 +353,8 @@ export class SoulAscetic extends SoulReaper {
       ],
     },
     {
-      name: 'Totem of Tutelary',
-      label: 'Totem of Tutelary',
+      name: 'SOA_TOTEM_OF_TUTELARY',
+      label: 'Totem de Tutela',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -364,14 +364,14 @@ export class SoulAscetic extends SoulReaper {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Talisman Mastery',
-      label: 'Talisman Mastery',
+      name: 'SOA_TALISMAN_MASTERY',
+      label: 'Percia com Talisms',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ sMatk: lv })),
     },
     {
-      name: 'Soul Mastery',
-      label: 'Soul Mastery',
+      name: 'SOA_SOUL_MASTERY',
+      label: 'Maestria com Almas',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ spl: lv })),
     },

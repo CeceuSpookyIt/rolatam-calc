@@ -17,8 +17,8 @@ export interface AutocastSkillDef {
 }
 
 export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
-  'Fire Bolt': {
-    name: 'Fire Bolt',
+  'MG_FIREBOLT': {
+    name: 'MG_FIREBOLT',
     isMatk: true,
     isMelee: false,
     element: ElementType.Fire,
@@ -26,8 +26,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 100,
   },
-  'Cold Bolt': {
-    name: 'Cold Bolt',
+  'MG_COLDBOLT': {
+    name: 'MG_COLDBOLT',
     isMatk: true,
     isMelee: false,
     element: ElementType.Water,
@@ -35,8 +35,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 100,
   },
-  'Lightening Bolt': {
-    name: 'Lightening Bolt',
+  'MG_LIGHTNINGBOLT': {
+    name: 'MG_LIGHTNINGBOLT',
     isMatk: true,
     isMelee: false,
     element: ElementType.Wind,
@@ -44,8 +44,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 100,
   },
-  'Fire Ball': {
-    name: 'Fire Ball',
+  'MG_FIREBALL': {
+    name: 'MG_FIREBALL',
     isMatk: true,
     isMelee: false,
     element: ElementType.Fire,
@@ -53,8 +53,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => 70 + skillLevel * 10,
   },
-  'Soul Strike': {
-    name: 'Soul Strike',
+  'MG_SOULSTRIKE': {
+    name: 'MG_SOULSTRIKE',
     isMatk: true,
     isMelee: false,
     element: ElementType.Ghost,
@@ -65,8 +65,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
       return hits * 100;
     },
   },
-  'Frost Nova': {
-    name: 'Frost Nova',
+  'WZ_FROSTNOVA': {
+    name: 'WZ_FROSTNOVA',
     isMatk: true,
     isMelee: false,
     element: ElementType.Water,
@@ -74,8 +74,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => 110 + skillLevel * 10,
   },
-  'Meteor Storm': {
-    name: 'Meteor Storm',
+  'WZ_METEOR': {
+    name: 'WZ_METEOR',
     isMatk: true,
     isMelee: false,
     element: ElementType.Fire,
@@ -83,8 +83,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 2,
     formula: () => 125,
   },
-  'Lord of Vermilion': {
-    name: 'Lord of Vermilion',
+  'WZ_VERMILION': {
+    name: 'WZ_VERMILION',
     isMatk: true,
     isMelee: false,
     element: ElementType.Wind,
@@ -92,8 +92,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 4,
     formula: () => 250,
   },
-  'Storm Gust': {
-    name: 'Storm Gust',
+  'WZ_STORMGUST': {
+    name: 'WZ_STORMGUST',
     isMatk: true,
     isMelee: false,
     element: ElementType.Water,
@@ -101,8 +101,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 3,
     formula: () => 200,
   },
-  'Jupitel Thunder': {
-    name: 'Jupitel Thunder',
+  'WZ_JUPITEL': {
+    name: 'WZ_JUPITEL',
     isMatk: true,
     isMelee: false,
     element: ElementType.Wind,
@@ -110,8 +110,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 100,
   },
-  'Bash': {
-    name: 'Bash',
+  'SM_BASH': {
+    name: 'SM_BASH',
     isMatk: false,
     isMelee: true,
     element: ElementType.Neutral,
@@ -119,8 +119,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => 100 + skillLevel * 30,
   },
-  'Sonic Blow': {
-    name: 'Sonic Blow',
+  'AS_SONICBLOW': {
+    name: 'AS_SONICBLOW',
     isMatk: false,
     isMelee: true,
     element: ElementType.Neutral,
@@ -128,8 +128,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 8,
     formula: ({ skillLevel }) => skillLevel * 50,
   },
-  'Bowling Bash': {
-    name: 'Bowling Bash',
+  'KN_BOWLINGBASH': {
+    name: 'KN_BOWLINGBASH',
     isMatk: false,
     isMelee: true,
     element: ElementType.Neutral,
@@ -137,8 +137,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => 100 + skillLevel * 40,
   },
-  'Double Strafe': {
-    name: 'Double Strafe',
+  'AC_DOUBLE': {
+    name: 'AC_DOUBLE',
     isMatk: false,
     isMelee: false,
     element: ElementType.Neutral,
@@ -146,8 +146,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 2,
     formula: ({ skillLevel }) => 90 + skillLevel * 10,
   },
-  'Heal': {
-    name: 'Heal',
+  'AL_HEAL': {
+    name: 'AL_HEAL',
     isMatk: true,
     isMelee: false,
     element: ElementType.Holy,
@@ -155,8 +155,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => skillLevel * 10 * (baseLevel / 100),
   },
-  'Sonic Wave': {
-    name: 'Sonic Wave',
+  'RK_SONICWAVE': {
+    name: 'RK_SONICWAVE',
     isMatk: false,
     isMelee: false,
     element: ElementType.Neutral,
@@ -173,11 +173,11 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     canCri: true,
     criDmgPercentage: 1,
-    linkedSkill: 'Rune Mastery',
+    linkedSkill: 'RK_RUNEMASTERY',
     formula: ({ skillLevel, baseLevel, str }) => (skillLevel + (str || 0) / 5.7) * 100 * (baseLevel / 100),
   },
-  'Earth Spike': {
-    name: 'Earth Spike',
+  'WZ_EARTHSPIKE': {
+    name: 'WZ_EARTHSPIKE',
     isMatk: true,
     isMelee: false,
     element: ElementType.Earth,
@@ -185,8 +185,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 100,
   },
-  'Napalm Vulcan': {
-    name: 'Napalm Vulcan',
+  'HW_NAPALMVULCAN': {
+    name: 'HW_NAPALMVULCAN',
     isMatk: true,
     isMelee: false,
     element: ElementType.Ghost,
@@ -194,8 +194,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => skillLevel * 70 * (baseLevel / 100),
   },
-  'Psychic Wave': {
-    name: 'Psychic Wave',
+  'SO_PSYCHIC_WAVE': {
+    name: 'SO_PSYCHIC_WAVE',
     isMatk: true,
     isMelee: false,
     element: ElementType.Neutral,
@@ -203,8 +203,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel, int }) => (skillLevel * 70 + (int || 0) * 3) * (baseLevel / 100),
   },
-  'Cross Impact': {
-    name: 'Cross Impact',
+  'GC_CROSSIMPACT': {
+    name: 'GC_CROSSIMPACT',
     isMatk: false,
     isMelee: true,
     element: ElementType.Neutral,
@@ -212,8 +212,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 7,
     formula: ({ skillLevel, baseLevel }) => (1150 + skillLevel * 400) * (baseLevel / 100),
   },
-  'Ignition Break': {
-    name: 'Ignition Break',
+  'RK_IGNITIONBREAK': {
+    name: 'RK_IGNITIONBREAK',
     isMatk: false,
     isMelee: true,
     element: ElementType.Fire,
@@ -221,8 +221,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => skillLevel * 450 * (baseLevel / 100),
   },
-  'Crimson Rock': {
-    name: 'Crimson Rock',
+  'WL_CRIMSONROCK': {
+    name: 'WL_CRIMSONROCK',
     isMatk: true,
     isMelee: false,
     element: ElementType.Fire,
@@ -230,8 +230,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (700 + skillLevel * 600) * (baseLevel / 100),
   },
-  'Jack Frost': {
-    name: 'Jack Frost',
+  'WL_JACKFROST': {
+    name: 'WL_JACKFROST',
     isMatk: true,
     isMelee: false,
     element: ElementType.Water,
@@ -239,8 +239,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (800 + skillLevel * 500) * (baseLevel / 100),
   },
-  'Chain Lightning': {
-    name: 'Chain Lightning',
+  'WL_CHAINLIGHTNING': {
+    name: 'WL_CHAINLIGHTNING',
     isMatk: true,
     isMelee: false,
     element: ElementType.Wind,
@@ -248,8 +248,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (500 + skillLevel * 100) * (baseLevel / 100),
   },
-  'Earth Strain': {
-    name: 'Earth Strain',
+  'WL_EARTHSTRAIN': {
+    name: 'WL_EARTHSTRAIN',
     isMatk: true,
     isMelee: false,
     element: ElementType.Earth,
@@ -257,8 +257,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (1000 + skillLevel * 600) * (baseLevel / 100),
   },
-  'Cart Tornado': {
-    name: 'Cart Tornado',
+  'GN_CART_TORNADO': {
+    name: 'GN_CART_TORNADO',
     isMatk: false,
     isMelee: true,
     element: ElementType.Neutral,
@@ -266,8 +266,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 200,
   },
-  'Arrow Vulcan': {
-    name: 'Arrow Vulcan',
+  'CG_ARROWVULCAN': {
+    name: 'CG_ARROWVULCAN',
     isMatk: false,
     isMelee: false,
     element: ElementType.Neutral,
@@ -275,8 +275,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel, baseLevel }) => (skillLevel * 150 + 100) * (baseLevel / 100),
   },
-  'Spread Shot': {
-    name: 'Spread Shot',
+  'GS_SPREADATTACK': {
+    name: 'GS_SPREADATTACK',
     isMatk: false,
     isMelee: false,
     element: ElementType.Neutral,
@@ -293,8 +293,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 5,
     formula: ({ skillLevel }) => skillLevel * 50 + 150,
   },
-  'Gloria Domini': {
-    name: 'Gloria Domini',
+  'PA_PRESSURE': {
+    name: 'PA_PRESSURE',
     isMatk: false,
     isMelee: false,
     element: ElementType.Holy,
@@ -302,8 +302,8 @@ export const AUTOCAST_SKILL_REGISTRY: Record<string, AutocastSkillDef> = {
     totalHit: 1,
     formula: ({ skillLevel }) => skillLevel * 200,
   },
-  'Judex': {
-    name: 'Judex',
+  'AB_JUDEX': {
+    name: 'AB_JUDEX',
     isMatk: true,
     isMelee: false,
     element: ElementType.Holy,

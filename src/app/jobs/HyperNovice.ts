@@ -162,9 +162,9 @@ export class HyperNovice extends SuperNovice {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.HyperNovice];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Double Bowling Bash',
-      label: '[V2] Double Bowling Bash Lv10',
-      value: 'Double Bowling Bash==10',
+      name: 'HN_DOUBLEBOWLINGBASH',
+      label: '[V2] Golpe de Tyr Lv10',
+      value: 'HN_DOUBLEBOWLINGBASH==10',
       acd: 1,
       fct: 0,
       vct: 0,
@@ -175,15 +175,15 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Tactics');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_TATICS');
 
         return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
       },
     },
     {
-      name: 'Mega Sonic Blow',
-      label: '[V2] Mega Sonic Blow Lv10',
-      value: 'Mega Sonic Blow==10',
+      name: 'HN_MEGA_SONIC_BLOW',
+      label: '[V2] Lminas Devastadoras Lv10',
+      value: 'HN_MEGA_SONIC_BLOW==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -197,15 +197,15 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Tactics');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_TATICS');
 
         return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
-      name: 'Shield Chain Rush',
-      label: '[V2] Shield Chain Rush Lv10',
-      value: 'Shield Chain Rush==10',
+      name: 'HN_SHIELD_CHAIN_RUSH',
+      label: '[V2] Choque Violento Lv10',
+      value: 'HN_SHIELD_CHAIN_RUSH==10',
       acd: 0.5,
       fct: 0.3,
       vct: 1.2,
@@ -216,15 +216,15 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Tactics');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_TATICS');
 
         return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
-      name: 'Spiral Pierce Max',
-      label: '[V2] Spiral Pierce Max Lv10',
-      value: 'Spiral Pierce Max==10',
+      name: 'HN_SPIRAL_PIERCE_MAX',
+      label: '[V2] Cortar em Espiral Lv10',
+      value: 'HN_SPIRAL_PIERCE_MAX==10',
       acd: 0.5,
       fct: 0.3,
       vct: 1,
@@ -235,7 +235,7 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status, monster } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Tactics');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_TATICS');
         const sizeMap = {
           s: 1.5,
           m: 1.3,
@@ -247,9 +247,9 @@ export class HyperNovice extends SuperNovice {
       },
     },
     {
-      name: 'Napalm Vulcan Strike',
-      label: '[V2] Napalm Vulcan Strike Lv10',
-      value: 'Napalm Vulcan Strike==10',
+      name: 'HN_NAPALM_VULCAN_STRIKE',
+      label: '[V2] Espectro Napalm Lv10',
+      value: 'HN_NAPALM_VULCAN_STRIKE==10',
       acd: 0.5,
       fct: 1,
       vct: 0.5,
@@ -261,15 +261,15 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Sorcery');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_SOCERY');
 
         return (350 + skillLevel * (650 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
       },
     },
     {
-      name: 'Jupitel Thunderstorm',
-      label: '[V2] Jupitel Thunderstorm Lv10',
-      value: 'Jupitel Thunderstorm==10',
+      name: 'HN_JUPITEL_THUNDER_STORM',
+      label: '[V2] Tempestade de J¨piter Lv10',
+      value: 'HN_JUPITEL_THUNDER_STORM==10',
       acd: 0.5,
       fct: 1,
       vct: 2,
@@ -281,15 +281,15 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Sorcery');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_SOCERY');
 
         return (skillLevel * (1600 + skillBonusLv * 3) + totalSpl * 3) * (baseLevel / 100);
       },
     },
     {
-      name: "Hell's Drive",
+      name: 'HN_HELLS_DRIVE',
       label: "[V2] Hell's Drive Lv10",
-      value: "Hell's Drive==10",
+      value: 'HN_HELLS_DRIVE==10',
       acd: 1,
       fct: 1,
       vct: 1.2,
@@ -301,7 +301,7 @@ export class HyperNovice extends SuperNovice {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const skillBonusLv = this.learnLv('Self Study Sorcery');
+        const skillBonusLv = this.learnLv('HN_SELFSTUDY_SOCERY');
 
         return (1500 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
       },
@@ -310,8 +310,8 @@ export class HyperNovice extends SuperNovice {
   private readonly activeSkillList4th: ActiveSkillModel[] = [];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Self Study Tactics',
-      label: 'Self Study Tactics',
+      name: 'HN_SELFSTUDY_TATICS',
+      label: 'Fsico Autodidata',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({
         pAtk: lv,
@@ -322,13 +322,13 @@ export class HyperNovice extends SuperNovice {
       }))
     },
     {
-      name: 'Self Study Sorcery',
-      label: 'Self Study Sorcery',
+      name: 'HN_SELFSTUDY_SOCERY',
+      label: 'Mgico Autodidata',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({
         sMatk: lv,
         'Jupitel Thunderstorm': lv,
-        "Hell's Drive": lv,
+        'HN_HELLS_DRIVE': lv,
         'Napalm Vulcan Strike': lv * 2,
       }))
     },

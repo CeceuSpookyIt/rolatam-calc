@@ -87,7 +87,7 @@ export class LordKnight extends Swordman {
   protected readonly activeSkillListHi: ActiveSkillModel[] = [
     {
       label: 'Two hand Quick 10',
-      name: 'Two hand Quicken',
+      name: 'KN_TWOHANDQUICKEN',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, skillLv: 10, isUse: true },
@@ -95,7 +95,7 @@ export class LordKnight extends Swordman {
       ],
     },
     {
-      name: 'Aura Blade',
+      name: 'LK_AURABLADE',
       label: 'Aura Blade 5',
       inputType: 'selectButton',
       dropdown: [
@@ -104,7 +104,7 @@ export class LordKnight extends Swordman {
       ],
     },
     {
-      name: 'Spear Dynamo',
+      name: 'LK_CONCENTRATION',
       label: 'Spear Dynamo 5',
       inputType: 'selectButton',
       dropdown: [
@@ -118,7 +118,7 @@ export class LordKnight extends Swordman {
     CavalierMastery,
     {
       label: 'Two hand Quick',
-      name: 'Two hand Quicken',
+      name: 'KN_TWOHANDQUICKEN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -135,8 +135,8 @@ export class LordKnight extends Swordman {
       ],
     },
     {
-      label: 'Clashing Spiral',
-      name: 'Clashing Spiral',
+      label: 'Perfurar em Espiral',
+      name: 'LK_SPIRALPIERCE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

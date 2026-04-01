@@ -86,8 +86,8 @@ export class StarGladiator extends Taekwondo {
 
   protected readonly activeSkillListHi: ActiveSkillModel[] = [
     {
-      label: 'Power',
-      name: 'Power',
+      label: 'Kihop',
+      name: 'TK_POWER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -100,7 +100,7 @@ export class StarGladiator extends Taekwondo {
     },
     {
       label: 'Wrath of',
-      name: 'Wrath of',
+      name: '_CALC_WRATH_OF',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 3, skillLv: 3, isUse: true },
@@ -110,8 +110,8 @@ export class StarGladiator extends Taekwondo {
   ];
   protected readonly passiveSkillListHi: PassiveSkillModel[] = [
     {
-      label: 'Power',
-      name: 'Power',
+      label: 'Kihop',
+      name: 'TK_POWER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -124,7 +124,7 @@ export class StarGladiator extends Taekwondo {
     },
     {
       label: 'Knowledge of Sun',
-      name: 'Knowledge of Sun, Moon and Star',
+      name: 'SG_KNOWLEDGE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

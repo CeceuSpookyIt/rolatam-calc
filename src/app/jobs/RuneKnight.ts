@@ -85,9 +85,9 @@ export class RuneKnight extends LordKnight {
   private readonly classNames3rd = [ClassName.Only_3rd, ClassName.RuneKnight];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     // {
-    //   name: 'Clashing Spiral',
-    //   label: 'Clashing Spiral Lv5',
-    //   value: 'Clashing Spiral==1',
+    //   name: 'LK_SPIRALPIERCE',
+    //   label: 'Perfurar em Espiral Lv5',
+    //   value: 'LK_SPIRALPIERCE==1',
     //   acd: 1,
     //   fct: 0.3,
     //   vct: 0.25,
@@ -126,10 +126,10 @@ export class RuneKnight extends LordKnight {
     //   },
     // },
     {
-      name: 'Sonic Wave',
-      label: 'Sonic Wave Lv10',
-      value: 'Sonic Wave==10',
-      values: ['[Improved 2nd] Sonic Wave==10'],
+      name: 'RK_SONICWAVE',
+      label: 'Onda de Choque Lv10',
+      value: 'RK_SONICWAVE==10',
+      values: ['[Improved 2nd] RK_SONICWAVE==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -145,10 +145,10 @@ export class RuneKnight extends LordKnight {
       },
     },
     {
-      name: 'Wind Cutter',
-      label: 'Wind Cutter Lv5',
-      value: 'Wind Cutter==5',
-      values: ['Wind Cutter==10', '[Improved 2nd] Wind Cutter==5', '[Improved 2nd] Wind Cutter==10'],
+      name: 'RK_WINDCUTTER',
+      label: 'Vento Cortante Lv5',
+      value: 'RK_WINDCUTTER==5',
+      values: ['RK_WINDCUTTER==10', '[Improved 2nd] RK_WINDCUTTER==5', '[Improved 2nd] RK_WINDCUTTER==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -172,10 +172,10 @@ export class RuneKnight extends LordKnight {
       },
     },
     {
-      name: 'Ignition Break',
-      label: 'Ignition Break Lv5',
-      value: 'Ignition Break==5',
-      values: ['[Improved 2nd] Ignition Break==5'],
+      name: 'RK_IGNITIONBREAK',
+      label: 'Impacto Flamejante Lv5',
+      value: 'RK_IGNITIONBREAK==5',
+      values: ['[Improved 2nd] RK_IGNITIONBREAK==5'],
       acd: 0,
       fct: 0,
       vct: 1,
@@ -191,10 +191,10 @@ export class RuneKnight extends LordKnight {
       },
     },
     {
-      name: 'Hundred Spears',
-      label: 'Hundred Spears Lv10',
-      value: 'Hundred Spears==10',
-      values: ['[Improved] Hundred Spears==10'],
+      name: 'LG_PINPOINTATTACK',
+      label: 'Estocada Precisa Lv10',
+      value: 'LG_PINPOINTATTACK==10',
+      values: ['[Improved] LG_PINPOINTATTACK==10'],
       acd: 0.5,
       fct: 0,
       vct: 0.1,
@@ -203,9 +203,9 @@ export class RuneKnight extends LordKnight {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const clashingSpiralBonus = this.learnLv('Clashing Spiral') * 50;
+        const clashingSpiralBonus = this.learnLv('LK_SPIRALPIERCE') * 50;
 
-        if (this.isSkillActive('Dragonic Aura')) {
+        if (this.isSkillActive('DK_DRAGONIC_AURA')) {
           return (700 + 350 * skillLevel) * (baseLevel / 100) + clashingSpiralBonus;
         }
 
@@ -213,10 +213,10 @@ export class RuneKnight extends LordKnight {
       },
     },
     {
-      name: 'Dragon Breath',
-      label: 'Dragon Breath Lv10',
-      value: 'Dragon Breath==10',
-      values: ['[Improved 2nd] Dragon Breath==10'],
+      name: 'RK_DRAGONBREATH',
+      label: 'Sopro do Drago Lv10',
+      value: 'RK_DRAGONBREATH==10',
+      values: ['[Improved 2nd] RK_DRAGONBREATH==10'],
       acd: 2,
       fct: 0.5,
       vct: 2,
@@ -224,9 +224,9 @@ export class RuneKnight extends LordKnight {
       isHit100: true,
       currentHpFn: (maxHp) => this.getCurrentHp(maxHp),
       getElement: () => {
-        if (this.isSkillActive('Lux Anima Runestone')) {
+        if (this.isSkillActive('RK_LUXANIMA')) {
           return ElementType.Dark;
-        } else if (this.isSkillActive('Turisus Runestone')) {
+        } else if (this.isSkillActive('_CALC_TURISUS_RUNESTONE')) {
           return ElementType.Holy;
         }
 
@@ -240,10 +240,10 @@ export class RuneKnight extends LordKnight {
       },
     },
     {
-      name: 'Dragon Breath - WATER',
-      label: 'Dragon Breath - WATER Lv10',
-      value: 'Dragon Breath - WATER==10',
-      values: ['[Improved 2nd] Dragon Breath - WATER==10'],
+      name: 'RK_DRAGONBREATH_WATER',
+      label: 'Bafo do Drago Lv10',
+      value: 'RK_DRAGONBREATH_WATER==10',
+      values: ['[Improved 2nd] RK_DRAGONBREATH_WATER==10'],
       acd: 2,
       fct: 0.5,
       vct: 2,
@@ -251,9 +251,9 @@ export class RuneKnight extends LordKnight {
       isHit100: true,
       currentHpFn: (maxHp) => this.getCurrentHp(maxHp),
       getElement: () => {
-        if (this.isSkillActive('Lux Anima Runestone')) {
+        if (this.isSkillActive('RK_LUXANIMA')) {
           return ElementType.Neutral;
-        } else if (this.isSkillActive('Asir Runestone')) {
+        } else if (this.isSkillActive('_CALC_ASIR_RUNESTONE')) {
           return ElementType.Ghost;
         }
 
@@ -270,7 +270,7 @@ export class RuneKnight extends LordKnight {
 
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      name: 'Enchant Blade',
+      name: 'RK_ENCHANTBLADE',
       label: 'Enchant Blade 10',
       inputType: 'selectButton',
       dropdown: [
@@ -279,8 +279,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Ride Dragon',
-      label: 'Ride Dragon',
+      name: 'RK_DRAGONTRAINING',
+      label: 'Adestrar Drago',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 5, isUse: true },
@@ -288,7 +288,7 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Current HP',
+      name: '_CALC_CURRENT_HP',
       label: 'Current HP',
       inputType: 'dropdown',
       dropdown: [
@@ -303,7 +303,7 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Turisus Runestone',
+      name: '_CALC_TURISUS_RUNESTONE',
       label: 'Rune: Turisus',
       inputType: 'selectButton',
       dropdown: [
@@ -312,7 +312,7 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Lux Anima Runestone',
+      name: 'RK_LUXANIMA',
       label: 'Rune: Lux Anima',
       inputType: 'selectButton',
       dropdown: [
@@ -326,7 +326,7 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Asir Runestone',
+      name: '_CALC_ASIR_RUNESTONE',
       label: 'Rune: Asir',
       inputType: 'selectButton',
       isMasteryAtk: true,
@@ -336,7 +336,7 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      name: 'Concentration',
+      name: 'LK_CONCENTRATION',
       label: 'Concentration 5',
       inputType: 'selectButton',
       dropdown: [
@@ -348,8 +348,8 @@ export class RuneKnight extends LordKnight {
 
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Ignition Break',
-      name: 'Ignition Break',
+      label: 'Impacto Flamejante',
+      name: 'RK_IGNITIONBREAK',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -361,8 +361,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Dragon Training',
-      name: 'Dragon Training',
+      label: 'Adestrar Drago',
+      name: 'RK_DRAGONTRAINING',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -374,8 +374,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Dragon Breath',
-      name: 'Dragon Breath',
+      label: 'Sopro do Drago',
+      name: 'RK_DRAGONBREATH',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -393,7 +393,7 @@ export class RuneKnight extends LordKnight {
     },
     {
       label: 'Breath - WATER',
-      name: 'Dragon Breath - WATER',
+      name: 'RK_DRAGONBREATH_WATER',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -410,8 +410,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Rune Mastery',
-      name: 'Rune Mastery',
+      label: 'Percia em Runas',
+      name: 'RK_RUNEMASTERY',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -428,8 +428,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Enchant Blade',
-      name: 'Enchant Blade',
+      label: 'Encantar Lmina',
+      name: 'RK_ENCHANTBLADE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -446,8 +446,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Sonic Wave',
-      name: 'Sonic Wave',
+      label: 'Onda de Choque',
+      name: 'RK_SONICWAVE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -464,8 +464,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Death Bound',
-      name: 'Death Bound',
+      label: 'Revidar Dano',
+      name: 'RK_DEATHBOUND',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -482,8 +482,8 @@ export class RuneKnight extends LordKnight {
       ],
     },
     {
-      label: 'Dragon Howling',
-      name: 'Dragon Howling',
+      label: 'Rugido do Drago',
+      name: 'RK_DRAGONHOWLING',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -513,11 +513,11 @@ export class RuneKnight extends LordKnight {
     const bonuses = this.bonuses?.masteryAtks || {};
 
     let sum = 0;
-    const spearMasteryLv = this.learnLv('Spear Mastery');
+    const spearMasteryLv = this.learnLv('KN_SPEARMASTERY');
     if ((weaponType === 'spear' || weaponType === 'twohandSpear') && spearMasteryLv > 0) {
       sum += spearMasteryLv * 4;
-      if (this.isSkillActive('Ride Dragon')) sum += spearMasteryLv;
-      if (this.learnLv('Dragon Training')) sum += spearMasteryLv * 10;
+      if (this.isSkillActive('RK_DRAGONTRAINING')) sum += spearMasteryLv;
+      if (this.learnLv('RK_DRAGONTRAINING')) sum += spearMasteryLv * 10;
     }
 
     for (const [, bonus] of Object.entries(bonuses)) {
@@ -530,22 +530,22 @@ export class RuneKnight extends LordKnight {
   override setAdditionalBonus(params: AdditionalBonusInput) {
     const { totalBonus, weapon } = params;
 
-    if (this.isSkillActive('Asir Runestone')) {
-      const asirRuneAspdBonus = 4 * this.learnLv('Rune Mastery');
+    if (this.isSkillActive('_CALC_ASIR_RUNESTONE')) {
+      const asirRuneAspdBonus = 4 * this.learnLv('RK_RUNEMASTERY');
       totalBonus.aspdPercent = (totalBonus.aspdPercent || 0) + asirRuneAspdBonus;
     }
 
     const wType = weapon.data?.typeName;
-    if (this.isSkillActive('Two hand Quicken') && wType === 'twohandSword') {
+    if (this.isSkillActive('KN_TWOHANDQUICKEN') && wType === 'twohandSword') {
       totalBonus.skillAspd = (totalBonus.skillAspd || 0) + 7;
       totalBonus.aspdPercent = (totalBonus.aspdPercent || 0) + 10;
       totalBonus.cri = (totalBonus.cri || 0) + 12;
       totalBonus.hit = (totalBonus.hit || 0) + 20;
     }
 
-    const isRideDragon = this.isSkillActive('Ride Dragon');
+    const isRideDragon = this.isSkillActive('RK_DRAGONTRAINING');
     if (isRideDragon) {
-      totalBonus.decreaseSkillAspdPercent = (totalBonus.decreaseSkillAspdPercent || 0) + (25 - this.learnLv('Dragon Training') * 5);
+      totalBonus.decreaseSkillAspdPercent = (totalBonus.decreaseSkillAspdPercent || 0) + (25 - this.learnLv('RK_DRAGONTRAINING') * 5);
 
       if (wType === 'spear' || wType === 'twohandSpear') {
         totalBonus['ignore_size_penalty'] = 100;
@@ -567,7 +567,7 @@ export class RuneKnight extends LordKnight {
   }
 
   private getCurrentHp(maxHp: number) {
-    const curHp = this.activeSkillLv('Current HP') || 100;
+    const curHp = this.activeSkillLv('_CALC_CURRENT_HP') || 100;
 
     return maxHp * curHp * 0.01;
   }
@@ -575,11 +575,11 @@ export class RuneKnight extends LordKnight {
   private calcDragonBreathFormula(input: AtkSkillFormulaInput) {
     const { model, skillLevel, currentHp, maxSp, status, totalBonus } = input;
     const baseLevel = model.level;
-    const dragonTrainingLv = this.learnLv('Dragon Training');
+    const dragonTrainingLv = this.learnLv('RK_DRAGONTRAINING');
 
     const { totalPow } = status;
     const { pAtk } = totalBonus;
-    const dragonnicBonus = this.learnLv('Dragonic Aura') > 0 ? (totalPow / 5) * (1 + pAtk / 100) : 0;
+    const dragonnicBonus = this.learnLv('DK_DRAGONIC_AURA') > 0 ? (totalPow / 5) * (1 + pAtk / 100) : 0;
 
     return (floor(currentHp / 50) + floor(maxSp / 4)) * ((skillLevel * baseLevel) / 100) * (90 + dragonTrainingLv * 10 + dragonnicBonus) * 0.01;
   }
@@ -644,15 +644,15 @@ export class RuneKnight extends LordKnight {
 
     totalDamage = floor(totalDamage * cometMultiplier);
     totalDamage = floor(totalDamage * getDebuffMultiplier());
-    // if (this.isSkillActive('Dragonic Aura')) {
-    //   totalDamage += (totalDamage * this.learnLv('Dragonic Aura')) / 10;
+    // if (this.isSkillActive('DK_DRAGONIC_AURA')) {
+    //   totalDamage += (totalDamage * this.learnLv('DK_DRAGONIC_AURA')) / 10;
     // }
 
     return totalDamage;
   }
 
   override getAdditionalDmg(info: InfoForClass): number {
-    if (this.isSkillActive('Aura Blade')) {
+    if (this.isSkillActive('LK_AURABLADE')) {
       return info.model.level * 8;
     }
 
@@ -660,7 +660,7 @@ export class RuneKnight extends LordKnight {
   }
 
   override getAdditionalBasicDmg(info: InfoForClass): number {
-    if (this.isSkillActive('Enchant Blade')) {
+    if (this.isSkillActive('RK_ENCHANTBLADE')) {
       return 300 * (info.model.level / 100) + info.status.totalInt + info.totalBonus.matk;
     }
 

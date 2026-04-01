@@ -85,9 +85,9 @@ export class StarEmperor extends StarGladiator {
   private readonly classNames3rd = [ClassName.StarEmperor];
   private readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      label: 'New Moon Kick Lv7',
-      name: 'New Moon Kick',
-      value: 'New Moon Kick==7',
+      label: 'Eclipse Lunar Lv7',
+      name: 'SJ_NEWMOONKICK',
+      value: 'SJ_NEWMOONKICK==7',
       acd: 0,
       fct: 1,
       vct: 0,
@@ -101,9 +101,9 @@ export class StarEmperor extends StarGladiator {
       },
     },
     {
-      label: 'Full Moon Kick Lv10',
-      name: 'Full Moon Kick',
-      value: 'Full Moon Kick==10',
+      label: 'Chute Lunar Lv10',
+      name: 'SJ_FULLMOONKICK',
+      value: 'SJ_FULLMOONKICK==10',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -113,15 +113,15 @@ export class StarEmperor extends StarGladiator {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonus = this.isSkillActive('Lunar Luminance') ? 1.25 : 1;
+        const bonus = this.isSkillActive('SJ_LIGHTOFMOON') ? 1.25 : 1;
 
         return (1100 + skillLevel * 100) * (baseLevel / 100) * bonus;
       },
     },
     {
-      label: 'Blaze Kick Lv7',
-      name: 'Blaze Kick',
-      value: 'Blaze Kick==7',
+      label: 'Chute Solar Lv7',
+      name: 'SJ_PROMINENCEKICK',
+      value: 'SJ_PROMINENCEKICK==7',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -135,9 +135,9 @@ export class StarEmperor extends StarGladiator {
       },
     },
     {
-      label: 'Solar Explosion Lv10',
-      name: 'Solar Explosion',
-      value: 'Solar Explosion==10',
+      label: 'Hipernova Lv10',
+      name: 'SJ_NOVAEXPLOSING',
+      value: 'SJ_NOVAEXPLOSING==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -147,15 +147,15 @@ export class StarEmperor extends StarGladiator {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonus = this.isSkillActive('Solar Luminance') ? 1.25 : 1;
+        const bonus = this.isSkillActive('SJ_LIGHTOFSUN') ? 1.25 : 1;
 
         return (1000 + skillLevel * 220) * (baseLevel / 100) * bonus;
       },
     },
     {
-      name: 'Falling Stars',
-      label: 'Falling Stars Lv10',
-      value: 'Falling Stars==10',
+      name: 'SJ_FALLINGSTAR',
+      label: 'Chuva Estelar Lv10',
+      value: 'SJ_FALLINGSTAR==10',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -168,7 +168,7 @@ export class StarEmperor extends StarGladiator {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonus = this.isSkillActive('Stellar Luminance') ? 1.25 : 1;
+        const bonus = this.isSkillActive('SJ_LIGHTOFSTAR') ? 1.25 : 1;
 
         return (100 + skillLevel * 100) * (baseLevel / 100) * bonus;
       },
@@ -177,8 +177,8 @@ export class StarEmperor extends StarGladiator {
 
   private readonly activeSkillList3rd: ActiveSkillModel[] = [
     {
-      label: 'Lunar Luminance',
-      name: 'Lunar Luminance',
+      label: 'Luz Lunar',
+      name: 'SJ_LIGHTOFMOON',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -186,8 +186,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Solar Stance',
-      name: 'Solar Stance',
+      label: 'Postura Solar',
+      name: 'SJ_SUNSTANCE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -195,8 +195,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Solar Luminance',
-      name: 'Solar Luminance',
+      label: 'Luz Solar',
+      name: 'SJ_LIGHTOFSUN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -205,7 +205,7 @@ export class StarEmperor extends StarGladiator {
     },
     {
       label: 'Levitar',
-      name: 'Fusion of Sun, Moon and Star',
+      name: 'SG_FUSION',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, skillLv: 1, isUse: true, bonus: { forceCri: 1 } },
@@ -213,8 +213,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Stellar Stance',
-      name: 'Stellar Stance',
+      label: 'Postura Estelar',
+      name: 'SJ_STARSTANCE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -222,8 +222,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Stellar Luminance',
-      name: 'Stellar Luminance',
+      label: 'Luz Estelar',
+      name: 'SJ_LIGHTOFSTAR',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -234,8 +234,8 @@ export class StarEmperor extends StarGladiator {
 
   private readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {
-      label: 'Blessing of Sun',
-      name: 'Blessing of Sun',
+      label: 'Bno Solar',
+      name: 'SG_SUN_BLESS',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -247,8 +247,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Blessing of Moon',
-      name: 'Blessing of Moon',
+      label: 'Bno Lunar',
+      name: 'SG_MOON_BLESS',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -260,8 +260,8 @@ export class StarEmperor extends StarGladiator {
       ],
     },
     {
-      label: 'Blessing of Star',
-      name: 'Blessing of Star',
+      label: 'Bno Estelar',
+      name: 'SG_STAR_BLESS',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', isUse: false, value: 0 },
@@ -286,7 +286,7 @@ export class StarEmperor extends StarGladiator {
   }
 
   getWrathAtkBonus(info: InfoForClass): number {
-    if (!this.isSkillActive('Wrath of')) return 0;
+    if (!this.isSkillActive('_CALC_WRATH_OF')) return 0;
 
     const { model, status, monster } = info;
     const { level } = model;

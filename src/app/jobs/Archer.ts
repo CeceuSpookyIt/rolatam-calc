@@ -160,7 +160,7 @@ export class Archer extends CharacterBase {
       isEquipAtk: true,
       inputType: 'selectButton',
       label: 'Improve Concen 10',
-      name: 'Improve Concentration',
+      name: 'AC_CONCENTRATION',
       dropdown: [
         { label: 'Yes', value: 10, skillLv: 10, isUse: true, bonus: { agiBoost: 12, dexBoost: 12 } },
         { label: 'No', value: 0, isUse: false },

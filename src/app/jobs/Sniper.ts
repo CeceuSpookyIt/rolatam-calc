@@ -84,10 +84,10 @@ export class Sniper extends Archer {
   private readonly classNamesHi = [ClassName.Hunter, ClassName.HiClass, ClassName.Sniper];
   private readonly atkSkillListHi: AtkSkillModel[] = [
     {
-      name: 'Focused Arrow Strike',
+      name: 'SN_SHARPSHOOTING',
       label: 'Focused Arrow Lv5',
-      value: 'Focused Arrow Strike==5',
-      values: ['[Improved] Focused Arrow Strike==5'],
+      value: 'SN_SHARPSHOOTING==5',
+      values: ['[Improved] SN_SHARPSHOOTING==5'],
       acd: 0.5,
       fct: 0.5,
       vct: 0.5,
@@ -108,7 +108,7 @@ export class Sniper extends Archer {
       isEquipAtk: true,
       inputType: 'selectButton',
       label: 'Wind Walk 5',
-      name: 'Wind Walk',
+      name: 'SN_WINDWALK',
       dropdown: [
         { label: 'Yes', value: 5, skillLv: 5, isUse: true, bonus: { flee: 5 } },
         { label: 'No', value: 0, isUse: false },
@@ -118,7 +118,7 @@ export class Sniper extends Archer {
       isEquipAtk: true,
       inputType: 'selectButton',
       label: 'Falcon Eyes 10',
-      name: 'Falcon Eyes',
+      name: 'SN_SIGHT',
       dropdown: [
         { label: 'Yes', value: 10, skillLv: 10, isUse: true, bonus: { flatDmg: 20, hit: 30, cri: 10, allStatus: 5 } },
         { label: 'No', value: 0, isUse: false },
@@ -128,8 +128,8 @@ export class Sniper extends Archer {
   private passiveSkillListHi: PassiveSkillModel[] = [
     BeastBaneFn(),
     {
-      label: 'Steel Crow',
-      name: 'Steel Crow',
+      label: 'Garras de Ao',
+      name: 'HT_STEELCROW',
       inputType: 'dropdown',
       isMasteryAtk: true,
       dropdown: [
@@ -148,8 +148,8 @@ export class Sniper extends Archer {
     },
     {
       inputType: 'dropdown',
-      label: 'Falcon Eyes',
-      name: 'Falcon Eyes',
+      label: 'Viso Real',
+      name: 'SN_SIGHT',
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 10', value: 10, isUse: true },

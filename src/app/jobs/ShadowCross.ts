@@ -164,9 +164,9 @@ export class ShadowCross extends GuillotineCross {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.ShadowCross];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Shadow Stab',
-      label: '[V3] Shadow Stab Lv5',
-      value: 'Shadow Stab==5',
+      name: 'SHC_SHADOW_STAB',
+      label: '[V3] Facada Lv5',
+      value: 'SHC_SHADOW_STAB==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -180,7 +180,7 @@ export class ShadowCross extends GuillotineCross {
       },
       isIgnoreDef: true,
       totalHit: () => {
-        if (this.isSkillActive('Cloaking Exceed')) return 2;
+        if (this.isSkillActive('GC_CLOAKINGEXCEED')) return 2;
 
         return 1;
       },
@@ -193,9 +193,9 @@ export class ShadowCross extends GuillotineCross {
       },
     },
     {
-      name: 'Dancing Knife',
-      label: '[V3] Dancing Knife Lv5',
-      value: 'Dancing Knife==5',
+      name: 'SHC_DANCING_KNIFE',
+      label: '[V3] Adagas Voadoras Lv5',
+      value: 'SHC_DANCING_KNIFE==5',
       acd: 1,
       fct: 1,
       vct: 1,
@@ -217,9 +217,9 @@ export class ShadowCross extends GuillotineCross {
       },
     },
     {
-      name: 'Eternal Slash',
-      label: '[V3] Eternal Slash Lv5 (1 hit)',
-      value: 'Eternal Slash==5',
+      name: 'SHC_ETERNAL_SLASH',
+      label: '[V3] Talho Eterno Lv5 (1 hit)',
+      value: 'SHC_ETERNAL_SLASH==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -233,7 +233,7 @@ export class ShadowCross extends GuillotineCross {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('Shadow Exceed')) {
+        if (this.isSkillActive('SHC_SHADOW_EXCEED')) {
           return (skillLevel * 365 + totalPow * 3) * (baseLevel / 100);
         }
 
@@ -246,9 +246,9 @@ export class ShadowCross extends GuillotineCross {
       // },
     },
     {
-      name: 'Savage Impact',
-      label: '[V3] Savage Impact Lv5',
-      value: 'Savage Impact==5',
+      name: 'SHC_SAVAGE_IMPACT',
+      label: '[V3] Impacto Brutal Lv5',
+      value: 'SHC_SAVAGE_IMPACT==5',
       acd: 0.3,
       fct: 0,
       vct: 0,
@@ -264,7 +264,7 @@ export class ShadowCross extends GuillotineCross {
         return requires.join(', ');
       },
       totalHit: () => {
-        if (this.isSkillActive('Cloaking Exceed')) return 5;
+        if (this.isSkillActive('GC_CLOAKINGEXCEED')) return 5;
 
         return 3;
       },
@@ -273,7 +273,7 @@ export class ShadowCross extends GuillotineCross {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('Shadow Exceed')) {
+        if (this.isSkillActive('SHC_SHADOW_EXCEED')) {
           return (skillLevel * 110 + totalPow * 7) * (baseLevel / 100);
         }
 
@@ -281,9 +281,9 @@ export class ShadowCross extends GuillotineCross {
       },
     },
     {
-      name: 'Impact Crater',
-      label: '[V3] Impact Crater Lv5',
-      value: 'Impact Crater==5',
+      name: 'SHC_IMPACT_CRATER',
+      label: '[V3] Impacto Cratera Lv5',
+      value: 'SHC_IMPACT_CRATER==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -299,7 +299,7 @@ export class ShadowCross extends GuillotineCross {
         return requires.join(', ');
       },
       totalHit: () => {
-        return this.activeSkillLv('Spin Count') || 1;
+        return this.activeSkillLv('_CALC_SPIN_COUNT') || 1;
       },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
@@ -310,9 +310,9 @@ export class ShadowCross extends GuillotineCross {
       },
     },
     {
-      name: 'Fatal Shadow Claw',
-      label: '[V3] Fatal Shadow Claw Lv10',
-      value: 'Fatal Shadow Claw==10',
+      name: 'SHC_FATAL_SHADOW_CROW',
+      label: '[V3] Revoada Sombria Lv10',
+      value: 'SHC_FATAL_SHADOW_CROW==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -331,7 +331,7 @@ export class ShadowCross extends GuillotineCross {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Shadow Wound',
+      name: 'SHC_CROSS_SLASH',
       label: 'Shadow Wound',
       isDebuff: true,
       inputType: 'dropdown',
@@ -342,13 +342,13 @@ export class ShadowCross extends GuillotineCross {
       ),
     },
     {
-      name: 'Potent Venom',
-      label: 'Potent Venom',
+      name: 'SHC_POTENT_VENOM',
+      label: 'Adulterar Veneno',
       inputType: 'dropdown',
       dropdown: genSkillList(10, (lv) => ({ pene_res: lv * 3 })),
     },
     {
-      name: 'Shadow Exceed',
+      name: 'SHC_SHADOW_EXCEED',
       label: 'Shadow Exceed 10',
       inputType: 'selectButton',
       dropdown: [
@@ -359,8 +359,8 @@ export class ShadowCross extends GuillotineCross {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Shadow Sense',
-      label: 'Shadow Sense',
+      name: 'SHC_SHADOW_SENSE',
+      label: 'Senso das Sombras',
       inputType: 'dropdown',
       dropdown: genSkillList(10, (lv) => ({ flee: lv * 10 })),
     },
@@ -382,7 +382,7 @@ export class ShadowCross extends GuillotineCross {
 
     const { totalBonus, weapon } = params;
 
-    const shadowSenseLv = this.learnLv('Shadow Sense');
+    const shadowSenseLv = this.learnLv('SHC_SHADOW_SENSE');
     if (shadowSenseLv > 0) {
       let criBonus = 0;
       if (weapon.isType('dagger')) criBonus = 10 + shadowSenseLv * 4;

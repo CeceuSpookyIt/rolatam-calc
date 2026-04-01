@@ -162,9 +162,9 @@ export class DragonKnight extends RuneKnight {
 
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Servant Weapon',
-      label: '[V3] Servant Weapon Lv5',
-      value: 'Servant Weapon==5',
+      name: 'DK_SERVANTWEAPON',
+      label: '[V3] Espada Alada Lv5',
+      value: 'DK_SERVANTWEAPON==5',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -183,9 +183,9 @@ export class DragonKnight extends RuneKnight {
       },
     },
     {
-      name: 'Hack and Slasher',
-      label: '[V3] Hack and Slasher Lv10',
-      value: 'Hack and Slasher==10',
+      name: 'DK_HACKANDSLASHER',
+      label: '[V3] Corte e Massacre Lv10',
+      value: 'DK_HACKANDSLASHER==10',
       acd: 0.25,
       fct: 0,
       vct: 0,
@@ -209,9 +209,9 @@ export class DragonKnight extends RuneKnight {
       },
     },
     {
-      name: 'Storm Slash',
-      label: '[V3] Storm Slash Lv5',
-      value: 'Storm Slash==5',
+      name: 'DK_STORMSLASH',
+      label: '[V3] Dilacerar Lv5',
+      value: 'DK_STORMSLASH==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -236,9 +236,9 @@ export class DragonKnight extends RuneKnight {
       },
     },
     {
-      name: 'Madness Crusher',
-      label: '[V3] Madness Crusher Lv5',
-      value: 'Madness Crusher==5',
+      name: 'DK_MADNESS_CRUSHER',
+      label: '[V3] C£lera Esmagadora Lv5',
+      value: 'DK_MADNESS_CRUSHER==5',
       acd: 0.5,
       fct: 0.5,
       vct: 0,
@@ -259,9 +259,9 @@ export class DragonKnight extends RuneKnight {
       },
     },
     {
-      name: 'Dragonic Breath',
+      name: 'DK_DRAGONIC_BREATH',
       label: '[V3] Dragonic Breath Lv10',
-      value: 'Dragonic Breath==10',
+      value: 'DK_DRAGONIC_BREATH==10',
       acd: 0.15,
       fct: 0.5,
       vct: 2,
@@ -273,7 +273,7 @@ export class DragonKnight extends RuneKnight {
         const { model, skillLevel, status, maxHp, maxSp } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        if (this.activeSkillLv('Dragonic Aura')) {
+        if (this.activeSkillLv('DK_DRAGONIC_AURA')) {
           return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
         }
 
@@ -284,7 +284,7 @@ export class DragonKnight extends RuneKnight {
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
       label: 'Dragonic Aura 10',
-      name: 'Dragonic Aura',
+      name: 'DK_DRAGONIC_AURA',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 10, isUse: true, bonus: { 'Dragon Breath': 100, 'Dragon Breath - WATER': 100 } },
@@ -294,8 +294,8 @@ export class DragonKnight extends RuneKnight {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      label: 'Dragonic Aura',
-      name: 'Dragonic Aura',
+      label: 'Aura Draconiana',
+      name: 'DK_DRAGONIC_AURA',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

@@ -2,7 +2,7 @@ import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const DebufSonicBrandFn = (): PassiveSkillModel => ({
   label: 'Sonic Brand',
-  name: '_Debuf_Sonic_Brand',
+  name: '_CALC_DEBUF_SONIC_BRAND',
   isDebuff: true,
   inputType: 'selectButton',
   dropdown: [

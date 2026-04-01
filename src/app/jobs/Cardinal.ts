@@ -164,9 +164,9 @@ export class Cardinal extends ArchBishop {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.Cardinal];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Framen',
-      label: '[V3] Framen Lv5',
-      value: 'Framen==5',
+      name: 'CD_FRAMEN',
+      label: '[V3] Flamen Lv5',
+      value: 'CD_FRAMEN==5',
       acd: 0.5,
       fct: 1.5,
       vct: 5,
@@ -177,7 +177,7 @@ export class Cardinal extends ArchBishop {
         const { model, skillLevel, status, monster } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const fidusLv = this.learnLv('Fidus Animus');
+        const fidusLv = this.learnLv('CD_FIDUS_ANIMUS');
 
         if (monster.isRace('demon', 'undead')) {
           return (skillLevel * (900 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
@@ -187,9 +187,9 @@ export class Cardinal extends ArchBishop {
       },
     },
     {
-      name: 'Arbitrium',
+      name: 'CD_ARBITRIUM',
       label: '[V3] Arbitrium Lv10',
-      value: 'Arbitrium==10',
+      value: 'CD_ARBITRIUM==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -200,7 +200,7 @@ export class Cardinal extends ArchBishop {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
-        const fidusLv = this.learnLv('Fidus Animus');
+        const fidusLv = this.learnLv('CD_FIDUS_ANIMUS');
 
         const primaryDmg = (skillLevel * (1250 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
         const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
@@ -209,9 +209,9 @@ export class Cardinal extends ArchBishop {
       },
     },
     {
-      name: 'Petitio',
+      name: 'CD_PETITIO',
       label: '[V3] Petitio Lv10',
-      value: 'Petitio==10',
+      value: 'CD_PETITIO==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -231,7 +231,7 @@ export class Cardinal extends ArchBishop {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const mAndBookLv = this.learnLv('Mace & Book Mastery');
+        const mAndBookLv = this.learnLv('CD_MACE_BOOK_M');
 
         return (skillLevel * (1050 + mAndBookLv * 10) + totalPow * 5) * (baseLevel / 100);
       },
@@ -240,8 +240,8 @@ export class Cardinal extends ArchBishop {
   private readonly activeSkillList4th: ActiveSkillModel[] = [];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Mace & Book Mastery',
-      label: 'Mace & Book Mastery',
+      name: 'CD_MACE_BOOK_M',
+      label: 'Estudo Religioso',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -258,7 +258,7 @@ export class Cardinal extends ArchBishop {
       ],
     },
     {
-      name: 'Fidus Animus',
+      name: 'CD_FIDUS_ANIMUS',
       label: 'Fidus Animus',
       inputType: 'dropdown',
       dropdown: [
@@ -293,7 +293,7 @@ export class Cardinal extends ArchBishop {
 
     const { totalBonus, weapon, skillName } = params;
 
-    const mAndBookLv = this.learnLv('Mace & Book Mastery');
+    const mAndBookLv = this.learnLv('CD_MACE_BOOK_M');
     if (mAndBookLv > 0 && weapon.isType('mace', 'book', 'twohandMace')) {
       const mapM = [0, 2, 3, 5, 6, 8, 9, 11, 12, 14, 15];
       const mapL = [0, 3, 5, 7, 9, 10, 12, 13, 15, 16, 18];
@@ -302,9 +302,9 @@ export class Cardinal extends ArchBishop {
       addBonus(totalBonus, 'p_size_l', mapL[mAndBookLv]);
     }
 
-    const fidusLv = this.learnLv('Fidus Animus');
+    const fidusLv = this.learnLv('CD_FIDUS_ANIMUS');
     if (fidusLv > 0) {
-      if (skillName === 'Framen' || skillName === 'Arbitrium' || skillName === 'Pneumaticus Procella') {
+      if (skillName === 'CD_FRAMEN' || skillName === 'CD_ARBITRIUM' || skillName === 'CD_PNEUMATICUS_PROCELLA') {
         addBonus(totalBonus, 'm_my_element_holy', floor(fidusLv * 1.5));
       }
     }

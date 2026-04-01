@@ -88,9 +88,9 @@ export class Kagerou extends Ninja {
   private readonly classNames2nd = [ClassName.Kagerou];
   private readonly atkSkillList2nd: AtkSkillModel[] = [
     {
-      label: 'Cross Slash Lv10',
-      name: 'Cross Slash',
-      value: 'Cross Slash==10',
+      label: 'Impacto Cruzado Lv10',
+      name: 'KO_JYUMONJIKIRI',
+      value: 'KO_JYUMONJIKIRI==10',
       acd: 0,
       fct: 0,
       vct: 0,
@@ -99,15 +99,15 @@ export class Kagerou extends Ninja {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonus = this.isSkillActive('Cross Wound') ? baseLevel * skillLevel : 0;
+        const bonus = this.isSkillActive('SHC_CROSS_SLASH') ? baseLevel * skillLevel : 0;
 
         return skillLevel * 200 * (baseLevel / 100) + bonus;
       },
     },
     {
-      label: 'Kunai Explosion Lv5',
-      name: 'Kunai Explosion',
-      value: 'Kunai Explosion==5',
+      label: 'Kunai Explosiva Lv5',
+      name: 'KO_BAKURETSU',
+      value: 'KO_BAKURETSU==5',
       acd: 1,
       fct: 0,
       vct: 2.6,
@@ -121,15 +121,15 @@ export class Kagerou extends Ninja {
         } = input;
         const { level: baseLevel, jobLevel } = model;
         const explosiveKunai = 50;
-        const bonusDaggerThrow = 0.4 * this.learnLv('Dagger Throwing Practice');
+        const bonusDaggerThrow = 0.4 * this.learnLv('NJ_TOBIDOUGU');
 
         return (explosiveKunai + totalDex / 4) * skillLevel * bonusDaggerThrow * (baseLevel / 100) + jobLevel * 10;
       },
     },
     {
-      label: 'Kunai Splash Lv5',
-      name: 'Kunai Splash',
-      value: 'Kunai Splash==5',
+      label: 'Turbilho de Kunais Lv5',
+      name: 'KO_HAPPOKUNAI',
+      value: 'KO_HAPPOKUNAI==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -137,15 +137,15 @@ export class Kagerou extends Ninja {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
-        const bonusDaggerThrow = 20 * this.learnLv('Dagger Throwing Practice');
+        const bonusDaggerThrow = 20 * this.learnLv('NJ_TOBIDOUGU');
 
         return (skillLevel * 50 + bonusDaggerThrow) * (baseLevel / 100);
       },
     },
     {
-      label: 'Swirling Petal Lv10',
-      name: 'Swirling Petal',
-      value: 'Swirling Petal==10',
+      label: 'Turbilho de Ptalas Lv10',
+      name: 'KO_HUUMARANKA',
+      value: 'KO_HUUMARANKA==10',
       acd: 0.5,
       fct: 0,
       vct: 1.5,
@@ -155,7 +155,7 @@ export class Kagerou extends Ninja {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
         const { totalStr } = status;
-        const bonusDaggerThrow = 100 * this.learnLv('Throw Huuma Shuriken');
+        const bonusDaggerThrow = 100 * this.learnLv('NJ_HUUMA');
 
         return (skillLevel * 150 + totalStr * 5 + bonusDaggerThrow) * (baseLevel / 100);
       },
@@ -165,8 +165,8 @@ export class Kagerou extends Ninja {
   private readonly activeSkillList2nd: ActiveSkillModel[] = [
     ShadowWarrior,
     {
-      label: '[Debuf] Cross Wound',
-      name: 'Cross Wound',
+      label: '[Debuf] Shadow Wound',
+      name: 'SHC_CROSS_SLASH',
       inputType: 'selectButton',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
@@ -179,8 +179,8 @@ export class Kagerou extends Ninja {
 
   private readonly passiveSkillList2nd: PassiveSkillModel[] = [
     {
-      label: 'Soul Cutter',
-      name: 'Soul Cutter',
+      label: 'Corte Espiritual',
+      name: 'KO_SETSUDAN',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -192,8 +192,8 @@ export class Kagerou extends Ninja {
       ],
     },
     {
-      label: 'Illusion - Shadow',
-      name: 'Illusion - Shadow',
+      label: 'Genjutsu: Clone das Sombras',
+      name: 'KO_ZANZOU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -209,8 +209,8 @@ export class Kagerou extends Ninja {
     PureSoulFn(),
     S16thNightFn(),
     {
-      label: 'Empty Shadow',
-      name: 'Empty Shadow',
+      label: 'Vazio das Sombras',
+      name: 'KG_KYOMU',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -239,7 +239,7 @@ export class Kagerou extends Ninja {
   }
 
   override getMasteryMatk(info: InfoForClass): number {
-    const _16Night = this.activeSkillLv('16th Night');
+    const _16Night = this.activeSkillLv('KO_IZAYOI');
     if (_16Night <= 0) return 0;
 
     const { model } = info;
@@ -249,7 +249,7 @@ export class Kagerou extends Ninja {
 
   override setAdditionalBonus(params: AdditionalBonusInput) {
     const { totalBonus, model } = params;
-    if (this.isSkillActive('Distorted Crescent')) {
+    if (this.isSkillActive('OB_ZANGETSU')) {
       const bonus = floor(model.level / 3) + 100;
       totalBonus.atk += bonus;
       totalBonus.matk += bonus;

@@ -164,9 +164,9 @@ export class ArchMage extends Warlock {
   private readonly classNames4th = [ClassName.Only_4th, ClassName.ArchMage];
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
-      name: 'Soul Vulcan Strike',
-      label: '[V3] Soul Vulcan Strike Lv5',
-      value: 'Soul Vulcan Strike==5',
+      name: 'AG_SOUL_VC_STRIKE',
+      label: '[V3] Espritos Ancestrais Lv5',
+      value: 'AG_SOUL_VC_STRIKE==5',
       acd: 0.5,
       fct: 1,
       vct: 3,
@@ -183,9 +183,9 @@ export class ArchMage extends Warlock {
       }
     },
     {
-      name: 'Mystery Illusion',
-      label: '[V3] Mystery Illusion Lv5',
-      value: 'Mystery Illusion==5',
+      name: 'AG_MYSTERY_ILLUSION',
+      label: '[V3] Ilusionismo Lv5',
+      value: 'AG_MYSTERY_ILLUSION==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -202,9 +202,9 @@ export class ArchMage extends Warlock {
       }
     },
     {
-      name: 'Floral Flare Road',
-      label: '[V3] Floral Flare Road Lv5',
-      value: 'Floral Flare Road==5',
+      name: 'AG_FLORAL_FLARE_ROAD',
+      label: '[V3] Vereda Floral Incandescente Lv5',
+      value: 'AG_FLORAL_FLARE_ROAD==5',
       acd: 0.25,
       fct: 1.5,
       vct: 3,
@@ -221,9 +221,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Rain of Crystal',
-      label: '[V3] Rain of Crystal Lv5',
-      value: 'Rain of Crystal==5',
+      name: 'AG_RAIN_OF_CRYSTAL',
+      label: '[V3] Chuva de Cristais Lv5',
+      value: 'AG_RAIN_OF_CRYSTAL==5',
       acd: 0.25,
       fct: 1.5,
       vct: 3,
@@ -240,9 +240,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Tornado Storm',
-      label: '[V3] Tornado Storm Lv5',
-      value: 'Tornado Storm==5',
+      name: 'AG_TORNADO_STORM',
+      label: '[V3] Ciclone Lv5',
+      value: 'AG_TORNADO_STORM==5',
       acd: 0.25,
       fct: 1.5,
       vct: 3,
@@ -259,9 +259,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Stratum Tremor',
+      name: 'AG_STRANTUM_TREMOR',
       label: '[V3] Stratum Tremor Lv5',
-      value: 'Stratum Tremor==5',
+      value: 'AG_STRANTUM_TREMOR==5',
       acd: 0.25,
       fct: 1.5,
       vct: 3,
@@ -278,9 +278,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Crimson Arrow',
-      label: '[V3] Crimson Arrow Lv5',
-      value: 'Crimson Arrow==5',
+      name: 'AG_CRIMSON_ARROW',
+      label: '[V3] Dardo de Fogo Lv5',
+      value: 'AG_CRIMSON_ARROW==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -291,7 +291,7 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        const blimaxBonus = this.isSkillActive('Climax') ? 600 : 0;
+        const blimaxBonus = this.isSkillActive('AG_CLIMAX') ? 600 : 0;
 
         const directDmg = floor((skillLevel * 300 + totalSpl * 3) * (baseLevel / 100));
         const bomDmg = floor((skillLevel * (600 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
@@ -300,9 +300,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Frozen Slash',
-      label: '[V3] Frozen Slash Lv5',
-      value: 'Frozen Slash==5',
+      name: 'AG_FROZEN_SLASH',
+      label: '[V3] Cacos de Gelo Lv5',
+      value: 'AG_FROZEN_SLASH==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -314,7 +314,7 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
+        if (this.isSkillActive('AG_CLIMAX')) {
           return (400 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -322,9 +322,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Storm Cannon',
-      label: '[V3] Storm Cannon Lv5',
-      value: 'Storm Cannon==5',
+      name: 'AG_STORM_CANNON',
+      label: '[V3] Lufada de Vento Lv5',
+      value: 'AG_STORM_CANNON==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -336,7 +336,7 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
+        if (this.isSkillActive('AG_CLIMAX')) {
           return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -344,9 +344,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'Rock Down',
-      label: '[V3] Rock Down Lv5',
-      value: 'Rock Down==5',
+      name: 'AG_ROCK_DOWN',
+      label: '[V3] Deslize de Pedras Lv5',
+      value: 'AG_ROCK_DOWN==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -358,7 +358,7 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
+        if (this.isSkillActive('AG_CLIMAX')) {
           return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -366,9 +366,9 @@ export class ArchMage extends Warlock {
       },
     },
     {
-      name: 'All Bloom',
-      label: '[V3] All Bloom Lv5 (1 hit)',
-      value: 'All Bloom==5',
+      name: 'AG_ALL_BLOOM',
+      label: '[V3] Florescer Lv5 (1 hit)',
+      value: 'AG_ALL_BLOOM==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -379,15 +379,15 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        const climaxBonus = this.activeSkillLv('Climax') === 3 ? 300 : 0;
+        const climaxBonus = this.activeSkillLv('AG_CLIMAX') === 3 ? 300 : 0;
 
         return (200 + skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100) + climaxBonus;
       },
     },
     {
-      name: 'Violent Quake',
-      label: '[V3] Violent Quake Lv5 (1 hit)',
-      value: 'Violent Quake==5',
+      name: 'AG_VIOLENT_QUAKE',
+      label: '[V3] Pilares de Pedra Lv5 (1 hit)',
+      value: 'AG_VIOLENT_QUAKE==5',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
@@ -398,15 +398,15 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        const climaxBonus = this.activeSkillLv('Climax') === 3 ? 200 : 0;
+        const climaxBonus = this.activeSkillLv('AG_CLIMAX') === 3 ? 200 : 0;
 
         return (200 + skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100) + climaxBonus;
       },
     },
     // {
-    //   name: 'Astral Strike',
-    //   label: '[V2] Astral Strike Lv10',
-    //   value: 'Astral Strike==10',
+    //   name: 'AG_ASTRAL_STRIKE',
+    //   label: '[V2] Coliso Astral Lv10',
+    //   value: 'AG_ASTRAL_STRIKE==10',
     //   acd: 0.5,
     //   fct: 1.5,
     //   vct: 4,
@@ -428,8 +428,8 @@ export class ArchMage extends Warlock {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      name: 'Climax',
-      label: 'Climax',
+      name: 'AG_CLIMAX',
+      label: 'Intensificao',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -443,8 +443,8 @@ export class ArchMage extends Warlock {
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
-      name: 'Two hand Staff Mastery',
-      label: 'Two hand Staff Mastery',
+      name: 'AG_TWOHANDSTAFF',
+      label: 'Percia com Cajado de Duas Mos',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
@@ -466,7 +466,7 @@ export class ArchMage extends Warlock {
 
     const { totalBonus, weapon } = params;
 
-    const tHandStaffLv = this.learnLv('Two hand Staff Mastery');
+    const tHandStaffLv = this.learnLv('AG_TWOHANDSTAFF');
     if (tHandStaffLv > 0 && weapon.isType('twohandRod')) {
       addBonus(totalBonus, 'sMatk', tHandStaffLv * 2);
     }

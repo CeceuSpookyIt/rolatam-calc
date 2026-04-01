@@ -158,8 +158,8 @@ export class Merchant extends CharacterBase {
 
   protected readonly _activeSkillList: ActiveSkillModel[] = [
     {
-      label: 'Crazy Uproar',
-      name: 'Crazy Uproar',
+      label: 'Grito de Guerra',
+      name: 'MC_LOUD',
       inputType: 'selectButton',
       isMasteryAtk: true,
       dropdown: [
@@ -171,8 +171,8 @@ export class Merchant extends CharacterBase {
 
   protected readonly _passiveSkillList: PassiveSkillModel[] = [
     {
-      label: 'Mammonite',
-      name: 'Mammonite',
+      label: 'Mammonita',
+      name: 'MC_MAMMONITE',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

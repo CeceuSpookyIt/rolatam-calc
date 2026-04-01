@@ -1,8 +1,8 @@
 import { PassiveSkillModel } from '../../jobs/_character-base.abstract';
 
 export const MetalicSoundFn = (): PassiveSkillModel => ({
-  label: 'Metalic Sound',
-  name: 'Metalic Sound',
+  label: 'Rudo Estridente',
+  name: 'WM_METALICSOUND',
   inputType: 'dropdown',
   dropdown: [
     { label: '-', value: 0, isUse: false },
