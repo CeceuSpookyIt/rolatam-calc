@@ -370,7 +370,7 @@
             </div>
             <ng-container *ngFor="let ac of acGroup.entries">
               <div class="col-12" style="padding-left: 16px;">
-                <span class="summary_value font-semibold">{{ ac.skillName }}</span>
+                <span class="summary_value font-semibold">{{ ac.skillName | skillName }}</span>
                 <span class="summary_highlight px-1">Lv{{ ac.skillLevel }}</span>
                 <span class="{{ 'property_' + ac.element }} px-1 font-semibold">{{ ac.element }}</span>
                 <span class="summary_monster_value px-1">({{ ac.chancePercent }}%)</span>

@@ -126,7 +126,7 @@
                 <!-- Metrics snapshot -->
                 <div class="grid grid-nogutter mt-2" *ngIf="build.metrics">
                   <div class="col-12 font-semibold mb-1">
-                    <i class="pi pi-bolt"></i> {{ build.skillName || '-' }} vs {{ build.monsterName || '-' }}
+                    <i class="pi pi-bolt"></i> {{ (build.skillName | skillName) || '-' }} vs {{ build.monsterName || '-' }}
                   </div>
                   <div class="col-6">DPS: <span class="font-semibold text-primary">{{ build.metrics.dps | number }}</span></div>
                   <div class="col-6">Dano: <span class="font-semibold summary_stat_atk">{{ build.metrics.maxDamage | number }}</span></div>

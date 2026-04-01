@@ -16,7 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { SkillDetailComponent } from './skill-detail/skill-detail.component';
-
+import { SkillNamePipe } from '../../../pipes/skill-name.pipe';
 
 @NgModule({
   imports: [
@@ -33,6 +33,7 @@ import { SkillDetailComponent } from './skill-detail/skill-detail.component';
     SharedPresetRoutingModule,
     ConfirmDialogModule,
     TooltipModule,
+    SkillNamePipe,
   ],
   declarations: [SharedPresetComponent, EquipmentUiComponent, EquipmentInDetailComponent, SkillDetailComponent],
 })

@@ -2075,7 +2075,7 @@
     </div>
     <div class="col-12">
       <label class="font-semibold">Skill Principal</label>
-      <div class="mt-1">{{ model.selectedAtkSkill || '-' }}</div>
+      <div class="mt-1">{{ (model.selectedAtkSkill | skillName) || '-' }}</div>
     </div>
     <div class="col-12" *ngIf="shareMetricsPreview">
       <label class="font-semibold">Métricas</label>

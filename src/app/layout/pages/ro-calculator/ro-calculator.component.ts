@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { formatBattleTime } from 'src/app/utils/format-battle-time';
+import { SKILL_REGISTRY } from 'src/app/constants/skill-registry';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -2077,7 +2078,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.atkSkills = this.selectedCharacter.atkSkills;
     this.offensiveSkills = [...new Set(this.atkSkills.map((a) => a.name)).values()].map((name) => {
       return {
-        label: name,
+        label: SKILL_REGISTRY[name]?.ptbr || name,
         value: name,
       };
     });
