@@ -13,7 +13,7 @@ describe('SharedBuildService', () => {
     model: { class: 4054, level: 175 },
     monster_id: 1002,
     monster_name: 'Poring',
-    skill_name: 'Storm Gust',
+    skill_name: 'WZ_STORMGUST',
     metrics: { dps: 1000, maxDamage: 2000, minDamage: 500, aspd: 190, hitPerSecs: 3, totalHit: 5, criRate: 30, criDmg: 40, vct: 1, fct: 0.5, acd: 0.2, hp: 50000, sp: 3000 },
     created_at: '2026-02-25T00:00:00Z',
     updated_at: '2026-02-25T00:00:00Z',
@@ -72,7 +72,7 @@ describe('SharedBuildService', () => {
         expect(build.classId).toBe(4054);
         expect(build.monsterId).toBe(1002);
         expect(build.monsterName).toBe('Poring');
-        expect(build.skillName).toBe('Storm Gust');
+        expect(build.skillName).toBe('WZ_STORMGUST');
         expect(build.metrics).toBeDefined();
         expect(build.createdAt).toBe('2026-02-25T00:00:00Z');
         expect(build.updatedAt).toBe('2026-02-25T00:00:00Z');
@@ -140,7 +140,7 @@ describe('SharedBuildService', () => {
         model: { class: 4054, level: 175 } as any,
         monsterId: 1002,
         monsterName: 'Poring',
-        skillName: 'Storm Gust',
+        skillName: 'WZ_STORMGUST',
         metrics: mockBuildRow.metrics,
       };
 
@@ -153,7 +153,7 @@ describe('SharedBuildService', () => {
             name: 'My Test Build',
             monster_id: 1002,
             monster_name: 'Poring',
-            skill_name: 'Storm Gust',
+            skill_name: 'WZ_STORMGUST',
           }),
         );
         done();

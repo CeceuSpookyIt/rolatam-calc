@@ -475,7 +475,7 @@ describe('Calculator', () => {
 
   describe('Oratio debuff skill', () => {
     it('should be defined in job buffs with correct bonus', () => {
-      const oratio = JobBuffs.find((b: any) => b.name === 'Oratio');
+      const oratio = JobBuffs.find((b: any) => b.name === 'AB_ORATIO');
       expect(oratio).toBeDefined();
       expect(oratio!.isDebuff).toBe(true);
       const yesOption = oratio!.dropdown!.find((d: any) => d.isUse);
@@ -496,7 +496,7 @@ describe('Calculator', () => {
         id: 24536, name: 'Malha Sombria de Loki', itemTypeId: 10, itemSubTypeId: 526,
         script: {
           hp: ['10'],
-          'Rolling Cutter': ['5', '2---2', 'EQUIP[Escudo Sombrio de Loki&&Greva Sombria de Loki]REFINE[shadowArmor,shadowShield,shadowBoot==1]---1'],
+          'GC_ROLLINGCUTTER': ['5', '2---2', 'EQUIP[Escudo Sombrio de Loki&&Greva Sombria de Loki]REFINE[shadowArmor,shadowShield,shadowBoot==1]---1'],
         },
       } as any;
       // Escudo Sombrio de Loki (Shadow Shield)
@@ -535,7 +535,7 @@ describe('Calculator', () => {
       calculator.loadItemFromModel(mockModel);
       calculator.prepareAllItemBonus();
       const totalBonus = (calculator as any).totalEquipStatus;
-      expect(totalBonus['Rolling Cutter']).toBe(5);
+      expect(totalBonus['GC_ROLLINGCUTTER']).toBe(5);
     });
 
     it('should scale Rolling Cutter per 2 refine', () => {
@@ -545,7 +545,7 @@ describe('Calculator', () => {
       calculator.prepareAllItemBonus();
       const totalBonus = (calculator as any).totalEquipStatus;
       // +5 base + floor(10/2)*2 = 5 + 10 = 15
-      expect(totalBonus['Rolling Cutter']).toBe(15);
+      expect(totalBonus['GC_ROLLINGCUTTER']).toBe(15);
     });
 
     it('should apply Rolling Cutter set bonus with 3-piece at +7 each', () => {
@@ -559,7 +559,7 @@ describe('Calculator', () => {
       calculator.prepareAllItemBonus();
       const totalBonus = (calculator as any).totalEquipStatus;
       // base 5 + floor(7/2)*2=6 + set: floor((7+7+7)/1)*1=21
-      expect(totalBonus['Rolling Cutter']).toBe(5 + 6 + 21);
+      expect(totalBonus['GC_ROLLINGCUTTER']).toBe(5 + 6 + 21);
     });
 
     it('should NOT apply Rolling Cutter set bonus without full 3-piece', () => {
@@ -572,7 +572,7 @@ describe('Calculator', () => {
       calculator.prepareAllItemBonus();
       const totalBonus = (calculator as any).totalEquipStatus;
       // base 5 + floor(7/2)*2=6, no set bonus
-      expect(totalBonus['Rolling Cutter']).toBe(11);
+      expect(totalBonus['GC_ROLLINGCUTTER']).toBe(11);
     });
 
     it('should apply p_size_all from shield: +3 base, +3 at +7, +4 at +9', () => {
@@ -816,8 +816,8 @@ describe('Calculator', () => {
           atk: ['10'], matk: ['10'],
           acd: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
           range: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
-          'cd__Ignition Break': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]0.5'],
-          'Ignition Break': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
+          'cd__RK_IGNITIONBREAK': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]0.5'],
+          'RK_IGNITIONBREAK': ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]15'],
           p_pene_race_all: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]70'],
           m_pene_race_all: ['EQUIP[Malha Sombria de Apoio&&Escudo Sombrio de Apoio&&Greva Sombria de Apoio&&Brinco Sombrio de Apoio&&Colar Sombrio de Apoio]70'],
         },
@@ -871,8 +871,8 @@ describe('Calculator', () => {
       const totalBonus = (calculator as any).totalEquipStatus;
       expect(totalBonus['acd']).toBe(15);
       expect(totalBonus['range']).toBe(15);
-      expect(totalBonus['cd__Ignition Break']).toBeCloseTo(0.5, 5);
-      expect(totalBonus['Ignition Break']).toBe(15);
+      expect(totalBonus['cd__RK_IGNITIONBREAK']).toBeCloseTo(0.5, 5);
+      expect(totalBonus['RK_IGNITIONBREAK']).toBe(15);
       expect(totalBonus['p_pene_race_all']).toBe(70);
       expect(totalBonus['m_pene_race_all']).toBe(70);
     });
