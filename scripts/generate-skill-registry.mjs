@@ -262,9 +262,19 @@ const MANUAL_OVERRIDES = {
   'Activation Attack Machine': 'MT_A_MACHINE',
 };
 
+// ─── Convert octal/decimal escapes from decompiled Lua to UTF-8 ─────
+function decodeLuaString(str) {
+  return str.replace(/\\(\d{2,3})/g, (match, numStr) => {
+    // Decompiled Lua uses decimal byte values (e.g. \237 = 0xED = í in Latin-1)
+    const code = parseInt(numStr, 10);
+    if (code >= 128 && code <= 255) return String.fromCharCode(code);
+    return match;
+  });
+}
+
 // ─── Parse GRF Lua: aegisName → PT-BR ──────────────────────────────
 function parseGrfLua(filePath) {
-  const content = fs.readFileSync(filePath, 'latin1');
+  const content = fs.readFileSync(filePath, 'utf-8');
   const map = new Map();
 
   const entries = content.split(/\[SKID\./);
@@ -274,7 +284,7 @@ function parseGrfLua(filePath) {
     const aegis = aegisMatch[1];
     const ptbrMatch = entry.match(/SkillName\s*=\s*"([^"]+)"/);
     if (!ptbrMatch) continue;
-    map.set(aegis, ptbrMatch[1]);
+    map.set(aegis, decodeLuaString(ptbrMatch[1]));
   }
   return map;
 }
