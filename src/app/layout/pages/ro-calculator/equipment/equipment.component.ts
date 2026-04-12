@@ -97,6 +97,8 @@ export class EquipmentComponent implements OnChanges, OnInit {
   private itemTypeMap = {};
   private readonly requireSet = new Set(['items', 'itemList', 'mapEnchant',])
   private isInternalItemIdChange = false;
+  /** Last enchant values received via @Input (before PrimeNG can reset them via ngModelChange) */
+  private inputEnchantValues: Record<string, any> = {};
 
   constructor() { }
 
@@ -117,6 +119,13 @@ export class EquipmentComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // Track enchant @Input values before PrimeNG dropdown can reset them via ngModelChange(null)
+    for (const key of ['enchant1Id', 'enchant2Id', 'enchant3Id', 'enchant4Id']) {
+      if (changes[key]) {
+        this.inputEnchantValues[key] = changes[key].currentValue;
+      }
+    }
+
     // console.log(this.itemType, 'changes', changes)
     if ((changes['items'])) {
       if (!changes['items']?.isFirstChange() || changes['items'].currentValue) {
@@ -233,6 +242,24 @@ export class EquipmentComponent implements OnChanges, OnInit {
     }
 
     this.refreshGroupedLists();
+
+    // PrimeNG Dropdown's `set options()` setter fires onModelChange(null) when it can't
+    // find the current value in the new options. This happens during page load because
+    // the options binding updates trigger AFTER setEnchantList populates the lists.
+    // Schedule a deferred restore so it runs after PrimeNG finishes resetting values.
+    const savedEnchants = { ...this.inputEnchantValues };
+    if (this.itemId && Object.values(savedEnchants).some(v => v != null)) {
+      setTimeout(() => {
+        for (const idx of [1, 2, 3, 4]) {
+          const property = `enchant${idx}Id`;
+          const enchantList = this[`enchant${idx}List`] as any[];
+          const inputValue = savedEnchants[property];
+          if (this[property] == null && inputValue != null && enchantList.find((a) => a.value === inputValue)) {
+            this[property] = inputValue;
+          }
+        }
+      }, 0);
+    }
   }
 
   /**
