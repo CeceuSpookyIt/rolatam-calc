@@ -777,6 +777,18 @@ export class Calculator {
   private validateCondition(params: { itemType: ItemTypeEnum; itemRefine: number; script: string; }): ValidationResult {
     const { itemRefine, itemType, script } = params;
     let restCondition = script;
+
+    // EVENT[2026-05-11]10
+    const [toRemoveEvent, eventDate] = restCondition.match(/EVENT\[(.+?)]/) ?? [];
+    if (eventDate) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const end = new Date(eventDate + 'T23:59:59');
+      if (today > end) return { isValid: false, restCondition };
+
+      restCondition = restCondition.replace(toRemoveEvent, '');
+    }
+
     const mainStatusRegex = /^(str|int|dex|agi|vit|luk|level):(\d+)&&(\d+===.+)/;
     const [, status, statusCondition, raw] = restCondition.match(mainStatusRegex) ?? [];
     if (status) {
