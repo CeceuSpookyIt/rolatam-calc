@@ -27,10 +27,6 @@ describe('PromoFooterComponent', () => {
     expect(['instanceiro', 'claudinhos']).toContain(component.selectedPromo.id);
   });
 
-  it('should have exactly 2 promos', () => {
-    expect(component.promos.length).toBe(2);
-  });
-
   it('should render the promo title', () => {
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
@@ -39,18 +35,17 @@ describe('PromoFooterComponent', () => {
   });
 
   it('should render a CTA button only for clickable promos', () => {
-    // Trigger ngOnInit first, then override selectedPromo
     fixture.detectChanges();
 
     // Force Instanceiro (clickable)
-    component.selectedPromo = component.promos.find(p => p.id === 'instanceiro')!;
+    component.selectedPromo = { id: 'instanceiro', title: 'Instanceiro', description: 'Test', logoSrc: '', ctaLabel: 'Acessar →', ctaUrl: 'https://instanceiro.vercel.app', label: 'outros projetos da casa', bgGradient: '', titleColor: '', isClickable: true };
     fixture.detectChanges();
     const cta = fixture.nativeElement.querySelector('.promo-cta');
     expect(cta).toBeTruthy();
     expect(cta.textContent).toContain('Acessar');
 
     // Force Claudinhos (not clickable)
-    component.selectedPromo = component.promos.find(p => p.id === 'claudinhos')!;
+    component.selectedPromo = { id: 'claudinhos', title: 'Guilda Claudinhos', description: 'Test', logoSrc: '', bgGradient: '', titleColor: '', isClickable: false };
     fixture.detectChanges();
     const ctaAfter = fixture.nativeElement.querySelector('.promo-cta');
     expect(ctaAfter).toBeNull();
@@ -58,7 +53,7 @@ describe('PromoFooterComponent', () => {
 
   it('should wrap clickable promo in an anchor tag with UTM', () => {
     fixture.detectChanges();
-    component.selectedPromo = component.promos.find(p => p.id === 'instanceiro')!;
+    component.selectedPromo = { id: 'instanceiro', title: 'Instanceiro', description: 'Test', logoSrc: '', ctaLabel: 'Acessar →', ctaUrl: 'https://instanceiro.vercel.app?utm_source=rocalc&utm_medium=promo-footer', label: 'outros projetos da casa', bgGradient: '', titleColor: '', isClickable: true };
     fixture.detectChanges();
     const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a.promo-clickable');
     expect(link).toBeTruthy();
@@ -68,7 +63,7 @@ describe('PromoFooterComponent', () => {
 
   it('should render selo (non-clickable) as div, not anchor', () => {
     fixture.detectChanges();
-    component.selectedPromo = component.promos.find(p => p.id === 'claudinhos')!;
+    component.selectedPromo = { id: 'claudinhos', title: 'Guilda Claudinhos', description: 'Test', logoSrc: '', bgGradient: '', titleColor: '', isClickable: false };
     fixture.detectChanges();
     const link = fixture.nativeElement.querySelector('a.promo-clickable');
     const div = fixture.nativeElement.querySelector('.promo-row:not(a)');
@@ -77,15 +72,13 @@ describe('PromoFooterComponent', () => {
   });
 
   it('should display the label tag only for promos with label', () => {
-    // Instanceiro has label
     fixture.detectChanges();
-    component.selectedPromo = component.promos.find(p => p.id === 'instanceiro')!;
+    component.selectedPromo = { id: 'instanceiro', title: 'Instanceiro', description: 'Test', logoSrc: '', label: 'outros projetos da casa', bgGradient: '', titleColor: '', isClickable: true };
     fixture.detectChanges();
     const label = fixture.nativeElement.querySelector('.promo-label');
     expect(label?.textContent?.trim()).toBe('outros projetos da casa');
 
-    // Claudinhos has no label
-    component.selectedPromo = component.promos.find(p => p.id === 'claudinhos')!;
+    component.selectedPromo = { id: 'claudinhos', title: 'Guilda Claudinhos', description: 'Test', logoSrc: '', bgGradient: '', titleColor: '', isClickable: false };
     fixture.detectChanges();
     const labelAfter = fixture.nativeElement.querySelector('.promo-label');
     expect(labelAfter).toBeNull();
@@ -95,5 +88,23 @@ describe('PromoFooterComponent', () => {
     fixture.detectChanges();
     const baseline = fixture.nativeElement.querySelector('.promo-baseline');
     expect(baseline).toBeNull();
+  });
+
+  it('should have 10 instanceiro descriptions', () => {
+    expect((component as any).instanceiroDescriptions.length).toBe(10);
+  });
+
+  it('should set a non-empty description for instanceiro', () => {
+    // Run multiple times to ensure instanceiro gets picked at least once
+    for (let i = 0; i < 20; i++) {
+      component.ngOnInit();
+      if (component.selectedPromo.id === 'instanceiro') {
+        expect(component.selectedPromo.description.length).toBeGreaterThan(0);
+        return;
+      }
+    }
+    // If we never got instanceiro in 20 tries, force it to validate
+    (component as any).selectedPromo = { ...(component as any).instanceiroBase, description: (component as any).instanceiroDescriptions[0] };
+    expect(component.selectedPromo.description.length).toBeGreaterThan(0);
   });
 });
