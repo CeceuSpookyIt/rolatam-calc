@@ -206,6 +206,19 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'V0.8',
+      date: '16-04-2026',
+      logs: [
+        'Corrigido combos das Memórias de Edda Biolab (nomes de armas estavam errados, combos não ativavam)',
+        'Corrigido skills erradas nas Memórias de Eremes, Cecil, Gertie, Randel e Chen',
+        'Adicionadas skills faltantes na Memória de Chen (Combo Quádruplo, O Último Dragão, Soco Furacão, etc.)',
+        'Corrigido Carta Cavaleiro Branco Mutante aparecendo no slot de manto ao invés de arma',
+        'Corrigido 12 pedras de costume invisíveis nos dropdowns (Músicos II, Lorde II, Criador II, Cavaleiro Rúnico II)',
+        'Corrigido skills das pedras Artistas II (Flecha Melódica ao invés de Vulcão de Flechas)',
+        'Corrigido bônus de dano a distância que não funcionavam em 24 itens',
+      ],
+    },
+    {
       v: 'V0.7',
       date: '16-04-2026',
       logs: [
