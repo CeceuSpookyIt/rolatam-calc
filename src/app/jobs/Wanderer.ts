@@ -216,8 +216,8 @@ export class Wanderer extends Bard {
     },
     Lesson,
     {
-      label: 'Dart Arrow',
-      name: '_CALC_DART_ARROW',
+      label: 'Estilingue',
+      name: 'DC_THROWARROW',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
