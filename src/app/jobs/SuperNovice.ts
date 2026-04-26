@@ -185,18 +185,18 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
-      name: 'SM_FATALBLOW',
-      label: 'Ataque Fatal',
-      value: 'SM_FATALBLOW==10',
-      values: ['Ataque Fatal Lv7', '[Improved] SM_FATALBLOW==7', '[Improved] SM_FATALBLOW==10'],
+      name: 'SC_FATALMENACE',
+      label: 'Ofensiva Fatal',
+      value: 'SC_FATALMENACE==10',
+      values: ['Ofensiva Fatal Lv7', '[Improved] SC_FATALMENACE==7', '[Improved] SC_FATALMENACE==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0,
       isMelee: true,
       levelList: [
-        { label: 'Ataque Fatal Lv7', value: 'SM_FATALBLOW==7' },
-        { label: 'Ataque Fatal Lv10', value: 'SM_FATALBLOW==10' },
+        { label: 'Ofensiva Fatal Lv7', value: 'SC_FATALMENACE==7' },
+        { label: 'Ofensiva Fatal Lv10', value: 'SC_FATALMENACE==10' },
       ],
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
@@ -513,7 +513,7 @@ export class SuperNovice extends CharacterBase {
   override calcSkillDmgByTotalHit(params: { finalDamage: number; skill: AtkSkillModel; info: InfoForClass; }) {
     const { finalDamage, skill, info } = params;
     const isDagger = info.weapon.data?.typeName === 'dagger';
-    if (skill.name === 'SM_FATALBLOW' && isDagger) {
+    if (skill.name === 'SC_FATALMENACE' && isDagger) {
       return finalDamage * 2;
     }
 

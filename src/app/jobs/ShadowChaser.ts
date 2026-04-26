@@ -87,10 +87,10 @@ export class ShadowChaser extends Stalker {
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.ShadowChaser];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
     {
-      name: 'SM_FATALBLOW',
-      label: 'Ataque Fatal Lv10',
-      value: 'SM_FATALBLOW==10',
-      values: ['[Improved] SM_FATALBLOW==10'],
+      name: 'SC_FATALMENACE',
+      label: 'Ofensiva Fatal Lv10',
+      value: 'SC_FATALMENACE==10',
+      values: ['[Improved] SC_FATALMENACE==10'],
       acd: 0.5,
       fct: 0,
       vct: 0,
@@ -534,7 +534,7 @@ export class ShadowChaser extends Stalker {
   override calcSkillDmgByTotalHit(params: { finalDamage: number; skill: AtkSkillModel; info: InfoForClass }) {
     const { finalDamage, skill, info } = params;
     const isDagger = info.weapon.data?.typeName === 'dagger';
-    if (skill.name === 'SM_FATALBLOW' && isDagger) {
+    if (skill.name === 'SC_FATALMENACE' && isDagger) {
       return finalDamage * 2;
     }
 
