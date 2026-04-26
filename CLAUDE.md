@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **rolatam-calc** is an Angular 16 calculator for Ragnarok Online (LATAM). It computes character damage/DPS across all job classes, manages equipment builds, and supports presets via Supabase backend.
 
-- **Live**: https://ceceuspookyit.github.io/rolatam-calc/
+- **Live**: https://calcro.claudinhos.org/ (old URL `https://ceceuspookyit.github.io/rolatam-calc/` 301-redirects here)
 - **Backend**: Supabase (auth, presets, shared builds, ranking)
 - **UI Library**: PrimeNG 16 + PrimeFlex
 
@@ -21,7 +21,7 @@ npm run build            # Production build → dist/sakai-ng/
 
 Production build for deploy:
 ```bash
-MSYS_NO_PATHCONV=1 npx ng build --base-href /rolatam-calc/
+MSYS_NO_PATHCONV=1 npx ng build --base-href /
 ```
 
 ## Git Remotes
@@ -99,9 +99,23 @@ Prefixes with `__`: `acd`, `cd`, `chance`, `dmg`, `fct`, `fix_vct`, `vct`. Full 
 ## Conventions
 
 - User communication in Portuguese (BR)
-- Base href must be `/rolatam-calc/` for production builds
+- Base href must be `/` for production builds (app is served from the root of `calcro.claudinhos.org`)
 - Prettier: single quotes, trailing commas, print width 170 (240 for ASPD/data tables)
 - TypeScript strict mode is off; `strictTemplates` is on for Angular templates
+
+## Deployment
+
+Custom domain `calcro.claudinhos.org` on GitHub Pages, fronted by Cloudflare DNS-only. Migration done on 2026-04-25 (see `docs/plans/2026-04-24-calcro-domain-migration-*.md`).
+
+**Do not regress any of the following. Each is required for the site to work:**
+
+- **`src/CNAME`** contains `calcro.claudinhos.org`. The `assets` array in `angular.json` (`projects.sakai-ng.architect.build.options.assets`) includes `{ "glob": "CNAME", "input": "src/", "output": "/" }` so the file is copied to `dist/sakai-ng/CNAME` on every build. Removing either side breaks the custom domain on the next deploy.
+- **`.github/workflows/deploy.yml`** runs `ng build --base-href /`. Reverting to `/rolatam-calc/` breaks all asset paths.
+- **GitHub Pages settings** must stay at `build_type: workflow`. If it flips to `legacy`, GitHub serves stale content from the `gh-pages` branch (which still exists and holds the pre-migration build) instead of the workflow artifact. Verify with `gh api /repos/CeceuSpookyIt/rolatam-calc/pages --jq .build_type`.
+- **Cloudflare DNS** zone `claudinhos.org` has a CNAME record `calcro` → `ceceuspookyit.github.io`, **DNS-only** (gray cloud). Enabling the proxy can break Let's Encrypt cert renewal on GitHub Pages.
+- **Supabase Auth → URL Configuration → Redirect URLs** must include `https://calcro.claudinhos.org/**`. Removing it breaks Google OAuth on the new domain. Old entry `https://ceceuspookyit.github.io/rolatam-calc/**` is also kept active for OAuth flows landing on the 301 redirect.
+
+**Routing**: app uses `HashLocationStrategy` (`#/` routes). This is intentional. GitHub Pages is static-only, so path-based routing would require a 404.html fallback hack. Hash routing also preserves shared preset URLs across the domain migration (browsers preserve the fragment during 301).
 
 ## Translation Policy
 
