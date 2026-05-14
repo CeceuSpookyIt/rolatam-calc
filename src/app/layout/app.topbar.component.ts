@@ -206,6 +206,20 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'V0.15',
+      date: '14-05-2026',
+      logs: [
+        'Atualização de itens (patch Maio 2026): 42 novos equipamentos',
+        'Adicionados 10 sets Sombrios temáticos com skill (Onda de Choque, Metralhadora, Pancada Corporal, Judex, Meteoro Escarlate, Ofensiva Fatal, Retaliação, Onda Psíquica, Tornado de Carrinho, Lança do Destino)',
+        'Adicionados sets Sombrios de Disparo Certeiro (Sentinela) e Ressonância (Musa/Trovador)',
+        'Adicionadas as versões II das manoplas Sombrias Espiritual, Cabal, Muito Forte e Muito Mística',
+        'Adicionado Elmo Real [1] com set de 23 armas Reais e Anulus Ira [1] com set de 26 armas Varmunt',
+        'Adicionado set bonus Aura Fantasma, Fone de Melancia (costume) e corrigida propriedade Fantasma',
+        'Corrigido tempo de conjuração dos Colares Radiantes Safira e Aquamarina',
+        'Renomeados cabelos visuais Super Saiadim com prefixo [Visual]',
+      ],
+    },
+    {
       v: 'V0.14',
       date: '02-05-2026',
       logs: [
