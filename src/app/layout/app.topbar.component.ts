@@ -206,6 +206,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'V0.16',
+      date: '16-05-2026',
+      logs: [
+        'Corrigido combos dos Anéis e Colares Radiantes/Profanos (referências de nome erradas impediam ativação dos bônus de combo)',
+        'Removido bônus de evento da Sandália de Samba (evento encerrado)',
+        'Corrigido classificação errada de 22 armas (Edda Biolab e armas Reais)',
+      ],
+    },
+    {
       v: 'V0.15',
       date: '14-05-2026',
       logs: [
